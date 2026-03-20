@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(powershell -Command \"py --version\")",
+      "Bash(powershell -Command \"Get-Command python* | Select-Object Name, Source\")",
+      "Bash(powershell -Command \"& ''C:\\\\Users\\\\lucas\\\\AppData\\\\Local\\\\Microsoft\\\\WindowsApps\\\\python.exe'' --version\")",
+      "mcp__5cef576d-bc98-4847-9b33-9ca9928ad708__clickup_get_task",
+      "mcp__5cef576d-bc98-4847-9b33-9ca9928ad708__clickup_get_task_comments",
+      "mcp__c1fc4002-5f49-5f9d-a4e5-93c4ef5d6a75__google_drive_search"
+    ]
+  }
+}

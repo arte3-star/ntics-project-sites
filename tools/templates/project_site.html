@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ project_name }}</title>
+  <style>
+    /* Reset & Base */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #1a1a2e;
+      background: #ffffff;
+      line-height: 1.6;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    a { text-decoration: none; color: inherit; }
+
+    /* Header / Nav */
+    header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+      padding: 0 2rem;
+    }
+    .header-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 70px;
+    }
+    .logo-header { height: 45px; width: auto; }
+    nav { display: flex; gap: 1.5rem; }
+    nav a {
+      font-size: 0.85rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.5px; color: #333;
+      transition: color 0.3s;
+    }
+    nav a:hover { color: {{ accent_color | default('#6C3CE1') }}; }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 120px 2rem 4rem;
+      background: linear-gradient(135deg, {{ hero_bg_start | default('#f8f6ff') }}, {{ hero_bg_end | default('#e8e0ff') }});
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: radial-gradient(circle, {{ accent_color | default('#6C3CE1') }}10 0%, transparent 70%);
+      animation: pulse 8s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.5; }
+      50% { transform: scale(1.1); opacity: 0.8; }
+    }
+    .hero-logo { max-width: 280px; margin: 0 auto 2rem; position: relative; z-index: 1; }
+    .hero h1 {
+      font-size: 2.8rem; font-weight: 800; margin-bottom: 1rem;
+      color: {{ accent_color | default('#6C3CE1') }}; position: relative; z-index: 1;
+    }
+    .hero .tagline {
+      font-size: 1.3rem; font-weight: 600; margin-bottom: 1.5rem;
+      color: {{ accent_secondary | default('#4a2d8a') }}; position: relative; z-index: 1;
+    }
+    .hero .description {
+      max-width: 700px; margin: 0 auto; font-size: 1.05rem;
+      color: #444; position: relative; z-index: 1;
+    }
+
+    /* Section Common */
+    section { padding: 5rem 2rem; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-title {
+      text-align: center; font-size: 2rem; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 2px;
+      margin-bottom: 3rem; color: {{ accent_color | default('#6C3CE1') }};
+    }
+    .section-alt { background: #f8f6ff; }
+
+    /* Sobre / About Section */
+    .sobre-content {
+      max-width: 800px; margin: 0 auto;
+      font-size: 1.1rem; color: #444; text-align: center;
+    }
+
+    /* Cidades / Cities */
+    .cities-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1.5rem;
+    }
+    .city-card {
+      background: white; border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      overflow: hidden; text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .city-card:hover { transform: translateY(-5px); box-shadow: 0 8px 30px rgba(0,0,0,0.12); }
+    .city-card img {
+      width: 100%; height: 120px; object-fit: cover;
+    }
+    .city-card .city-name {
+      padding: 0.8rem; font-weight: 700; font-size: 0.85rem;
+      text-transform: uppercase; color: #333;
+    }
+    .city-placeholder {
+      width: 100%; height: 120px;
+      background: linear-gradient(135deg, {{ accent_color | default('#6C3CE1') }}30, {{ accent_color | default('#6C3CE1') }}10);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .city-placeholder span { font-size: 2rem; }
+
+    /* Activities */
+    .activity {
+      display: flex; align-items: center; gap: 3rem;
+      margin-bottom: 4rem;
+    }
+    .activity:nth-child(even) { flex-direction: row-reverse; }
+    .activity-text { flex: 1; }
+    .activity-text h3 {
+      font-size: 1.6rem; font-weight: 700; margin-bottom: 1rem;
+      color: {{ accent_color | default('#6C3CE1') }};
+    }
+    .activity-text p { font-size: 1.05rem; color: #555; }
+    .activity-image {
+      flex: 1; border-radius: 16px; overflow: hidden;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+    }
+    .activity-image img { width: 100%; height: 300px; object-fit: cover; }
+    .img-placeholder {
+      width: 100%; height: 300px;
+      background: linear-gradient(135deg, {{ accent_color | default('#6C3CE1') }}20, {{ accent_color | default('#6C3CE1') }}05);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; color: #999;
+    }
+
+    /* Democratizacao */
+    .demo-text {
+      max-width: 800px; margin: 0 auto 3rem;
+      font-size: 1.1rem; color: #444; text-align: center;
+    }
+    .demo-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem; max-width: 800px; margin: 0 auto;
+    }
+    .demo-card {
+      background: white; border-radius: 16px; overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      transition: transform 0.3s;
+      text-align: center;
+    }
+    .demo-card:hover { transform: translateY(-5px); }
+    .demo-card img { width: 100%; height: 180px; object-fit: cover; }
+    .demo-card .demo-label {
+      padding: 1rem; font-weight: 700; font-size: 0.9rem;
+      text-transform: uppercase; color: {{ accent_color | default('#6C3CE1') }};
+    }
+
+    /* Gallery */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1rem;
+    }
+    .gallery-grid img {
+      width: 100%; height: 200px; object-fit: cover;
+      border-radius: 12px;
+      transition: transform 0.3s;
+    }
+    .gallery-grid img:hover { transform: scale(1.03); }
+
+    /* Sponsors */
+    .sponsors {
+      padding: 3rem 2rem;
+      background: #f0ecff;
+      text-align: center;
+    }
+    .sponsors img {
+      max-width: 800px; margin: 0 auto;
+    }
+    .sponsor-logos {
+      display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
+      gap: 2rem; max-width: 900px; margin: 1.5rem auto 0;
+    }
+    .sponsor-logos img { height: 60px; width: auto; }
+
+    /* Footer */
+    footer {
+      background: #1a1a2e; color: white;
+      padding: 2rem; text-align: center;
+    }
+    footer img { height: 40px; margin: 0 auto 1rem; }
+    footer p { font-size: 0.85rem; opacity: 0.7; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav { display: none; }
+      .hero h1 { font-size: 2rem; }
+      .hero .tagline { font-size: 1.1rem; }
+      .activity, .activity:nth-child(even) {
+        flex-direction: column; gap: 1.5rem;
+      }
+      .cities-grid { grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="header-inner">
+      {% if logo_url %}
+      <a href="#"><img src="{{ logo_url }}" alt="{{ project_name }}" class="logo-header"></a>
+      {% else %}
+      <a href="#" style="font-weight:800; font-size:1.1rem; color:{{ accent_color | default('#6C3CE1') }}">{{ project_short_name | default(project_name) }}</a>
+      {% endif %}
+      <nav>
+        <a href="#projeto">O projeto</a>
+        <a href="#cidades">Por onde passamos</a>
+        <a href="#atividades">Atividades</a>
+        {% if democratizacao %}<a href="#democratizacao">Democratiza&ccedil;&atilde;o</a>{% endif %}
+        {% if gallery_images %}<a href="#galeria">Galeria</a>{% endif %}
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" id="projeto">
+    {% if kv_url %}
+    <img src="{{ kv_url }}" alt="Logo {{ project_name }}" class="hero-logo">
+    {% endif %}
+    <h1>{{ hero_title | default(project_name) }}</h1>
+    {% if tagline %}
+    <div class="tagline">{{ tagline }}</div>
+    {% endif %}
+    <div class="description">{{ description }}</div>
+  </section>
+
+  <!-- Sobre -->
+  {% if sobre %}
+  <section>
+    <div class="section-inner">
+      <h2 class="section-title">Sobre o Projeto</h2>
+      <div class="sobre-content">{{ sobre }}</div>
+    </div>
+  </section>
+  {% endif %}
+
+  <!-- Cidades -->
+  {% if cities %}
+  <section class="section-alt" id="cidades">
+    <div class="section-inner">
+      <h2 class="section-title">Por Onde Passamos</h2>
+      <div class="cities-grid">
+        {% for city in cities %}
+        <div class="city-card">
+          {% if city.image_url %}
+          <img src="{{ city.image_url }}" alt="{{ city.name }}">
+          {% else %}
+          <div class="city-placeholder"><span>📍</span></div>
+          {% endif %}
+          <div class="city-name">{{ city.name }}</div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+  {% endif %}
+
+  <!-- Atividades -->
+  {% if activities %}
+  <section id="atividades">
+    <div class="section-inner">
+      <h2 class="section-title">Atividades</h2>
+      {% for act in activities %}
+      <div class="activity">
+        <div class="activity-text">
+          <h3>{{ act.name }}</h3>
+          <p>{{ act.description }}</p>
+        </div>
+        <div class="activity-image">
+          {% if act.image_url %}
+          <img src="{{ act.image_url }}" alt="{{ act.name }}">
+          {% else %}
+          <div class="img-placeholder">{{ act.name }}</div>
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+
+  <!-- Democratizacao -->
+  {% if democratizacao %}
+  <section class="section-alt" id="democratizacao">
+    <div class="section-inner">
+      <h2 class="section-title">Democratiza&ccedil;&atilde;o de Acesso</h2>
+      <div class="demo-text">{{ democratizacao }}</div>
+      {% if demo_links %}
+      <div class="demo-links">
+        {% for link in demo_links %}
+        <a href="{{ link.url }}" target="_blank" class="demo-card">
+          {% if link.thumbnail %}
+          <img src="{{ link.thumbnail }}" alt="{{ link.label }}">
+          {% else %}
+          <div class="img-placeholder" style="height:180px">{{ link.label }}</div>
+          {% endif %}
+          <div class="demo-label">{{ link.label }}</div>
+        </a>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+  </section>
+  {% endif %}
+
+  <!-- Galeria -->
+  {% if gallery_images %}
+  <section id="galeria">
+    <div class="section-inner">
+      <h2 class="section-title">Galeria de Fotos</h2>
+      <div class="gallery-grid">
+        {% for img in gallery_images %}
+        <img src="{{ img.url }}" alt="{{ img.alt | default('Galeria ' ~ loop.index) }}">
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+  {% endif %}
+
+  <!-- Patrocinadores -->
+  <section class="sponsors">
+    <h2 class="section-title">Patroc&iacute;nio e Realiza&ccedil;&atilde;o</h2>
+    {% if sponsors_banner_url %}
+    <img src="{{ sponsors_banner_url }}" alt="Patrocínio e Realização">
+    {% else %}
+    <div class="sponsor-logos">
+      {% for sponsor in sponsors %}
+      {% if sponsor.logo_url %}
+      <img src="{{ sponsor.logo_url }}" alt="{{ sponsor.name }}">
+      {% else %}
+      <span style="padding:1rem 2rem; background:white; border-radius:8px; font-weight:700; color:#666;">{{ sponsor.name }}</span>
+      {% endif %}
+      {% endfor %}
+      <span style="padding:1rem 2rem; background:white; border-radius:8px; font-weight:700; color:#666;">NTICS Projetos</span>
+      {% if has_lei_rouanet %}
+      <span style="padding:1rem 2rem; background:white; border-radius:8px; font-weight:700; color:#666;">Lei Rouanet</span>
+      <span style="padding:1rem 2rem; background:white; border-radius:8px; font-weight:700; color:#666;">Minist&eacute;rio da Cultura</span>
+      <span style="padding:1rem 2rem; background:white; border-radius:8px; font-weight:700; color:#666;">Governo Federal</span>
+      {% endif %}
+    </div>
+    {% endif %}
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    {% if logo_url %}
+    <img src="{{ logo_url }}" alt="{{ project_name }}">
+    {% endif %}
+    <p>&copy; 2026 {{ project_name }}. Todos os direitos reservados.</p>
+  </footer>
+
+</body>
+</html>
