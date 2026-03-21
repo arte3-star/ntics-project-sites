@@ -11,6 +11,9 @@ from flask import Flask, request, jsonify
 app    = Flask(__name__)
 ROOT   = Path(__file__).parent.parent
 SECRET = os.environ.get("WEBHOOK_SECRET", "ntics-secret-2026")
+# REVIEW_MODE: when True, only classifies and creates a single review task
+# instead of creating all individual tasks. Set to False when confident.
+REVIEW_MODE = os.environ.get("REVIEW_MODE", "true").lower() == "true"
 
 def run_workflow(payload: dict):
     arquivo  = payload.get("arquivo", {})
@@ -52,12 +55,27 @@ def run_workflow(payload: dict):
     meeting = json.loads(result_file.read_text(encoding="utf-8"))
 
     # Step 3: create ClickUp tasks
-    print(f"  📋 Step 3: Creating ClickUp tasks ({len(meeting.get('tasks', []))} tasks)...")
-    subprocess.run([
-        sys.executable, "tools/create_clickup_tasks.py",
-        "--input", str(result_file),
-        "--url", url
-    ], cwd=ROOT, check=True)
+    if REVIEW_MODE:
+        # Only create a review task with summary — don't create individual tasks
+        tasks = meeting.get("tasks", [])
+        task_list = "\n".join(f"  - {t['title']}" for t in tasks)
+        meeting["triage"] = True
+        meeting["confidence"] = meeting.get("confidence", 0)
+        # Override the review context with full summary
+        result_file.write_text(json.dumps(meeting, ensure_ascii=False, indent=2), encoding="utf-8")
+        print(f"  🔍 Step 3: REVIEW MODE — creating review task with {len(tasks)} proposed tasks")
+        subprocess.run([
+            sys.executable, "tools/create_clickup_tasks.py",
+            "--input", str(result_file),
+            "--url", url
+        ], cwd=ROOT, check=True)
+    else:
+        print(f"  📋 Step 3: Creating ClickUp tasks ({len(meeting.get('tasks', []))} tasks)...")
+        subprocess.run([
+            sys.executable, "tools/create_clickup_tasks.py",
+            "--input", str(result_file),
+            "--url", url
+        ], cwd=ROOT, check=True)
 
     # Step 4: Pipedrive (SALES only, skip if key not configured)
     pipedrive_key = os.environ.get("PIPEDRIVE_API_KEY", "")

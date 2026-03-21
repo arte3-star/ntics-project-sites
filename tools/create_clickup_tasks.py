@@ -105,13 +105,17 @@ def main():
     triage    = meeting.get("triage", False)
 
     if triage:
-        # Create a single review task instead of all extracted tasks
-        print("⚠️  Triage mode — creating review task")
+        # Create a single review task with summary of all proposed tasks
+        print("⚠️  Triage/Review mode — creating review task")
+        task_summary = "\n".join(
+            f"- **{t['title']}** → {t.get('assignee_id', 'sem responsável')} | {t.get('priority', 'normal')} | {t.get('due_date', 'sem prazo')}"
+            for t in tasks
+        )
         review = {
-            "title": f"⚠️ Revisar ata — {meeting.get('title', 'Reunião')}",
+            "title": f"📋 Revisar ata — {meeting.get('title', 'Reunião')}",
             "assignee_id": "81513300",
             "priority": "high",
-            "context": f"Classificação com baixa confiança ({meeting.get('confidence')}%). Tipo sugerido: {meeting.get('meeting_type')}. Revisar manualmente."
+            "context": f"Tipo: {meeting.get('meeting_type')} ({meeting.get('confidence')}% confiança)\nProjeto: {meeting.get('project_number', 'N/A')} → list {list_id}\n\n**{len(tasks)} tarefas propostas:**\n{task_summary}\n\n⚠️ Nenhuma tarefa foi criada automaticamente. Revise e crie manualmente ou desative REVIEW_MODE."
         }
         result = create_task(TRIAGE_LIST, review, meeting, file_url)
         print(f"✅ Review task created: {result.get('url', result.get('id'))}")
