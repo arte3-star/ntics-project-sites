@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>NTICS Projetos | ESG em Foco</title>
+  <style>
+    body, table, td, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+    table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
+    img { border: 0; height: auto; line-height: 100%; outline: none; text-decoration: none; }
+    body { margin: 0; padding: 0; width: 100% !important; background-color: #F4F4F4; }
+    @media (prefers-color-scheme: dark) {
+      .dark-bg { background-color: #1a1a1a !important; }
+      .dark-card { background-color: #2D2D2D !important; }
+      .dark-text { color: #E4E2E1 !important; }
+    }
+    @media only screen and (max-width: 620px) {
+      .container { width: 100% !important; padding: 0 12px !important; }
+      .mobile-hide { display: none !important; }
+      .mobile-stack { display: block !important; width: 100% !important; }
+      .news-img { width: 100% !important; height: auto !important; border-radius: 10px 10px 0 0 !important; }
+      .news-text { padding: 14px !important; }
+    }
+  </style>
+  <!--
+    TEMPLATE: ESG em Foco — Newsletter NTICS Projetos (v4)
+    Aprovado: Marco 2026
+    Skill: /newsletter
+
+    VARIAVEIS para substituir:
+    {{NUMERO_EDICAO}} — numero da edicao
+    {{DATA_EDICAO}} — data formatada (ex: "22 Mar 2026")
+    {{PERIODICIDADE}} — "SEMANAL" ou "MENSAL"
+    {{ARTIGO_IMAGEM}} — URL Unsplash do artigo
+    {{ARTIGO_CATEGORIA}} — ex: "ESG • INOVACAO"
+    {{ARTIGO_TITULO}} — titulo do artigo
+    {{ARTIGO_RESUMO}} — 2-3 frases
+    {{ARTIGO_META}} — "X min de leitura • Por Autor"
+    {{ARTIGO_LINK}} — URL do artigo no site
+    {{NOTICIA1_IMAGEM}} — URL Unsplash noticia 1
+    {{NOTICIA2_IMAGEM}} — URL Unsplash noticia 2
+    {{NOTICIA3_IMAGEM}} — URL Unsplash noticia 3
+  -->
+</head>
+<body style="margin: 0; padding: 0; background-color: #F4F4F4; font-family: Arial, Helvetica, sans-serif;">
+
+<div style="display: none; max-height: 0; overflow: hidden; mso-hide: all;">
+  {{PREHEADER}}
+</div>
+
+<table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="background-color: #F4F4F4;">
+<tr><td align="center" style="padding: 24px 0;">
+
+<table role="presentation" cellpadding="0" cellspacing="0" width="600" class="container" style="max-width: 600px; width: 100%;">
+
+  <!-- ========== HEADER ========== -->
+  <tr>
+    <td style="background-color: #005F73; border-radius: 12px 12px 0 0;">
+      <table role="presentation" cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+          <td style="padding: 28px 32px;">
+            <table role="presentation" cellpadding="0" cellspacing="0" width="100%"><tr>
+              <td style="vertical-align: middle; width: 50%;">
+                <a href="https://ntics.com.br" style="text-decoration: none;">
+                  <img src="https://ntics.com.br/wp-content/uploads/2023/05/logo-ntics-branco-01.svg" alt="NTICS Projetos" width="140" style="display: block; max-width: 140px; height: auto;" />
+                </a>
+              </td>
+              <td style="vertical-align: middle; text-align: right;">
+                <span style="font-family: Arial, Helvetica, sans-serif; font-size: 26px; font-weight: bold; color: #FFFFFF; line-height: 30px; display: block;">ESG em Foco</span>
+                <span style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; color: rgba(255,255,255,0.6); display: block; margin-top: 3px;">Noticias que transformam</span>
+              </td>
+            </tr></table>
+          </td>
+        </tr>
+        <!-- Barra quadriculada -->
+        <tr>
+          <td style="font-size: 0; line-height: 0;">
+            <table role="presentation" cellpadding="0" cellspacing="0" width="100%"><tr>
+              <td style="width: 16.66%; height: 6px; background-color: #3DAA35;"></td>
+              <td style="width: 16.66%; height: 6px; background-color: #00A5B8;"></td>
+              <td style="width: 16.66%; height: 6px; background-color: #005F73;"></td>
+              <td style="width: 16.66%; height: 6px; background-color: #D41A6A;"></td>
+              <td style="width: 16.66%; height: 6px; background-color: #E86428;"></td>
+              <td style="width: 16.70%; height: 6px; background-color: #F5B800;"></td>
+            </tr></table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+
+  <!-- Edition badge -->
+  <tr>
+    <td style="background-color: #FFFFFF; padding: 20px 32px 0 32px;">
+      <table role="presentation" cellpadding="0" cellspacing="0" width="100%"><tr>
+        <td><span style="font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; color: #6B7280; letter-spacing: 2px; text-transform: uppercase;">NEWSLETTER {{PERIODICIDADE}}</span></td>
+        <td style="text-align: right;"><span style="font-family: Arial, sans-serif; font-size: 11px; color: #6B7280;">Edicao #{{NUMERO_EDICAO}} &mdash; {{DATA_EDICAO}}</span></td>
+      </tr></table>
+    </td>
+  </tr>
+
+  <!-- ========== ARTIGO DESTAQUE ========== -->
+  <tr>
+    <td style="background-color: #FFFFFF; padding: 20px 32px 32px 32px;">
+      <table role="presentation" cellpadding="0" cellspacing="0" width="100%">
+        <tr><td style="padding-bottom: 14px;">
+          <span style="background-color: #3DAA35; padding: 4px 12px; border-radius: 4px; font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; color: #FFFFFF; letter-spacing: 1px; text-transform: uppercase;">Artigo da Semana</span>
+        </td></tr>
+      </table>
+      <table role="presentation" cellpadding="0" cellspacing="0" width="100%">
+        <tr><td style="padding-bottom: 16px;">
+          <a href="{{ARTIGO_LINK}}" style="text-decoration: none;">
+            <img src="{{ARTIGO_IMAGEM}}" alt="{{ARTIGO_TITULO}}" width="536" style="display: block; width: 100%; height: auto; border-radius: 12px;" />
+          </a>
+        </td></tr>
+        <tr><td style="padding-bottom: 6px;">
+          <span style="font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; color: #00A5B8; letter-spacing: 2px; text-transform: uppercase;">{{ARTIGO_CATEGORIA}}</span>
+        </td></tr>
+        <tr><td style="padding-bottom: 10px;">
+          <a href="{{ARTIGO_LINK}}" style="text-decoration: none;">
+            <span style="font-family: Arial, sans-serif; font-size: 22px; font-weight: bold; color: #2D2D2D; line-height: 30px;">{{ARTIGO_TITULO}}</span>
+          </a>
+        </td></tr>
+        <tr><td>
+          <p style="font-family: Arial, sans-serif; font-size: 15px; line-height: 24px; color: #2D2D2D; margin: 0 0 12px 0;">{{ARTIGO_RESUMO}}</p>
+          <span style="font-family: Arial, sans-serif; font-size: 12px; color: #6B7280;">{{ARTIGO_META}}</span>
+        </td></tr>
+        <tr><td style="padding-top: 16px;">
+          <table role="presentation" cellpadding="0" cellspacing="0"><tr>
+            <td style="background-color: #3DAA35; border-radius: 8px;">
+              <a href="{{ARTIGO_LINK}}" style="font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; color: #FFFFFF; text-decoration: none; display: inline-block; padding: 12px 24px;">Ler artigo completo &rarr;</a>
+            </td>
+          </tr></table>
+        </td></tr>
+      </table>
+    </td>
+  </tr>
+
+  <tr><td style="height: 2px; background-color: #F4F4F4;"></td></tr>
+
+  <!-- ========== DESTAQUES ========== -->
+  <!-- [Secao de destaques — preencher com dados reais do periodo] -->
+
+  <tr><td style="height: 2px; background-color: #F4F4F4;"></td></tr>
+
+  <!-- ========== BOAS NOTICIAS (com imagens) ========== -->
+  <!-- [Secao de noticias — 1 card grande + 2 cards horizontais com thumbnails] -->
+
+  <tr><td style="height: 2px; background-color: #F4F4F4;"></td></tr>
+
+  <!-- ========== LEIS DE INCENTIVO (opcional) ========== -->
+  <!-- [Secao de leis — cards com border-left colorido] -->
+
+  <!-- ========== CTA FINAL ========== -->
+  <tr>
+    <td style="background-color: #005F73; padding: 32px; text-align: center;">
+      <span style="font-family: Arial, sans-serif; font-size: 20px; font-weight: bold; color: #FFFFFF;">Quer transformar o impacto da sua empresa?</span><br>
+      <span style="font-family: Arial, sans-serif; font-size: 13px; color: rgba(255,255,255,0.7); display: block; margin-top: 6px;">22 anos de experiencia em projetos com resultados mensuraveis.</span>
+      <table role="presentation" cellpadding="0" cellspacing="0" align="center" style="margin-top: 20px;"><tr>
+        <td style="background-color: #E86428; border-radius: 8px;">
+          <a href="https://ntics.com.br/fale-com-a-ntics/" style="font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; color: #FFFFFF; text-decoration: none; display: inline-block; padding: 12px 28px;">Agendar conversa &rarr;</a>
+        </td>
+      </tr></table>
+    </td>
+  </tr>
+
+  <!-- ========== FOOTER COMPACTO ========== -->
+  <tr>
+    <td style="background-color: #2D2D2D; padding: 24px 32px; border-radius: 0 0 12px 12px;">
+      <table role="presentation" cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+          <td style="vertical-align: middle;">
+            <a href="https://ntics.com.br" style="text-decoration: none;">
+              <img src="https://ntics.com.br/wp-content/uploads/2023/05/logo-ntics-branco-01.svg" alt="NTICS Projetos" width="100" style="display: block; max-width: 100px; height: auto;" />
+            </a>
+          </td>
+          <td style="text-align: right; vertical-align: middle;">
+            <a href="https://www.instagram.com/nticsprojetos" style="text-decoration: none; margin-left: 8px;"><img src="https://cdn2.iconfinder.com/data/icons/social-media-2285/512/1_Instagram_colored_svg_1-128.png" alt="IG" width="28" height="28" style="border: 0; border-radius: 6px; vertical-align: middle;" /></a>
+            <a href="https://www.linkedin.com/company/nticsprojetos" style="text-decoration: none; margin-left: 8px;"><img src="https://cdn2.iconfinder.com/data/icons/social-media-2285/512/1_Linkedin_unofficial_colored_svg-128.png" alt="LI" width="28" height="28" style="border: 0; border-radius: 6px; vertical-align: middle;" /></a>
+            <a href="https://www.youtube.com/@nticsprojetos/featured" style="text-decoration: none; margin-left: 8px;"><img src="https://cdn2.iconfinder.com/data/icons/social-media-2285/512/1_Youtube_colored_svg-128.png" alt="YT" width="28" height="28" style="border: 0; border-radius: 6px; vertical-align: middle;" /></a>
+            <a href="https://www.facebook.com/nticsprojetoss" style="text-decoration: none; margin-left: 8px;"><img src="https://cdn2.iconfinder.com/data/icons/social-media-2285/512/1_Facebook_colored_svg_copy-128.png" alt="FB" width="28" height="28" style="border: 0; border-radius: 6px; vertical-align: middle;" /></a>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" style="padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.1);">
+            <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="margin-top: 10px;"><tr>
+              <td>
+                <a href="https://ntics.com.br/pilar-desenvolvimento-sustentavel/" style="font-family: Arial, sans-serif; font-size: 11px; color: rgba(255,255,255,0.5); text-decoration: none;">Projetos</a>
+                <span style="color: rgba(255,255,255,0.2);"> &bull; </span>
+                <a href="https://ntics.com.br/equipe-ntics/" style="font-family: Arial, sans-serif; font-size: 11px; color: rgba(255,255,255,0.5); text-decoration: none;">Equipe</a>
+                <span style="color: rgba(255,255,255,0.2);"> &bull; </span>
+                <a href="https://ntics.com.br/notes" style="font-family: Arial, sans-serif; font-size: 11px; color: rgba(255,255,255,0.5); text-decoration: none;">Notes</a>
+                <span style="color: rgba(255,255,255,0.2);"> &bull; </span>
+                <a href="https://ntics.com.br/relatorio" style="font-family: Arial, sans-serif; font-size: 11px; color: rgba(255,255,255,0.5); text-decoration: none;">Relatorio</a>
+              </td>
+              <td style="text-align: right;">
+                <span style="font-family: Arial, sans-serif; font-size: 11px; color: rgba(255,255,255,0.4);">contato@ntics.com.br</span>
+              </td>
+            </tr></table>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" style="text-align: center; padding-top: 10px;">
+            <span style="font-family: Arial, sans-serif; font-size: 10px; color: rgba(255,255,255,0.3);">
+              &copy; 2026 NTICS Projetos &mdash; (11) 3042-4023 &bull;
+              <a href="#" style="color: rgba(255,255,255,0.4); text-decoration: underline;">Descadastrar</a> &bull;
+              <a href="https://ntics.com.br/politica-de-privacidade-e-seguranca-de-dados/" style="color: rgba(255,255,255,0.4); text-decoration: underline;">Privacidade</a>
+            </span>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+
+</table>
+</td></tr>
+</table>
+</body>
+</html>

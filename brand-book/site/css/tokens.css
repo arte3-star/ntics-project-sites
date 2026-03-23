@@ -1,0 +1,85 @@
+/* ============================================
+   NTICS Projetos — Design Tokens CSS
+   Brand Book v2.0 | 2026
+   ============================================ */
+
+:root {
+  /* Primary Colors */
+  --verde-regeneracao: #3DAA35;
+  --azul-petroleo: #005F73;
+  --rosa-transformacao: #D41A6A;
+
+  /* Secondary Colors */
+  --laranja-acao: #E86428;
+  --amarelo-consciencia: #F5B800;
+  --teal-futuro: #00A5B8;
+
+  /* Support */
+  --roxo-inovacao: #6B2D7B;
+
+  /* Neutrals */
+  --branco: #FFFFFF;
+  --cinza-claro: #F4F4F4;
+  --cinza-medio: #6B7280;
+  --grafite: #2D2D2D;
+
+  /* Semantic */
+  --cor-primaria: var(--verde-regeneracao);
+  --cor-institucional: var(--azul-petroleo);
+  --cor-destaque: var(--rosa-transformacao);
+  --cor-texto: var(--grafite);
+  --cor-texto-secundario: var(--cinza-medio);
+  --cor-fundo: var(--branco);
+  --cor-fundo-alt: var(--cinza-claro);
+
+  /* Typography */
+  --font-primary: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Type Scale */
+  --text-h1: 48px;
+  --text-h2: 36px;
+  --text-h3: 28px;
+  --text-h4: 24px;
+  --text-h5: 20px;
+  --text-h6: 16px;
+  --text-body: 16px;
+  --text-body-sm: 14px;
+  --text-caption: 12px;
+
+  /* Spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+  --space-4xl: 96px;
+
+  /* Border Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.10);
+
+  /* Motion */
+  --duration-fast: 150ms;
+  --duration-normal: 300ms;
+  --duration-slow: 500ms;
+  --easing: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Layout */
+  --max-width: 1280px;
+  --sidebar-width: 280px;
+}

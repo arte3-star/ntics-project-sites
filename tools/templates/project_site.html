@@ -1,270 +1,270 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ project_name }}</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              DEFAULT: '{{ accent_color | default("#6C3CE1") }}',
+              dark: '{{ accent_secondary | default("#4a2d8a") }}',
+              light: '{{ accent_color | default("#6C3CE1") }}18',
+            },
+          },
+          fontFamily: {
+            display: ['"Playfair Display"', 'Georgia', 'serif'],
+            body: ['Inter', 'system-ui', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
   <style>
-    /* Reset & Base */
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      color: #1a1a2e;
-      background: #ffffff;
-      line-height: 1.6;
-    }
-    img { max-width: 100%; height: auto; display: block; }
-    a { text-decoration: none; color: inherit; }
+    * { box-sizing: border-box; }
+    body { font-family: 'Inter', system-ui, sans-serif; overflow-x: hidden; }
+    h1, h2, h3 { font-family: 'Playfair Display', Georgia, serif; }
 
-    /* Header / Nav */
-    header {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: rgba(255,255,255,0.95);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 2px 20px rgba(0,0,0,0.08);
-      padding: 0 2rem;
-    }
-    .header-inner {
-      max-width: 1200px; margin: 0 auto;
-      display: flex; align-items: center; justify-content: space-between;
-      height: 70px;
-    }
-    .logo-header { height: 45px; width: auto; }
-    nav { display: flex; gap: 1.5rem; }
-    nav a {
-      font-size: 0.85rem; font-weight: 600; text-transform: uppercase;
-      letter-spacing: 0.5px; color: #333;
-      transition: color 0.3s;
-    }
-    nav a:hover { color: {{ accent_color | default('#6C3CE1') }}; }
-
-    /* Hero Section */
-    .hero {
-      min-height: 100vh;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      text-align: center; padding: 120px 2rem 4rem;
-      background: linear-gradient(135deg, {{ hero_bg_start | default('#f8f6ff') }}, {{ hero_bg_end | default('#e8e0ff') }});
-      position: relative; overflow: hidden;
-    }
-    .hero::before {
-      content: ''; position: absolute; top: -50%; left: -50%;
-      width: 200%; height: 200%;
-      background: radial-gradient(circle, {{ accent_color | default('#6C3CE1') }}10 0%, transparent 70%);
-      animation: pulse 8s ease-in-out infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); opacity: 0.5; }
-      50% { transform: scale(1.1); opacity: 0.8; }
-    }
-    .hero-logo { max-width: 280px; margin: 0 auto 2rem; position: relative; z-index: 1; }
-    .hero h1 {
-      font-size: 2.8rem; font-weight: 800; margin-bottom: 1rem;
-      color: {{ accent_color | default('#6C3CE1') }}; position: relative; z-index: 1;
-    }
-    .hero .tagline {
-      font-size: 1.3rem; font-weight: 600; margin-bottom: 1.5rem;
-      color: {{ accent_secondary | default('#4a2d8a') }}; position: relative; z-index: 1;
-    }
-    .hero .description {
-      max-width: 700px; margin: 0 auto; font-size: 1.05rem;
-      color: #444; position: relative; z-index: 1;
+    /* Grain texture */
+    .grain::after {
+      content: ''; position: absolute; inset: 0; opacity: 0.035; pointer-events: none; z-index: 1;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     }
 
-    /* Section Common */
-    section { padding: 5rem 2rem; }
-    .section-inner { max-width: 1100px; margin: 0 auto; }
-    .section-title {
-      text-align: center; font-size: 2rem; font-weight: 800;
-      text-transform: uppercase; letter-spacing: 2px;
-      margin-bottom: 3rem; color: {{ accent_color | default('#6C3CE1') }};
-    }
-    .section-alt { background: #f8f6ff; }
+    /* Animations — only transform & opacity */
+    .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-left { opacity: 0; transform: translateX(-60px); transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1); }
+    .reveal-left.visible { opacity: 1; transform: translateX(0); }
+    .reveal-right { opacity: 0; transform: translateX(60px); transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1); }
+    .reveal-right.visible { opacity: 1; transform: translateX(0); }
+    .reveal-scale { opacity: 0; transform: scale(0.92); transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1); }
+    .reveal-scale.visible { opacity: 1; transform: scale(1); }
 
-    /* Sobre / About Section */
-    .sobre-content {
-      max-width: 800px; margin: 0 auto;
-      font-size: 1.1rem; color: #444; text-align: center;
-    }
+    /* Hover states — spring easing */
+    .card-hover { transition: transform 0.5s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.4s ease; }
+    .card-hover:hover { transform: translateY(-8px); }
+    .card-hover:active { transform: translateY(-2px) scale(0.98); }
+    .img-hover { transition: transform 0.6s cubic-bezier(0.16,1,0.3,1); }
+    .img-hover:hover { transform: scale(1.05); }
 
-    /* Cidades / Cities */
-    .cities-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 1.5rem;
-    }
-    .city-card {
-      background: white; border-radius: 16px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-      overflow: hidden; text-align: center;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    .city-card:hover { transform: translateY(-5px); box-shadow: 0 8px 30px rgba(0,0,0,0.12); }
-    .city-card img {
-      width: 100%; height: 120px; object-fit: cover;
-    }
-    .city-card .city-name {
-      padding: 0.8rem; font-weight: 700; font-size: 0.85rem;
-      text-transform: uppercase; color: #333;
-    }
-    .city-placeholder {
-      width: 100%; height: 120px;
-      background: linear-gradient(135deg, {{ accent_color | default('#6C3CE1') }}30, {{ accent_color | default('#6C3CE1') }}10);
-      display: flex; align-items: center; justify-content: center;
-    }
-    .city-placeholder span { font-size: 2rem; }
-
-    /* Activities */
-    .activity {
-      display: flex; align-items: center; gap: 3rem;
-      margin-bottom: 4rem;
-    }
-    .activity:nth-child(even) { flex-direction: row-reverse; }
-    .activity-text { flex: 1; }
-    .activity-text h3 {
-      font-size: 1.6rem; font-weight: 700; margin-bottom: 1rem;
-      color: {{ accent_color | default('#6C3CE1') }};
-    }
-    .activity-text p { font-size: 1.05rem; color: #555; }
-    .activity-image {
-      flex: 1; border-radius: 16px; overflow: hidden;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.12);
-    }
-    .activity-image img { width: 100%; height: 300px; object-fit: cover; }
-    .img-placeholder {
-      width: 100%; height: 300px;
-      background: linear-gradient(135deg, {{ accent_color | default('#6C3CE1') }}20, {{ accent_color | default('#6C3CE1') }}05);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1rem; color: #999;
+    /* Focus visible */
+    a:focus-visible, button:focus-visible {
+      outline: 3px solid {{ accent_color | default('#6C3CE1') }};
+      outline-offset: 3px; border-radius: 6px;
     }
 
-    /* Democratizacao */
-    .demo-text {
-      max-width: 800px; margin: 0 auto 3rem;
-      font-size: 1.1rem; color: #444; text-align: center;
-    }
-    .demo-links {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem; max-width: 800px; margin: 0 auto;
-    }
-    .demo-card {
-      background: white; border-radius: 16px; overflow: hidden;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-      transition: transform 0.3s;
-      text-align: center;
-    }
-    .demo-card:hover { transform: translateY(-5px); }
-    .demo-card img { width: 100%; height: 180px; object-fit: cover; }
-    .demo-card .demo-label {
-      padding: 1rem; font-weight: 700; font-size: 0.9rem;
-      text-transform: uppercase; color: {{ accent_color | default('#6C3CE1') }};
+    /* Parallax float */
+    .float-slow { animation: floatSlow 8s ease-in-out infinite; }
+    .float-delayed { animation: floatSlow 8s ease-in-out infinite; animation-delay: -4s; }
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(2deg); }
     }
 
-    /* Gallery */
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 1rem;
-    }
-    .gallery-grid img {
-      width: 100%; height: 200px; object-fit: cover;
-      border-radius: 12px;
-      transition: transform 0.3s;
-    }
-    .gallery-grid img:hover { transform: scale(1.03); }
+    /* Counter animation */
+    .counter { display: inline-block; }
 
-    /* Sponsors */
-    .sponsors {
-      padding: 3rem 2rem;
-      background: #f0ecff;
-      text-align: center;
+    /* Scroll progress */
+    #scroll-progress {
+      position: fixed; top: 0; left: 0; height: 3px; z-index: 100;
+      background: {{ accent_color | default('#6C3CE1') }};
+      transform-origin: left; transform: scaleX(0);
+      transition: transform 0.1s linear;
     }
-    .sponsors img {
-      max-width: 800px; margin: 0 auto;
-    }
-    .sponsor-logos {
-      display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
-      gap: 2rem; max-width: 900px; margin: 1.5rem auto 0;
-    }
-    .sponsor-logos img { height: 60px; width: auto; }
 
-    /* Footer */
-    footer {
-      background: #1a1a2e; color: white;
-      padding: 2rem; text-align: center;
-    }
-    footer img { height: 40px; margin: 0 auto 1rem; }
-    footer p { font-size: 0.85rem; opacity: 0.7; }
+    /* Nav links */
+    nav a { transition: color 0.3s cubic-bezier(0.4,0,0.2,1), transform 0.2s ease; }
+    nav a:hover { color: {{ accent_color | default('#6C3CE1') }}; transform: translateY(-1px); }
+    nav a:active { transform: scale(0.95); }
 
-    /* Responsive */
-    @media (max-width: 768px) {
-      nav { display: none; }
-      .hero h1 { font-size: 2rem; }
-      .hero .tagline { font-size: 1.1rem; }
-      .activity, .activity:nth-child(even) {
-        flex-direction: column; gap: 1.5rem;
-      }
-      .cities-grid { grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); }
-    }
+    /* Mobile menu */
+    .mobile-menu { transform: translateX(100%); transition: transform 0.4s cubic-bezier(0.16,1,0.3,1); }
+    .mobile-menu.open { transform: translateX(0); }
+    .backdrop-blur { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
   </style>
 </head>
-<body>
+<body class="antialiased text-slate-800 bg-white">
+
+  <!-- Scroll Progress Bar -->
+  <div id="scroll-progress"></div>
 
   <!-- Header -->
-  <header>
-    <div class="header-inner">
+  <header id="main-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500" style="background: transparent;">
+    <div class="max-w-7xl mx-auto flex items-center justify-between h-20 px-6 lg:px-10">
       {% if logo_url %}
-      <a href="#"><img src="{{ logo_url }}" alt="{{ project_name }}" class="logo-header"></a>
+      <a href="#" class="flex-shrink-0 relative z-10">
+        <img src="{{ logo_url }}" alt="{{ project_name }}" class="h-12 w-auto drop-shadow-lg">
+      </a>
       {% else %}
-      <a href="#" style="font-weight:800; font-size:1.1rem; color:{{ accent_color | default('#6C3CE1') }}">{{ project_short_name | default(project_name) }}</a>
+      <a href="#" class="font-display text-2xl tracking-tight relative z-10 text-white drop-shadow-lg">
+        {{ project_short_name | default(project_name) }}
+      </a>
       {% endif %}
-      <nav>
-        <a href="#projeto">O projeto</a>
-        <a href="#cidades">Por onde passamos</a>
-        <a href="#atividades">Atividades</a>
-        {% if democratizacao %}<a href="#democratizacao">Democratiza&ccedil;&atilde;o</a>{% endif %}
-        {% if gallery_images %}<a href="#galeria">Galeria</a>{% endif %}
+
+      <!-- Desktop Nav -->
+      <nav class="hidden lg:flex items-center gap-8">
+        <a href="#projeto" class="text-sm font-semibold uppercase tracking-[0.15em] text-white/90 hover:text-white drop-shadow-sm">O projeto</a>
+        {% if cities %}<a href="#cidades" class="text-sm font-semibold uppercase tracking-[0.15em] text-white/90 hover:text-white drop-shadow-sm">Cidades</a>{% endif %}
+        <a href="#atividades" class="text-sm font-semibold uppercase tracking-[0.15em] text-white/90 hover:text-white drop-shadow-sm">Atividades</a>
+        {% if democratizacao %}<a href="#democratizacao" class="text-sm font-semibold uppercase tracking-[0.15em] text-white/90 hover:text-white drop-shadow-sm">Democratiza&ccedil;&atilde;o</a>{% endif %}
       </nav>
+
+      <!-- Mobile Menu Button -->
+      <button id="menu-btn" class="lg:hidden relative z-10 p-2 text-white" aria-label="Menu">
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
     </div>
   </header>
 
-  <!-- Hero -->
-  <section class="hero" id="projeto">
-    {% if kv_url %}
-    <img src="{{ kv_url }}" alt="Logo {{ project_name }}" class="hero-logo">
-    {% endif %}
-    <h1>{{ hero_title | default(project_name) }}</h1>
-    {% if tagline %}
-    <div class="tagline">{{ tagline }}</div>
-    {% endif %}
-    <div class="description">{{ description }}</div>
-  </section>
+  <!-- Mobile Menu Overlay -->
+  <div id="mobile-menu" class="mobile-menu fixed inset-0 z-[60] backdrop-blur" style="background: {{ accent_color | default('#6C3CE1') }}f2;">
+    <button id="menu-close" class="absolute top-6 right-6 text-white p-2" aria-label="Fechar menu">
+      <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+      </svg>
+    </button>
+    <nav class="flex flex-col items-center justify-center h-full gap-8">
+      <a href="#projeto" class="menu-link text-2xl font-display text-white/90 hover:text-white">O Projeto</a>
+      {% if cities %}<a href="#cidades" class="menu-link text-2xl font-display text-white/90 hover:text-white">Cidades</a>{% endif %}
+      <a href="#atividades" class="menu-link text-2xl font-display text-white/90 hover:text-white">Atividades</a>
+      {% if democratizacao %}<a href="#democratizacao" class="menu-link text-2xl font-display text-white/90 hover:text-white">Democratiza&ccedil;&atilde;o</a>{% endif %}
+    </nav>
+  </div>
 
-  <!-- Sobre -->
-  {% if sobre %}
-  <section>
-    <div class="section-inner">
-      <h2 class="section-title">Sobre o Projeto</h2>
-      <div class="sobre-content">{{ sobre }}</div>
+  <!-- ═══════════════ HERO — Full-width KV Background ═══════════════ -->
+  <section class="relative min-h-[100vh] flex items-end overflow-hidden">
+    <!-- Background KV Image -->
+    {% if kv_url %}
+    <div class="absolute inset-0">
+      <img src="{{ kv_url }}" alt="{{ project_name }}" class="w-full h-full object-cover object-center">
+      <!-- Multi-layer gradient overlay -->
+      <div class="absolute inset-0" style="background: linear-gradient(180deg, {{ accent_color | default('#6C3CE1') }}40 0%, transparent 40%, {{ accent_color | default('#6C3CE1') }}cc 85%, {{ accent_secondary | default('#4a2d8a') }}ee 100%);"></div>
+      <div class="absolute inset-0" style="background: radial-gradient(ellipse at 30% 80%, {{ accent_color | default('#6C3CE1') }}60 0%, transparent 60%);"></div>
+    </div>
+    {% else %}
+    <div class="absolute inset-0 grain" style="background: linear-gradient(160deg, {{ accent_color | default('#6C3CE1') }} 0%, {{ accent_secondary | default('#4a2d8a') }} 100%);"></div>
+    {% endif %}
+
+    <!-- Decorative elements -->
+    <div class="absolute top-20 right-10 w-64 h-64 rounded-full float-slow opacity-20" style="background: radial-gradient(circle, white 0%, transparent 70%);"></div>
+    <div class="absolute bottom-40 left-10 w-48 h-48 rounded-full float-delayed opacity-15" style="background: radial-gradient(circle, white 0%, transparent 70%);"></div>
+
+    <!-- Content -->
+    <div class="relative z-10 w-full px-6 lg:px-10 pb-16 pt-32 lg:pb-24">
+      <div class="max-w-5xl mx-auto">
+        <h1 class="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white font-black mb-6 leading-[1.05]" style="letter-spacing: -0.03em; text-shadow: 0 4px 30px rgba(0,0,0,0.3);">
+          {{ hero_title | default(project_name) }}
+        </h1>
+        {% if tagline %}
+        <p class="text-lg sm:text-xl lg:text-2xl text-white/90 font-medium mb-8 max-w-2xl" style="text-shadow: 0 2px 10px rgba(0,0,0,0.2);">
+          {{ tagline }}
+        </p>
+        {% endif %}
+        <div class="flex flex-wrap gap-4">
+          <a href="#projeto" class="group inline-flex items-center gap-2 px-8 py-4 rounded-full text-sm font-bold uppercase tracking-widest text-white border-2 border-white/40 hover:bg-white hover:text-slate-900 transition-all duration-300 focus-visible:ring-2 focus-visible:ring-white" style="backdrop-filter: blur(8px); background: rgba(255,255,255,0.1);">
+            Conhe&ccedil;a o projeto
+            <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom wave divider -->
+    <div class="absolute bottom-0 left-0 right-0 z-10">
+      <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full" preserveAspectRatio="none">
+        <path d="M0 40C240 70 480 10 720 40C960 70 1200 10 1440 40V80H0V40Z" fill="white"/>
+      </svg>
     </div>
   </section>
-  {% endif %}
 
-  <!-- Cidades -->
-  {% if cities %}
-  <section class="section-alt" id="cidades">
-    <div class="section-inner">
-      <h2 class="section-title">Por Onde Passamos</h2>
-      <div class="cities-grid">
-        {% for city in cities %}
-        <div class="city-card">
-          {% if city.image_url %}
-          <img src="{{ city.image_url }}" alt="{{ city.name }}">
+  <!-- ═══════════════ SOBRE O PROJETO ═══════════════ -->
+  <section id="projeto" class="py-20 lg:py-28 px-6 lg:px-10">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <!-- Left: KV image card -->
+        <div class="reveal-left">
+          {% if kv_url %}
+          <div class="relative rounded-3xl overflow-hidden" style="box-shadow: 0 20px 60px {{ accent_color | default('#6C3CE1') }}25, 0 4px 16px rgba(0,0,0,0.08);">
+            <img src="{{ kv_url }}" alt="{{ project_name }}" class="w-full aspect-[4/3] object-cover img-hover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" style="mix-blend-mode: multiply;"></div>
+          </div>
           {% else %}
-          <div class="city-placeholder"><span>📍</span></div>
+          <div class="relative rounded-3xl overflow-hidden aspect-[4/3] grain" style="background: linear-gradient(135deg, {{ accent_color | default('#6C3CE1') }}15, {{ accent_color | default('#6C3CE1') }}05); box-shadow: 0 20px 60px {{ accent_color | default('#6C3CE1') }}15;">
+            <div class="absolute inset-0 flex items-center justify-center">
+              <span class="font-display text-3xl opacity-20" style="color: {{ accent_color | default('#6C3CE1') }}">{{ project_short_name | default(project_name) }}</span>
+            </div>
+          </div>
           {% endif %}
-          <div class="city-name">{{ city.name }}</div>
+        </div>
+
+        <!-- Right: Text content -->
+        <div class="reveal-right">
+          <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-[0.2em] mb-6" style="background: {{ accent_color | default('#6C3CE1') }}10; color: {{ accent_color | default('#6C3CE1') }};">
+            <span class="w-2 h-2 rounded-full" style="background: {{ accent_color | default('#6C3CE1') }};"></span>
+            Sobre o Projeto
+          </div>
+          <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl mb-6" style="color: {{ accent_color | default('#6C3CE1') }}; letter-spacing: -0.03em; line-height: 1.1;">
+            {{ project_short_name | default(project_name) }}
+          </h2>
+          <p class="text-base lg:text-lg text-slate-600 mb-6" style="line-height: 1.8;">
+            {{ description }}
+          </p>
+          {% if sobre %}
+          <p class="text-sm text-slate-500" style="line-height: 1.8;">{{ sobre }}</p>
+          {% endif %}
+
+          {% if period %}
+          <div class="mt-8 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background: {{ accent_color | default('#6C3CE1') }}12;">
+              <svg class="w-5 h-5" style="color: {{ accent_color | default('#6C3CE1') }}" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            </div>
+            <span class="text-sm font-semibold text-slate-700">{{ period }}</span>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ CIDADES ═══════════════ -->
+  {% if cities %}
+  <section id="cidades" class="py-20 lg:py-28 px-6 lg:px-10 relative grain" style="background: {{ accent_color | default('#6C3CE1') }};">
+    <div class="relative z-10 max-w-6xl mx-auto">
+      <div class="text-center mb-16 reveal">
+        <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl text-white mb-4" style="letter-spacing: -0.03em;">
+          Por Onde Passamos
+        </h2>
+        <p class="text-white/70 text-lg max-w-xl mx-auto">Levando cultura e educa&ccedil;&atilde;o por todo o Brasil</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 {% if cities|length >= 3 %}lg:grid-cols-3{% endif %} gap-6">
+        {% for city in cities %}
+        <div class="reveal-scale card-hover rounded-2xl overflow-hidden bg-white/10 backdrop-blur-sm border border-white/20" style="transition-delay: {{ loop.index0 * 100 }}ms;">
+          {% if city.image_url %}
+          <div class="relative h-48 overflow-hidden">
+            <img src="{{ city.image_url }}" alt="{{ city.name }}" class="w-full h-full object-cover img-hover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" style="mix-blend-mode: multiply;"></div>
+            <div class="absolute top-4 left-4 px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-widest text-white" style="background: {{ accent_color | default('#6C3CE1') }}; box-shadow: 0 4px 12px {{ accent_secondary | default('#4a2d8a') }}80;">
+              {{ city.name }}
+            </div>
+          </div>
+          {% else %}
+          <div class="h-48 flex items-center justify-center relative overflow-hidden" style="background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.03));">
+            <svg class="w-12 h-12 text-white/30" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            <div class="absolute top-4 left-4 px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-widest bg-white/20 text-white">
+              {{ city.name }}
+            </div>
+          </div>
+          {% endif %}
         </div>
         {% endfor %}
       </div>
@@ -272,46 +272,102 @@
   </section>
   {% endif %}
 
-  <!-- Atividades -->
+  <!-- ═══════════════ ATIVIDADES ═══════════════ -->
   {% if activities %}
-  <section id="atividades">
-    <div class="section-inner">
-      <h2 class="section-title">Atividades</h2>
-      {% for act in activities %}
-      <div class="activity">
-        <div class="activity-text">
-          <h3>{{ act.name }}</h3>
-          <p>{{ act.description }}</p>
+  <section id="atividades" class="py-20 lg:py-28 px-6 lg:px-10">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-20 reveal">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-[0.2em] mb-6" style="background: {{ accent_color | default('#6C3CE1') }}10; color: {{ accent_color | default('#6C3CE1') }};">
+          <span class="w-2 h-2 rounded-full" style="background: {{ accent_color | default('#6C3CE1') }};"></span>
+          Programa&ccedil;&atilde;o
         </div>
-        <div class="activity-image">
-          {% if act.image_url %}
-          <img src="{{ act.image_url }}" alt="{{ act.name }}">
-          {% else %}
-          <div class="img-placeholder">{{ act.name }}</div>
-          {% endif %}
-        </div>
+        <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl" style="color: {{ accent_color | default('#6C3CE1') }}; letter-spacing: -0.03em;">
+          Atividades do Projeto
+        </h2>
       </div>
-      {% endfor %}
+
+      <div class="space-y-24 lg:space-y-32">
+        {% for act in activities %}
+        <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center {{ 'reveal-left' if loop.index is odd else 'reveal-right' }}">
+          <!-- Text -->
+          <div class="{{ 'lg:order-2' if loop.index is even else '' }}">
+            <div class="flex items-center gap-4 mb-6">
+              <div class="w-14 h-14 rounded-2xl flex items-center justify-center font-display text-2xl text-white" style="background: {{ accent_color | default('#6C3CE1') }}; box-shadow: 0 8px 24px {{ accent_color | default('#6C3CE1') }}40;">
+                {{ '%02d' | format(loop.index) }}
+              </div>
+              <div class="h-px flex-1" style="background: linear-gradient(90deg, {{ accent_color | default('#6C3CE1') }}30, transparent);"></div>
+            </div>
+            <h3 class="font-display text-2xl sm:text-3xl lg:text-4xl mb-5" style="color: {{ accent_color | default('#6C3CE1') }}; letter-spacing: -0.02em; line-height: 1.15;">
+              {{ act.name }}
+            </h3>
+            <p class="text-base lg:text-lg text-slate-500" style="line-height: 1.8;">{{ act.description }}</p>
+          </div>
+
+          <!-- Image / Placeholder -->
+          <div class="{{ 'lg:order-1' if loop.index is even else '' }}">
+            {% if act.image_url %}
+            <div class="rounded-3xl overflow-hidden card-hover" style="box-shadow: 0 16px 48px {{ accent_color | default('#6C3CE1') }}20, 0 4px 12px rgba(0,0,0,0.06);">
+              <div class="relative">
+                <img src="{{ act.image_url }}" alt="{{ act.name }}" class="w-full aspect-[16/10] object-cover img-hover">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" style="mix-blend-mode: multiply;"></div>
+              </div>
+            </div>
+            {% else %}
+            <div class="rounded-3xl aspect-[16/10] relative overflow-hidden grain card-hover" style="background: linear-gradient(135deg, {{ accent_color | default('#6C3CE1') }}08, {{ accent_color | default('#6C3CE1') }}03); box-shadow: 0 8px 32px {{ accent_color | default('#6C3CE1') }}10, 0 2px 8px rgba(0,0,0,0.04);">
+              <div class="absolute inset-0 flex flex-col items-center justify-center p-8">
+                <div class="w-16 h-16 rounded-2xl flex items-center justify-center mb-4" style="background: {{ accent_color | default('#6C3CE1') }}10;">
+                  <svg class="w-8 h-8" style="color: {{ accent_color | default('#6C3CE1') }}40;" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/>
+                  </svg>
+                </div>
+                <span class="text-sm font-semibold text-center" style="color: {{ accent_color | default('#6C3CE1') }}50;">{{ act.name }}</span>
+              </div>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
     </div>
   </section>
   {% endif %}
 
-  <!-- Democratizacao -->
+  <!-- ═══════════════ DEMOCRATIZACAO ═══════════════ -->
   {% if democratizacao %}
-  <section class="section-alt" id="democratizacao">
-    <div class="section-inner">
-      <h2 class="section-title">Democratiza&ccedil;&atilde;o de Acesso</h2>
-      <div class="demo-text">{{ democratizacao }}</div>
+  <section id="democratizacao" class="py-20 lg:py-28 px-6 lg:px-10 relative overflow-hidden" style="background: {{ hero_bg_start | default('#f8f6ff') }};">
+    <!-- Background decoration -->
+    <div class="absolute top-0 right-0 w-[40rem] h-[40rem] rounded-full opacity-30" style="background: radial-gradient(circle, {{ accent_color | default('#6C3CE1') }}15 0%, transparent 70%); transform: translate(30%, -30%);"></div>
+    <div class="absolute bottom-0 left-0 w-[30rem] h-[30rem] rounded-full opacity-20" style="background: radial-gradient(circle, {{ accent_color | default('#6C3CE1') }}10 0%, transparent 70%); transform: translate(-30%, 30%);"></div>
+
+    <div class="relative z-10 max-w-4xl mx-auto text-center">
+      <div class="reveal">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-[0.2em] mb-6" style="background: {{ accent_color | default('#6C3CE1') }}10; color: {{ accent_color | default('#6C3CE1') }};">
+          <span class="w-2 h-2 rounded-full" style="background: {{ accent_color | default('#6C3CE1') }};"></span>
+          Acessibilidade
+        </div>
+        <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl mb-8" style="color: {{ accent_color | default('#6C3CE1') }}; letter-spacing: -0.03em;">
+          Democratiza&ccedil;&atilde;o de Acesso
+        </h2>
+        <p class="text-base lg:text-lg text-slate-600 max-w-3xl mx-auto" style="line-height: 1.8;">{{ democratizacao }}</p>
+      </div>
+
       {% if demo_links %}
-      <div class="demo-links">
+      <div class="grid sm:grid-cols-2 gap-8 max-w-2xl mx-auto mt-16">
         {% for link in demo_links %}
-        <a href="{{ link.url }}" target="_blank" class="demo-card">
+        <a href="{{ link.url }}" target="_blank" class="reveal-scale card-hover rounded-2xl overflow-hidden bg-white" style="box-shadow: 0 8px 32px {{ accent_color | default('#6C3CE1') }}15, 0 2px 8px rgba(0,0,0,0.04);">
           {% if link.thumbnail %}
-          <img src="{{ link.thumbnail }}" alt="{{ link.label }}">
+          <div class="relative h-48 overflow-hidden">
+            <img src="{{ link.thumbnail }}" alt="{{ link.label }}" class="w-full h-full object-cover img-hover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" style="mix-blend-mode: multiply;"></div>
+          </div>
           {% else %}
-          <div class="img-placeholder" style="height:180px">{{ link.label }}</div>
+          <div class="h-48 flex items-center justify-center" style="background: linear-gradient(135deg, {{ accent_color | default('#6C3CE1') }}10, {{ accent_color | default('#6C3CE1') }}03);">
+            <svg class="w-12 h-12" style="color: {{ accent_color | default('#6C3CE1') }}30;" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </div>
           {% endif %}
-          <div class="demo-label">{{ link.label }}</div>
+          <div class="py-5 px-5">
+            <span class="text-sm font-bold uppercase tracking-wider" style="color: {{ accent_color | default('#6C3CE1') }};">{{ link.label }}</span>
+          </div>
         </a>
         {% endfor %}
       </div>
@@ -320,51 +376,149 @@
   </section>
   {% endif %}
 
-  <!-- Galeria -->
+  <!-- ═══════════════ GALERIA ═══════════════ -->
   {% if gallery_images %}
-  <section id="galeria">
-    <div class="section-inner">
-      <h2 class="section-title">Galeria de Fotos</h2>
-      <div class="gallery-grid">
+  <section id="galeria" class="py-20 lg:py-28 px-6 lg:px-10 relative" style="background: {{ accent_secondary | default('#4a2d8a') }};">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16 reveal">
+        <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl text-white mb-4" style="letter-spacing: -0.03em;">
+          Galeria de Fotos
+        </h2>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 lg:gap-4">
         {% for img in gallery_images %}
-        <img src="{{ img.url }}" alt="{{ img.alt | default('Galeria ' ~ loop.index) }}">
+        <div class="reveal-scale rounded-xl overflow-hidden card-hover" style="transition-delay: {{ loop.index0 * 50 }}ms;">
+          <div class="relative">
+            <img src="{{ img.url }}" alt="{{ img.alt | default('Galeria ' ~ loop.index) }}" class="w-full aspect-square object-cover img-hover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" style="mix-blend-mode: multiply;"></div>
+          </div>
+        </div>
         {% endfor %}
       </div>
     </div>
   </section>
   {% endif %}
 
-  <!-- Patrocinadores -->
-  <section class="sponsors">
-    <h2 class="section-title">Patroc&iacute;nio e Realiza&ccedil;&atilde;o</h2>
-    {% if sponsors_banner_url %}
-    <img src="{{ sponsors_banner_url }}" alt="Patrocínio e Realização">
-    {% else %}
-    <div class="sponsor-logos">
-      {% for sponsor in sponsors %}
-      {% if sponsor.logo_url %}
-      <img src="{{ sponsor.logo_url }}" alt="{{ sponsor.name }}">
-      {% else %}
-      <span style="padding:1rem 2rem; background:white; border-radius:8px; font-weight:700; color:#666;">{{ sponsor.name }}</span>
-      {% endif %}
-      {% endfor %}
-      <span style="padding:1rem 2rem; background:white; border-radius:8px; font-weight:700; color:#666;">NTICS Projetos</span>
-      {% if has_lei_rouanet %}
-      <span style="padding:1rem 2rem; background:white; border-radius:8px; font-weight:700; color:#666;">Lei Rouanet</span>
-      <span style="padding:1rem 2rem; background:white; border-radius:8px; font-weight:700; color:#666;">Minist&eacute;rio da Cultura</span>
-      <span style="padding:1rem 2rem; background:white; border-radius:8px; font-weight:700; color:#666;">Governo Federal</span>
-      {% endif %}
+  <!-- ═══════════════ PATROCINADORES ═══════════════ -->
+  <section class="py-20 lg:py-24 px-6 lg:px-10 bg-white">
+    <div class="max-w-5xl mx-auto reveal">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-center gap-12 lg:gap-20">
+        <!-- Patrocinio -->
+        <div class="text-center flex-1">
+          <h3 class="text-xs font-bold uppercase tracking-[0.25em] text-slate-400 mb-8">Patroc&iacute;nio</h3>
+          <div class="flex flex-wrap justify-center items-center gap-6">
+            {% for sponsor in sponsors %}
+            {% if sponsor.logo_url %}
+            <img src="{{ sponsor.logo_url }}" alt="{{ sponsor.name }}" class="h-14 w-auto opacity-80 hover:opacity-100 transition-opacity duration-300">
+            {% else %}
+            <span class="inline-block px-6 py-3 bg-slate-50 rounded-xl text-sm font-bold text-slate-600" style="box-shadow: 0 2px 12px rgba(0,0,0,0.04);">{{ sponsor.name }}</span>
+            {% endif %}
+            {% endfor %}
+            {% if has_lei_rouanet %}
+            <span class="inline-block px-6 py-3 bg-slate-50 rounded-xl text-sm font-bold text-slate-600" style="box-shadow: 0 2px 12px rgba(0,0,0,0.04);">Lei Rouanet</span>
+            {% endif %}
+          </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="hidden sm:block w-px h-20 bg-slate-200"></div>
+        <div class="sm:hidden w-full h-px bg-slate-200"></div>
+
+        <!-- Realizacao -->
+        <div class="text-center flex-1">
+          <h3 class="text-xs font-bold uppercase tracking-[0.25em] text-slate-400 mb-8">Realiza&ccedil;&atilde;o</h3>
+          <div class="flex flex-wrap justify-center items-center gap-6">
+            <span class="inline-block px-6 py-3 bg-slate-50 rounded-xl text-sm font-bold text-slate-600" style="box-shadow: 0 2px 12px rgba(0,0,0,0.04);">NTICS Projetos</span>
+            {% if has_lei_rouanet %}
+            <span class="inline-block px-6 py-3 bg-slate-50 rounded-xl text-sm font-bold text-slate-600" style="box-shadow: 0 2px 12px rgba(0,0,0,0.04);">Minist&eacute;rio da Cultura</span>
+            <span class="inline-block px-6 py-3 bg-slate-50 rounded-xl text-sm font-bold text-slate-600" style="box-shadow: 0 2px 12px rgba(0,0,0,0.04);">Governo Federal</span>
+            {% endif %}
+          </div>
+        </div>
+      </div>
     </div>
-    {% endif %}
   </section>
 
-  <!-- Footer -->
-  <footer>
-    {% if logo_url %}
-    <img src="{{ logo_url }}" alt="{{ project_name }}">
-    {% endif %}
-    <p>&copy; 2026 {{ project_name }}. Todos os direitos reservados.</p>
+  <!-- ═══════════════ FOOTER ═══════════════ -->
+  <footer class="relative py-16 px-6 lg:px-10 text-center overflow-hidden" style="background: {{ accent_secondary | default('#4a2d8a') }};">
+    <div class="relative z-10">
+      {% if logo_url %}
+      <img src="{{ logo_url }}" alt="{{ project_name }}" class="h-14 mx-auto mb-6 opacity-70">
+      {% else %}
+      <span class="font-display text-2xl text-white/70 block mb-6">{{ project_short_name | default(project_name) }}</span>
+      {% endif %}
+      <p class="text-sm text-white/40">&copy; 2026 {{ project_name }}. Todos os direitos reservados.</p>
+    </div>
   </footer>
+
+  <!-- ═══════════════ SCRIPTS ═══════════════ -->
+  <script>
+    // Intersection Observer — reveal animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Scroll progress bar
+    const progressBar = document.getElementById('scroll-progress');
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = Math.min(scrollTop / docHeight, 1);
+      progressBar.style.transform = `scaleX(${progress})`;
+    }, { passive: true });
+
+    // Header background on scroll
+    const header = document.getElementById('main-header');
+    let lastScroll = 0;
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      if (scrollTop > 100) {
+        header.style.background = 'rgba(255,255,255,0.95)';
+        header.style.backdropFilter = 'blur(12px)';
+        header.style.boxShadow = '0 1px 3px rgba(0,0,0,0.08)';
+        header.querySelectorAll('nav a').forEach(a => {
+          a.classList.remove('text-white/90', 'drop-shadow-sm');
+          a.classList.add('text-slate-600');
+        });
+        header.querySelectorAll('.text-white, .drop-shadow-lg').forEach(el => {
+          el.classList.remove('text-white', 'drop-shadow-lg');
+          el.classList.add('text-slate-800');
+        });
+        const menuBtn = document.getElementById('menu-btn');
+        if (menuBtn) { menuBtn.classList.remove('text-white'); menuBtn.classList.add('text-slate-800'); }
+      } else {
+        header.style.background = 'transparent';
+        header.style.backdropFilter = 'none';
+        header.style.boxShadow = 'none';
+        header.querySelectorAll('nav a').forEach(a => {
+          a.classList.remove('text-slate-600');
+          a.classList.add('text-white/90', 'drop-shadow-sm');
+        });
+      }
+      lastScroll = scrollTop;
+    }, { passive: true });
+
+    // Mobile menu
+    const menuBtn = document.getElementById('menu-btn');
+    const menuClose = document.getElementById('menu-close');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (menuBtn && mobileMenu) {
+      menuBtn.addEventListener('click', () => mobileMenu.classList.add('open'));
+      menuClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
+      mobileMenu.querySelectorAll('.menu-link').forEach(link => {
+        link.addEventListener('click', () => mobileMenu.classList.remove('open'));
+      });
+    }
+  </script>
 
 </body>
 </html>

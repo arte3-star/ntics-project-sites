@@ -1,0 +1,228 @@
+# ============================================
+# NTICS Projetos — Design Tokens v2.0
+# Brand Book 2026
+# ============================================
+
+colors:
+  primary:
+    verde-regeneracao:
+      hex: "#3DAA35"
+      rgb: "61, 170, 53"
+      cmyk: "64, 0, 69, 33"
+      role: "Cor principal da marca — regeneração, vida, crescimento"
+      usage: "Botões primários, headers, destaques principais"
+    azul-petroleo:
+      hex: "#005F73"
+      rgb: "0, 95, 115"
+      cmyk: "100, 17, 0, 55"
+      role: "Institucional — sustentabilidade, profundidade, modernidade"
+      usage: "Backgrounds institucionais, textos sobre fundos claros, navegação"
+    rosa-transformacao:
+      hex: "#D41A6A"
+      rgb: "212, 26, 106"
+      cmyk: "0, 88, 50, 17"
+      role: "Impacto, energia, ousadia — campanhas e destaques"
+      usage: "CTAs secundários, banners de campanha, destaques editoriais"
+
+  secondary:
+    laranja-acao:
+      hex: "#E86428"
+      rgb: "232, 100, 40"
+      cmyk: "0, 57, 83, 9"
+      role: "Dinamismo, engajamento — CTAs, redes sociais"
+      usage: "Botões de ação, ícones de engajamento, social media"
+    amarelo-consciencia:
+      hex: "#F5B800"
+      rgb: "245, 184, 0"
+      cmyk: "0, 25, 100, 4"
+      role: "Destaques, CTAs — otimismo, luz (lâmpada), energia"
+      usage: "Badges, highlights, sinalizadores, backgrounds de alerta positivo"
+    teal-futuro:
+      hex: "#00A5B8"
+      rgb: "0, 165, 184"
+      cmyk: "100, 10, 0, 28"
+      role: "Inovação, equilíbrio — conteúdo ESG e tecnologia"
+      usage: "Cards de tecnologia, seções de inovação, infográficos"
+
+  support:
+    roxo-inovacao:
+      hex: "#6B2D7B"
+      rgb: "107, 45, 123"
+      cmyk: "13, 63, 0, 52"
+      role: "Tecnologia social, inovação, IA, habilidades socioemocionais"
+      usage: "Tags de inovação, seções de IA/tech, toques de destaque"
+
+  neutrals:
+    branco:
+      hex: "#FFFFFF"
+      rgb: "255, 255, 255"
+      role: "Fundos, respiro visual"
+    cinza-claro:
+      hex: "#F4F4F4"
+      rgb: "244, 244, 244"
+      role: "Fundos secundários, cards, seções alternadas"
+    cinza-medio:
+      hex: "#6B7280"
+      rgb: "107, 114, 128"
+      role: "Textos secundários, captions, metadados"
+    grafite:
+      hex: "#2D2D2D"
+      rgb: "45, 45, 45"
+      role: "Textos principais, headings sobre fundo claro"
+
+  proportion:
+    primary: "70%"
+    secondary: "25%"
+    support: "5%"
+    note: "Proporção válida para materiais institucionais. Campanhas podem flexibilizar com aprovação."
+
+  discontinued:
+    - color: "Vermelho Coral"
+      reason: "Presente no relatório 2023/2024 mas inconsistente. Descontinuado na v2.0"
+
+# ============================================
+typography:
+  primary:
+    family: "Helvetica Neue"
+    fallback: "Arial, sans-serif"
+    weights:
+      light: 300
+      regular: 400
+      medium: 500
+      bold: 700
+
+  web-alternative:
+    family: "Inter"
+    source: "Google Fonts"
+    fallback: "system-ui, -apple-system, sans-serif"
+    weights:
+      light: 300
+      regular: 400
+      medium: 500
+      semibold: 600
+      bold: 700
+
+  scale:
+    h1:
+      size: "48px"
+      line-height: "56px"
+      weight: 700
+      letter-spacing: "-0.02em"
+      usage: "Títulos de página, hero sections"
+    h2:
+      size: "36px"
+      line-height: "44px"
+      weight: 700
+      letter-spacing: "-0.01em"
+      usage: "Títulos de seção"
+    h3:
+      size: "28px"
+      line-height: "36px"
+      weight: 600
+      usage: "Subtítulos, cards grandes"
+    h4:
+      size: "24px"
+      line-height: "32px"
+      weight: 600
+      usage: "Títulos de componentes"
+    h5:
+      size: "20px"
+      line-height: "28px"
+      weight: 500
+      usage: "Labels, subheadings"
+    h6:
+      size: "16px"
+      line-height: "24px"
+      weight: 600
+      letter-spacing: "0.02em"
+      usage: "Overlines, categorias, tags"
+    body:
+      size: "16px"
+      line-height: "24px"
+      weight: 400
+      usage: "Texto corrido, parágrafos"
+    body-small:
+      size: "14px"
+      line-height: "20px"
+      weight: 400
+      usage: "Texto secundário, descrições"
+    caption:
+      size: "12px"
+      line-height: "16px"
+      weight: 400
+      usage: "Notas, metadados, timestamps"
+    overline:
+      size: "12px"
+      line-height: "16px"
+      weight: 600
+      letter-spacing: "0.08em"
+      text-transform: "uppercase"
+      usage: "Labels de seção, categorias"
+
+# ============================================
+spacing:
+  base: "4px"
+  scale:
+    xs: "4px"
+    sm: "8px"
+    md: "16px"
+    lg: "24px"
+    xl: "32px"
+    2xl: "48px"
+    3xl: "64px"
+    4xl: "96px"
+
+# ============================================
+border-radius:
+  sm: "8px"
+  md: "12px"
+  lg: "16px"
+  xl: "24px"
+  full: "9999px"
+  note: "Blocos geométricos usam preferencialmente lg (16px) e xl (24px)"
+
+# ============================================
+shadows:
+  sm: "0 1px 2px rgba(0, 0, 0, 0.05)"
+  md: "0 4px 6px rgba(0, 0, 0, 0.07)"
+  lg: "0 10px 15px rgba(0, 0, 0, 0.10)"
+
+# ============================================
+breakpoints:
+  mobile: "0px - 639px"
+  tablet: "640px - 1023px"
+  desktop: "1024px+"
+  wide: "1280px+"
+
+# ============================================
+grid:
+  columns: 12
+  gutter: "24px"
+  margin:
+    mobile: "16px"
+    tablet: "32px"
+    desktop: "48px"
+  max-width: "1280px"
+
+# ============================================
+motion:
+  duration:
+    fast: "150ms"
+    normal: "300ms"
+    slow: "500ms"
+  easing: "cubic-bezier(0.4, 0, 0.2, 1)"
+
+# ============================================
+ods-color-mapping:
+  ods-4-educacao:
+    ntics-colors: ["verde-regeneracao", "roxo-inovacao"]
+    context: "Projetos educacionais e formação"
+  ods-8-trabalho:
+    ntics-colors: ["azul-petroleo", "laranja-acao"]
+    context: "Trabalho decente, empreendedorismo, economia"
+  ods-12-consumo:
+    ntics-colors: ["teal-futuro", "verde-regeneracao"]
+    context: "Consumo responsável, economia circular, reciclagem"
+  ods-17-parcerias:
+    ntics-colors: ["azul-petroleo", "rosa-transformacao"]
+    context: "Parcerias estratégicas, HUBs ESG, cocriação"
