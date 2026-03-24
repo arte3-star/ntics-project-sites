@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teatro e Oficina Robótica nas Escolas | 4ª Edição</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ══════════════════════════════════════════════
+       DESIGN TOKENS — Paleta 117 (teal robot, red gear, yellow gears)
+       ══════════════════════════════════════════════ */
+    :root {
+      --pink: #3B8EAD;
+      --pink-dark: #2A6D8A;
+      --pink-light: #E0F0F6;
+      --pink-glow: #3B8EAD25;
+      --lime: #D42027;
+      --lime-dark: #A81A20;
+      --lime-light: #FDEAEA;
+      --orange: #F5C518;
+      --orange-light: #FFF8DC;
+      --magenta: #E91E8C;
+      --white: #FFFFFF;
+      --gray-50: #FAFAFA;
+      --gray-100: #F4F4F5;
+      --gray-200: #E4E4E7;
+      --gray-400: #A1A1AA;
+      --gray-500: #71717A;
+      --gray-600: #52525B;
+      --gray-700: #3F3F46;
+      --gray-800: #27272A;
+      --gray-900: #18181B;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 20px;
+      --radius-xl: 28px;
+      --radius-full: 9999px;
+      --font-display: 'Space Grotesk', system-ui, sans-serif;
+      --font-body: 'Inter', system-ui, sans-serif;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+      --shadow-md: 0 4px 16px rgba(0,0,0,0.08), 0 1px 4px rgba(0,0,0,0.04);
+      --shadow-lg: 0 12px 40px rgba(0,0,0,0.1), 0 4px 12px rgba(0,0,0,0.05);
+      --shadow-glow: 0 8px 32px var(--pink-glow);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-body); color: var(--gray-800); background: var(--white); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+    h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+
+    /* Focus visible */
+    :focus-visible {
+      outline: 2px solid var(--pink);
+      outline-offset: 2px;
+    }
+
+    /* ══════ SCROLL PROGRESS ══════ */
+    #scroll-progress {
+      position: fixed; top: 0; left: 0; height: 3px; z-index: 200;
+      background: linear-gradient(90deg, var(--pink), var(--orange), var(--lime));
+      transform-origin: left; transform: scaleX(0); transition: transform 0.1s linear;
+    }
+
+    /* ══════ HEADER ══════ */
+    .site-header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 0 clamp(1rem, 4vw, 2.5rem);
+      transition: background 0.4s, box-shadow 0.4s, backdrop-filter 0.4s;
+    }
+    .site-header.scrolled {
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    }
+    .header-inner {
+      max-width: 1280px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 72px;
+    }
+    .header-logo { height: 48px; width: auto; transition: opacity 0.3s; }
+    .header-logo:hover { opacity: 0.85; }
+
+    .nav-desktop { display: flex; align-items: center; gap: 2rem; }
+    .nav-link {
+      font-size: 0.8rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.12em; color: rgba(255,255,255,0.85);
+      transition: color 0.3s, transform 0.2s; position: relative;
+    }
+    .nav-link::after {
+      content: ''; position: absolute; bottom: -4px; left: 0; width: 0;
+      height: 2px; background: var(--orange); transition: width 0.3s;
+    }
+    .nav-link:hover { color: #fff; transform: translateY(-1px); }
+    .nav-link:hover::after { width: 100%; }
+    .site-header.scrolled .nav-link { color: var(--gray-600); }
+    .site-header.scrolled .nav-link:hover { color: var(--pink); }
+    .site-header.scrolled .nav-link:hover::after { background: var(--pink); }
+
+    /* Mobile menu */
+    .nav-mobile-btn {
+      display: none; background: none; border: none; cursor: pointer;
+      color: white; padding: 8px;
+    }
+    .site-header.scrolled .nav-mobile-btn { color: var(--gray-800); }
+
+    .mobile-overlay {
+      position: fixed; inset: 0; z-index: 150;
+      background: linear-gradient(135deg, var(--pink), var(--pink-dark));
+      transform: translateX(100%); transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2rem;
+    }
+    .mobile-overlay.open { transform: translateX(0); }
+    .mobile-overlay a {
+      font-family: var(--font-display); font-size: 1.5rem; color: white;
+      opacity: 0.85; transition: opacity 0.3s;
+    }
+    .mobile-overlay a:hover { opacity: 1; }
+    .mobile-close {
+      position: absolute; top: 1.5rem; right: 1.5rem;
+      background: none; border: none; color: white; cursor: pointer; padding: 8px;
+    }
+
+    @media (max-width: 768px) {
+      .nav-desktop { display: none; }
+      .nav-mobile-btn { display: block; }
+    }
+
+    /* ══════ HERO ══════ */
+    .hero {
+      position: relative; min-height: 100vh; display: flex; align-items: center;
+      overflow: hidden;
+      background: linear-gradient(145deg, #0A1A2D 0%, #051220 40%, #020810 100%);
+    }
+    .hero-mesh {
+      position: absolute; inset: 0; opacity: 0.6;
+      background:
+        radial-gradient(ellipse 60% 50% at 20% 50%, var(--pink) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 80% 30%, var(--lime) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 40% at 60% 80%, var(--orange) 0%, transparent 70%);
+      filter: blur(80px);
+    }
+    .hero-grain {
+      position: absolute; inset: 0; opacity: 0.04; pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    .hero-content {
+      position: relative; z-index: 2; width: 100%;
+      max-width: 1280px; margin: 0 auto;
+      padding: 8rem clamp(1.5rem, 5vw, 3rem) 4rem;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 6px 16px; border-radius: var(--radius-full);
+      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12);
+      backdrop-filter: blur(8px);
+      font-size: 0.75rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.15em; color: var(--orange); margin-bottom: 1.5rem;
+    }
+    .hero-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--orange); }
+    .hero h1 {
+      font-size: clamp(2.8rem, 7vw, 5.5rem); color: white; margin-bottom: 1rem;
+      max-width: 800px;
+    }
+    .hero h1 span { color: var(--orange); }
+    .hero-sub {
+      font-size: clamp(1rem, 2.5vw, 1.35rem); color: rgba(255,255,255,0.7);
+      max-width: 560px; line-height: 1.7; margin-bottom: 2.5rem;
+    }
+    .hero-cta {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 32px; border-radius: var(--radius-full);
+      background: var(--pink); color: white;
+      font-size: 0.85rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.1em; border: none; cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 4px 20px var(--pink-glow);
+    }
+    .hero-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 32px var(--pink-glow); }
+    .hero-cta svg { width: 16px; height: 16px; transition: transform 0.3s; }
+    .hero-cta:hover svg { transform: translateY(3px); }
+
+    /* Particle canvas wrapper */
+    .hero-logo-canvas-wrap {
+      position: absolute; right: clamp(2rem, 8vw, 8rem); top: 50%;
+      transform: translateY(-50%);
+      width: clamp(220px, 28vw, 400px);
+      aspect-ratio: 3/4;
+      z-index: 2;
+    }
+    .hero-logo-canvas-wrap canvas {
+      width: 100%; height: 100%; display: block;
+    }
+    @media (max-width: 1024px) { .hero-logo-canvas-wrap { display: none; } }
+
+    /* ══════ SECTIONS COMMON ══════ */
+    .section { padding: clamp(4rem, 8vw, 7rem) clamp(1.5rem, 5vw, 3rem); }
+    .section-inner { max-width: 1280px; margin: 0 auto; }
+    .section-label {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.18em; color: var(--pink); margin-bottom: 1rem;
+    }
+    .section-label .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--pink); }
+    .section-title { font-size: clamp(2rem, 4vw, 3.2rem); color: var(--gray-900); margin-bottom: 1rem; }
+    .section-desc { font-size: 1.05rem; color: var(--gray-500); line-height: 1.8; max-width: 640px; }
+
+    /* ══════ SOBRE ══════ */
+    .sobre-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    @media (max-width: 768px) { .sobre-grid { grid-template-columns: 1fr; gap: 2rem; } }
+
+    /* Placeholder de imagem */
+    .img-placeholder {
+      width: 100%; aspect-ratio: 4/3; border-radius: var(--radius-xl);
+      background: var(--gray-100); border: 2px dashed var(--gray-200);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 12px; position: relative; overflow: hidden;
+      transition: border-color 0.3s;
+    }
+    .img-placeholder:hover { border-color: var(--pink); }
+    .img-placeholder svg { width: 48px; height: 48px; color: var(--gray-400); }
+    .img-placeholder .ph-label {
+      font-size: 0.75rem; font-weight: 600; color: var(--gray-400);
+      text-transform: uppercase; letter-spacing: 0.1em; text-align: center;
+      padding: 0 1rem;
+    }
+    .img-placeholder .ph-path {
+      font-size: 0.65rem; color: var(--gray-400); font-family: monospace;
+      background: var(--gray-200); padding: 4px 10px; border-radius: 4px;
+    }
+
+    .sobre-text p { font-size: 1.05rem; color: var(--gray-600); line-height: 1.85; margin-bottom: 1.25rem; }
+    .sobre-period {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 10px 20px; border-radius: var(--radius-full);
+      background: var(--pink-light); color: var(--pink);
+      font-size: 0.85rem; font-weight: 600; margin-top: 0.5rem;
+    }
+
+    /* ══════ CIDADES ══════ */
+    .cidades {
+      position: relative; overflow: hidden;
+      background: var(--pink);
+    }
+    .cidades::before {
+      content: ''; position: absolute; inset: 0; opacity: 0.06; pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    .cidades .section-inner { position: relative; z-index: 2; }
+    .cidades .section-label { color: var(--orange); }
+    .cidades .section-label .dot { background: var(--orange); }
+    .cidades .section-title { color: white; }
+    .cidades .section-desc { color: rgba(255,255,255,0.7); }
+    .cidades-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-top: 3rem;
+    }
+    .cidade-card {
+      padding: 2rem; border-radius: var(--radius-lg);
+      background: rgba(255,255,255,0.10); border: 1px solid rgba(255,255,255,0.20);
+      backdrop-filter: blur(8px);
+      transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1), border-color 0.3s;
+    }
+    .cidade-card:hover { transform: translateY(-4px); border-color: rgba(255,255,255,0.4); }
+    .cidade-card .cidade-img {
+      width: 100%; aspect-ratio: 16/9; border-radius: var(--radius-md);
+      background: rgba(255,255,255,0.06); border: 1px dashed rgba(255,255,255,0.2);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 8px; margin-bottom: 1.25rem; overflow: hidden;
+    }
+    .cidade-card .cidade-img svg { width: 32px; height: 32px; color: rgba(255,255,255,0.3); }
+    .cidade-card .cidade-img .gal-ph {
+      font-size: 0.6rem; font-weight: 600; color: rgba(255,255,255,0.4);
+      font-family: monospace; background: rgba(255,255,255,0.1);
+      padding: 3px 8px; border-radius: 4px;
+    }
+    .cidade-card h3 { font-size: 1.25rem; color: white; margin-bottom: 0.25rem; }
+    .cidade-card .cidade-uf { font-size: 0.85rem; color: rgba(255,255,255,0.6); font-weight: 500; }
+    @media (max-width: 768px) { .cidades-grid { grid-template-columns: 1fr; } }
+
+    /* ══════ NÚMEROS / IMPACTO ══════ */
+    .impacto { background: linear-gradient(135deg, #0A1A2D 0%, #051220 100%); position: relative; overflow: hidden; }
+    .impacto::before {
+      content: ''; position: absolute; inset: 0; opacity: 0.3;
+      background:
+        radial-gradient(ellipse 40% 50% at 10% 50%, var(--pink) 0%, transparent 70%),
+        radial-gradient(ellipse 30% 40% at 90% 60%, var(--lime) 0%, transparent 70%);
+      filter: blur(100px);
+    }
+    .impacto .section-inner { position: relative; z-index: 2; }
+    .impacto .section-label { color: var(--orange); }
+    .impacto .section-label .dot { background: var(--orange); }
+    .impacto .section-title { color: white; }
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; margin-top: 3rem; }
+    .stat-card {
+      text-align: center; padding: 2.5rem 1.5rem;
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius-lg); backdrop-filter: blur(8px);
+      transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1), border-color 0.3s;
+    }
+    .stat-card:hover { transform: translateY(-6px); border-color: rgba(255,255,255,0.2); }
+    .stat-number {
+      font-family: var(--font-display); font-size: clamp(2.5rem, 4vw, 3.5rem);
+      font-weight: 700; color: white; line-height: 1;
+    }
+    .stat-number .accent { color: var(--orange); }
+    .stat-label { font-size: 0.85rem; color: rgba(255,255,255,0.5); margin-top: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600; }
+    @media (max-width: 768px) { .stats-grid { grid-template-columns: repeat(2, 1fr); } }
+
+    /* ══════ ATIVIDADES ══════ */
+    .atividades-list { margin-top: 3rem; display: flex; flex-direction: column; gap: 2rem; }
+    .ativ-card {
+      display: grid; grid-template-columns: 80px 1fr; gap: 1.5rem;
+      padding: 2rem; border-radius: var(--radius-lg);
+      background: var(--white); border: 1px solid var(--gray-200);
+      transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.4s, border-color 0.3s;
+    }
+    .ativ-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: var(--pink); }
+    .ativ-num {
+      width: 80px; height: 80px; border-radius: var(--radius-md);
+      background: linear-gradient(135deg, var(--pink), var(--pink-dark));
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display); font-size: 1.8rem; font-weight: 700; color: white;
+      box-shadow: 0 6px 20px var(--pink-glow);
+      flex-shrink: 0;
+    }
+    .ativ-content h3 {
+      font-size: 1.25rem; color: var(--gray-900); margin-bottom: 0.75rem; line-height: 1.3;
+    }
+    .ativ-content p { font-size: 0.95rem; color: var(--gray-500); line-height: 1.75; }
+    @media (max-width: 640px) {
+      .ativ-card { grid-template-columns: 1fr; }
+      .ativ-num { width: 56px; height: 56px; font-size: 1.3rem; }
+    }
+
+    /* ══════ GALERIA ══════ */
+    .galeria-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-auto-rows: 240px;
+      gap: 1rem;
+      margin-top: 3rem;
+    }
+    .galeria-grid .gal-item {
+      border-radius: var(--radius-md); overflow: hidden;
+      background: var(--gray-100); border: 2px dashed var(--gray-200);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 8px; position: relative;
+      transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s, border-color 0.3s;
+    }
+    .galeria-grid .gal-item:hover { transform: scale(1.02); box-shadow: var(--shadow-md); border-color: var(--pink); }
+    .galeria-grid .gal-item.span-2 { grid-column: span 2; }
+    .galeria-grid .gal-item.span-row { grid-row: span 2; }
+    .galeria-grid .gal-item img {
+      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+    }
+    .galeria-grid .gal-item .gal-ph {
+      font-size: 0.65rem; font-weight: 600; color: var(--gray-400);
+      text-transform: uppercase; letter-spacing: 0.1em; text-align: center;
+      font-family: monospace; background: var(--gray-200);
+      padding: 4px 10px; border-radius: 4px;
+    }
+    .galeria-grid .gal-item svg { width: 32px; height: 32px; color: var(--gray-300); }
+    @media (max-width: 768px) {
+      .galeria-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 180px; }
+      .galeria-grid .gal-item.span-2 { grid-column: span 1; }
+    }
+
+    /* ══════ DEMOCRATIZAÇÃO ══════ */
+    .democra { background: var(--gray-50); }
+    .democra-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+    .democra-card {
+      padding: 2rem; border-radius: var(--radius-lg);
+      background: var(--white); border: 1px solid var(--gray-200);
+      transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.4s;
+    }
+    .democra-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .democra-icon {
+      width: 48px; height: 48px; border-radius: var(--radius-md);
+      background: var(--pink-light); display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1rem;
+    }
+    .democra-icon svg { width: 24px; height: 24px; color: var(--pink); }
+    .democra-card h4 { font-size: 1rem; color: var(--gray-900); margin-bottom: 0.5rem; }
+    .democra-card p { font-size: 0.9rem; color: var(--gray-500); line-height: 1.7; }
+
+    /* ══════ RÉGUA DE LOGOS ══════ */
+    .regua { border-top: 1px solid var(--gray-200); }
+    .regua-inner { text-align: center; }
+    .regua-img {
+      max-width: 100%; height: auto; margin: 0 auto;
+      opacity: 0.9; transition: opacity 0.3s;
+    }
+    .regua-img:hover { opacity: 1; }
+
+    /* ══════ FOOTER ══════ */
+    .site-footer {
+      background: var(--gray-900); color: rgba(255,255,255,0.6);
+      padding: 4rem clamp(1.5rem, 5vw, 3rem) 2rem;
+    }
+    .footer-inner { max-width: 1280px; margin: 0 auto; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+    .footer-brand p { font-size: 0.9rem; line-height: 1.7; margin-top: 1rem; max-width: 360px; }
+    .footer-brand img { height: 40px; width: auto; opacity: 0.7; }
+    .footer-col h4 {
+      font-family: var(--font-display); font-size: 0.8rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.15em; color: rgba(255,255,255,0.4);
+      margin-bottom: 1.25rem;
+    }
+    .footer-col a {
+      display: block; font-size: 0.9rem; color: rgba(255,255,255,0.6);
+      margin-bottom: 0.75rem; transition: color 0.3s;
+    }
+    .footer-col a:hover { color: var(--orange); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.8rem; flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-social { display: flex; gap: 1rem; }
+    .footer-social a {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .footer-social a:hover { background: var(--pink); border-color: var(--pink); }
+    .footer-social svg { width: 16px; height: 16px; color: rgba(255,255,255,0.6); }
+    .footer-social a:hover svg { color: white; }
+    @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr; gap: 2rem; } }
+
+    /* ══════ ANIMATIONS ══════ */
+    .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 100ms; }
+    .reveal-delay-2 { transition-delay: 200ms; }
+    .reveal-delay-3 { transition-delay: 300ms; }
+    .reveal-delay-4 { transition-delay: 400ms; }
+    .reveal-delay-5 { transition-delay: 500ms; }
+  </style>
+</head>
+<body>
+
+  <!-- Scroll Progress Bar -->
+  <div id="scroll-progress"></div>
+
+  <!-- ═══════════════ HEADER ═══════════════ -->
+  <header class="site-header" id="site-header">
+    <div class="header-inner">
+      <a href="#">
+        <img src="assets/logos/117_teatro_robotica.png" alt="Teatro e Oficina Robótica nas Escolas | 4ª Edição" class="header-logo">
+      </a>
+      <nav class="nav-desktop">
+        <a href="#sobre" class="nav-link">O Projeto</a>
+        <a href="#cidades" class="nav-link">Cidades</a>
+        <a href="#impacto" class="nav-link">Impacto</a>
+        <a href="#atividades" class="nav-link">Atividades</a>
+        <a href="#galeria" class="nav-link">Galeria</a>
+        <a href="#democratizacao" class="nav-link">Democratização</a>
+      </nav>
+      <button class="nav-mobile-btn" id="menu-open" aria-label="Abrir menu">
+        <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-overlay" id="mobile-menu">
+    <button class="mobile-close" id="menu-close" aria-label="Fechar menu">
+      <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+    <a href="#sobre" class="mobile-link">O Projeto</a>
+    <a href="#cidades" class="mobile-link">Cidades</a>
+    <a href="#impacto" class="mobile-link">Impacto</a>
+    <a href="#atividades" class="mobile-link">Atividades</a>
+    <a href="#galeria" class="mobile-link">Galeria</a>
+    <a href="#democratizacao" class="mobile-link">Democratização</a>
+  </div>
+
+  <!-- ═══════════════ HERO ═══════════════ -->
+  <section class="hero">
+    <div class="hero-mesh"></div>
+    <div class="hero-grain"></div>
+
+    <div class="hero-content">
+      <div class="hero-badge"><span class="dot"></span> 4ª Edição · Lei Rouanet</div>
+      <h1>Teatro &amp; Robótica<br>nas <span>Escolas</span></h1>
+      <p class="hero-sub">Criatividade, tecnologia e sustentabilidade na educação por meio de teatro interativo, oficinas maker e feira de robótica.</p>
+      <a href="#sobre" class="hero-cta">
+        Conheça o projeto
+        <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+      </a>
+    </div>
+
+    <div class="hero-logo-canvas-wrap">
+      <canvas id="particle-canvas"></canvas>
+    </div>
+  </section>
+
+  <!-- ═══════════════ SOBRE O PROJETO ═══════════════ -->
+  <section id="sobre" class="section">
+    <div class="section-inner">
+      <div class="sobre-grid">
+        <!-- Placeholder para imagem principal do projeto (KV) -->
+        <div class="reveal">
+          <div class="img-placeholder">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+            <span class="ph-label">Imagem Principal (KV do Projeto)</span>
+            <span class="ph-path">assets/imagens/117_teatro_robotica/kv.jpg</span>
+          </div>
+        </div>
+
+        <div class="sobre-text">
+          <div class="reveal">
+            <div class="section-label"><span class="dot"></span> Sobre o Projeto</div>
+            <h2 class="section-title">Teatro e Oficina Robótica nas Escolas</h2>
+          </div>
+          <div class="reveal reveal-delay-1">
+            <p>O Teatro e Oficina Robótica nas Escolas – 4ª Edição é uma iniciativa educacional e cultural realizada em escolas públicas de Rio Claro/SP e Joinville/SC. O projeto integra teatro interativo, oficinas maker com robôs construídos a partir de materiais recicláveis, feira de robótica e formação online para professores.</p>
+            <p>Patrocinado pela Whirlpool, o projeto atende estudantes do Ensino Fundamental I (8 a 11 anos), estimulando criatividade, resolução de problemas e aprendizado prático sobre tecnologia, sustentabilidade e logística reversa.</p>
+          </div>
+          <div class="reveal reveal-delay-2">
+            <div class="sobre-period">
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+              Fevereiro a Junho de 2026
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ CIDADES ═══════════════ -->
+  <section id="cidades" class="section cidades">
+    <div class="section-inner" style="text-align: center;">
+      <div class="reveal">
+        <div class="section-label" style="justify-content: center;"><span class="dot"></span> Onde Acontece</div>
+        <h2 class="section-title" style="color: white;">Cidades Atendidas</h2>
+        <p class="section-desc" style="margin: 0 auto; color: rgba(255,255,255,0.7);">O projeto leva teatro e robótica para escolas públicas em duas cidades</p>
+      </div>
+      <div class="cidades-grid">
+        <div class="cidade-card reveal reveal-delay-1">
+          <div class="cidade-img">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+            <span class="gal-ph">assets/imagens/117_teatro_robotica/rio_claro.jpg</span>
+          </div>
+          <h3>Rio Claro</h3>
+          <span class="cidade-uf">SP</span>
+        </div>
+        <div class="cidade-card reveal reveal-delay-2">
+          <div class="cidade-img">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+            <span class="gal-ph">assets/imagens/117_teatro_robotica/joinville.jpg</span>
+          </div>
+          <h3>Joinville</h3>
+          <span class="cidade-uf">SC</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ NÚMEROS DE IMPACTO ═══════════════ -->
+  <section id="impacto" class="section impacto">
+    <div class="section-inner" style="text-align: center;">
+      <div class="reveal">
+        <div class="section-label" style="justify-content: center;"><span class="dot"></span> Impacto</div>
+        <h2 class="section-title" style="color: white;">Números que Transformam</h2>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card reveal reveal-delay-1">
+          <div class="stat-number"><span class="counter" data-target="1000">0</span><span class="accent">+</span></div>
+          <div class="stat-label">Estudantes</div>
+        </div>
+        <div class="stat-card reveal reveal-delay-2">
+          <div class="stat-number"><span class="counter" data-target="120">0</span><span class="accent">+</span></div>
+          <div class="stat-label">Educadores</div>
+        </div>
+        <div class="stat-card reveal reveal-delay-3">
+          <div class="stat-number"><span class="counter" data-target="2">0</span></div>
+          <div class="stat-label">Cidades</div>
+        </div>
+        <div class="stat-card reveal reveal-delay-4">
+          <div class="stat-number"><span class="counter" data-target="4">0</span></div>
+          <div class="stat-label">Atividades</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ ATIVIDADES ═══════════════ -->
+  <section id="atividades" class="section" style="background: var(--gray-50);">
+    <div class="section-inner">
+      <div class="reveal" style="text-align: center;">
+        <div class="section-label" style="justify-content: center;"><span class="dot"></span> Programação</div>
+        <h2 class="section-title">Atividades do Projeto</h2>
+        <p class="section-desc" style="margin: 0 auto;">Teatro, robótica, oficinas maker e formação docente em uma jornada educacional completa</p>
+      </div>
+      <div class="atividades-list">
+
+        <div class="ativ-card reveal">
+          <div class="ativ-num">01</div>
+          <div class="ativ-content">
+            <h3>Circuito de Oficinas Maker + Artes Plásticas</h3>
+            <p>Atividades práticas em que estudantes trabalham em grupo para criar protótipos inspirados em eletrodomésticos e soluções do cotidiano. Utilizando kits de robótica e materiais recicláveis, as turmas passam por etapas de criação, testes e aprimoramento das ideias.</p>
+          </div>
+        </div>
+
+        <div class="ativ-card reveal">
+          <div class="ativ-num">02</div>
+          <div class="ativ-content">
+            <h3>Espetáculo Teatral Tecnológico</h3>
+            <p>Apresentação teatral interativa realizada nas escolas, com linguagem adequada ao público infantil. O espetáculo aborda temas como tecnologia, sustentabilidade, logística reversa e igualdade de gênero.</p>
+          </div>
+        </div>
+
+        <div class="ativ-card reveal">
+          <div class="ativ-num">03</div>
+          <div class="ativ-content">
+            <h3>Feira de Robótica</h3>
+            <p>Momento de culminância em que os alunos apresentam os protótipos desenvolvidos durante as oficinas. As equipes explicam suas ideias e o processo de criação, promovendo protagonismo estudantil.</p>
+          </div>
+        </div>
+
+        <div class="ativ-card reveal">
+          <div class="ativ-num">04</div>
+          <div class="ativ-content">
+            <h3>Capacitação de Professores (online)</h3>
+            <p>Encontro formativo voltado a professores e educadores da rede pública, com conteúdos sobre inovação educacional e sustentabilidade aplicados em sala de aula.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ GALERIA DO PROJETO ═══════════════ -->
+  <section id="galeria" class="section">
+    <div class="section-inner">
+      <div class="reveal" style="text-align: center;">
+        <div class="section-label" style="justify-content: center;"><span class="dot"></span> Registros</div>
+        <h2 class="section-title">Galeria do Projeto</h2>
+        <p class="section-desc" style="margin: 0 auto;">Momentos que capturam a transformação em cada escola</p>
+      </div>
+      <div class="galeria-grid">
+        <!-- Item 1 — grande destaque -->
+        <div class="gal-item span-2 reveal reveal-delay-1">
+          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+          <span class="gal-ph">assets/galeria/117_teatro_robotica/01.jpg</span>
+        </div>
+        <!-- Item 2 -->
+        <div class="gal-item span-row reveal reveal-delay-2">
+          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+          <span class="gal-ph">assets/galeria/117_teatro_robotica/02.jpg</span>
+        </div>
+        <!-- Item 3 -->
+        <div class="gal-item reveal reveal-delay-3">
+          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+          <span class="gal-ph">assets/galeria/117_teatro_robotica/03.jpg</span>
+        </div>
+        <!-- Item 4 -->
+        <div class="gal-item reveal reveal-delay-4">
+          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+          <span class="gal-ph">assets/galeria/117_teatro_robotica/04.jpg</span>
+        </div>
+        <!-- Item 5 -->
+        <div class="gal-item reveal reveal-delay-5">
+          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+          <span class="gal-ph">assets/galeria/117_teatro_robotica/05.jpg</span>
+        </div>
+        <!-- Item 6 -->
+        <div class="gal-item span-2 reveal">
+          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+          <span class="gal-ph">assets/galeria/117_teatro_robotica/06.jpg</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ DEMOCRATIZAÇÃO ═══════════════ -->
+  <section id="democratizacao" class="section democra">
+    <div class="section-inner">
+      <div class="reveal" style="text-align: center;">
+        <div class="section-label" style="justify-content: center;"><span class="dot"></span> Acessibilidade</div>
+        <h2 class="section-title">Democratização de Acesso</h2>
+        <p class="section-desc" style="margin: 0 auto;">Como o projeto garante que educação e cultura cheguem a todos</p>
+      </div>
+      <div class="democra-grid">
+
+        <div class="democra-card reveal reveal-delay-1">
+          <div class="democra-icon">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342"/></svg>
+          </div>
+          <h4>Escolas Públicas Municipais</h4>
+          <p>Participação gratuita para estudantes, professores e comunidade escolar em Rio Claro/SP e Joinville/SC.</p>
+        </div>
+
+        <div class="democra-card reveal reveal-delay-2">
+          <div class="democra-icon">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"/></svg>
+          </div>
+          <h4>Metodologia Participativa</h4>
+          <p>Aprendizagem maker e baseada em projetos, com linguagem educativa acessível ao público do Ensino Fundamental I.</p>
+        </div>
+
+        <div class="democra-card reveal reveal-delay-3">
+          <div class="democra-icon">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25"/></svg>
+          </div>
+          <h4>Registros Online</h4>
+          <p>Registros audiovisuais disponibilizados online, ampliando o alcance das atividades.</p>
+        </div>
+
+        <div class="democra-card reveal reveal-delay-4">
+          <div class="democra-icon">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>
+          </div>
+          <h4>Cultura + Tecnologia</h4>
+          <p>Integração entre cultura, educação e tecnologia por meio de metodologias participativas e lúdicas.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ RÉGUA DE LOGOS ═══════════════ -->
+  <section class="section regua">
+    <div class="section-inner">
+      <div class="regua-inner reveal">
+        <img src="assets/reguas/Régua - 117.png" alt="Régua de logos — Lei Rouanet · Whirlpool · NTICS Projetos · Ministério da Cultura · Governo Federal" class="regua-img">
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ FOOTER ═══════════════ -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="assets/logos/117_teatro_robotica.png" alt="Teatro e Oficina Robótica nas Escolas">
+          <p>Teatro e Oficina Robótica nas Escolas — 4ª Edição. Uma iniciativa educacional e cultural que integra teatro, robótica e sustentabilidade em escolas públicas de Rio Claro/SP e Joinville/SC.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Navegação</h4>
+          <a href="#sobre">O Projeto</a>
+          <a href="#cidades">Cidades</a>
+          <a href="#impacto">Impacto</a>
+          <a href="#atividades">Atividades</a>
+          <a href="#galeria">Galeria</a>
+          <a href="#democratizacao">Democratização</a>
+        </div>
+        <div class="footer-col">
+          <h4>Realização</h4>
+          <a href="https://ntics.com.br" target="_blank">NTICS Projetos</a>
+          <a href="https://ntics.com.br" target="_blank">ntics.com.br</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Teatro e Oficina Robótica nas Escolas | 4ª Edição. Todos os direitos reservados.</span>
+        <div class="footer-social">
+          <a href="https://instagram.com/nticsprojetos" target="_blank" aria-label="Instagram">
+            <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"/></svg>
+          </a>
+          <a href="https://linkedin.com/company/nticsprojetos" target="_blank" aria-label="LinkedIn">
+            <svg fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+          <a href="https://facebook.com/nticsprojetos" target="_blank" aria-label="Facebook">
+            <svg fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══════════════ SCRIPTS ═══════════════ -->
+  <script>
+    // Intersection Observer — reveal animations
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
+
+    // Scroll progress bar
+    var progressBar = document.getElementById('scroll-progress');
+    window.addEventListener('scroll', function() {
+      var progress = Math.min(window.scrollY / (document.documentElement.scrollHeight - window.innerHeight), 1);
+      progressBar.style.transform = 'scaleX(' + progress + ')';
+    }, { passive: true });
+
+    // Header scroll effect
+    var header = document.getElementById('site-header');
+    window.addEventListener('scroll', function() {
+      header.classList.toggle('scrolled', window.scrollY > 80);
+    }, { passive: true });
+
+    // Mobile menu
+    var menuOpen = document.getElementById('menu-open');
+    var menuClose = document.getElementById('menu-close');
+    var mobileMenu = document.getElementById('mobile-menu');
+    menuOpen.addEventListener('click', function() { mobileMenu.classList.add('open'); });
+    menuClose.addEventListener('click', function() { mobileMenu.classList.remove('open'); });
+    mobileMenu.querySelectorAll('.mobile-link').forEach(function(link) {
+      link.addEventListener('click', function() { mobileMenu.classList.remove('open'); });
+    });
+
+    // Counter animation
+    var counterObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          var el = entry.target;
+          var target = parseInt(el.dataset.target);
+          var duration = target > 100 ? 2000 : 1200;
+          var start = performance.now();
+          var animate = function(now) {
+            var elapsed = now - start;
+            var progress = Math.min(elapsed / duration, 1);
+            var eased = 1 - Math.pow(1 - progress, 3);
+            el.textContent = Math.round(target * eased).toLocaleString('pt-BR');
+            if (progress < 1) requestAnimationFrame(animate);
+          };
+          requestAnimationFrame(animate);
+          counterObserver.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('.counter').forEach(function(el) { counterObserver.observe(el); });
+
+    // PARTICLE LOGO EFFECT
+    (function() {
+      var canvas = document.getElementById('particle-canvas');
+      if (!canvas) return;
+      var ctx = canvas.getContext('2d');
+      var wrap = canvas.parentElement;
+      var GAP = 4;
+      var SCATTER = 500;
+      var CYCLE = 8000;
+      var particles = [];
+      var W, H, dpr, mouse = {x:-9999,y:-9999}, raf;
+
+      function setup() {
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        var r = wrap.getBoundingClientRect();
+        W = r.width; H = r.height;
+        canvas.width = W * dpr; canvas.height = H * dpr;
+        ctx.setTransform(dpr,0,0,dpr,0,0);
+      }
+
+      function load() {
+        var img = new Image();
+        img.crossOrigin = 'anonymous';
+        img.onload = function() {
+          var oc = document.createElement('canvas');
+          var ox = oc.getContext('2d');
+          var sc = Math.min(W/img.width, H/img.height) * 0.85;
+          var iw = img.width*sc, ih = img.height*sc;
+          oc.width=iw; oc.height=ih;
+          ox.drawImage(img,0,0,iw,ih);
+          var d = ox.getImageData(0,0,iw,ih).data;
+          var offX=(W-iw)/2, offY=(H-ih)/2;
+          particles = [];
+          for (var y=0; y<ih; y+=GAP) {
+            for (var x=0; x<iw; x+=GAP) {
+              var i=(y*iw+x)*4;
+              if (d[i+3]<128) continue;
+              var ang=Math.random()*Math.PI*2;
+              var dist=Math.random()*SCATTER;
+              particles.push({
+                tx:x+offX, ty:y+offY,
+                sx:W/2+Math.cos(ang)*dist, sy:H/2+Math.sin(ang)*dist,
+                x:W/2+Math.cos(ang)*dist, y:H/2+Math.sin(ang)*dist,
+                r:d[i], g:d[i+1], b:d[i+2], a:d[i+3]/255,
+                delay:Math.random()*0.3,
+                size: 2.5 + Math.random()*1.5
+              });
+            }
+          }
+          if (!raf) tick();
+        };
+        img.src = 'assets/logos/117_teatro_robotica.png';
+      }
+
+      function phase(t) {
+        if (t<0.25) return {s:'forming', p:t/0.25};
+        if (t<0.55) return {s:'formed', p:1};
+        if (t<0.80) return {s:'dissolving', p:(t-0.55)/0.25};
+        return {s:'dissolved', p:1};
+      }
+
+      function tick() {
+        raf = requestAnimationFrame(tick);
+        ctx.clearRect(0,0,W,H);
+        var ct = (performance.now()%CYCLE)/CYCLE;
+        var ph = phase(ct);
+        for (var i=0; i<particles.length; i++) {
+          var p = particles[i];
+          var tx, ty, al;
+          if (ph.s==='forming') {
+            var pr = Math.max(0, Math.min(1, (ph.p - p.delay) / (1 - p.delay)));
+            var e = 1 - Math.pow(1 - pr, 3);
+            tx = p.sx + (p.tx - p.sx) * e;
+            ty = p.sy + (p.ty - p.sy) * e;
+            al = 0.3 + e * 0.7;
+          } else if (ph.s==='formed') {
+            tx = p.tx;
+            ty = p.ty;
+            al = 1;
+          } else if (ph.s==='dissolving') {
+            var pr2 = Math.max(0, Math.min(1, (ph.p - p.delay) / (1 - p.delay)));
+            var e2 = pr2 * pr2;
+            tx = p.tx + (p.sx - p.tx) * e2;
+            ty = p.ty + (p.sy - p.ty) * e2;
+            al = 1 - e2 * 0.7;
+          } else {
+            tx = p.sx;
+            ty = p.sy;
+            al = 0.3;
+          }
+          p.x += (tx - p.x) * 0.12;
+          p.y += (ty - p.y) * 0.12;
+          if (ph.s==='formed' || ph.s==='forming') {
+            var dx = p.x - mouse.x;
+            var dy = p.y - mouse.y;
+            var dd = Math.sqrt(dx * dx + dy * dy);
+            if (dd < 60) {
+              var f = (60 - dd) / 60 * 8;
+              p.x += (dx / dd) * f;
+              p.y += (dy / dd) * f;
+            }
+          }
+          ctx.globalAlpha = al * p.a;
+          ctx.fillStyle = 'rgb(' + p.r + ',' + p.g + ',' + p.b + ')';
+          ctx.fillRect(p.x, p.y, p.size, p.size);
+        }
+        ctx.globalAlpha = 1;
+      }
+
+      wrap.addEventListener('mousemove', function(e) {
+        var r = canvas.getBoundingClientRect();
+        mouse.x = e.clientX - r.left;
+        mouse.y = e.clientY - r.top;
+      });
+      wrap.addEventListener('mouseleave', function() {
+        mouse.x = -9999;
+        mouse.y = -9999;
+      });
+      setup();
+      load();
+      window.addEventListener('resize', function() { setup(); load(); });
+    })();
+  </script>
+
+</body>
+</html>
