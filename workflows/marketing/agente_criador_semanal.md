@@ -62,7 +62,7 @@ Salvar em `.tmp/marketing/` nas subpastas correspondentes.
 - [ ] Degrade teal #005F73 na parte inferior de todos os cards
 - [ ] Texto sobre area solida do degrade (nunca sobre zona de transicao)
 - [ ] Fotos realistas e espontaneas (sem aparencia artificial/stock)
-- [ ] Proporcao 1080x1350 (4:5) para carrosseis
+- [ ] Proporcao 1856x2304 (4:5) para carrosseis — OBRIGATORIO com Nano Banana 2 (1080x1350 retorna VALIDATION_ERROR)
 - [ ] Logo NTICS no CTA com posicao e tamanho corretos
 - [ ] Consistencia visual entre cards da mesma serie
 - [ ] Legibilidade — texto com contraste suficiente
@@ -86,11 +86,23 @@ Salvar em `.tmp/marketing/` nas subpastas correspondentes.
 
 Quando a peca passar na revisao:
 
-1. Atualizar tarefa no ClickUp:
-   - Adicionar secao "Conteudo Gerado" na descricao com link da pasta
-   - Mudar status para **"revisao"** (pronto para aprovacao do Lucas)
+1. Copiar arquivos gerados de `.tmp/marketing/` para `content/marketing/semana-{S0X}/`:
+   - `carrossel-noticias/` — 8 JPGs + descricao.txt
+   - `carrossel-educativo/` — 8 JPGs + descricao.txt
+   - `video/roteiro.md`
 
-2. Adicionar comentario na tarefa:
+2. Commitar e fazer push para GitHub (arte3-star/ntics-automacoes):
+   ```bash
+   git add content/
+   git commit -m "Content semana SXX — carrosseis + roteiro"
+   git push origin master
+   ```
+
+3. Atualizar descricao da tarefa no ClickUp com link do GitHub:
+   - Carrosseis: `https://github.com/arte3-star/ntics-automacoes/tree/master/content/marketing/semana-SXX/carrossel-noticias`
+   - Video: `https://github.com/arte3-star/ntics-automacoes/blob/master/content/marketing/semana-SXX/video/roteiro.md`
+
+4. Adicionar comentario na tarefa:
    - Resumo do que foi produzido
    - Resultado da revisao (todos checks OK ou lista de ressalvas)
    - "@Lucas Rotta — Conteudo produzido e revisado. Pronto para sua aprovacao."
