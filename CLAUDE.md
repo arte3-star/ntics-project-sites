@@ -87,12 +87,14 @@ SOPs de planejamento, estruturação e gestão de projetos NTICS.
 | Briefing Website | `briefing_website.md` | Montar conteúdo para site do projeto |
 | Engenhoca Prestação Contas | `engenhoca_prestacao_contas.md` | Automação de prestação de contas Rouanet |
 | Processamento de Reuniões | `process_meeting_transcript.md` | Transcrição → classificação → tasks no ClickUp |
+| Carrossel Projeto Cliente | `carrossel_projeto_cliente.md` | Carrossel com identidade visual do patrocinador (pesquisa marca + Leonardo AI) |
+| Criar Site do Projeto | `criar_site_projeto.md` | Site institucional no Lovable (briefing ClickUp + assets Drive + GitHub + Jinja2/Tailwind) |
 
 **Cadeia de dependências típica:**
 ```
 Perfil Patrocinador ──┐
                       ├──> Termo de Abertura ──> Plano Divulgação ──> Roteiro Vídeo
-                      │                                              └──> Briefing Website
+                      │                                              └──> Briefing Website ──> Criar Site (Lovable)
 ```
 
 ### Inscrição de Projetos (`workflows/inscricao-projetos/`)

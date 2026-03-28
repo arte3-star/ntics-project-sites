@@ -166,7 +166,7 @@ def start_generation_v1(api_key: str, prompt: str, model_id: str, width: int = 1
     return resp.json()["sdGenerationJob"]["generationId"]
 
 
-def start_generation_v2(api_key: str, prompt: str, width: int = 1024, height: int = 512) -> str:
+def start_generation_v2(api_key: str, prompt: str, width: int = 1856, height: int = 2304, prompt_enhance: str = "OFF") -> str:
     """Start a generation using Leonardo v2 API (Nano Banana 2). Returns generation_id."""
     headers = {
         "accept": "application/json",
@@ -178,10 +178,10 @@ def start_generation_v2(api_key: str, prompt: str, width: int = 1024, height: in
         "model": "nano-banana-2",
         "parameters": {
             "prompt": prompt,
-            "width": 1024,
-            "height": 1024,   # square — best quality for nano-banana-2
+            "width": width,
+            "height": height,
             "quantity": 1,
-            "prompt_enhance": "ON",
+            "prompt_enhance": prompt_enhance,
         },
         "public": False,
     }

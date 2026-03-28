@@ -1,7 +1,7 @@
-# Workflow: Roteiro de Edição de Vídeo
+# Workflow: Roteiro Editor de Vídeo Pré-Projeto
 
 ## Objetivo
-Gerar roteiro pronto para edição de vídeo (pré-projeto/convite) no formato tabela com 5 fases, a partir de release, TAP ou briefing.
+Gerar roteiro pronto para editor de vídeo (pré-projeto/convite) no formato tabela com 5 fases, a partir de release, TAP ou briefing.
 
 ## Quando Executar
 Quando precisar de vídeo de divulgação para um projeto (pré-projeto, inscrições, abertura, institucional).
@@ -55,7 +55,7 @@ Saída: Ficha do Projeto (tabela) + Resumo (1 parágrafo) + Tabela do Roteiro
 - Vídeo com foco em inscrições ou abertura
 
 ## Output Esperado
-Roteiro de edição de vídeo em formato tabela, pronto para edição, com ficha do projeto e resumo.
+Roteiro para editor de vídeo em formato tabela, pronto para edição, com ficha do projeto e resumo.
 
 ## Checklist de Qualidade
 - [ ] Nome do projeto correto

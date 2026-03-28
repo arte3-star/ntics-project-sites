@@ -30,6 +30,15 @@
 
 ## Execucao
 
+### Fase 0: Verificar Noticias Anteriores (Anti-Repeticao)
+
+Antes de pesquisar, ler os arquivos `descricao.txt` de TODOS os carrosseis anteriores em `.tmp/marketing/carrosseis/semana-*/` para coletar:
+- URLs ja utilizadas
+- Titulos ja utilizados
+- Empresas/organizacoes ja destacadas
+
+Montar uma lista de exclusao para passar ao Perplexity no prompt.
+
 ### Fase 1: Pesquisa de Noticias (Perplexity)
 
 **Endpoint:** `POST https://api.perplexity.ai/chat/completions`
@@ -38,13 +47,21 @@
 ```
 Quais sao as 6 noticias positivas mais recentes (ultimos 7 dias) sobre ESG, sustentabilidade e responsabilidade social corporativa no Brasil e no mundo? {Se tematica: "Foque especificamente em [tematica]."}
 Foque em resultados concretos, novos investimentos, metas alcancadas e iniciativas lancadas.
+
+IMPORTANTE: NAO inclua noticias das seguintes fontes/URLs que ja foram usadas em edicoes anteriores:
+{lista de URLs anteriores}
+
+Tambem evite repetir noticias sobre as mesmas empresas/organizacoes:
+{lista de empresas ja destacadas}
+
 Para cada noticia, forneca:
 1) Titulo curto (maximo 10 palavras) — sem siglas nao explicadas
 2) Paragrafo resumo (3-4 frases) que explique claramente o que aconteceu, quem fez e por que importa
 3) Fonte (nome do veiculo)
 4) URL da materia original
 5) Uma palavra-chave em ingles para busca de imagem (ex: solar energy, reforestation)
-Responda em portugues brasileiro.
+6) Categoria (ESTRATEGIA CORPORATIVA, INFRAESTRUTURA, RECURSOS HIDRICOS, EDUCACAO, COOPERACAO GLOBAL, FINANCAS VERDES, ENERGIA, BIODIVERSIDADE ou TECNOLOGIA)
+Responda em portugues brasileiro. Formate como JSON array.
 ```
 
 **Parametros:** `search_recency_filter: "week"`
@@ -101,18 +118,35 @@ A social media carousel cover card for Instagram 4:5 format. The top 60 percent 
 
 ---
 
-#### Cards 02-07 — Noticias
+#### Cards 02-07 — Noticias (Estilo C2 — icone circular + texto informativo)
 
 **Prompt template para cada noticia:**
 ```
-A social media carousel card for Instagram 4:5 format. The top 55 percent is a full-bleed hyperrealistic {descricao da cena baseada na noticia — ser especifico ao conteudo}, photojournalistic style shot with Canon 50mm f1.4 natural bokeh warm tones. From 55 to 75 percent a smooth dark gradient overlay transitions from transparent to solid dark teal #005F73. From 75 to 78 percent a small rounded {cor do badge} badge with white text {CATEGORIA}. From 78 to 92 percent large bold white sans-serif headline text: {titulo da noticia}. From 92 to 98 percent smaller white sans-serif body text: {paragrafo resumo da noticia}. Tiny text Fonte: {fonte} at the bottom. At the very bottom edge flush with zero margin, a thick prominent horizontal gradient stripe bar spanning full width approximately 2 percent of total height with smooth color flow from bright green to teal to magenta to orange. No hex codes visible. No logo. Professional editorial card design.
+A social media carousel card Instagram 4:5 format. The top 55 percent is a full-bleed hyperrealistic photograph of {descricao da cena baseada na noticia — ser especifico ao conteudo}, candid unposed moment, Canon 50mm f1.4 natural bokeh warm tones, visible film grain ISO 800, natural imperfect lighting, NOT AI generated. In the upper right corner overlapping the photo a circular bubble icon approximately 12 percent width showing {elemento visual simbolico da noticia — ex: globo terrestre, folha verde, painel solar, gota d'agua}, surrounded by a glowing golden ring with soft amber light. From 55 to 72 percent a smooth dark gradient overlay transitions from transparent to solid dark teal 005F73. From 72 to 75 percent a small rounded {cor do badge} badge with white text {CATEGORIA}. From 75 to 88 percent large bold white uppercase sans-serif headline with key words in yellow F5B800: {titulo da noticia — palavras-chave em caps}. From 88 to 96 percent smaller white sans-serif body text: {paragrafo resumo da noticia}. At 97 percent tiny white text: Fonte: {fonte}. At the very bottom edge flush a thick gradient stripe bar from green 3DAA35 to teal 00A5B8 to pink D41A6A to orange E86428. Professional editorial card.
 ```
+
+**Elementos novos do estilo C2:**
+- **Icone circular** (canto superior direito): bolha com elemento visual tematico + anel dourado brilhante
+- **Headline com destaques**: palavras-chave em amarelo #F5B800, restante em branco
+- **Sem divisor decorativo**: logo NTICS entra via pos-processamento Pillow (nao no prompt)
 
 **IMPORTANTE sobre a descricao da cena:**
 - A cena deve representar EXATAMENTE o que a noticia fala
 - Nao usar cenas genericas (ex: "paineis solares" se a noticia nao fala de energia solar)
 - Descrever a cena como se fosse uma foto real sendo tirada por um jornalista
 - Incluir detalhes de camera: Canon, lente, bokeh, luz natural
+- Descrever imperfeicoes reais: mesa bagunçada, cabos visiveis, iluminacao imperfecta, alguem mexendo no celular
+- SEMPRE incluir o bloco de realismo no prompt para evitar imagens com cara de IA
+
+**IMPORTANTE sobre o icone circular:**
+- Deve ser um simbolo/objeto concreto relacionado a noticia (nao abstrato)
+- Exemplos: globo terrestre (cooperacao global), folha verde (biodiversidade), painel solar (energia), gota d'agua (recursos hidricos), engrenagem (tecnologia), graficos (financas)
+- O anel dourado ao redor e obrigatorio — gera o efeito visual marcante
+
+**Bloco de realismo (incluir em TODOS os prompts de foto):**
+```
+candid unposed moment, Nikon D850 85mm f1.8, visible film grain ISO 800, natural imperfect lighting with real shadows, shallow depth of field, skin pores visible, NOT AI generated NOT illustration
+```
 
 **Categorias e cores dos badges:**
 - ESTRATEGIA CORPORATIVA → verde
@@ -157,21 +191,32 @@ cta.convert('RGB').save('08-cta.jpg', quality=95)
 
 ---
 
-### Fase 4: Revisao Visual dos Cards
+### Fase 4: Revisao Visual dos Cards (OBRIGATORIA — usar agente de revisao)
 
-Apos gerar, verificar CADA card:
+Apos gerar, lançar um **agente de revisao visual** que abre CADA card e verifica contra o checklist abaixo. O agente deve reprovar cards com defeitos e listar quais precisam ser regenerados. NAO pular esta fase.
 
-**Checklist de revisao visual:**
+**Checklist de revisao visual (verificar CADA card individualmente):**
 - [ ] Texto correto — sem erros de ortografia ou numeros trocados
-- [ ] Badge com categoria visivel
+- [ ] Badge com categoria visivel e legivel
 - [ ] Barra gradiente no rodape colada na borda inferior (sem espaco)
-- [ ] Barra gradiente visivel e com cores corretas (verde → teal → rosa → laranja)
+- [ ] Barra gradiente com cores corretas (verde → teal → rosa → laranja), SEM hex codes visiveis
 - [ ] Foto hiper-realista e coerente com o conteudo da noticia
-- [ ] Degradê suave da foto para o teal
-- [ ] Sem hex codes ou codigos visiveis na imagem
+- [ ] Degradê suave da foto para o teal — SEM artefatos, SEM padrao xadrez, SEM banding
+- [ ] Sem hex codes, percentuais ou codigos visiveis na imagem
 - [ ] Fonte citada corretamente
+- [ ] Icone circular com anel dourado presente e tematico (cards 02-07)
+- [ ] Body text presente e legivel (cards 02-07)
+- [ ] Pessoas (se houver): maximo 1-2, aspecto natural, sem rostos plastificados ou poses artificiais
+- [ ] Sem texto gerado pelo Leonardo que nao foi solicitado (hashtags, watermarks)
 
-**Se algum card falhar na revisao:** regenerar apenas esse card com prompt ajustado.
+**Criterios de reprovacao automatica (regenerar imediatamente):**
+1. Degradê com artefatos (xadrez, banding, transparencia quebrada)
+2. Hex codes ou percentuais visiveis na imagem
+3. Body text ausente quando deveria estar presente
+4. Grupo de 3+ pessoas com aspecto artificial/posado
+5. Texto ilegivel ou cortado
+
+**Se algum card falhar na revisao:** regenerar APENAS esse card com prompt ajustado, corrigindo o defeito especifico. Depois revisar novamente o card regenerado.
 
 ### Fase 5: Organizacao e Entrega
 
@@ -219,11 +264,13 @@ Semana {data}
 | Proporcao | 4:5 (Instagram) |
 | Dimensao | 1856 x 2304 px |
 | Formato | JPG, quality 95 |
-| Modelo IA | Nano Banana 2 (Leonardo AI v2 API) |
-| Foto | Topo 55-60%, hiper-realista, estilo fotojornalistico |
-| Degrade | 15-20% de transicao, transparente → teal #005F73 |
-| Texto | Branco, sans-serif, bold para titulo, regular para corpo |
-| Badge | Arredondado, cor por categoria, texto branco |
+| Modelo IA | Nano Banana 2 (Leonardo AI v2 API) — **OBRIGATÓRIO usar 1856x2304** (outras dimensões retornam VALIDATION_ERROR) |
+| Foto | Topo 55%, hiper-realista, estilo fotojornalistico |
+| Icone circular | Canto superior direito, ~12% largura, elemento tematico + anel dourado |
+| Degrade | 55-72% transicao, transparente → teal #005F73 |
+| Texto headline | Branco bold uppercase, palavras-chave em amarelo #F5B800 |
+| Texto corpo | Branco regular, sans-serif |
+| Badge | Arredondado, cor por categoria, texto branco (72-75%) |
 | Barra gradiente | 2% da altura, colada no rodape, sem espaco abaixo |
 | Cores da barra | #3DAA35 → #00A5B8 → #D41A6A → #E86428 |
 | Logo CTA | NTICS branca, 14% da altura, centralizada, topo 6% |

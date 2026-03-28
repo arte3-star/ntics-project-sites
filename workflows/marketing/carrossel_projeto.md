@@ -60,41 +60,77 @@ Ler o documento completo e extrair:
 
 ### Fase 2: Redacao dos 5 Cards
 
-Estrutura fixa de 5 cards + 1 NTICS (que o usuario ja tem no Canva):
+Estrutura fixa de 7 cards de conteudo + 1 CTA com logo NTICS:
 
 ---
 
-**Card 1 — Nome + Subtitulo**
+**Card 1 — Capa / Nome do Projeto**
 - Badge: PROJETO DE IMPACTO (verde)
+- Degrade: teal #005F73
 - Titulo: Nome do projeto com palavra-chave em amarelo #F5B800
-- Subtitulo: Frase descritiva com 2-3 palavras em amarelo #F5B800
-- Formato: "{Nome}" + "Um {tipo} que {transformacao} — com {elementos}."
+- Subtitulo: Frase descritiva curta
 
-**Card 2 — Valor para a Empresa**
+**Card 2 — O Projeto**
+- Badge: O PROJETO (teal)
+- Degrade: teal #005F73
+- Texto: o que e o projeto em 2-3 frases, objetivo principal, publico-alvo
+- Palavras destaque em amarelo: tipo de atividade, publico
+
+**Card 3 — Valor para a Empresa**
 - Badge: VALOR PARA A EMPRESA (verde)
 - Degrade: verde #3DAA35
 - Texto: por que patrocinar, conexao ESG, lei de incentivo
 - Palavras destaque em amarelo: nome da lei, Agenda 2030
 
-**Card 3 — Alcance**
+**Card 4 — Alcance**
 - Badge: ALCANCE (teal)
 - Degrade: roxo #6B2D7B
 - Texto: numeros de escala em destaque (cidades, alunos, pessoas)
 - Formato lista com bullets
 
-**Card 4 — Metodologia**
+**Card 5 — Metodologia**
 - Badge: METODOLOGIA (amarelo)
 - Degrade: teal #005F73
 - Texto: como foi executado, atividades, abordagem
 - Palavras destaque: nome das metodologias
 
-**Card 5 — Impacto**
+**Card 6 — Resultados**
+- Badge: RESULTADOS (laranja)
+- Degrade: teal #005F73
+- Texto: depoimentos, avaliacoes, satisfacao, mudanca de comportamento
+- Destaque em amarelo nos indicadores qualitativos
+
+**Card 7 — Impacto**
 - Badge: IMPACTO (rosa)
 - Degrade: rosa #D41A6A
-- Texto: resultados concretos, numeros grandes
+- Texto: numeros acumulados do programa (todas as edicoes), visao de escala
 - Destaque em amarelo nos numeros principais
 
-**Card 6 — NTICS (fixo, usuario ja tem no Canva)**
+**Card 8 — CTA com logo NTICS**
+- Fundo solido teal #005F73
+- Logo NTICS branca centralizada no topo (14% da altura)
+- Texto: "Siga para mais projetos de impacto" + @nticsprojetos + tagline
+- Barra gradiente no rodape
+- Logo adicionada via Pillow (pos-processamento)
+
+---
+
+**REGRA DE POSICIONAMENTO DO DEGRADE:**
+
+A foto ocupa o topo (55% do card). O degrade faz a transicao da foto para a cor solida.
+O badge e TODO o texto ficam 100% sobre a area de cor solida, ABAIXO da zona de transicao.
+
+Estrutura vertical do card:
+```
+0-55%   → Foto (referencia real do projeto)
+55-75%  → Zona de degrade (transparente → cor solida)
+75-78%  → Badge (ja sobre cor solida)
+78-92%  → Titulo (sobre cor solida)
+92-98%  → Corpo do texto (sobre cor solida)
+98-100% → Barra gradiente (verde → teal → rosa → laranja)
+```
+
+Isso garante que NENHUM texto fica sobre a zona de transicao.
 
 ---
 
@@ -160,7 +196,7 @@ Aguardar ~55 segundos. Se PENDING, aguardar mais 25s.
 ### Prompt Template para cada Card
 
 ```
-Social media carousel card Instagram 4:5. Top 55 percent uses the uploaded reference image as the main photograph. Bottom 45 percent smooth gradient transition to solid {cor do degrade}. Small {cor do badge} badge {NOME DO BADGE}. Large bold white sans-serif headline with key words in yellow F5B800: {titulo com destaques}. Below medium white text: {corpo com palavras destaque em amarelo F5B800}. Bottom edge flush thick gradient bar green to teal to pink to orange. Clean editorial card.
+Social media carousel card Instagram 4:5. The top 55 percent uses the uploaded reference image as the main photograph. From 55 to 75 percent a smooth dark gradient overlay transitions from transparent to solid {cor do degrade}. From 75 to 78 percent a small rounded {cor do badge} badge with white text {NOME DO BADGE}. From 78 to 92 percent large bold white sans-serif headline with key words in yellow F5B800: {titulo com destaques}. From 92 to 98 percent medium white text: {corpo com palavras destaque em amarelo F5B800}. At the very bottom edge flush with zero margin a thick gradient stripe bar green to teal to pink to orange. Clean editorial card.
 ```
 
 **IMPORTANTE no prompt:**
@@ -168,16 +204,21 @@ Social media carousel card Instagram 4:5. Top 55 percent uses the uploaded refer
 - Indicar palavras em amarelo F5B800 para quebrar o branco
 - Variar a cor do degrade entre os cards
 - Sempre incluir a barra gradiente no rodape
+- USAR a estrutura "From X to Y percent" para garantir posicionamento do degrade
+- O badge e texto SEMPRE ficam abaixo de 75% (area de cor solida, nunca na zona de transicao)
 
 ### Cores de Degrade por Card
 
 | Card | Degrade | Hex |
 |------|---------|-----|
-| 01 - Nome | Teal | #005F73 |
-| 02 - Valor | Verde | #3DAA35 |
-| 03 - Alcance | Roxo | #6B2D7B |
-| 04 - Metodologia | Teal | #005F73 |
-| 05 - Impacto | Rosa | #D41A6A |
+| 01 - Capa/Nome | Teal | #005F73 |
+| 02 - O Projeto | Teal | #005F73 |
+| 03 - Valor | Verde | #3DAA35 |
+| 04 - Alcance | Roxo | #6B2D7B |
+| 05 - Metodologia | Teal | #005F73 |
+| 06 - Resultados | Teal | #005F73 |
+| 07 - Impacto | Rosa | #D41A6A |
+| 08 - CTA | Teal solido | #005F73 |
 
 ### Cores dos Badges
 
