@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cultura Robótica — Arte e inovação para mentes criativas</title>
+  <meta name="description" content="O projeto Cultura Robótica une teatro e artes plásticas para inspirar jovens e crianças em escolas públicas. Realização NTICS Projetos, patrocínio Ferroport, via Lei Rouanet.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --azul: #1E3A8A;
+      --azul-escuro: #0F1F4D;
+      --magenta: #E91E63;
+      --magenta-claro: #F472B6;
+    }
+    * { font-family: 'Poppins', system-ui, sans-serif; }
+    .bg-azul { background-color: var(--azul); }
+    .bg-azul-escuro { background-color: var(--azul-escuro); }
+    .bg-magenta { background-color: var(--magenta); }
+    .text-azul { color: var(--azul); }
+    .text-magenta { color: var(--magenta); }
+    .border-magenta { border-color: var(--magenta); }
+    .hero-overlay {
+      background: linear-gradient(135deg, rgba(30,58,138,0.85) 0%, rgba(233,30,99,0.55) 100%);
+    }
+    .section-title {
+      letter-spacing: 0.05em;
+    }
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: 0.4;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body class="bg-white text-slate-800">
+
+  <!-- Header -->
+  <header class="bg-azul text-white sticky top-0 z-50 shadow-lg">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <img src="assets/logos/81_cultura_robotica_ferroporte.png" alt="Logo Cultura Robótica" class="h-12 bg-white rounded-lg p-1">
+      </div>
+      <nav class="hidden md:flex gap-8 text-sm font-medium">
+        <a href="#sobre" class="hover:text-magenta transition">Sobre</a>
+        <a href="#locais" class="hover:text-magenta transition">Por Onde Passamos</a>
+        <a href="#oficina" class="hover:text-magenta transition">Oficinas</a>
+        <a href="#teatro" class="hover:text-magenta transition">Teatro</a>
+        <a href="#galeria" class="hover:text-magenta transition">Galeria</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="relative h-[80vh] min-h-[500px] flex items-center justify-center overflow-hidden">
+    <img src="assets/imagens/rf-1313139-54f95d5fd2f067e2b19f09190d34926f.jpg" alt="Crianças com robôs criados nas oficinas" class="absolute inset-0 w-full h-full object-cover">
+    <div class="absolute inset-0 hero-overlay"></div>
+    <div class="relative z-10 text-center text-white px-6 max-w-4xl">
+      <img src="assets/logos/81_cultura_robotica_ferroporte.png" alt="Logo Cultura Robótica" class="h-32 md:h-40 mx-auto mb-6 bg-white/95 rounded-2xl p-4 shadow-2xl">
+      <h1 class="text-5xl md:text-7xl font-black mb-4 drop-shadow-2xl">Cultura Robótica</h1>
+      <p class="text-xl md:text-2xl font-light mb-2">"Arte e inovação para mentes criativas"</p>
+      <p class="text-lg opacity-90">Teatro e artes plásticas para inspirar jovens e crianças em escolas públicas</p>
+    </div>
+  </section>
+
+  <!-- Sobre -->
+  <section id="sobre" class="py-20 px-6">
+    <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+      <div>
+        <img src="assets/logos/81_cultura_robotica_ferroporte.png" alt="Logo Cultura Robótica" class="w-full max-w-sm">
+      </div>
+      <div>
+        <h2 class="section-title text-3xl md:text-4xl font-extrabold text-azul mb-6">Sejam todas e todos bem-vindos!</h2>
+        <p class="text-lg text-slate-700 leading-relaxed mb-4">
+          O projeto <strong class="text-magenta">Cultura Robótica</strong> une teatro e artes plásticas para inspirar jovens e crianças em escolas públicas.
+        </p>
+        <p class="text-lg text-slate-700 leading-relaxed">
+          Através de performances teatrais que exploram temas de inovação e ética, e de oficinas práticas de arte, o projeto desperta a criatividade e o senso crítico, incentivando o diálogo entre tecnologia e responsabilidade para o futuro.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Por Onde Passamos -->
+  <section id="locais" class="py-20 px-6 bg-azul text-white">
+    <div class="max-w-5xl mx-auto text-center">
+      <h2 class="section-title text-3xl md:text-4xl font-extrabold mb-12">POR ONDE PASSAMOS</h2>
+      <div class="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+        <div class="bg-white/10 backdrop-blur rounded-2xl p-8 border-2 border-magenta">
+          <div class="w-16 h-16 rounded-full bg-magenta flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg>
+          </div>
+          <h3 class="text-2xl font-bold mb-2">São Paulo</h3>
+          <p class="text-lg opacity-80">SP</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur rounded-2xl p-8 border-2 border-magenta">
+          <div class="w-16 h-16 rounded-full bg-magenta flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg>
+          </div>
+          <h3 class="text-2xl font-bold mb-2">São João da Barra</h3>
+          <p class="text-lg opacity-80">RJ</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Oficina de Artes -->
+  <section id="oficina" class="py-20 px-6 bg-azul-escuro text-white relative overflow-hidden">
+    <div class="blob bg-magenta w-96 h-96 -top-20 -right-20"></div>
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center relative">
+      <div>
+        <span class="inline-block px-4 py-1 bg-magenta rounded-full text-sm font-semibold mb-4">CRIATIVIDADE</span>
+        <h2 class="section-title text-3xl md:text-5xl font-extrabold mb-6">OFICINA DE<br>ARTES PLÁSTICAS</h2>
+        <p class="text-lg leading-relaxed opacity-90">
+          As oficinas de artes proporcionam aos alunos da escola pública uma experiência artística enriquecedora por meio da técnica de colagem, incentivando a observação do mundo ao redor e a reflexão sobre a relação entre valores morais e inovação.
+        </p>
+        <p class="text-lg leading-relaxed opacity-90 mt-4">
+          Além disso, a oficina busca estimular o pensamento crítico e a capacidade de inovação, promovendo a integração entre o universo tecnológico e o mundo artístico.
+        </p>
+      </div>
+      <div class="rounded-2xl overflow-hidden shadow-2xl">
+        <img src="assets/imagens/rf-1231748-413e6f07651dee8ec742d638e13d7d97.jpg" alt="Crianças na oficina de colagem" class="w-full h-full object-cover">
+      </div>
+    </div>
+  </section>
+
+  <!-- Apresentação de Teatro -->
+  <section id="teatro" class="py-20 px-6 bg-slate-100">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+      <div class="rounded-2xl overflow-hidden shadow-2xl order-2 md:order-1">
+        <img src="assets/imagens/rf-1313139-85eefdb4058ee0c428317f053afb33e3.jpg" alt="Apresentação de teatro na quadra escolar" class="w-full h-full object-cover">
+      </div>
+      <div class="order-1 md:order-2">
+        <span class="inline-block px-4 py-1 bg-azul text-white rounded-full text-sm font-semibold mb-4">SUSTENTABILIDADE</span>
+        <h2 class="section-title text-3xl md:text-5xl font-extrabold text-azul mb-6">APRESENTAÇÃO<br>DE TEATRO</h2>
+        <p class="text-lg leading-relaxed text-slate-700">
+          A performance teatral na escola trouxe à cena as temáticas de inovação e tecnologia, inspirando os jovens a imaginar o futuro.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Democratização -->
+  <section class="py-20 px-6 bg-white relative overflow-hidden">
+    <div class="blob bg-magenta-claro w-[500px] h-[500px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
+    <div class="max-w-3xl mx-auto text-center relative">
+      <h2 class="section-title text-3xl md:text-5xl font-extrabold text-azul mb-6">DEMOCRATIZAÇÃO<br>DE ACESSO</h2>
+      <p class="text-lg leading-relaxed text-slate-700">
+        Como forma de democratizar o acesso à cultura no Brasil, o projeto <strong class="text-magenta">Cultura Robótica</strong> conta com a disponibilização online da palestra — onde o público poderá conhecer melhor nossas experiências.
+      </p>
+    </div>
+  </section>
+
+  <!-- Galeria -->
+  <section id="galeria" class="py-20 px-6 bg-azul-escuro">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="section-title text-3xl md:text-5xl font-extrabold text-white text-center mb-12">GALERIA DE FOTOS</h2>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <img src="assets/imagens/rf-1313139-9e49f7f7b52bf142e1bcbf71aa101c23.jpg" alt="Crianças com robôs" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
+        <img src="assets/imagens/rf-1313139-23504028bbe6d744ed449575bcd2e06f.jpg" alt="Plateia da apresentação" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
+        <img src="assets/imagens/rf-1313139-3ef10570d125e1be500d7c06fd1a9015.jpg" alt="Atividade na escola" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
+        <img src="assets/imagens/rf-1313139-893ee873d6aa46a0cf7e64d82cfb2616.jpg" alt="Atividade na escola" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
+        <img src="assets/imagens/rf-1313139-bed35fc69764c93f484983d83209edf0.jpg" alt="Momento do projeto" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
+        <img src="assets/imagens/rf-1231748-2ed52bd399e7ecb18adf6263d7e5c021.jpg" alt="Momento do projeto" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
+        <img src="assets/imagens/rf-1231748-74d758aff344289e3ea1346baac98da9.jpg" alt="Momento do projeto" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
+        <img src="assets/imagens/rf-1231748-cce19d9a644c29c76384a2b7b9f55ef0.jpg" alt="Momento do projeto" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
+        <img src="assets/imagens/rf-1313139-e452a0ded6b3a4fca8557c2856294bdf.jpg" alt="Momento do projeto" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer com patrocinadores -->
+  <footer class="bg-white py-12 px-6 border-t-4 border-azul">
+    <div class="max-w-5xl mx-auto text-center">
+      <p class="text-sm uppercase tracking-widest text-slate-500 mb-6 font-semibold">Patrocínio &amp; Realização</p>
+      <img src="assets/reguas/81_cultura_robotica_ferroporte_regua.jpg" alt="Régua de patrocinadores: Lei Rouanet, Ferroport, Sustentabilidade e Cultura, NTICS Projetos, Ministério da Cultura, Governo Federal" class="max-w-4xl w-full mx-auto">
+      <p class="text-xs text-slate-400 mt-8">
+        Projeto realizado via Lei de Incentivo à Cultura (Lei Rouanet) — Ministério da Cultura — Governo Federal
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>
