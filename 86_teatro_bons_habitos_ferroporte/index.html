@@ -9,43 +9,50 @@
 
 O projeto Teatro dos Bons Hábitos levou para alunos de escolas públicas a uma ">
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     * { font-family: 'Poppins', system-ui, sans-serif; }
-    .hero-overlay { background: linear-gradient(135deg, #3F8047D9 0%, #C31E3088 100%); }
+    html { scroll-behavior: smooth; }
+    .hero-overlay {
+      background: linear-gradient(135deg, #3F8047E6 0%, #1F4023B3 100%);
+    }
   </style>
 </head>
 <body class="bg-white text-slate-800">
 
-  <header style="background-color: #3F8047;" class="text-white sticky top-0 z-50 shadow-lg">
-    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+  <!-- HEADER / NAV -->
+  <header class="sticky top-0 z-50 shadow-md" style="background-color: #3F8047;">
+    <div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
       <div class="flex items-center gap-3">
-        <img src="LOGOS/teatro_bons_habitos_ferroporte.png" alt="Logo" class="h-10 bg-white rounded-lg p-1">
-        <span class="font-bold text-lg hidden md:inline">Teatro dos Bons Hábitos</span>
+        <img src="https://raw.githubusercontent.com/arte3-star/ntics-project-sites/master/86_teatro_bons_habitos_ferroporte/LOGOS/teatro_bons_habitos_ferroporte.png" alt="Logo Teatro dos Bons Hábitos" class="h-10 bg-white rounded-lg p-1">
+        <span class="text-white font-bold text-sm hidden md:inline">Teatro dos Bons Hábitos</span>
       </div>
-      <nav class="hidden md:flex gap-8 text-sm font-medium">
+      <nav class="hidden md:flex gap-6 text-sm font-medium text-white">
+        <a href="#home" class="hover:opacity-80 transition">Home</a>
         <a href="#sobre" class="hover:opacity-80 transition">Sobre</a>
-        <a href="#campos-dos-goytacazes-rj" class="hover:opacity-80 transition">Campos</a>
-        <a href="#campinas-sp" class="hover:opacity-80 transition">Campinas</a>
+        <a href="#cidades" class="hover:opacity-80 transition">Cidades</a>
+        <a href="#democratizacao" class="hover:opacity-80 transition">Democratização</a>
         <a href="#galeria" class="hover:opacity-80 transition">Galeria</a>
       </nav>
     </div>
   </header>
 
-  <section class="relative h-[80vh] min-h-[500px] flex items-center justify-center overflow-hidden">
-    <img src="FOTOS/rf-1313206-4f4ac276c024b98fad6d3fb0c9fe1e80.jpg" alt="Teatro dos Bons Hábitos" class="absolute inset-0 w-full h-full object-cover">
+  <!-- HERO -->
+  <section id="home" class="relative h-[85vh] min-h-[550px] flex items-center justify-center overflow-hidden">
+    <img src="https://raw.githubusercontent.com/arte3-star/ntics-project-sites/master/86_teatro_bons_habitos_ferroporte/FOTOS/01_86_rf-1313206-4f4ac276c024b98fad6d3fb0c9fe1e80.jpg" alt="Teatro dos Bons Hábitos" class="absolute inset-0 w-full h-full object-cover">
     <div class="absolute inset-0 hero-overlay"></div>
     <div class="relative z-10 text-center text-white px-6 max-w-4xl">
-      <img src="LOGOS/teatro_bons_habitos_ferroporte.png" alt="Logo Teatro dos Bons Hábitos" class="h-32 md:h-40 mx-auto mb-6 bg-white/95 rounded-2xl p-4 shadow-2xl">
-      <h1 class="text-5xl md:text-7xl font-black mb-4 drop-shadow-2xl">Teatro dos Bons Hábitos</h1>
-      <p class="text-xl md:text-2xl font-light">Projeto NTICS Projetos • Lei Rouanet</p>
+      <img src="https://raw.githubusercontent.com/arte3-star/ntics-project-sites/master/86_teatro_bons_habitos_ferroporte/LOGOS/teatro_bons_habitos_ferroporte.png" alt="Logo" class="h-28 md:h-36 mx-auto mb-6 bg-white/95 rounded-2xl p-4 shadow-2xl">
+      <h1 class="text-4xl md:text-6xl font-black mb-4 drop-shadow-2xl">Teatro dos Bons Hábitos</h1>
+      <p class="text-xl md:text-2xl font-light">POR ONDE PASSAMOS</p>
     </div>
   </section>
 
-  <section id="sobre" class="py-20 px-6">
+  <!-- SOBRE O PROJETO -->
+  <section id="sobre" class="py-20 px-6 bg-white">
     <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-center">
       <div>
-        <img src="LOGOS/teatro_bons_habitos_ferroporte.png" alt="Logo Teatro dos Bons Hábitos" class="w-full max-w-sm">
+        <img src="https://raw.githubusercontent.com/arte3-star/ntics-project-sites/master/86_teatro_bons_habitos_ferroporte/LOGOS/teatro_bons_habitos_ferroporte.png" alt="Logo Teatro dos Bons Hábitos" class="w-full max-w-sm mx-auto">
       </div>
       <div>
         <h2 class="text-3xl md:text-4xl font-extrabold mb-6 tracking-wide" style="color: #3F8047;">Sobre o Projeto</h2>
@@ -53,71 +60,73 @@ O projeto Teatro dos Bons Hábitos levou para alunos de escolas públicas a uma 
 “Descobrindo o Mundo Mágico dos Bons Hábitos”
 
 O projeto Teatro dos Bons Hábitos levou para alunos de escolas públicas a uma aventura encantada, onde a diversão e a aprendizagem caminharam lado a lado. Neste colorido jardim mágico, personagens vibrantes ganharam vida para ensinar, de maneira leve e envolvente, a importância dos bons hábitos para a saúde e o bem-estar. Através de histórias e lições simples, a peça inspirou os pequenos a adotar hábitos saudáveis de forma natural e divertida.</p>
-        <p class="text-lg text-slate-700 leading-relaxed mb-4">&quot;O Jardim Encantado dos Hábitos Saudáveis&quot; é uma encantadora peça teatral
-voltada para o público infantil, que aborda a importância dos bons hábitos na infância e
-promove o bem-estar das crianças. A história se passa em um colorido jardim mágico,
-onde personagens encantadores e divertidos ganham vida para ensinar às crianças
-valiosas lições sobre hábitos saudáveis.</p>
       </div>
     </div>
   </section>
 
 
-  <section id="campos-dos-goytacazes-rj" style="background-color: #1F4023;" class="py-20 px-6 text-white">
+  <section id="cidades" class="relative py-20 px-6 overflow-hidden" style="background-color: #1F4023;">
+    
+    <div class="relative z-10 max-w-5xl mx-auto">
+      <h2 class="text-3xl md:text-5xl font-extrabold text-center mb-12 tracking-wide text-white">POR ONDE PASSAMOS</h2>
+      <div class="grid grid-cols-2 md:grid-cols-2 gap-5">
+        <div class="bg-white/10 backdrop-blur rounded-2xl p-5 text-center border border-white/15 hover:bg-white/20 transition"><p class="font-bold text-white">CAMPOS DOS GOYTACAZES</p><p class="text-sm text-white/60">RJ</p></div>
+        <div class="bg-white/10 backdrop-blur rounded-2xl p-5 text-center border border-white/15 hover:bg-white/20 transition"><p class="font-bold text-white">CAMPINAS</p><p class="text-sm text-white/60">SP</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 px-6 bg-white">
     <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+      <div class="grid grid-cols-2 gap-4">
+        <div class="rounded-2xl overflow-hidden shadow-xl"><img src="https://raw.githubusercontent.com/arte3-star/ntics-project-sites/master/86_teatro_bons_habitos_ferroporte/FOTOS/12_86_rf-1313206-08209462b80d2c8b8a101c0aa0227947.jpg" alt="APRESENTAÇÃO DE TEATRO" loading="lazy" class="w-full h-52 object-cover"></div>
+        <div class="rounded-2xl overflow-hidden shadow-xl"><img src="https://raw.githubusercontent.com/arte3-star/ntics-project-sites/master/86_teatro_bons_habitos_ferroporte/FOTOS/02_teatro-bons-habitos_espetaculo_A_plateia-criancas-palco-ginasio.jpg" alt="APRESENTAÇÃO DE TEATRO" loading="lazy" class="w-full h-52 object-cover"></div>
+        <div class="rounded-2xl overflow-hidden shadow-xl"><img src="https://raw.githubusercontent.com/arte3-star/ntics-project-sites/master/86_teatro_bons_habitos_ferroporte/FOTOS/03_101_rf-1313206-d123d4cd228b9879728b133d56ad30ce.jpg" alt="APRESENTAÇÃO DE TEATRO" loading="lazy" class="w-full h-52 object-cover"></div>
+        <div class="rounded-2xl overflow-hidden shadow-xl"><img src="https://raw.githubusercontent.com/arte3-star/ntics-project-sites/master/86_teatro_bons_habitos_ferroporte/FOTOS/04_101_rf-1313206-a614f756db16f6396fdccec834857b41.jpg" alt="APRESENTAÇÃO DE TEATRO" loading="lazy" class="w-full h-52 object-cover"></div>
+      </div>
       <div>
-        <h2 class="text-3xl md:text-5xl font-extrabold mb-6 tracking-wide">CAMPOS DOS GOYTACAZES - RJ</h2>
-        <p class="text-lg leading-relaxed opacity-90">Sejam todas e todos bem vindos!!! 
+        <h2 class="text-3xl md:text-4xl font-extrabold mb-6 tracking-wide" style="color: #3F8047;">APRESENTAÇÃO DE TEATRO</h2>
+        <p class="text-lg text-slate-700 leading-relaxed">Sejam todas e todos bem vindos!!! 
 “Descobrindo o Mundo Mágico dos Bons Hábitos”
 
 O projeto Teatro dos Bons Hábitos levou para alunos de escolas públicas a uma aventura encantada, onde a diversão e a aprendizagem caminharam lado a lado. Neste colorido jardim mágico, personagens vibrantes ganharam vida para ensinar, de maneira leve e envolvente, a importância dos bons hábitos para a saúde e o bem-estar. Através de histórias e lições simples, a peça inspirou os pequenos a adotar hábitos saudáveis de forma natural e divertida.</p>
       </div>
-      <div class="rounded-2xl overflow-hidden shadow-2xl"><img src="FOTOS/rf-1313139-057f0482afb1ac33c98c4c49157f460a.jpg" alt="CAMPOS DOS GOYTACAZES - RJ" class="w-full h-full object-cover"></div>
     </div>
   </section>
 
-  <section id="campinas-sp" style="background-color: #E2EBE3;" class="py-20 px-6">
-    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-      <div class="rounded-2xl overflow-hidden shadow-2xl"><img src="FOTOS/rf-1313139-cac0b2fd8df317f448c84c13fcb76edb.jpg" alt="CAMPINAS - SP" class="w-full h-full object-cover"></div>
-      <div>
-        <h2 class="text-3xl md:text-5xl font-extrabold mb-6 tracking-wide" style="color: #3F8047;">CAMPINAS - SP</h2>
-        <p class="text-lg leading-relaxed text-slate-700">&quot;O Jardim Encantado dos Hábitos Saudáveis&quot; é uma encantadora peça teatral
-voltada para o público infantil, que aborda a importância dos bons hábitos na infância e
-promove o bem-estar das crianças. A história se passa em um colorido jardim mágico,
-onde personagens encantadores e divertidos ganham vida para ensinar às crianças
-valiosas lições sobre hábitos saudáveis.</p>
+  <section id="democratizacao" class="py-20 px-6 bg-white">
+    <div class="max-w-5xl mx-auto text-center">
+      <h2 class="text-3xl md:text-5xl font-extrabold mb-8 tracking-wide" style="color: #C31E30;">DEMOCRATIZAÇÃO DE ACESSO</h2>
+      <p class="text-lg text-slate-700 leading-relaxed mb-10 max-w-3xl mx-auto">Como forma de democratizar o acesso à cultura no Brasil, o projeto Teatro dos Bons Hábitos conta com a disponibilização online da palestra - onde o público poderá conhecer melhor nossas experiências!</p>
+      
+      <div class="max-w-4xl mx-auto rounded-3xl overflow-hidden shadow-2xl">
+        <iframe src="https://www.youtube.com/embed/MQZsiNH4VHI" width="100%" height="500" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="w-full aspect-video"></iframe>
       </div>
     </div>
   </section>
 
-
-  <section id="galeria" style="background-color: #1F4023;" class="py-20 px-6">
+  <section id="galeria" class="py-20 px-6" style="background-color: #1F4023;">
     <div class="max-w-6xl mx-auto">
       <h2 class="text-3xl md:text-5xl font-extrabold text-white text-center mb-4 tracking-wide">GALERIA DE FOTOS</h2>
-      <p class="text-white/60 text-sm text-center mb-8">13 fotos do projeto</p>
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        <img src="FOTOS/rf-1313206-08209462b80d2c8b8a101c0aa0227947.jpg" alt="Teatro dos Bons Hábitos - momento" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
-        <img src="FOTOS/rf-1313206-3123a4534af42dda6443738233496ba2.jpg" alt="Teatro dos Bons Hábitos - momento" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
-        <img src="FOTOS/rf-1313206-4de2f9c8a3b7308d9a521d84a2012064.jpg" alt="Teatro dos Bons Hábitos - momento" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
-        <img src="FOTOS/rf-1313206-7699a72d8eb2d99fd34ec9445f532c88.jpg" alt="Teatro dos Bons Hábitos - momento" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
-        <img src="FOTOS/rf-1313206-773d3ab888ed1778ff2f10414a8c3dc1.jpg" alt="Teatro dos Bons Hábitos - momento" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
-        <img src="FOTOS/rf-1313206-8eb9958518686ee4333e4f892881bb23.jpg" alt="Teatro dos Bons Hábitos - momento" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
-        <img src="FOTOS/rf-1313206-8ec8f02193cf5497282f380c3fc65ca3.png" alt="Teatro dos Bons Hábitos - momento" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
-        <img src="FOTOS/rf-1313206-a3396f876cba5143ad4c0a8e4a2fb48d.jpg" alt="Teatro dos Bons Hábitos - momento" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
-        <img src="FOTOS/rf-1313206-a614f756db16f6396fdccec834857b41.jpg" alt="Teatro dos Bons Hábitos - momento" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
-        <img src="FOTOS/rf-1313206-bbe3faf05c3872301805cb7ea5382a44.jpg" alt="Teatro dos Bons Hábitos - momento" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
-        <img src="FOTOS/rf-1313206-d123d4cd228b9879728b133d56ad30ce.jpg" alt="Teatro dos Bons Hábitos - momento" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
-        <img src="FOTOS/rf-1313206-e40de324a7063ce63097a067169da079.jpg" alt="Teatro dos Bons Hábitos - momento" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
-        <img src="FOTOS/rf-1313206-e776919b29a2d9130843f0305dfbf12a.jpg" alt="Teatro dos Bons Hábitos - momento" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
+      <p class="text-white/60 text-center mb-12">7 registros do projeto</p>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="col-span-2 md:col-span-2 overflow-hidden rounded-xl shadow-lg"><img src="https://raw.githubusercontent.com/arte3-star/ntics-project-sites/master/86_teatro_bons_habitos_ferroporte/FOTOS/05_101_rf-1313206-3123a4534af42dda6443738233496ba2.jpg" alt="Teatro dos Bons Hábitos - momento" loading="lazy" class="w-full h-64 object-cover hover:scale-105 transition duration-500"></div>
+        <div class="col-span-1 overflow-hidden rounded-xl shadow-lg"><img src="https://raw.githubusercontent.com/arte3-star/ntics-project-sites/master/86_teatro_bons_habitos_ferroporte/FOTOS/06_89_rf-1349929-da8e57a7b965c5df5288158931447e7c.jpg" alt="Teatro dos Bons Hábitos - momento" loading="lazy" class="w-full h-64 object-cover hover:scale-105 transition duration-500"></div>
+        <div class="col-span-1 overflow-hidden rounded-xl shadow-lg"><img src="https://raw.githubusercontent.com/arte3-star/ntics-project-sites/master/86_teatro_bons_habitos_ferroporte/FOTOS/07_101_rf-1313206-e776919b29a2d9130843f0305dfbf12a.jpg" alt="Teatro dos Bons Hábitos - momento" loading="lazy" class="w-full h-64 object-cover hover:scale-105 transition duration-500"></div>
+        <div class="col-span-1 md:col-span-2 overflow-hidden rounded-xl shadow-lg"><img src="https://raw.githubusercontent.com/arte3-star/ntics-project-sites/master/86_teatro_bons_habitos_ferroporte/FOTOS/08_101_rf-1313206-8eb9958518686ee4333e4f892881bb23.jpg" alt="Teatro dos Bons Hábitos - momento" loading="lazy" class="w-full h-64 object-cover hover:scale-105 transition duration-500"></div>
+        <div class="col-span-2 md:col-span-2 overflow-hidden rounded-xl shadow-lg"><img src="https://raw.githubusercontent.com/arte3-star/ntics-project-sites/master/86_teatro_bons_habitos_ferroporte/FOTOS/09_teatro-bons-habitos_oficina_B_bandeja-degustacao-participantes.jpg" alt="Teatro dos Bons Hábitos - momento" loading="lazy" class="w-full h-64 object-cover hover:scale-105 transition duration-500"></div>
+        <div class="col-span-1 overflow-hidden rounded-xl shadow-lg"><img src="https://raw.githubusercontent.com/arte3-star/ntics-project-sites/master/86_teatro_bons_habitos_ferroporte/FOTOS/10_89_rf-1349929-fd2d14002bccc98f0e539c02f20c733e.jpg" alt="Teatro dos Bons Hábitos - momento" loading="lazy" class="w-full h-64 object-cover hover:scale-105 transition duration-500"></div>
+        <div class="col-span-1 overflow-hidden rounded-xl shadow-lg"><img src="https://raw.githubusercontent.com/arte3-star/ntics-project-sites/master/86_teatro_bons_habitos_ferroporte/FOTOS/11_89_rf-1349929-1e6fa5b9f15d5f52c9d632f9edec042d.jpg" alt="Teatro dos Bons Hábitos - momento" loading="lazy" class="w-full h-64 object-cover hover:scale-105 transition duration-500"></div>
       </div>
     </div>
   </section>
 
-  <footer class="bg-white py-12 px-6" style="border-top: 4px solid #3F8047;">
+  <!-- FOOTER + RÉGUA -->
+  <footer class="py-12 px-6 bg-white" style="border-top: 4px solid #3F8047;">
     <div class="max-w-5xl mx-auto text-center">
       <p class="text-sm uppercase tracking-widest text-slate-500 mb-6 font-semibold">Patrocínio &amp; Realização</p>
-      <img src="REGUAS/regua_057f0482afb1ac33c98c4c49157f460a.jpg" alt="Régua de patrocinadores" class="max-w-4xl w-full mx-auto">
-      <p class="text-xs text-slate-400 mt-8">
+      <img src="https://raw.githubusercontent.com/arte3-star/ntics-project-sites/master/86_teatro_bons_habitos_ferroporte/REGUAS/regua_057f0482afb1ac33c98c4c49157f460a.jpg" alt="Régua de patrocinadores" class="max-w-4xl w-full mx-auto mb-8">
+      <p class="text-xs text-slate-400">
         Projeto realizado via Lei de Incentivo à Cultura (Lei Rouanet) — Ministério da Cultura — Governo Federal
       </p>
     </div>

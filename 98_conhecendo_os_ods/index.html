@@ -6,146 +6,125 @@
   <title>Conhecendo os ODS — NTICS Projetos</title>
   <meta name="description" content="O projeto Conhecendo os ODS é uma iniciativa que integra o poder transformador das artes cênicas com a conscientização sobre os Objetivos de Desenvolvimento Sus">
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     * { font-family: 'Poppins', system-ui, sans-serif; }
-    .hero-overlay { background: linear-gradient(135deg, #1A496CD9 0%, #1975DD88 100%); }
+    html { scroll-behavior: smooth; }
+    .hero-overlay {
+      background: linear-gradient(135deg, #1A496CE6 0%, #0D2436B3 100%);
+    }
   </style>
 </head>
 <body class="bg-white text-slate-800">
 
-  <header style="background-color: #1A496C;" class="text-white sticky top-0 z-50 shadow-lg">
-    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+  <!-- HEADER / NAV -->
+  <header class="sticky top-0 z-50 shadow-md" style="background-color: #1A496C;">
+    <div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
       <div class="flex items-center gap-3">
-        <img src="LOGOS/logo_caminhao_conhecendo_ods.png" alt="Logo" class="h-10 bg-white rounded-lg p-1">
-        <span class="font-bold text-lg hidden md:inline">O MINISTÉRIO DA CULTURA APRESENTA:
-CONHECENDO OS ODS</span>
+        <img src="https://raw.githubusercontent.com/arte3-star/ntics-project-sites/master/98_conhecendo_os_ods/LOGOS/logo_caminhao_conhecendo_ods.png" alt="Logo Conhecendo os ODS" class="h-10 bg-white rounded-lg p-1">
+        <span class="text-white font-bold text-sm hidden md:inline">CONHECENDO OS ODS</span>
       </div>
-      <nav class="hidden md:flex gap-8 text-sm font-medium">
+      <nav class="hidden md:flex gap-6 text-sm font-medium text-white">
+        <a href="#home" class="hover:opacity-80 transition">Home</a>
         <a href="#sobre" class="hover:opacity-80 transition">Sobre</a>
-        <a href="#rio-de-janeiro-rj" class="hover:opacity-80 transition">Rio</a>
-        <a href="#indaiatuba-sp" class="hover:opacity-80 transition">Indaiatuba</a>
-        <a href="#guaruj-sp" class="hover:opacity-80 transition">Guarujá</a>
-        <a href="#s-o-luiz-ma" class="hover:opacity-80 transition">São</a>
+        <a href="#cidades" class="hover:opacity-80 transition">Cidades</a>
+        <a href="#democratizacao" class="hover:opacity-80 transition">Democratização</a>
         <a href="#galeria" class="hover:opacity-80 transition">Galeria</a>
       </nav>
     </div>
   </header>
 
-  <section class="relative h-[80vh] min-h-[500px] flex items-center justify-center overflow-hidden">
-    <img src="FOTOS/rf-1349983-1d6cd1ce4db3d9b795a3489ce1293c08.jpg" alt="Conhecendo os ODS" class="absolute inset-0 w-full h-full object-cover">
+  <!-- HERO -->
+  <section id="home" class="relative h-[85vh] min-h-[550px] flex items-center justify-center overflow-hidden">
+    <img src="https://raw.githubusercontent.com/arte3-star/ntics-project-sites/master/98_conhecendo_os_ods/FOTOS/005_98_rf-1349983-d5e137a133f8a710ae167795c2987d5c.jpg" alt="Conhecendo os ODS" class="absolute inset-0 w-full h-full object-cover">
     <div class="absolute inset-0 hero-overlay"></div>
     <div class="relative z-10 text-center text-white px-6 max-w-4xl">
-      <img src="LOGOS/logo_caminhao_conhecendo_ods.png" alt="Logo Conhecendo os ODS" class="h-32 md:h-40 mx-auto mb-6 bg-white/95 rounded-2xl p-4 shadow-2xl">
-      <h1 class="text-5xl md:text-7xl font-black mb-4 drop-shadow-2xl">O MINISTÉRIO DA CULTURA APRESENTA:
-CONHECENDO OS ODS</h1>
-      <p class="text-xl md:text-2xl font-light">&quot;Ideias sustentáveis que ganham vida e inspiram transformações.”</p>
+      <img src="https://raw.githubusercontent.com/arte3-star/ntics-project-sites/master/98_conhecendo_os_ods/LOGOS/logo_caminhao_conhecendo_ods.png" alt="Logo" class="h-28 md:h-36 mx-auto mb-6 bg-white/95 rounded-2xl p-4 shadow-2xl">
+      <h1 class="text-4xl md:text-6xl font-black mb-4 drop-shadow-2xl">CONHECENDO OS ODS</h1>
+      <p class="text-xl md:text-2xl font-light">SOBRE O PROJETO</p>
     </div>
   </section>
 
-  <section id="sobre" class="py-20 px-6">
+  <!-- SOBRE O PROJETO -->
+  <section id="sobre" class="py-20 px-6 bg-white">
     <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-center">
       <div>
-        <img src="LOGOS/logo_caminhao_conhecendo_ods.png" alt="Logo Conhecendo os ODS" class="w-full max-w-sm">
+        <img src="https://raw.githubusercontent.com/arte3-star/ntics-project-sites/master/98_conhecendo_os_ods/LOGOS/logo_caminhao_conhecendo_ods.png" alt="Logo Conhecendo os ODS" class="w-full max-w-sm mx-auto">
       </div>
       <div>
         <h2 class="text-3xl md:text-4xl font-extrabold mb-6 tracking-wide" style="color: #1A496C;">Sobre o Projeto</h2>
         <p class="text-lg text-slate-700 leading-relaxed mb-4">O projeto Conhecendo os ODS é uma iniciativa que integra o poder transformador das artes cênicas com a conscientização sobre os Objetivos de Desenvolvimento Sustentável (ODS). Através de oficinas de teatro, cada turma desenvolveu e encenou uma peça que explora um dos ODS, oferecendo uma experiência educativa e inspiradora tanto para os alunos quanto para a comunidade.
 
 Como parte do projeto, uma palestra intitulada &quot; Como a arte pode ser ensinada nas escolas” foi oferecida para os professores de escolas públicas, ampliando o alcance do impacto e incentivando novas formas de aprendizado.</p>
-        <p class="text-lg text-slate-700 leading-relaxed mb-4">A oficina de artes cênicas foi uma atividade voltada para crianças e jovens, com foco na expressão, criatividade e trabalho em equipe, onde os participantes exploraram técnicas como jogos, improvisação, expressão corporal, interpretação e construção de personagens.
-
-Orientados por profissionais especializados, desenvolveram habilidades sociais e emocionais enquanto colaboraram na criação de cenas e apresentações teatrais.</p>
       </div>
     </div>
   </section>
 
 
-  <section id="rio-de-janeiro-rj" style="background-color: #0D2436;" class="py-20 px-6 text-white">
-    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-      <div>
-        <h2 class="text-3xl md:text-5xl font-extrabold mb-6 tracking-wide">Rio de Janeiro - RJ</h2>
-        <p class="text-lg leading-relaxed opacity-90">&quot;Ideias sustentáveis que ganham vida e inspiram transformações.”</p>
+  <section id="cidades" class="relative py-20 px-6 overflow-hidden" style="background-color: #0D2436;">
+    <div class="absolute inset-0 opacity-15"><img src="https://raw.githubusercontent.com/arte3-star/ntics-project-sites/master/98_conhecendo_os_ods/FOTOS/011_98_rf-1349983-a33080d80dd05fcfbe828e9494f66fec.jpg" alt="" class="w-full h-full object-cover"></div>
+    <div class="relative z-10 max-w-5xl mx-auto">
+      <h2 class="text-3xl md:text-5xl font-extrabold text-center mb-12 tracking-wide text-white">POR ONDE PASSAMOS</h2>
+      <div class="grid grid-cols-2 md:grid-cols-5 gap-5">
+        <div class="bg-white/10 backdrop-blur rounded-2xl p-5 text-center border border-white/15 hover:bg-white/20 transition"><p class="font-bold text-white">Rio de Janeiro</p><p class="text-sm text-white/60">RJ</p></div>
+        <div class="bg-white/10 backdrop-blur rounded-2xl p-5 text-center border border-white/15 hover:bg-white/20 transition"><p class="font-bold text-white">Indaiatuba</p><p class="text-sm text-white/60">SP</p></div>
+        <div class="bg-white/10 backdrop-blur rounded-2xl p-5 text-center border border-white/15 hover:bg-white/20 transition"><p class="font-bold text-white">Guarujá</p><p class="text-sm text-white/60">SP</p></div>
+        <div class="bg-white/10 backdrop-blur rounded-2xl p-5 text-center border border-white/15 hover:bg-white/20 transition"><p class="font-bold text-white">São Luiz</p><p class="text-sm text-white/60">MA</p></div>
+        <div class="bg-white/10 backdrop-blur rounded-2xl p-5 text-center border border-white/15 hover:bg-white/20 transition"><p class="font-bold text-white">Niterói</p><p class="text-sm text-white/60">RJ</p></div>
       </div>
-      <div class="rounded-2xl overflow-hidden shadow-2xl"><img src="FOTOS/caminhao_ods_0.jpg" alt="Rio de Janeiro - RJ" class="w-full h-full object-cover"></div>
     </div>
   </section>
 
-  <section id="indaiatuba-sp" style="background-color: #DCE3E8;" class="py-20 px-6">
+  <section class="py-20 px-6 bg-white">
     <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-      <div class="rounded-2xl overflow-hidden shadow-2xl"><img src="FOTOS/caminhao_ods_1.jpg" alt="Indaiatuba - SP" class="w-full h-full object-cover"></div>
+      <div class="grid grid-cols-2 gap-4">
+        <div class="rounded-2xl overflow-hidden shadow-xl"><img src="https://raw.githubusercontent.com/arte3-star/ntics-project-sites/master/98_conhecendo_os_ods/FOTOS/015_98_caminhao_ods_4.jpg" alt="ATIVIDADES DO PROJETO" loading="lazy" class="w-full h-52 object-cover"></div>
+        <div class="rounded-2xl overflow-hidden shadow-xl"><img src="https://raw.githubusercontent.com/arte3-star/ntics-project-sites/master/98_conhecendo_os_ods/FOTOS/017_98_rf-1349983-4c37815f02b7123ddc8946fa5780e50d.jpg" alt="ATIVIDADES DO PROJETO" loading="lazy" class="w-full h-52 object-cover"></div>
+        <div class="rounded-2xl overflow-hidden shadow-xl"><img src="https://raw.githubusercontent.com/arte3-star/ntics-project-sites/master/98_conhecendo_os_ods/FOTOS/021_98_rf-1349983-f190430c216208cf4bae6f46857e0918.jpg" alt="ATIVIDADES DO PROJETO" loading="lazy" class="w-full h-52 object-cover"></div>
+      </div>
       <div>
-        <h2 class="text-3xl md:text-5xl font-extrabold mb-6 tracking-wide" style="color: #1A496C;">Indaiatuba - SP</h2>
-        <p class="text-lg leading-relaxed text-slate-700">O projeto Conhecendo os ODS é uma iniciativa que integra o poder transformador das artes cênicas com a conscientização sobre os Objetivos de Desenvolvimento Sustentável (ODS). Através de oficinas de teatro, cada turma desenvolveu e encenou uma peça que explora um dos ODS, oferecendo uma experiência educativa e inspiradora tanto para os alunos quanto para a comunidade.
+        <h2 class="text-3xl md:text-4xl font-extrabold mb-6 tracking-wide" style="color: #1A496C;">ATIVIDADES DO PROJETO</h2>
+        <p class="text-lg text-slate-700 leading-relaxed">O projeto Conhecendo os ODS é uma iniciativa que integra o poder transformador das artes cênicas com a conscientização sobre os Objetivos de Desenvolvimento Sustentável (ODS). Através de oficinas de teatro, cada turma desenvolveu e encenou uma peça que explora um dos ODS, oferecendo uma experiência educativa e inspiradora tanto para os alunos quanto para a comunidade.
 
 Como parte do projeto, uma palestra intitulada &quot; Como a arte pode ser ensinada nas escolas” foi oferecida para os professores de escolas públicas, ampliando o alcance do impacto e incentivando novas formas de aprendizado.</p>
       </div>
     </div>
   </section>
 
-  <section id="guaruj-sp" style="background-color: #0D2436;" class="py-20 px-6 text-white">
-    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-      <div>
-        <h2 class="text-3xl md:text-5xl font-extrabold mb-6 tracking-wide">Guarujá - SP</h2>
-        <p class="text-lg leading-relaxed opacity-90">A oficina de artes cênicas foi uma atividade voltada para crianças e jovens, com foco na expressão, criatividade e trabalho em equipe, onde os participantes exploraram técnicas como jogos, improvisação, expressão corporal, interpretação e construção de personagens.
+  <section id="democratizacao" class="py-20 px-6 bg-white">
+    <div class="max-w-5xl mx-auto text-center">
+      <h2 class="text-3xl md:text-5xl font-extrabold mb-8 tracking-wide" style="color: #1975DD;">DEMOCRATIZAÇÃO DE ACESSO</h2>
+      <p class="text-lg text-slate-700 leading-relaxed mb-10 max-w-3xl mx-auto">Como forma de democratizar o acesso à cultura no Brasil, o projeto conta com a disponibilização online da palestra “ Como a arte pode ser ensinada nas escolas”, onde o público poderá conhecer melhor nossas experiências!
 
-Orientados por profissionais especializados, desenvolveram habilidades sociais e emocionais enquanto colaboraram na criação de cenas e apresentações teatrais.</p>
+ASSISTA O VÍDEO DA PALESTRA:</p>
+      
+      <div class="max-w-4xl mx-auto rounded-3xl overflow-hidden shadow-2xl">
+        <iframe src="https://www.youtube.com/embed/NUPOLpoq3HE" width="100%" height="500" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="w-full aspect-video"></iframe>
       </div>
-      <div class="rounded-2xl overflow-hidden shadow-2xl"><img src="FOTOS/caminhao_ods_2.jpg" alt="Guarujá - SP" class="w-full h-full object-cover"></div>
     </div>
   </section>
 
-  <section class="py-20 px-6 bg-white">
-    <div class="max-w-3xl mx-auto text-center">
-      <h2 class="text-3xl md:text-5xl font-extrabold mb-6 tracking-wide" style="color: #1A496C;">São Luiz - MA</h2>
-      <p class="text-lg leading-relaxed text-slate-700">No final das oficinas de teatro, os alunos apresentaram sua peça sobre os ODS para a comunidade escolar. O objetivo foi o desenvolvimento do trabalho em grupo, direção, logística, organização, produção de figurino e cenário, criação artística, criatividade e outras habilidades importantes na produção de uma peça teatral e conscientizar e engajar as pessoas sobre a importância dos ODS e inspirá-las a agir para promover mudanças positivas em suas próprias vidas e comunidades.</p>
-    </div>
-  </section>
-
-  <section id="niter-i-rj" style="background-color: #0D2436;" class="py-20 px-6 text-white">
-    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-      <div>
-        <h2 class="text-3xl md:text-5xl font-extrabold mb-6 tracking-wide">Niterói - RJ</h2>
-        <p class="text-lg leading-relaxed opacity-90">A palestra &quot;Como a Arte Pode Ser Ensinada nas Escolas&quot; foi realizada com o objetivo de orientar professores da escola pública sobre estratégias práticas para o ensino da arte em sala de aula. Durante a apresentação, destacou-se a importância da arte no desenvolvimento integral dos alunos, ressaltando sua contribuição para a criatividade, expressão, sensibilidade e pensamento crítico.</p>
-      </div>
-      <div class="rounded-2xl overflow-hidden shadow-2xl"><img src="FOTOS/caminhao_ods_4.jpg" alt="Niterói - RJ" class="w-full h-full object-cover"></div>
-    </div>
-  </section>
-
-
-  <section id="galeria" style="background-color: #0D2436;" class="py-20 px-6">
+  <section id="galeria" class="py-20 px-6" style="background-color: #0D2436;">
     <div class="max-w-6xl mx-auto">
       <h2 class="text-3xl md:text-5xl font-extrabold text-white text-center mb-4 tracking-wide">GALERIA DE FOTOS</h2>
-      <p class="text-white/60 text-sm text-center mb-8">19 fotos do projeto</p>
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        <img src="FOTOS/caminhao_ods_3.jpg" alt="Conhecendo os ODS - momento" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
-        <img src="FOTOS/caminhao_ods_5.jpg" alt="Conhecendo os ODS - momento" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
-        <img src="FOTOS/caminhao_ods_6.jpg" alt="Conhecendo os ODS - momento" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
-        <img src="FOTOS/rf-1319908-ed9911a581f0f19449c9508baa3cf2a8.jpg" alt="Conhecendo os ODS - momento" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
-        <img src="FOTOS/rf-1319908-f27f0dd5b454a6c959544745a1f037e1.jpg" alt="Conhecendo os ODS - momento" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
-        <img src="FOTOS/rf-1349929-beba61d66162d5ff9705702fbbb4b18e.jpg" alt="Conhecendo os ODS - momento" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
-        <img src="FOTOS/rf-1349983-44f833c8236ecd3d60155d335f22d1ad.jpg" alt="Conhecendo os ODS - momento" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
-        <img src="FOTOS/rf-1349983-4c37815f02b7123ddc8946fa5780e50d.jpg" alt="Conhecendo os ODS - momento" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
-        <img src="FOTOS/rf-1349983-6f6c4b1d5919348ba3e6cb35e62649fd.png" alt="Conhecendo os ODS - momento" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
-        <img src="FOTOS/rf-1349983-7dea0eaacd5094d038110821343d487d.jpg" alt="Conhecendo os ODS - momento" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
-        <img src="FOTOS/rf-1349983-98523495be6c7b4c19668076f4a76a3e.jpg" alt="Conhecendo os ODS - momento" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
-        <img src="FOTOS/rf-1349983-a33080d80dd05fcfbe828e9494f66fec.jpg" alt="Conhecendo os ODS - momento" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
-        <img src="FOTOS/rf-1349983-ae57747cc4431ed93687edf924eda50b.jpg" alt="Conhecendo os ODS - momento" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
-        <img src="FOTOS/rf-1349983-b1e37e4d3fac38ba3d22e6a3576b8141.png" alt="Conhecendo os ODS - momento" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
-        <img src="FOTOS/rf-1349983-d5e137a133f8a710ae167795c2987d5c.jpg" alt="Conhecendo os ODS - momento" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
-        <img src="FOTOS/rf-1349983-df225d41f91cc8f95058714ba91248c2.jpg" alt="Conhecendo os ODS - momento" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
-        <img src="FOTOS/rf-1349983-e83d0dc20f4fc9ede98e2fada1d4455b.png" alt="Conhecendo os ODS - momento" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
-        <img src="FOTOS/rf-1349983-ebc00e2d40865e56f90396f41c1c27e5.jpg" alt="Conhecendo os ODS - momento" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
-        <img src="FOTOS/rf-1349983-f190430c216208cf4bae6f46857e0918.jpg" alt="Conhecendo os ODS - momento" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
+      <p class="text-white/60 text-center mb-12">6 registros do projeto</p>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="col-span-2 md:col-span-2 overflow-hidden rounded-xl shadow-lg"><img src="https://raw.githubusercontent.com/arte3-star/ntics-project-sites/master/98_conhecendo_os_ods/FOTOS/023_98_caminhao_ods_6.jpg" alt="Conhecendo os ODS - momento" loading="lazy" class="w-full h-64 object-cover hover:scale-105 transition duration-500"></div>
+        <div class="col-span-1 overflow-hidden rounded-xl shadow-lg"><img src="https://raw.githubusercontent.com/arte3-star/ntics-project-sites/master/98_conhecendo_os_ods/FOTOS/026_98_caminhao_ods_3.jpg" alt="Conhecendo os ODS - momento" loading="lazy" class="w-full h-64 object-cover hover:scale-105 transition duration-500"></div>
+        <div class="col-span-1 overflow-hidden rounded-xl shadow-lg"><img src="https://raw.githubusercontent.com/arte3-star/ntics-project-sites/master/98_conhecendo_os_ods/FOTOS/028_98_caminhao_ods_0.jpg" alt="Conhecendo os ODS - momento" loading="lazy" class="w-full h-64 object-cover hover:scale-105 transition duration-500"></div>
+        <div class="col-span-1 md:col-span-2 overflow-hidden rounded-xl shadow-lg"><img src="https://raw.githubusercontent.com/arte3-star/ntics-project-sites/master/98_conhecendo_os_ods/FOTOS/035_98_rf-1349983-98523495be6c7b4c19668076f4a76a3e.jpg" alt="Conhecendo os ODS - momento" loading="lazy" class="w-full h-64 object-cover hover:scale-105 transition duration-500"></div>
+        <div class="col-span-2 md:col-span-2 overflow-hidden rounded-xl shadow-lg"><img src="https://raw.githubusercontent.com/arte3-star/ntics-project-sites/master/98_conhecendo_os_ods/FOTOS/041_98_rf-1349983-1d6cd1ce4db3d9b795a3489ce1293c08.jpg" alt="Conhecendo os ODS - momento" loading="lazy" class="w-full h-64 object-cover hover:scale-105 transition duration-500"></div>
+        <div class="col-span-1 overflow-hidden rounded-xl shadow-lg"><img src="https://raw.githubusercontent.com/arte3-star/ntics-project-sites/master/98_conhecendo_os_ods/FOTOS/054_98_rf-1349983-beba61d66162d5ff9705702fbbb4b18e.jpg" alt="Conhecendo os ODS - momento" loading="lazy" class="w-full h-64 object-cover hover:scale-105 transition duration-500"></div>
       </div>
     </div>
   </section>
 
-  <footer class="bg-white py-12 px-6" style="border-top: 4px solid #1A496C;">
+  <!-- FOOTER + RÉGUA -->
+  <footer class="py-12 px-6 bg-white" style="border-top: 4px solid #1A496C;">
     <div class="max-w-5xl mx-auto text-center">
       <p class="text-sm uppercase tracking-widest text-slate-500 mb-6 font-semibold">Patrocínio &amp; Realização</p>
-      <img src="REGUAS/regua_44f833c8236ecd3d60155d335f22d1ad.jpg" alt="Régua de patrocinadores" class="max-w-4xl w-full mx-auto">
-      <p class="text-xs text-slate-400 mt-8">
+      <img src="https://raw.githubusercontent.com/arte3-star/ntics-project-sites/master/98_conhecendo_os_ods/REGUAS/regua_44f833c8236ecd3d60155d335f22d1ad.jpg" alt="Régua de patrocinadores" class="max-w-4xl w-full mx-auto mb-8">
+      <p class="text-xs text-slate-400">
         Projeto realizado via Lei de Incentivo à Cultura (Lei Rouanet) — Ministério da Cultura — Governo Federal
       </p>
     </div>

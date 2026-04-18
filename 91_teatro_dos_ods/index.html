@@ -6,153 +6,120 @@
   <title>Teatro dos ODS — NTICS Projetos</title>
   <meta name="description" content="O projeto Teatro dos ODS é uma iniciativa que integra o poder transformador das artes cênicas com a conscientização sobre os Objetivos de Desenvolvimento Susten">
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     * { font-family: 'Poppins', system-ui, sans-serif; }
-    .hero-overlay { background: linear-gradient(135deg, #1A496CD9 0%, #545F7E88 100%); }
+    html { scroll-behavior: smooth; }
+    .hero-overlay {
+      background: linear-gradient(135deg, #1A496CE6 0%, #0D2436B3 100%);
+    }
   </style>
 </head>
 <body class="bg-white text-slate-800">
 
-  <header style="background-color: #1A496C;" class="text-white sticky top-0 z-50 shadow-lg">
-    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+  <!-- HEADER / NAV -->
+  <header class="sticky top-0 z-50 shadow-md" style="background-color: #1A496C;">
+    <div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
       <div class="flex items-center gap-3">
-        <img src="LOGOS/teatro_dos_ods.png" alt="Logo" class="h-10 bg-white rounded-lg p-1">
-        <span class="font-bold text-lg hidden md:inline">TEATRO DOS ODS</span>
+        <img src="https://raw.githubusercontent.com/arte3-star/ntics-project-sites/master/91_teatro_dos_ods/LOGOS/teatro_dos_ods.png" alt="Logo Teatro dos ODS" class="h-10 bg-white rounded-lg p-1">
+        <span class="text-white font-bold text-sm hidden md:inline">TEATRO DOS ODS</span>
       </div>
-      <nav class="hidden md:flex gap-8 text-sm font-medium">
+      <nav class="hidden md:flex gap-6 text-sm font-medium text-white">
+        <a href="#home" class="hover:opacity-80 transition">Home</a>
         <a href="#sobre" class="hover:opacity-80 transition">Sobre</a>
-        <a href="#ilhabela-sp" class="hover:opacity-80 transition">Ilhabela/Sp</a>
-        <a href="#rio-de-janeiro-rj" class="hover:opacity-80 transition">Rio</a>
-        <a href="#parati-rj" class="hover:opacity-80 transition">Parati/Rj</a>
-        <a href="#ubatuba-sp" class="hover:opacity-80 transition">Ubatuba/Sp</a>
+        <a href="#cidades" class="hover:opacity-80 transition">Cidades</a>
+        <a href="#democratizacao" class="hover:opacity-80 transition">Democratização</a>
         <a href="#galeria" class="hover:opacity-80 transition">Galeria</a>
       </nav>
     </div>
   </header>
 
-  <section class="relative h-[80vh] min-h-[500px] flex items-center justify-center overflow-hidden">
-    <img src="FOTOS/rf-1319948-8dca9926c0795a5f3b08f3029c47b154.jpg" alt="Teatro dos ODS" class="absolute inset-0 w-full h-full object-cover">
+  <!-- HERO -->
+  <section id="home" class="relative h-[85vh] min-h-[550px] flex items-center justify-center overflow-hidden">
+    <img src="https://raw.githubusercontent.com/arte3-star/ntics-project-sites/master/91_teatro_dos_ods/FOTOS/003_91_rf-1319948-b9b9ff023014f7d094264bc8f16a8f28.jpg" alt="Teatro dos ODS" class="absolute inset-0 w-full h-full object-cover">
     <div class="absolute inset-0 hero-overlay"></div>
     <div class="relative z-10 text-center text-white px-6 max-w-4xl">
-      <img src="LOGOS/teatro_dos_ods.png" alt="Logo Teatro dos ODS" class="h-32 md:h-40 mx-auto mb-6 bg-white/95 rounded-2xl p-4 shadow-2xl">
-      <h1 class="text-5xl md:text-7xl font-black mb-4 drop-shadow-2xl">TEATRO DOS ODS</h1>
-      <p class="text-xl md:text-2xl font-light">&quot;Ideias sustentáveis que ganham vida e inspiram transformações.”</p>
+      <img src="https://raw.githubusercontent.com/arte3-star/ntics-project-sites/master/91_teatro_dos_ods/LOGOS/teatro_dos_ods.png" alt="Logo" class="h-28 md:h-36 mx-auto mb-6 bg-white/95 rounded-2xl p-4 shadow-2xl">
+      <h1 class="text-4xl md:text-6xl font-black mb-4 drop-shadow-2xl">TEATRO DOS ODS</h1>
+      <p class="text-xl md:text-2xl font-light">Sobre o Projeto</p>
     </div>
   </section>
 
-  <section id="sobre" class="py-20 px-6">
+  <!-- SOBRE O PROJETO -->
+  <section id="sobre" class="py-20 px-6 bg-white">
     <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-center">
       <div>
-        <img src="LOGOS/teatro_dos_ods.png" alt="Logo Teatro dos ODS" class="w-full max-w-sm">
+        <img src="https://raw.githubusercontent.com/arte3-star/ntics-project-sites/master/91_teatro_dos_ods/LOGOS/teatro_dos_ods.png" alt="Logo Teatro dos ODS" class="w-full max-w-sm mx-auto">
       </div>
       <div>
         <h2 class="text-3xl md:text-4xl font-extrabold mb-6 tracking-wide" style="color: #1A496C;">Sobre o Projeto</h2>
         <p class="text-lg text-slate-700 leading-relaxed mb-4">O projeto Teatro dos ODS é uma iniciativa que integra o poder transformador das artes cênicas com a conscientização sobre os Objetivos de Desenvolvimento Sustentável (ODS). Através de oficinas de teatro, cada turma desenvolveu e encenou uma peça que explora um dos ODS, oferecendo uma experiência educativa e inspiradora tanto para os alunos quanto para a comunidade.</p>
-        <p class="text-lg text-slate-700 leading-relaxed mb-4">Como parte do projeto, uma palestra intitulada &quot;Como a arte pode ser ensinada nas escolas” foi oferecida para os professores de escolas públicas, ampliando o alcance do impacto e incentivando novas formas de aprendizado.</p>
       </div>
     </div>
   </section>
 
 
-  <section id="ilhabela-sp" style="background-color: #0D2436;" class="py-20 px-6 text-white">
-    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-      <div>
-        <h2 class="text-3xl md:text-5xl font-extrabold mb-6 tracking-wide">Ilhabela/SP</h2>
-        <p class="text-lg leading-relaxed opacity-90">&quot;Ideias sustentáveis que ganham vida e inspiram transformações.”</p>
+  <section id="cidades" class="relative py-20 px-6 overflow-hidden" style="background-color: #0D2436;">
+    <div class="absolute inset-0 opacity-15"><img src="https://raw.githubusercontent.com/arte3-star/ntics-project-sites/master/91_teatro_dos_ods/FOTOS/036_91_rf-1319948-a87865966a219a3145bb117ccacc92f0.jpg" alt="" class="w-full h-full object-cover"></div>
+    <div class="relative z-10 max-w-5xl mx-auto">
+      <h2 class="text-3xl md:text-5xl font-extrabold text-center mb-12 tracking-wide text-white">POR ONDE PASSAMOS</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
+        <div class="bg-white/10 backdrop-blur rounded-2xl p-5 text-center border border-white/15 hover:bg-white/20 transition"><p class="font-bold text-white">Ilhabela</p><p class="text-sm text-white/60">SP</p></div>
+        <div class="bg-white/10 backdrop-blur rounded-2xl p-5 text-center border border-white/15 hover:bg-white/20 transition"><p class="font-bold text-white">Rio de Janeiro</p><p class="text-sm text-white/60">RJ</p></div>
+        <div class="bg-white/10 backdrop-blur rounded-2xl p-5 text-center border border-white/15 hover:bg-white/20 transition"><p class="font-bold text-white">Parati</p><p class="text-sm text-white/60">RJ</p></div>
+        <div class="bg-white/10 backdrop-blur rounded-2xl p-5 text-center border border-white/15 hover:bg-white/20 transition"><p class="font-bold text-white">Ubatuba</p><p class="text-sm text-white/60">SP</p></div>
       </div>
-      <div class="rounded-2xl overflow-hidden shadow-2xl"><img src="FOTOS/rf-1240809-b4f3bc29688187ccd63a967c41d64ff0.jpg" alt="Ilhabela/SP" class="w-full h-full object-cover"></div>
-    </div>
-  </section>
-
-  <section id="rio-de-janeiro-rj" style="background-color: #DCE3E8;" class="py-20 px-6">
-    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-      <div class="rounded-2xl overflow-hidden shadow-2xl"><img src="FOTOS/rf-1240809-be296d771a52d66f474eb9b4e0dff711.jpg" alt="Rio de Janeiro/RJ" class="w-full h-full object-cover"></div>
-      <div>
-        <h2 class="text-3xl md:text-5xl font-extrabold mb-6 tracking-wide" style="color: #1A496C;">Rio de Janeiro/RJ</h2>
-        <p class="text-lg leading-relaxed text-slate-700">O projeto Teatro dos ODS é uma iniciativa que integra o poder transformador das artes cênicas com a conscientização sobre os Objetivos de Desenvolvimento Sustentável (ODS). Através de oficinas de teatro, cada turma desenvolveu e encenou uma peça que explora um dos ODS, oferecendo uma experiência educativa e inspiradora tanto para os alunos quanto para a comunidade.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="parati-rj" style="background-color: #0D2436;" class="py-20 px-6 text-white">
-    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-      <div>
-        <h2 class="text-3xl md:text-5xl font-extrabold mb-6 tracking-wide">Parati/RJ</h2>
-        <p class="text-lg leading-relaxed opacity-90">Como parte do projeto, uma palestra intitulada &quot;Como a arte pode ser ensinada nas escolas” foi oferecida para os professores de escolas públicas, ampliando o alcance do impacto e incentivando novas formas de aprendizado.</p>
-      </div>
-      <div class="rounded-2xl overflow-hidden shadow-2xl"><img src="FOTOS/rf-1287522-748c1c0363c657874b4472230106937d.jpg" alt="Parati/RJ" class="w-full h-full object-cover"></div>
     </div>
   </section>
 
   <section class="py-20 px-6 bg-white">
-    <div class="max-w-3xl mx-auto text-center">
-      <h2 class="text-3xl md:text-5xl font-extrabold mb-6 tracking-wide" style="color: #1A496C;">Ubatuba/SP</h2>
-      <p class="text-lg leading-relaxed text-slate-700">A oficina de artes cênicas foi uma atividade voltada para crianças e jovens, com foco na expressão, criatividade e trabalho em equipe, onde os participantes exploraram técnicas como jogos, improvisação, expressão corporal, interpretação e construção de personagens. Orientados por profissionais especializados, desenvolveram habilidades sociais e emocionais enquanto colaboraram na criação de cenas e apresentações teatrais.</p>
-    </div>
-  </section>
-
-  <section id="oficina-de-artes-c-nicas" style="background-color: #0D2436;" class="py-20 px-6 text-white">
     <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-      <div>
-        <h2 class="text-3xl md:text-5xl font-extrabold mb-6 tracking-wide">OFICINA DE ARTES CÊNICAS</h2>
-        <p class="text-lg leading-relaxed opacity-90">No final das oficinas de teatro, os alunos apresentaram sua peça sobre os ODS para a comunidade escolar. O objetivo foi o desenvolvimento do trabalho em grupo, direção, logística, organização, produção de figurino e cenário, criação artística, criatividade e outras habilidades importantes na produção de uma peça teatral e conscientizar e engajar as pessoas sobre a importância dos ODS e inspirá-las a agir para promover mudanças positivas em suas próprias vidas e comunidades.</p>
+      <div class="grid grid-cols-2 gap-4">
+        <div class="rounded-2xl overflow-hidden shadow-xl"><img src="https://raw.githubusercontent.com/arte3-star/ntics-project-sites/master/91_teatro_dos_ods/FOTOS/038_91_teatro_nas_escolas_8.jpg" alt="OFICINA DE ARTES CÊNICAS" loading="lazy" class="w-full h-52 object-cover"></div>
+        <div class="rounded-2xl overflow-hidden shadow-xl"><img src="https://raw.githubusercontent.com/arte3-star/ntics-project-sites/master/91_teatro_dos_ods/FOTOS/043_91_teatro_nas_escolas_2.jpg" alt="OFICINA DE ARTES CÊNICAS" loading="lazy" class="w-full h-52 object-cover"></div>
       </div>
-      <div class="rounded-2xl overflow-hidden shadow-2xl"><img src="FOTOS/rf-1319908-f27f0dd5b454a6c959544745a1f037e1.jpg" alt="OFICINA DE ARTES CÊNICAS" class="w-full h-full object-cover"></div>
+      <div>
+        <h2 class="text-3xl md:text-4xl font-extrabold mb-6 tracking-wide" style="color: #1A496C;">OFICINA DE ARTES CÊNICAS</h2>
+        <p class="text-lg text-slate-700 leading-relaxed">&quot;Ideias sustentáveis que ganham vida e inspiram transformações.”</p>
+      </div>
     </div>
   </section>
 
+  <section id="democratizacao" class="py-20 px-6 bg-white">
+    <div class="max-w-5xl mx-auto text-center">
+      <h2 class="text-3xl md:text-5xl font-extrabold mb-8 tracking-wide" style="color: #545F7E;">DEMOCRATIZAÇÃO DE ACESSO</h2>
+      <p class="text-lg text-slate-700 leading-relaxed mb-10 max-w-3xl mx-auto">Como forma de democratizar o acesso à cultura no Brasil, o projeto conta com a disponibilização online das atividades - onde o público poderá conhecer melhor nossas experiências!</p>
+      
+      <div class="max-w-4xl mx-auto rounded-3xl overflow-hidden shadow-2xl">
+        <iframe src="https://www.youtube.com/embed/-5A3nu5dcyI" width="100%" height="500" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="w-full aspect-video"></iframe>
+      </div>
+    </div>
+  </section>
 
-  <section id="galeria" style="background-color: #0D2436;" class="py-20 px-6">
+  <section id="galeria" class="py-20 px-6" style="background-color: #0D2436;">
     <div class="max-w-6xl mx-auto">
       <h2 class="text-3xl md:text-5xl font-extrabold text-white text-center mb-4 tracking-wide">GALERIA DE FOTOS</h2>
-      <p class="text-white/60 text-sm text-center mb-8">36 fotos do projeto</p>
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        <img src="FOTOS/rf-1319908-ed9911a581f0f19449c9508baa3cf2a8.jpg" alt="Teatro dos ODS - momento" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
-        <img src="FOTOS/rf-1319948-0b4cf30dc86438674f22cbb17d074887.jpg" alt="Teatro dos ODS - momento" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
-        <img src="FOTOS/rf-1319948-179d16c4a28b25eb7568794f60c8ad75.jpg" alt="Teatro dos ODS - momento" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
-        <img src="FOTOS/rf-1319948-25e97450114b2e7599d3a0dec9c6f955.jpg" alt="Teatro dos ODS - momento" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
-        <img src="FOTOS/rf-1319948-40a828001eac32274fe3fee15c612b20.jpg" alt="Teatro dos ODS - momento" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
-        <img src="FOTOS/rf-1319948-4695f6155c535a6dc8731205c39d0bce.png" alt="Teatro dos ODS - momento" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
-        <img src="FOTOS/rf-1319948-5d229c61856a5415cf98dc21a0483dc7.jpg" alt="Teatro dos ODS - momento" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
-        <img src="FOTOS/rf-1319948-61cde7d05695dbb3410634baf30579d0.jpg" alt="Teatro dos ODS - momento" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
-        <img src="FOTOS/rf-1319948-643970fad33d69075d7e61a8170d4a96.jpg" alt="Teatro dos ODS - momento" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
-        <img src="FOTOS/rf-1319948-85bc8dc5ef302d0e9b5d124b128de542.jpg" alt="Teatro dos ODS - momento" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
-        <img src="FOTOS/rf-1319948-8e3c4114df4a88d7fbd725dd74331186.jpg" alt="Teatro dos ODS - momento" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
-        <img src="FOTOS/rf-1319948-900615c2d9bffedcbccaf40c868d9ac9.jpg" alt="Teatro dos ODS - momento" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
-        <img src="FOTOS/rf-1319948-92615b1508c8f43a16ea4cdc025be555.jpg" alt="Teatro dos ODS - momento" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
-        <img src="FOTOS/rf-1319948-a87865966a219a3145bb117ccacc92f0.jpg" alt="Teatro dos ODS - momento" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
-        <img src="FOTOS/rf-1319948-a8ca8215ca56fe4e28560883a20aea56.jpg" alt="Teatro dos ODS - momento" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
-        <img src="FOTOS/rf-1319948-b9b9ff023014f7d094264bc8f16a8f28.jpg" alt="Teatro dos ODS - momento" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
-        <img src="FOTOS/rf-1319948-ba5d4817966a69bec7ff86450499d47f.jpg" alt="Teatro dos ODS - momento" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
-        <img src="FOTOS/rf-1319948-c2715430a3bd9e8bd773dff5ed84c429.jpg" alt="Teatro dos ODS - momento" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
-        <img src="FOTOS/rf-1319948-f03b42a3de38819c9aef572b8c68bb4c.jpg" alt="Teatro dos ODS - momento" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
-        <img src="FOTOS/teatro_nas_escolas_0.jpg" alt="Teatro dos ODS - momento" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
-        <img src="FOTOS/teatro_nas_escolas_1.jpg" alt="Teatro dos ODS - momento" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
-        <img src="FOTOS/teatro_nas_escolas_10.jpg" alt="Teatro dos ODS - momento" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
-        <img src="FOTOS/teatro_nas_escolas_11.jpg" alt="Teatro dos ODS - momento" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
-        <img src="FOTOS/teatro_nas_escolas_12.jpg" alt="Teatro dos ODS - momento" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
-        <img src="FOTOS/teatro_nas_escolas_13.jpg" alt="Teatro dos ODS - momento" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
-        <img src="FOTOS/teatro_nas_escolas_14.jpg" alt="Teatro dos ODS - momento" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
-        <img src="FOTOS/teatro_nas_escolas_15.jpg" alt="Teatro dos ODS - momento" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
-        <img src="FOTOS/teatro_nas_escolas_16.jpg" alt="Teatro dos ODS - momento" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
-        <img src="FOTOS/teatro_nas_escolas_2.jpg" alt="Teatro dos ODS - momento" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
-        <img src="FOTOS/teatro_nas_escolas_3.jpg" alt="Teatro dos ODS - momento" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
-        <img src="FOTOS/teatro_nas_escolas_4.jpg" alt="Teatro dos ODS - momento" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
-        <img src="FOTOS/teatro_nas_escolas_5.jpg" alt="Teatro dos ODS - momento" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
-        <img src="FOTOS/teatro_nas_escolas_6.jpg" alt="Teatro dos ODS - momento" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
-        <img src="FOTOS/teatro_nas_escolas_7.jpg" alt="Teatro dos ODS - momento" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
-        <img src="FOTOS/teatro_nas_escolas_8.jpg" alt="Teatro dos ODS - momento" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
-        <img src="FOTOS/teatro_nas_escolas_9.jpg" alt="Teatro dos ODS - momento" class="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition">
+      <p class="text-white/60 text-center mb-12">9 registros do projeto</p>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="col-span-2 md:col-span-2 overflow-hidden rounded-xl shadow-lg"><img src="https://raw.githubusercontent.com/arte3-star/ntics-project-sites/master/91_teatro_dos_ods/FOTOS/050_91_teatro_nas_escolas_11.jpg" alt="Teatro dos ODS - momento" loading="lazy" class="w-full h-64 object-cover hover:scale-105 transition duration-500"></div>
+        <div class="col-span-1 overflow-hidden rounded-xl shadow-lg"><img src="https://raw.githubusercontent.com/arte3-star/ntics-project-sites/master/91_teatro_dos_ods/FOTOS/060_91_rf-1287522-748c1c0363c657874b4472230106937d.jpg" alt="Teatro dos ODS - momento" loading="lazy" class="w-full h-64 object-cover hover:scale-105 transition duration-500"></div>
+        <div class="col-span-1 overflow-hidden rounded-xl shadow-lg"><img src="https://raw.githubusercontent.com/arte3-star/ntics-project-sites/master/91_teatro_dos_ods/FOTOS/061_91_teatro_nas_escolas_14.jpg" alt="Teatro dos ODS - momento" loading="lazy" class="w-full h-64 object-cover hover:scale-105 transition duration-500"></div>
+        <div class="col-span-1 md:col-span-2 overflow-hidden rounded-xl shadow-lg"><img src="https://raw.githubusercontent.com/arte3-star/ntics-project-sites/master/91_teatro_dos_ods/FOTOS/062_91_teatro_nas_escolas_12.jpg" alt="Teatro dos ODS - momento" loading="lazy" class="w-full h-64 object-cover hover:scale-105 transition duration-500"></div>
+        <div class="col-span-2 md:col-span-2 overflow-hidden rounded-xl shadow-lg"><img src="https://raw.githubusercontent.com/arte3-star/ntics-project-sites/master/91_teatro_dos_ods/FOTOS/068_91_teatro_nas_escolas_16.jpg" alt="Teatro dos ODS - momento" loading="lazy" class="w-full h-64 object-cover hover:scale-105 transition duration-500"></div>
+        <div class="col-span-1 overflow-hidden rounded-xl shadow-lg"><img src="https://raw.githubusercontent.com/arte3-star/ntics-project-sites/master/91_teatro_dos_ods/FOTOS/077_91_rf-1240809-be296d771a52d66f474eb9b4e0dff711.jpg" alt="Teatro dos ODS - momento" loading="lazy" class="w-full h-64 object-cover hover:scale-105 transition duration-500"></div>
+        <div class="col-span-1 overflow-hidden rounded-xl shadow-lg"><img src="https://raw.githubusercontent.com/arte3-star/ntics-project-sites/master/91_teatro_dos_ods/FOTOS/087_91_teatro_nas_escolas_4.jpg" alt="Teatro dos ODS - momento" loading="lazy" class="w-full h-64 object-cover hover:scale-105 transition duration-500"></div>
+        <div class="col-span-1 overflow-hidden rounded-xl shadow-lg"><img src="https://raw.githubusercontent.com/arte3-star/ntics-project-sites/master/91_teatro_dos_ods/FOTOS/088_91_rf-1319908-f27f0dd5b454a6c959544745a1f037e1.jpg" alt="Teatro dos ODS - momento" loading="lazy" class="w-full h-64 object-cover hover:scale-105 transition duration-500"></div>
+        <div class="col-span-2 overflow-hidden rounded-xl shadow-lg"><img src="https://raw.githubusercontent.com/arte3-star/ntics-project-sites/master/91_teatro_dos_ods/FOTOS/096_91_teatro_nas_escolas_5.jpg" alt="Teatro dos ODS - momento" loading="lazy" class="w-full h-64 object-cover hover:scale-105 transition duration-500"></div>
       </div>
     </div>
   </section>
 
-  <footer class="bg-white py-12 px-6" style="border-top: 4px solid #1A496C;">
+  <!-- FOOTER + RÉGUA -->
+  <footer class="py-12 px-6 bg-white" style="border-top: 4px solid #1A496C;">
     <div class="max-w-5xl mx-auto text-center">
       <p class="text-sm uppercase tracking-widest text-slate-500 mb-6 font-semibold">Patrocínio &amp; Realização</p>
-      <img src="REGUAS/regua_a8ca8215ca56fe4e28560883a20aea56.jpg" alt="Régua de patrocinadores" class="max-w-4xl w-full mx-auto">
-      <p class="text-xs text-slate-400 mt-8">
+      <img src="https://raw.githubusercontent.com/arte3-star/ntics-project-sites/master/91_teatro_dos_ods/REGUAS/regua_a8ca8215ca56fe4e28560883a20aea56.jpg" alt="Régua de patrocinadores" class="max-w-4xl w-full mx-auto mb-8">
+      <p class="text-xs text-slate-400">
         Projeto realizado via Lei de Incentivo à Cultura (Lei Rouanet) — Ministério da Cultura — Governo Federal
       </p>
     </div>
