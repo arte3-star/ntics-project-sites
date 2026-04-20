@@ -1,10 +1,12 @@
 ---
 name: carrossel-cliente
-description: "Cria carrossel de projeto com identidade visual do cliente/patrocinador a partir de release, TAP ou briefing (8 cards via Leonardo AI)"
+description: "Cria carrossel de projeto ativo do cliente com identidade visual do patrocinador a partir de release, TAP ou briefing (8 cards via Leonardo AI)"
 user-invocable: true
 ---
 
-Leia e execute o workflow completo em `workflows/escritorio-projetos/carrossel_projeto_cliente.md`.
+> 📚 **Referência Leonardo AI:** Esta skill tem sua estrutura de geração validada — siga o workflow normalmente. Se surgir erro da API, dúvida sobre payload ou resultado visual inesperado, consulte `workflows/marketing/referencia/leonardo_ai_core.md` como base de conhecimento complementar (erros conhecidos, modos, exemplos).
+
+Leia e execute o workflow completo em `workflows/marketing/producao/carrosseis/carrossel_projeto_ativo_cliente.md`.
 
 ## Inputs
 
@@ -12,7 +14,7 @@ Leia e execute o workflow completo em `workflows/escritorio-projetos/carrossel_p
 1. **Release, TAP ou briefing** do projeto (pelo menos 1)
 2. **Nome da empresa** cliente/patrocinadora
 3. **Site da empresa** (URL)
-4. **Fotos** do projeto (6 fotos na pasta `.tmp/marketing/Carroseis-Projetos/`)
+4. **Fotos** do projeto (6 fotos na pasta `.tmp/marketing/carrosseis/projetos/{numero-projeto}/{fase}/fotos/`)
 
 **Opcionais (melhoram o resultado):**
 - Foco do carrossel (convite, cidade, atividade, completo, institucional, resultados)

@@ -21,10 +21,10 @@ Automatizar a transferência de dados orçamentários do SALIC para o sistema de
 
 ## Ferramentas
 
-### Parser SALIC (`tools/parse_salic_excel.py`)
+### Parser SALIC (`tools/research/parse_salic_excel.py`)
 - **Input:** Arquivo Excel do SALIC (grid_PlanilhaOrcamentaria_Homologada.xlsx)
 - **Output:** JSON com rubricas estruturadas
-- **Uso:** `python tools/parse_salic_excel.py --input arquivo.xlsx`
+- **Uso:** `python tools/research/parse_salic_excel.py --input arquivo.xlsx`
 - **O que faz:**
   - Lê a hierarquia: Fonte Recurso → Produto → Etapa → UF → Município → Itens
   - Extrai: nome, unidade, quantidade, ocorrência, valor unitário, valor aprovado

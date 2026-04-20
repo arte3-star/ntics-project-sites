@@ -19,7 +19,7 @@ Ler comentarios/anotacoes de revisao de um PDF e aplicar as correcoes de texto a
 ### Fase 1: Extracao de comentarios do PDF
 
 ```bash
-python tools/extract_pdf_comments.py --pdf "CAMINHO_DO_PDF" --output .tmp/text_edits/pdf_edits.json
+python tools/media/extract_pdf_comments.py --pdf "CAMINHO_DO_PDF" --output .tmp/text_edits/pdf_edits.json
 ```
 
 **Tipos de anotacao reconhecidos:**
@@ -55,19 +55,19 @@ Antes de aplicar, o agente deve:
 
 ```bash
 # Pipeline completo (com revisao interativa)
-python tools/apply_text_edits_illustrator.py --pdf "CAMINHO_DO_PDF"
+python tools/adobe/apply_text_edits_illustrator.py --pdf "CAMINHO_DO_PDF"
 
 # Dry-run primeiro (recomendado)
-python tools/apply_text_edits_illustrator.py --pdf "CAMINHO_DO_PDF" --dry-run
+python tools/adobe/apply_text_edits_illustrator.py --pdf "CAMINHO_DO_PDF" --dry-run
 
 # Aplicar JSON ja revisado
-python tools/apply_text_edits_illustrator.py --edits-json .tmp/text_edits/pdf_edits.json --auto
+python tools/adobe/apply_text_edits_illustrator.py --edits-json .tmp/text_edits/pdf_edits.json --auto
 
 # Filtrar por confianca (so aplicar as certas)
-python tools/apply_text_edits_illustrator.py --pdf "CAMINHO_DO_PDF" --min-confidence high --auto
+python tools/adobe/apply_text_edits_illustrator.py --pdf "CAMINHO_DO_PDF" --min-confidence high --auto
 
 # Match fuzzy (para textos com pequenas diferencas)
-python tools/apply_text_edits_illustrator.py --pdf "CAMINHO_DO_PDF" --match-mode fuzzy
+python tools/adobe/apply_text_edits_illustrator.py --pdf "CAMINHO_DO_PDF" --match-mode fuzzy
 ```
 
 **Modos de match:**

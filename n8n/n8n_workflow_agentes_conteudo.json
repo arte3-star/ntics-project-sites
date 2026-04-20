@@ -1,0 +1,296 @@
+{
+  "name": "NTICS — Agentes de Conteúdo Semanal",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "start-note",
+      "name": "📋 Instruções",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [0, 0],
+      "typeVersion": 1,
+      "parameters": {
+        "content": "## NTICS — 3 Agentes de Conteúdo\n\n### Fluxo 1: Agente Criador (Domingo 20h BRT)\nCron → Anthropic Trigger → Gera conteúdo semanal\n\n### Fluxo 2: Agente Revisor (Segunda 8h BRT)\nCron → Anthropic Trigger → Revisa e marca 'revisão'\n\n### Fluxo 3: Agente Ajustes (Tempo Real)\nClickUp Comment → GitHub → Anthropic Trigger → Corrige e responde\n\n### Credenciais necessárias:\n- ClickUp API Key (gerar em Settings > Apps)\n- GitHub Token (variavel GITHUB_TOKEN)\n- Anthropic API Key (variavel ANTHROPIC_API_KEY)\n\n### IDs importantes:\n- Lista ClickUp: 901109494072\n- User Lucas: 87343005\n- GitHub Repo: arte3-star/ntics-automacoes"
+      }
+    },
+
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 23 * * 0"
+            }
+          ]
+        }
+      },
+      "id": "cron-criador",
+      "name": "⏰ Domingo 20h BRT",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "position": [250, 200],
+      "typeVersion": 1.2
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.anthropic.com/v1/triggers/TRIGGER_CRIADOR_ID/run",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "x-api-key",
+              "value": "={{$env.ANTHROPIC_API_KEY}}"
+            },
+            {
+              "name": "anthropic-version",
+              "value": "2023-06-01"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": []
+        },
+        "options": {}
+      },
+      "id": "http-criador",
+      "name": "🤖 Agente Criador",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [480, 200],
+      "typeVersion": 4.2
+    },
+
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 11 * * 1"
+            }
+          ]
+        }
+      },
+      "id": "cron-revisor",
+      "name": "⏰ Segunda 8h BRT",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "position": [250, 400],
+      "typeVersion": 1.2
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.anthropic.com/v1/triggers/TRIGGER_REVISOR_ID/run",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "x-api-key",
+              "value": "={{$env.ANTHROPIC_API_KEY}}"
+            },
+            {
+              "name": "anthropic-version",
+              "value": "2023-06-01"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": []
+        },
+        "options": {}
+      },
+      "id": "http-revisor",
+      "name": "🔍 Agente Revisor",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [480, 400],
+      "typeVersion": 4.2
+    },
+
+    {
+      "parameters": {
+        "event": "taskCommentPosted",
+        "list": "901109494072"
+      },
+      "id": "clickup-trigger",
+      "name": "💬 Novo Comentário ClickUp",
+      "type": "n8n-nodes-base.clickUpTrigger",
+      "position": [250, 640],
+      "typeVersion": 1,
+      "credentials": {
+        "clickUpApi": {
+          "id": "CLICKUP_CREDENTIAL_ID",
+          "name": "ClickUp API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": ""
+          },
+          "conditions": [
+            {
+              "id": "filter-lucas",
+              "leftValue": "={{ $json.history_items[0].user.id }}",
+              "rightValue": "87343005",
+              "operator": {
+                "type": "number",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "if-lucas",
+      "name": "🧑 É o Lucas?",
+      "type": "n8n-nodes-base.if",
+      "position": [480, 640],
+      "typeVersion": 2
+    },
+    {
+      "parameters": {
+        "jsCode": "const taskId = $input.first().json.task_id;\nconst historyItems = $input.first().json.history_items || [];\nconst comment = historyItems[0]?.comment?.text_content || 'sem texto';\nconst taskUrl = `https://app.clickup.com/t/${taskId}`;\nconst now = new Date().toISOString();\n\nconst markdown = `# Ajuste solicitado\\n\\n**Task ID:** ${taskId}\\n**Task URL:** ${taskUrl}\\n**Comentário:** ${comment}\\n**Data:** ${now}\\n`;\n\nconst encoded = Buffer.from(markdown).toString('base64');\n\nreturn [{\n  json: {\n    task_id: taskId,\n    task_url: taskUrl,\n    comment_text: comment,\n    encoded_content: encoded,\n    filename: `${taskId}.md`\n  }\n}];"
+      },
+      "id": "code-prepare",
+      "name": "📝 Preparar Contexto",
+      "type": "n8n-nodes-base.code",
+      "position": [700, 640],
+      "typeVersion": 2
+    },
+    {
+      "parameters": {
+        "method": "PUT",
+        "url": "=https://api.github.com/repos/arte3-star/ntics-automacoes/contents/pending-ajustes/{{ $json.filename }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{$env.GITHUB_TOKEN}}"
+            },
+            {
+              "name": "Accept",
+              "value": "application/vnd.github+json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"message\": \"ajuste: {{ $json.task_id }}\",\n  \"branch\": \"master\",\n  \"content\": \"{{ $json.encoded_content }}\"\n}",
+        "options": {}
+      },
+      "id": "http-github",
+      "name": "📁 GitHub: Salvar Contexto",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [920, 640],
+      "typeVersion": 4.2
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.anthropic.com/v1/triggers/TRIGGER_AJUSTES_ID/run",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "x-api-key",
+              "value": "={{$env.ANTHROPIC_API_KEY}}"
+            },
+            {
+              "name": "anthropic-version",
+              "value": "2023-06-01"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": []
+        },
+        "options": {}
+      },
+      "id": "http-ajustes",
+      "name": "🔧 Agente Ajustes",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [1140, 640],
+      "typeVersion": 4.2
+    }
+  ],
+  "connections": {
+    "⏰ Domingo 20h BRT": {
+      "main": [
+        [
+          {
+            "node": "🤖 Agente Criador",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "⏰ Segunda 8h BRT": {
+      "main": [
+        [
+          {
+            "node": "🔍 Agente Revisor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "💬 Novo Comentário ClickUp": {
+      "main": [
+        [
+          {
+            "node": "🧑 É o Lucas?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "🧑 É o Lucas?": {
+      "main": [
+        [
+          {
+            "node": "📝 Preparar Contexto",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "📝 Preparar Contexto": {
+      "main": [
+        [
+          {
+            "node": "📁 GitHub: Salvar Contexto",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "📁 GitHub: Salvar Contexto": {
+      "main": [
+        [
+          {
+            "node": "🔧 Agente Ajustes",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "timezone": "America/Sao_Paulo"
+  }
+}

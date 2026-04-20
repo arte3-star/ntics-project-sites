@@ -43,7 +43,7 @@ Executar o tool:
 
 **Via config JSON:**
 ```bash
-python tools/adapt_artwork_illustrator.py \
+python tools/adobe/adapt_artwork_illustrator.py \
   --artwork "caminho/arte.ai" \
   --config .tmp/adapt_config.json \
   --output-dir .tmp/adapted/cliente
@@ -51,7 +51,7 @@ python tools/adapt_artwork_illustrator.py \
 
 **Via flags inline:**
 ```bash
-python tools/adapt_artwork_illustrator.py \
+python tools/adobe/adapt_artwork_illustrator.py \
   --artwork "caminho/arte.ai" \
   --client-name "Empresa X" \
   --colors "64,0,69,33>100,50,0,0" "100,17,0,55>0,80,95,0" \
@@ -77,7 +77,7 @@ python tools/adapt_artwork_illustrator.py \
 - SVG (fontes em outlines, imagens embeddadas) — pronto para digital
 
 ## Tool Utilizado
-`tools/adapt_artwork_illustrator.py` → `tools/jsx/adapt_artwork.jsx`
+`tools/adobe/adapt_artwork_illustrator.py` → `tools/adobe/jsx/adapt_artwork.jsx`
 
 ## Checklist de Qualidade
 - [ ] Cores do cliente aplicadas (nenhuma cor original restante nas áreas mapeadas)

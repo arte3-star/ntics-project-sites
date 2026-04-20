@@ -31,7 +31,7 @@ Quando o usuario pedir para criar o site de um projeto. Pre-requisito: tarefa "C
 | Documento | Localizacao |
 |-----------|-------------|
 | Template HTML Jinja2 | `tools/templates/project_site.html` |
-| Script de geracao | `tools/generate_project_site.py` |
+| Script de geracao | `tools/publishing/generate_project_site.py` |
 | Dados dos projetos | `.tmp/sites/projects_data.json` |
 | Briefing Website (SOP) | `workflows/escritorio-projetos/briefing_website.md` |
 | Brand Book NTICS | `brand-book/` |
@@ -159,7 +159,7 @@ Estrutura do objeto:
 Executar o script de geracao:
 
 ```bash
-python tools/generate_project_site.py --data .tmp/sites/projects_data.json --project {id_do_projeto}
+python tools/publishing/generate_project_site.py --data .tmp/sites/projects_data.json --project {id_do_projeto}
 ```
 
 O HTML e gerado em `.tmp/sites/{id}.html`.
@@ -341,7 +341,7 @@ Para criar multiplos sites de uma vez:
 | Imagens | Google Drive URLs (`lh3.googleusercontent.com/d/{ID}=w800`) |
 | Hosting intermediario | GitHub (raw files) |
 | Hosting final | Lovable (`{slug}.lovable.app`) |
-| Script | `python tools/generate_project_site.py --data {json} [--project {id}]` |
+| Script | `python tools/publishing/generate_project_site.py --data {json} [--project {id}]` |
 
 ---
 

@@ -1,0 +1,321 @@
+{
+  "name": "NTICS — Publicador LinkedIn (Aprovação ClickUp)",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "## NTICS — Agente Publicador\n\n### Fluxo:\nClickUp status → \"aprovado\" → Posta no LinkedIn (página empresa)\n\n### Credenciais necessárias:\n- ClickUp API Key\n- LinkedIn OAuth2 (w_organization_social)\n\n### IDs importantes:\n- Lista ClickUp: 901109494072\n- Campo drive_folder: 1d64bc13-8d71-43b1-a1d0-58ee7dc77c9f\n- Campo caption_ig: 5a040812-38d9-45a9-a911-4fcc17396d10\n- Campo caption_li: f1fd09a5-7dc8-48bd-959d-3724baf21edd\n- LinkedIn Org URN: urn:li:organization:SUBSTITUIR_PELO_ID_DA_PAGINA\n\n### Como obter LinkedIn Org ID:\n1. Abrir linkedin.com/company/ntics-projetos\n2. O ID numérico aparece na URL ao abrir Admin Tools\n3. Substituir SUBSTITUIR_PELO_ID_DA_PAGINA neste workflow"
+      },
+      "id": "note-instrucoes",
+      "name": "📋 Instruções",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [0, 0],
+      "typeVersion": 1
+    },
+
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "clickup-publicador",
+        "options": {}
+      },
+      "id": "webhook-clickup",
+      "name": "1️⃣ Webhook ClickUp",
+      "type": "n8n-nodes-base.webhook",
+      "position": [250, 300],
+      "typeVersion": 2,
+      "webhookId": "clickup-publicador"
+    },
+
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false
+          },
+          "combinator": "and",
+          "conditions": [
+            {
+              "id": "status-aprovado",
+              "leftValue": "={{ $json.history_items[0].after.status }}",
+              "rightValue": "aprovado",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ]
+        }
+      },
+      "id": "filter-aprovado",
+      "name": "2️⃣ Status = aprovado?",
+      "type": "n8n-nodes-base.if",
+      "position": [480, 300],
+      "typeVersion": 2
+    },
+
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "=https://api.clickup.com/api/v2/task/{{ $json.task_id }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "={{$env.CLICKUP_API_KEY}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "get-task",
+      "name": "3️⃣ ClickUp Get Task",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [710, 200],
+      "typeVersion": 4.2
+    },
+
+    {
+      "parameters": {
+        "jsCode": "// Extrai campos customizados da task ClickUp\nconst task = $input.first().json;\nconst fields = task.custom_fields || [];\n\nconst FIELD_IDS = {\n  drive_folder: '1d64bc13-8d71-43b1-a1d0-58ee7dc77c9f',\n  caption_ig: '5a040812-38d9-45a9-a911-4fcc17396d10',\n  caption_li: 'f1fd09a5-7dc8-48bd-959d-3724baf21edd',\n};\n\nconst result = {\n  task_id: task.id,\n  task_name: task.name,\n  drive_folder: '',\n  caption_ig: '',\n  caption_li: '',\n  pdf_url: '',\n};\n\nfor (const f of fields) {\n  if (f.id === FIELD_IDS.drive_folder) result.drive_folder = f.value || '';\n  if (f.id === FIELD_IDS.caption_ig) result.caption_ig = f.value || '';\n  if (f.id === FIELD_IDS.caption_li) result.caption_li = f.value || '';\n}\n\n// Buscar link do PDF na descricao da task (carrossel-linkedin.pdf)\nconst desc = task.markdown_description || task.description || '';\nconst pdfMatch = desc.match(/\\(https:\\/\\/drive\\.google\\.com[^)]*carrossel-linkedin\\.pdf[^)]*\\)/);\nif (pdfMatch) {\n  result.pdf_url = pdfMatch[0].replace(/[()]/g, '');\n} else {\n  // Fallback: buscar qualquer PDF na descricao\n  const anyPdf = desc.match(/\\(https:\\/\\/drive\\.google\\.com[^)]*\\.pdf[^)]*\\)/);\n  if (anyPdf) result.pdf_url = anyPdf[0].replace(/[()]/g, '');\n}\n\n// Se nao achou PDF na descricao, tentar construir a partir do drive_folder\n// O PDF deveria estar na mesma pasta com nome linkedin-carrossel.pdf\n\nreturn [{ json: result }];"
+      },
+      "id": "parse-fields",
+      "name": "4️⃣ Extrair Campos",
+      "type": "n8n-nodes-base.code",
+      "position": [940, 200],
+      "typeVersion": 2
+    },
+
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false
+          },
+          "combinator": "and",
+          "conditions": [
+            {
+              "id": "has-caption",
+              "leftValue": "={{ $json.caption_li }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            }
+          ]
+        }
+      },
+      "id": "check-caption",
+      "name": "5️⃣ Tem caption_li?",
+      "type": "n8n-nodes-base.if",
+      "position": [1170, 200],
+      "typeVersion": 2
+    },
+
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.linkedin.com/v2/ugcPosts",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer {{$credentials.linkedInOAuth2Api.accessToken}}"
+            },
+            {
+              "name": "X-Restli-Protocol-Version",
+              "value": "2.0.0"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"author\": \"urn:li:organization:SUBSTITUIR_PELO_ID_DA_PAGINA\",\n  \"lifecycleState\": \"PUBLISHED\",\n  \"specificContent\": {\n    \"com.linkedin.ugc.ShareContent\": {\n      \"shareCommentary\": {\n        \"text\": \"{{ $json.caption_li }}\"\n      },\n      \"shareMediaCategory\": \"NONE\"\n    }\n  },\n  \"visibility\": {\n    \"com.linkedin.ugc.MemberNetworkVisibility\": \"PUBLIC\"\n  }\n}",
+        "options": {}
+      },
+      "id": "linkedin-post",
+      "name": "6️⃣ LinkedIn Post",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [1400, 100],
+      "typeVersion": 4.2
+    },
+
+    {
+      "parameters": {
+        "method": "PUT",
+        "url": "=https://api.clickup.com/api/v2/task/{{ $('4️⃣ Extrair Campos').item.json.task_id }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "={{$env.CLICKUP_API_KEY}}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\"status\": \"publicado\"}",
+        "options": {}
+      },
+      "id": "update-status",
+      "name": "7️⃣ Status → publicado",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [1630, 100],
+      "typeVersion": 4.2
+    },
+
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.clickup.com/api/v2/task/{{ $('4️⃣ Extrair Campos').item.json.task_id }}/comment",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "={{$env.CLICKUP_API_KEY}}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"comment_text\": \"LinkedIn publicado com sucesso!\\n\\nPublicado em: {{ new Date().toLocaleString('pt-BR', {timeZone: 'America/Sao_Paulo'}) }}\\n\\n---\\nInstagram: caption e imagens prontas nos campos da task.\\nBaixe as fotos em: {{ $('4️⃣ Extrair Campos').item.json.drive_folder }}\"\n}",
+        "options": {}
+      },
+      "id": "comment-confirmacao",
+      "name": "8️⃣ Comentário ClickUp",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [1860, 100],
+      "typeVersion": 4.2
+    },
+
+    {
+      "parameters": {
+        "method": "PUT",
+        "url": "=https://api.clickup.com/api/v2/task/{{ $('4️⃣ Extrair Campos').item.json.task_id }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "={{$env.CLICKUP_API_KEY}}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\"status\": \"revisao\"}",
+        "options": {}
+      },
+      "id": "error-rollback",
+      "name": "❌ Rollback → revisao",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [1400, 400],
+      "typeVersion": 4.2
+    },
+
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.clickup.com/api/v2/task/{{ $('4️⃣ Extrair Campos').item.json.task_id }}/comment",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "={{$env.CLICKUP_API_KEY}}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"comment_text\": \"Erro na publicacao automatica.\\n\\nCaption LinkedIn estava vazia ou nao foi possivel publicar.\\nStatus voltou para 'revisao'.\\nPublique manualmente se necessario.\"\n}",
+        "options": {}
+      },
+      "id": "error-comment",
+      "name": "❌ Comentário Erro",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [1630, 400],
+      "typeVersion": 4.2
+    }
+  ],
+
+  "connections": {
+    "1️⃣ Webhook ClickUp": {
+      "main": [
+        [{ "node": "2️⃣ Status = aprovado?", "type": "main", "index": 0 }]
+      ]
+    },
+    "2️⃣ Status = aprovado?": {
+      "main": [
+        [{ "node": "3️⃣ ClickUp Get Task", "type": "main", "index": 0 }],
+        []
+      ]
+    },
+    "3️⃣ ClickUp Get Task": {
+      "main": [
+        [{ "node": "4️⃣ Extrair Campos", "type": "main", "index": 0 }]
+      ]
+    },
+    "4️⃣ Extrair Campos": {
+      "main": [
+        [{ "node": "5️⃣ Tem caption_li?", "type": "main", "index": 0 }]
+      ]
+    },
+    "5️⃣ Tem caption_li?": {
+      "main": [
+        [{ "node": "6️⃣ LinkedIn Post", "type": "main", "index": 0 }],
+        [{ "node": "❌ Rollback → revisao", "type": "main", "index": 0 }]
+      ]
+    },
+    "6️⃣ LinkedIn Post": {
+      "main": [
+        [{ "node": "7️⃣ Status → publicado", "type": "main", "index": 0 }]
+      ]
+    },
+    "7️⃣ Status → publicado": {
+      "main": [
+        [{ "node": "8️⃣ Comentário ClickUp", "type": "main", "index": 0 }]
+      ]
+    },
+    "❌ Rollback → revisao": {
+      "main": [
+        [{ "node": "❌ Comentário Erro", "type": "main", "index": 0 }]
+      ]
+    }
+  },
+
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": ""
+  },
+
+  "staticData": null,
+  "tags": [
+    { "name": "marketing" },
+    { "name": "publicacao" }
+  ],
+  "triggerCount": 1,
+  "versionId": "1"
+}

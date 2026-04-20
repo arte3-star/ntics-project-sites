@@ -4,6 +4,8 @@ description: "Monta Agent Team de design (Leonardo AI, Adobe Illustrator/After E
 user-invocable: true
 ---
 
+> 📚 **Referência Leonardo AI:** O Image Creator deste time usa Leonardo AI seguindo a estrutura já validada da skill. Se surgir erro da API, dúvida sobre payload ou resultado visual inesperado, consulte `workflows/marketing/referencia/leonardo_ai_core.md` como base de conhecimento complementar (modos, erros conhecidos, exemplos).
+
 Leia e execute o workflow completo em `workflows/marketing/team_design_content.md`.
 
 Use Agent Teams para criar o time. Monte os teammates conforme descrito no workflow:

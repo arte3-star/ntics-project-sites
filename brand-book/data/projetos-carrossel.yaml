@@ -1,0 +1,370 @@
+# Base de conhecimento: Projetos NTICS prontos para carrossel de case
+#
+# Critério de inclusão: relatório final disponível + fotos no Drive
+# Links do Google Drive são permanentes — não alterar sem verificar
+#
+# Campos:
+#   slug             → nome da pasta em output/marketing/carrosseis/cases/
+#   nome             → título oficial do projeto
+#   numero           → número interno NTICS
+#   patrocinador     → empresa patrocinadora principal
+#   lei              → Rouanet | Esporte | FIA | sem incentivo
+#   ano              → ano de execução
+#   categoria        → CODS | MHS | Negócios Culturais
+#   relatorio_pdf    → link direto para o PDF (preferir /file/d/ID/view)
+#                      se for pasta Drive, baixar o PDF manualmente
+#   fotos_drive      → pasta Drive com fotos do projeto
+#   video            → link do vídeo principal (YouTube ou Drive)
+#   numeros          → dados verificados (fonte: planilha + relatório)
+#   status_carrossel → pendente | feito | postado
+#
+# Atualizado em: 2026-04-06
+
+projetos:
+
+  - slug: cinegastroarte
+    nome: "FESTIVAL CINEGASTROARTE"
+    numero: 50
+    patrocinador: null
+    lei: "sem incentivo"
+    ano: 2024
+    categoria: CODS
+    relatorio_pdf:
+      - "https://drive.google.com/drive/folders/1V2cSQ1XpSkm2Ii5WT3xbIeAaY62pk_6d"
+      - "https://drive.google.com/drive/folders/1NMM2nubQ7VIAHbFuLsNRVCEh9z3te1S-"
+      - "https://drive.google.com/drive/folders/1MZCXGw5voeLoQTGSXtpS2g1xpLHOD28C"
+    fotos_drive: "https://drive.google.com/drive/folders/144ZJc0NoF-tWqlnJx2vzsb10SiELcJEX"
+    video:
+      - "https://youtu.be/4YNknU0eDqo"
+      - "https://youtu.be/EjqJuZpgQ20"
+      - "https://youtu.be/Hlkc92AwTO4"
+    numeros:
+      pessoas_diretas: 53262
+    nota_extracao: "Relatório em formato slide/apresentação — fotos esparsas no PDF. Usar fotos_drive como fonte principal."
+    status_carrossel: feito
+
+  - slug: caminhao-ods-rabobank
+    nome: "FESTIVAL ODS DAS ARTES - CAMINHÃO ODS"
+    numero: 111
+    patrocinador: "Rabobank"
+    lei: "Rouanet"
+    ano: 2025
+    categoria: CODS
+    relatorio_pdf: "https://drive.google.com/file/d/1ux-JrC6pIkVbZiGXu8olYRPxhkvbQFvb/view"
+    fotos_drive: "https://drive.google.com/drive/folders/1yQvGP-kfvsFBRM4e0_KvBfYpcWF46EQ0"
+    video: "https://drive.google.com/file/d/1dUUXvDgRc1eCQTORJ_srwXizZnwAw1d7/view"
+    numeros:
+      pessoas_diretas: 24063
+      pessoas_indiretas: 72189
+      empregos: 88
+      nota: 10
+    status_carrossel: feito
+
+  - slug: circo-no-brasil
+    nome: "CIRCO NO BRASIL & FESTIVAL DE CIRCO"
+    numero: 60
+    patrocinador: null
+    lei: "Rouanet"
+    ano: 2024
+    categoria: CODS
+    relatorio_pdf: "https://drive.google.com/file/d/1lkYuHqCfB-jNLAeH7SShz_0nlzKmxMNh/view"
+    fotos_drive: "https://drive.google.com/drive/folders/1uyXL8ufX4_MrIYEYgaGZm9_q1mqUlaYk"
+    video: "https://youtu.be/iENALeCLQnM"
+    numeros:
+      pessoas_diretas: 20930
+    status_carrossel: pendente
+
+  - slug: festival-ods-pocket-whirlpool
+    nome: "FESTIVAL DE ARTES E CULTURA - ODS POCKET"
+    numero: 88
+    patrocinador: "Whirlpool"
+    lei: "Rouanet"
+    ano: 2024
+    categoria: CODS
+    relatorio_pdf: "https://drive.google.com/file/d/1Iy24N-ubvgiT4wWFcE10ZXAZHRUKwRpb/view"
+    fotos_drive: "https://drive.google.com/drive/folders/1mBxJnYXaheOPdwhgb_z12fN2EaNBy50a"
+    video: "https://youtu.be/2kMu-chR2qA"
+    numeros:
+      pessoas_diretas: 17646
+      nota: 9.7
+    status_carrossel: pendente
+
+  - slug: cultura-na-comunidade-rabobank
+    nome: "CULTURA NA COMUNIDADE - CAMINHÃO MHS"
+    numero: 92
+    patrocinador: "Rabobank"
+    lei: "Rouanet"
+    ano: 2024
+    categoria: MHS
+    relatorio_pdf: "https://drive.google.com/file/d/1Vu3Y05JEirBOjFjPx0HAf1-EoaqTEgWP/view"
+    fotos_drive: "https://drive.google.com/drive/folders/1CJ72V5btu7J0hMfP2ntg-AI1k20xoRpS"
+    video: "https://youtu.be/H1ouuOtrNIE"
+    numeros:
+      pessoas_diretas: 9107
+      pessoas_indiretas: 27321
+      empregos: 24
+      cartilhas: 9000
+    status_carrossel: pendente
+
+  - slug: teatro-ods-repsol
+    nome: "TEATRO DOS ODS"
+    numero: 90
+    patrocinador: "Repsol"
+    lei: "Rouanet"
+    ano: 2024
+    categoria: CODS
+    relatorio_pdf: "https://drive.google.com/file/d/1Qsq1S8kGFLjjOTDhAiT1pC-pW5qEB7kV/view"
+    fotos_drive: "https://drive.google.com/drive/folders/1iBTzkAqZIuHPMsLu2WkKgu8PBGL9HXha"
+    video: "https://youtu.be/n6fN5kb6f5s"
+    numeros:
+      pessoas_diretas: 7210
+      empregos: 18
+      cartilhas: 7000
+    status_carrossel: pendente
+
+  - slug: ods-cultural-escolas-repsol
+    nome: "ODS CULTURAL NAS ESCOLAS"
+    numero: 108
+    patrocinador: "Repsol"
+    lei: "Rouanet"
+    ano: 2025
+    categoria: CODS
+    relatorio_pdf: "https://drive.google.com/file/d/1cP_QrcL8q1VUKk_rvsvAViTfduyVzChn/view"
+    fotos_drive: "https://drive.google.com/drive/folders/1oR7HDoQnoLV5Nzc1J7PfSWO4eGk4ZrPl"
+    video: "https://drive.google.com/file/d/1BzVxrjQGssC5dUjkJkrdr2lUi3VbaQ_o/view"
+    numeros:
+      pessoas_diretas: 7045
+      empregos: 58
+      alunos: 6539
+      professores: 506
+      cidades: 7
+      nota: 9.9
+    status_carrossel: pendente
+
+  - slug: conhecendo-ods-wilson
+    nome: "CONHECENDO OS ODS"
+    numero: 98
+    patrocinador: "Wilson Sons"
+    lei: "Rouanet"
+    ano: 2025
+    categoria: CODS
+    relatorio_pdf: "https://drive.google.com/drive/folders/1gobYgEMhZy-p_0oXrfIo0rlN679zLeWq"
+    fotos_drive: "https://drive.google.com/drive/folders/1EQ3gaiiz8AprsQ7KHGomC10wo3_DFRiL"
+    video: "https://drive.google.com/drive/folders/1zkJ_ra1jvThc_zeAEe46bocPcYCjV5lX"
+    numeros:
+      pessoas_diretas: 7045
+      empregos: 58
+      alunos: 6539
+      professores: 506
+      cidades: 7
+      nota: 10
+    status_carrossel: feito
+
+  - slug: conhecendo-ods-moove
+    nome: "CONHECENDO OS ODS"
+    numero: 97
+    patrocinador: "Moove"
+    lei: "Rouanet"
+    ano: 2024
+    categoria: CODS
+    relatorio_pdf: "https://drive.google.com/file/d/1w-Ux_k8Z8kR12l4NeOCtinVNs4RTQK0u/view"
+    fotos_drive: "https://drive.google.com/drive/folders/1IyEpcr3RH4cNy5SJ3KLTddwf36k1iG1i"
+    video: "https://youtu.be/kVt4KwdlUKQ"
+    numeros:
+      pessoas_diretas: 6032
+      empregos: 16
+      cartilhas: 6000
+    status_carrossel: pendente
+
+  - slug: teatro-robotica-cnh
+    nome: "TEATRO E OFICINA ROBÓTICA 3ª EDIÇÃO"
+    numero: 107
+    patrocinador: "Whirlpool"
+    lei: "Rouanet"
+    ano: 2025
+    categoria: "Negócios Culturais"
+    relatorio_pdf: "https://drive.google.com/file/d/1xazMwdum_Ew_6YeiYBJKgMCBTH9iF3n9/view"
+    fotos_drive: "https://drive.google.com/drive/folders/1KNjZOGwEesCfF0y8l7IsC-jYZbcHlWw_"
+    video: "https://drive.google.com/file/d/1WWo9UWyeTVIxr027jO3lDHxFmUw2dEPU/view"
+    numeros:
+      pessoas_diretas: 5893
+      empregos: 20
+      alunos: 5493
+      professores: 400
+      cidades: 4
+      nota: 9.7
+    status_carrossel: feito
+
+  - slug: caminhao-ods-tcp
+    nome: "CAMINHÃO ODS ARTÍSTICO"
+    numero: 93
+    patrocinador: "TCP"
+    lei: "Rouanet"
+    ano: 2024
+    categoria: CODS
+    relatorio_pdf: "https://drive.google.com/file/d/1kSsIBVfWoVR4Znjq75s4ug_oRLxE8qs0/view"
+    fotos_drive: "https://drive.google.com/drive/folders/1BFIn0vsQ8YkXVjzZCE3k4f_M1bCqhXVT"
+    video: "https://youtu.be/wxT0gyL3SRA"
+    numeros:
+      pessoas_diretas: 5741
+      empregos: 45
+      cartilhas: 6000
+    status_carrossel: pendente
+
+  - slug: caminhao-ods-moove
+    nome: "CAMINHÃO ODS ARTÍSTICO"
+    numero: 93
+    patrocinador: "Moove"
+    lei: "Rouanet"
+    ano: 2024
+    categoria: CODS
+    relatorio_pdf: "https://drive.google.com/file/d/1kzwvyk_YOwvnop-fkpI-ssXwkTXuNkYF/view"
+    fotos_drive: "https://drive.google.com/drive/folders/1YqDhyGk5BYFsNjGb5IxGlDv4aTBuHzTt"
+    video: "https://youtu.be/Ix4aErTsbqE"
+    numeros:
+      pessoas_diretas: 5568
+      empregos: 55
+      nota: 9.37
+    status_carrossel: pendente
+
+  - slug: caminhao-energia-ctg
+    nome: "TEATRO NAS ESCOLAS - CAMINHÃO ENERGIA"
+    numero: 91
+    patrocinador: "CTG"
+    lei: "Rouanet"
+    ano: 2024
+    categoria: CODS
+    relatorio_pdf: "https://drive.google.com/file/d/1hSe74SrRckXFx674ev3g4hWae3Bojov7/view"
+    fotos_drive: "https://drive.google.com/drive/folders/13bkWbsdXZFywC_OB5-k4roRmH0sdZezW"
+    video: "https://youtu.be/5oOZyQy_9FE"
+    numeros:
+      pessoas_diretas: 5532
+      empregos: 22
+      cartilhas: 6000
+    status_carrossel: pendente
+
+  - slug: gastronomia-arte-whirlpool
+    nome: "GASTRONOMIA TAMBÉM É ARTE"
+    numero: 103
+    patrocinador: "Whirlpool"
+    lei: "Rouanet"
+    ano: 2025
+    categoria: MHS
+    relatorio_pdf: "https://drive.google.com/file/d/19Enw68ah6iKcJQVsaTPgW2bc5R7_1IdV/view"
+    fotos_drive: "https://drive.google.com/drive/folders/1uRpRKc8AoQJon7P9drMHSdwTCT7O6Ktc"
+    video: "https://youtu.be/7IByvjNUegA"
+    numeros:
+      pessoas_diretas: 4414
+      empregos: 21
+      alunos: 760
+      professores: 300
+      cidades: 3
+      nota: 9.6
+    status_carrossel: pendente
+
+  - slug: culinaria-sustentavel-enercan
+    nome: "CULINÁRIA SUSTENTÁVEL - ABORDAGEM ARTÍSTICA"
+    numero: 87
+    patrocinador: "Enercan"
+    lei: "Rouanet"
+    ano: 2024
+    categoria: MHS
+    relatorio_pdf: "https://drive.google.com/file/d/1WgI3Fm4marQcdbQ1P3jivkj3v2ayvW4V/view"
+    fotos_drive: "https://drive.google.com/drive/folders/1c3WZux8KOSuLM7EBumpAo44lt2T7GGot"
+    video: "https://youtu.be/fkeCjDIHmno"
+    numeros:
+      pessoas_diretas: 4173
+      empregos: 10
+      nota: 9.76
+    status_carrossel: pendente
+
+  - slug: oficina-teatro-ferroport
+    nome: "OFICINA DE TEATRO SUSTENTÁVEL"
+    numero: 89
+    patrocinador: "Ferroport"
+    lei: "Rouanet"
+    ano: 2024
+    categoria: CODS
+    relatorio_pdf: "https://drive.google.com/file/d/1AUsccvkp5GaAXScbhZuTOY3h_bxJe5ul/view"
+    fotos_drive: "https://drive.google.com/drive/folders/136QiLGdqGhBNC93QLjU0cvU13AlJpP0P"
+    video: "https://youtu.be/XZoUilKuTUw"
+    numeros:
+      pessoas_diretas: 4157
+      empregos: 12
+      cartilhas: 4000
+      nota: 9.31
+    status_carrossel: pendente
+
+  - slug: teatro-bons-habitos-ferroporte
+    nome: "TEATRO DOS BONS HÁBITOS - CULINÁRIA SUSTENTÁVEL"
+    numero: 86
+    patrocinador: "Ferroporte"
+    lei: "Rouanet"
+    ano: 2024
+    categoria: MHS
+    relatorio_pdf: "https://drive.google.com/file/d/1CEJvI0mYBw9JtzVC7k4H7Xb5AUxFZqdB/view"
+    fotos_drive: "https://drive.google.com/drive/folders/12-qi422ADABQwchqltnv_ZK9h5z4JxoF"
+    video: "https://youtu.be/HjOhoGgKZXY"
+    numeros:
+      pessoas_diretas: 4080
+      empregos: 8
+      cartilhas: 400
+      nota: 9.69
+    status_carrossel: pendente
+
+  - slug: educacao-cultural-statkraft
+    nome: "PROGRAMA DE EDUCAÇÃO CULTURAL"
+    numero: 109
+    patrocinador: "Statkraft"
+    lei: "Rouanet"
+    ano: 2025
+    categoria: "Negócios Culturais"
+    relatorio_pdf: "https://drive.google.com/file/d/1btI4lsFwRxbmozcn3JUjrAtRloahyU0f/view"
+    fotos_drive: "https://drive.google.com/drive/folders/15AEtyTCdH8UszEon00Bbg1FeSRqKvzkT"
+    video: "https://drive.google.com/file/d/1bbxcNQ1EjrpiapEuZv-i5Ap9oMZAM2pn/view"
+    numeros:
+      pessoas_diretas: 3356
+      empregos: 12
+      alunos: 3177
+      professores: 179
+      cidades: 3
+      nota: 9.4
+    status_carrossel: feito
+
+  - slug: caminhao-cultura-jaepel
+    nome: "CAMINHÃO DA CULTURA E SUSTENTABILIDADE"
+    numero: 110
+    patrocinador: "Jaepel"
+    lei: "Rouanet"
+    ano: 2025
+    categoria: CODS
+    relatorio_pdf: "https://drive.google.com/file/d/1enG2PAOibudA7W1pMmhQk-cVmyFksTB6/view"
+    fotos_drive: "https://drive.google.com/drive/folders/1SQY61xbxIqXnVu9G7_SWEzzLZqDlNamD"
+    video: "https://drive.google.com/file/d/1Bln0BByuxaF_Rim5GkRjt7KFt_1oKeRY/view"
+    numeros:
+      pessoas_diretas: 3317
+      empregos: 19
+      alunos: 3317
+      professores: 96
+      cidades: 2
+      nota: 10
+    status_carrossel: pendente
+
+  - slug: meus-habitos-imetame
+    nome: "MEUS HÁBITOS - 2ª EDIÇÃO"
+    numero: 85
+    patrocinador: "Imetame"
+    lei: "Rouanet"
+    ano: 2025
+    categoria: MHS
+    relatorio_pdf: "https://drive.google.com/file/d/1bPs2ibE5QkZFBl1j-hiyZEqectb1rjne/view"
+    fotos_drive: "https://drive.google.com/drive/folders/1qa5N3IHb596N8vI4gDETc7om3_DFRiL"
+    video: "https://youtu.be/BD7bU-aytVk"
+    numeros:
+      pessoas_diretas: 3187
+      empregos: 5
+      alunos: 2994
+      professores: 193
+      cartilhas: 400
+      nota: 9.5
+    status_carrossel: pendente

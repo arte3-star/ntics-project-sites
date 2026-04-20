@@ -1,5 +1,7 @@
 # Workflow: Roteiro Editor de Vídeo Pré-Projeto
 
+> **NOTA:** Este workflow cobre apenas o tipo pré-projeto. Para roteiros de todos os 5 tipos de vídeo (pré, durante, case, venda 1, venda 2), consulte [`roteiro_video_completo.md`](roteiro_video_completo.md). Para o skill integrado que gera vídeo + carrossel juntos, use `/briefing-video`.
+
 ## Objetivo
 Gerar roteiro pronto para editor de vídeo (pré-projeto/convite) no formato tabela com 5 fases, a partir de release, TAP ou briefing.
 

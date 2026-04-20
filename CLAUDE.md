@@ -1,220 +1,83 @@
 # Agent Instructions
 
-You're working inside the **WAT framework** (Workflows, Agents, Tools). This architecture separates concerns so that probabilistic AI handles reasoning while deterministic code handles execution. That separation is what makes this system reliable.
-
-## The WAT Architecture
-
-**Layer 1: Workflows (The Instructions)**
-- Markdown SOPs stored in `workflows/`, organizadas por área
-- Each workflow defines the objective, required inputs, which tools to use, expected outputs, and how to handle edge cases
-- Written in plain language, the same way you'd brief someone on your team
-
-**Layer 2: Agents (The Decision-Maker)**
-- This is your role. You're responsible for intelligent coordination.
-- Read the relevant workflow, run tools in the correct sequence, handle failures gracefully, and ask clarifying questions when needed
-- You connect intent to execution without trying to do everything yourself
-- Example: If you need to pull data from a website, don't attempt it directly. Read the relevant workflow, figure out the required inputs, then execute the appropriate tool
-
-**Layer 3: Tools (The Execution)**
-- Python scripts in `tools/` that do the actual work
-- API calls, data transformations, file operations, database queries
-- Credentials and API keys are stored in `.env`
-- These scripts are consistent, testable, and fast
-
-**Why this matters:** When AI tries to handle every step directly, accuracy drops fast. If each step is 90% accurate, you're down to 59% success after just five steps. By offloading execution to deterministic scripts, you stay focused on orchestration and decision-making where you excel.
+You're working inside the **WAT framework**: Workflows (SOPs in `workflows/`) → Agents (you, orchestrating) → Tools (Python scripts in `tools/`). AI handles reasoning; deterministic code handles execution.
 
 ## How to Operate
 
-**1. Look for existing workflows and tools first**
-Before building anything new, check `workflows/` for the relevant SOP and `tools/` for existing scripts. Only create new ones when nothing exists for that task.
+1. **Find before building** — Check `workflows/` for the SOP and `tools/` for scripts. Only create new ones when nothing exists.
+2. **Fix and learn from errors** — Read the full trace, fix the script, retest, then update the workflow with what you learned. If the fix uses paid API calls, check with me first.
+3. **Keep workflows current** — Evolve them as you learn. Don't create or overwrite workflows without asking unless explicitly told to.
+4. **Self-improvement loop:** broke → fix tool → verify → update workflow → move on.
 
-**2. Learn and adapt when things fail**
-When you hit an error:
-- Read the full error message and trace
-- Fix the script and retest (if it uses paid API calls or credits, check with me before running again)
-- Document what you learned in the workflow (rate limits, timing quirks, unexpected behavior)
-- Example: You get rate-limited on an API, so you dig into the docs, discover a batch endpoint, refactor the tool to use it, verify it works, then update the workflow so this never happens again
+## Índices de Referência (carregue sob demanda)
 
-**3. Keep workflows current**
-Workflows should evolve as you learn. When you find better methods, discover constraints, or encounter recurring issues, update the workflow. That said, don't create or overwrite workflows without asking unless I explicitly tell you to. These are your instructions and need to be preserved and refined, not tossed after one use.
+| Índice | Arquivo | Uso |
+|--------|---------|-----|
+| Landing / navegação | `NTICS.md` | Identidade, org chart, mapa "quero X → ir para Y" |
+| Organograma | `org/ORG.md` | Missão, responsável e recursos por departamento |
+| Workflows | `workflows/INDEX.md` | Todos os SOPs por área + cadeia editorial |
+| Tools | `tools/INDEX.md` | tool → workflow(s) → APIs → status |
+| Squads | `squads/INDEX.md` | 10 squads de marketing, routing chief→specialist |
+| Brand Book | `brand-book/INDEX.md` | Identidade visual e verbal NTICS |
+| Assets de projetos | `assets/INDEX.md` | Fotos, logos, KVs, brand guidelines, relatórios — acervo físico por projeto. **Primeira fonte** antes de ClickUp/Drive |
+| SecondBrain | `SecondBrain/INDEX.md` | Memória institucional: atas, clientes, projetos, decisões, conhecimento |
 
-## The Self-Improvement Loop
+**Antes de produzir conteúdo NTICS:** consulte `brand-book/data/brand-data.yaml` (números) e `brand-book/02-identidade-verbal/tom-de-voz.md` (tom).  
+**Pontuação em textos (regra geral):** NUNCA usar travessão `—` (em-dash) em textos publicados (artigos, captions, e-mails, copy em geral). Substituir pelo que fizer sentido gramatical: `,` para aposto ou explicação curta; `.` quando separa ideias completas; espaço/reescrita quando o travessão for só ornamento. Vale para todo conteúdo que o usuário vai ler ou publicar, inclusive este chat.
+**Segundo cérebro:** Se a tarefa envolver contexto histórico, cliente, projeto ou decisão passada, **leia `SecondBrain/INDEX.md` primeiro** e navegue só para a nota relevante. Não carregue o vault inteiro. `/salvar` grava momentos novos no vault.  
+**Skills:** `.claude/skills/` são atalhos `/comando` que apontam para workflows. A SOP real sempre vive em `workflows/`.
 
-Every failure is a chance to make the system stronger:
-1. Identify what broke
-2. Fix the tool
-3. Verify the fix works
-4. Update the workflow with the new approach
-5. Move on with a more robust system
+## Economia de Contexto
 
-This loop is how the framework improves over time.
+- Sugira compact manual quando contexto ultrapassar 50%
+- Prefira referências cirúrgicas (arquivo + linha) a leituras amplas
+- Não carregue diretórios inteiros; use os índices acima para navegar
+- Output de tools: prefira `--quiet` quando disponível
 
-## File Structure
+## Estratégia de Modelo
 
-**Directory layout:**
-```
-workflows/                  # SOPs organizadas por área
-  ├── escritorio-projetos/  # PMO: planejamento, execução, comunicação
-  ├── inscricao-projetos/   # Estruturação e submissão a leis de incentivo
-  ├── marketing/            # Produção de conteúdo, newsletters, carrosséis
-  └── knowledge/            # Referência compartilhada (templates, anexos, manuais)
-tools/                      # Python scripts for deterministic execution
-squads/                     # Times de agentes especialistas por área
-  └── marketing/            # 10 squads: brand, copy, traffic, storytelling, etc.
-brand-book/                 # Identidade visual e verbal NTICS (referência compartilhada)
-.claude/skills/             # Atalhos /comando que apontam para workflows
-.tmp/                       # Temporary files. Regenerated as needed.
-.env                        # API keys (NEVER store secrets anywhere else)
-credentials.json, token.json  # Google OAuth (gitignored)
-```
+Opus planeja (plan mode automático), Sonnet executa. Para tarefas mecânicas (ClickUp tasks, drafts Gmail, scripts simples), sugira Haiku ao usuário: "Haiku custa ~25x menos. Quer trocar com `/model haiku`?" Subagentes mecânicos: declare `model: haiku` no frontmatter.
 
-**Core principle:** Local files are just for processing. Anything I need to see or use lives in cloud services. Everything in `.tmp/` is disposable.
+## Acesso a Serviços Externos
 
-**Skills vs Workflows:** Skills (`.claude/skills/`) são atalhos leves que invocam workflows via `/comando`. A SOP real (com fases, inputs, checklists) sempre vive em `workflows/`. Quando alguém digita `/newsletter`, o skill diz "leia e execute `workflows/marketing/newsletter.md`".
+Nunca acesse ClickUp, Gmail, Google Calendar, n8n, Gamma ou Firecrawl por iniciativa própria. Aguarde o usuário pedir explicitamente ("acesse o ClickUp", "veja meu calendário"). Quando solicitado, use ToolSearch para carregar a ferramenta MCP específica sob demanda.
 
-## Workflows por Área
+## Leonardo AI — Base de Conhecimento de Aprendizado
 
-### Escritório de Projetos (`workflows/escritorio-projetos/`)
+Documentação dividida em dois:
+- `workflows/marketing/referencia/leonardo_ai_core.md` é a referência rápida (modos, endpoints, payload mínimo, dimensões, parâmetros críticos, checklist visual). Esta é a porta de entrada padrão.
+- `workflows/marketing/referencia/leonardo_ai_cookbook.md` tem detalhes completos, aprendizados, erros conhecidos, exemplos práticos e FAQ. Consulta sob demanda.
 
-SOPs de planejamento, estruturação e gestão de projetos NTICS.
+**Cada skill/workflow que usa Leonardo já tem sua estrutura própria que funciona** não substitua. O guia serve como **consulta complementar** nas seguintes situações:
+- Erro inesperado da API (`VALIDATION_ERROR`, payload inválido, timeout)
+- Dúvida sobre estrutura correta (`guidances.image_reference`, strength, prompt_enhance)
+- Resultado visual errado (rosto não preservado, palavras duplicadas, acentos faltando)
+- Implementação de novo caso de uso não coberto pelas skills existentes
+- Quando o usuário pedir algo e você não lembrar como o padrão NTICS faz
 
-| Workflow | Arquivo | Quando usar |
-|----------|---------|-------------|
-| Termo de Abertura | `termo_abertura.md` | Novo projeto precisa de estruturação formal (TA) |
-| Perfil Estratégico | `perfil_estrategico.md` | Analisar empresa antes de proposta/TA |
-| Plano de Divulgação | `plano_divulgacao.md` | Criar comunicação + releases (requer TA + PEP) |
-| Roteiro Edição Vídeo | `roteiro_edicao_video.md` | Criar script de vídeo pré-projeto |
-| Briefing Website | `briefing_website.md` | Montar conteúdo para site do projeto |
-| Engenhoca Prestação Contas | `engenhoca_prestacao_contas.md` | Automação de prestação de contas Rouanet |
-| Processamento de Reuniões | `process_meeting_transcript.md` | Transcrição → classificação → tasks no ClickUp |
-| Carrossel Projeto Cliente | `carrossel_projeto_cliente.md` | Carrossel com identidade visual do patrocinador (pesquisa marca + Leonardo AI) |
-| Criar Site do Projeto | `criar_site_projeto.md` | Site institucional no Lovable (briefing ClickUp + assets Drive + GitHub + Jinja2/Tailwind) |
+**Quando consultar:** antes de escrever payload Leonardo do zero, ou ao debuggar qualquer falha de geração. Seguir o workflow/skill da tarefa como fonte primária; recorrer ao guia quando a estrutura existente não resolver ou surgir erro.
 
-**Cadeia de dependências típica:**
-```
-Perfil Patrocinador ──┐
-                      ├──> Termo de Abertura ──> Plano Divulgação ──> Roteiro Vídeo
-                      │                                              └──> Briefing Website ──> Criar Site (Lovable)
-```
+Se descobrir novo aprendizado (novo erro, nova solução), **adicione ao guia** — é documento vivo.
 
-### Inscrição de Projetos (`workflows/inscricao-projetos/`)
+## Protocolo de Aprendizado
 
-SOPs para estruturação e submissão de projetos a leis de incentivo.
+**Captura em tempo real:** Ao detectar sinal de correção ou validação durante execução, salve o aprendizado imediatamente nessa mensagem antes de continuar:
+- **Correção** ("não ficou bom", "tá errado", "ajusta", "para de fazer", "muda", "isso não"): adicione regra ao `feedback_*.md` relevante (ou crie novo) e atualize MEMORY.md
+- **Validação de abordagem não-óbvia** ("perfeito", "isso sim", "exatamente", "pode continuar assim", "gostei"): salve como confirmação no mesmo arquivo
 
-| Workflow | Arquivo | Quando usar |
-|----------|---------|-------------|
-| Estruturador Lei Rouanet | `estruturador_rouanet.md` | Estruturar projeto para inscrição MinC |
-| Conselheiro SALIC | `conselheiro_salic.md` | Preencher campos SALIC campo-a-campo |
-| Conselheiro Lei Reciclagem | `conselheiro_reciclagem.md` | Execução/diligências/PC Lei Reciclagem |
+**Revisão pré-execução:** Antes de executar qualquer skill ou workflow, identifique pela MEMORY.md quais `feedback_*.md` são relevantes à área e leia-os. Aplique as regras já conhecidas sem esperar nova correção.
 
-### Marketing (`workflows/marketing/`)
+## Verificação Antes de Declarar Sucesso
 
-SOPs de produção de conteúdo, editorial e comunicação. Invocáveis via `/comando`.
-
-| Workflow | Arquivo | Comando | Quando usar |
-|----------|---------|---------|-------------|
-| Plano Mensal | `plano_mensal.md` | `/plano-mensal` | Planejamento editorial do mês (arco ABT + hooks) |
-| Roteiro Vídeo | `roteiro_video.md` | `/roteiro-video` | Script de 1 min para NotebookLM |
-| Carrossel Projeto | `carrossel_projeto.md` | `/carrossel-projeto` | 5 cards Instagram via Leonardo AI |
-| Carrossel Notícias | `carrossel_noticias.md` | `/carrossel-noticias` | 8 cards ESG news (Perplexity + Leonardo AI) |
-| Artigo Mensal | `artigo_mensal.md` | `/artigo-mensal` | Compila 4 roteiros em artigo integrado |
-| Email Marketing | `email_marketing.md` | `/email-marketing` | Conteúdo newsletter mensal (7 seções) |
-| Newsletter | `newsletter.md` | `/newsletter` | HTML completo + draft Gmail |
-| Artigo Site | `artigo_site.md` | `/artigo-site` | Página HTML para ntics.com.br |
-| Newsletter Semanal | `weekly_csr_newsletter.md` | — | Newsletter semanal ESG (pipeline Python) |
-| Newsletter Mensal (artigo) | `monthly_article_newsletter.md` | — | Newsletter mensal com artigo hero |
-| Uso de Squads | `uso_squads_marketing.md` | — | Como invocar squads de marketing |
-
-**Cadeia editorial típica:**
-```
-/plano-mensal
-  ├→ /roteiro-video × 4
-  ├→ /carrossel-projeto
-  ├→ /carrossel-noticias
-  └→ /artigo-mensal
-       └→ /email-marketing
-            └→ /newsletter
-/artigo-site (independente)
-```
-
-**Knowledge files** (referência compartilhada): `workflows/knowledge/`
-
-## Squads de Agentes Especialistas
-
-Times de agentes com hierarquia Chief → Specialists. Cada squad tem um orquestrador (chief) que roteia para o especialista certo. Organizados por área em `squads/`.
-
-### Como usar um squad
-
-1. Identifique o squad pelo tipo de problema (tabela abaixo)
-2. Leia o `squad.yaml` do squad para entender a estrutura
-3. Leia o agente chief (orquestrador) para entender o routing
-4. O chief indica qual especialista usar — leia o agente especialista
-5. Execute a task seguindo as instruções do especialista
-6. Valide contra o `checklists/output-quality.md` do squad
-
-### Marketing (`squads/marketing/`)
-
-| Squad | Pasta | Chief | Quando usar |
-|-------|-------|-------|-------------|
-| Advisory Board | `squads/marketing/advisory-board/` | `board-chair` | Decisões estratégicas, investimento, liderança, cultura |
-| Brand Squad | `squads/marketing/brand-squad/` | `brand-chief` | Posicionamento, identidade, naming, arquétipos, messaging |
-| C-Level Squad | `squads/marketing/c-level-squad/` | `vision-chief` | Planejamento estratégico, operações, GTM, tecnologia |
-| Copy Squad | `squads/marketing/copy-squad/` | `copy-chief` | Copywriting, emails, VSL, sales letters, headlines, landing pages |
-| Data Squad | `squads/marketing/data-squad/` | `data-chief` | Analytics, métricas, CLV, growth, retenção, comunidade |
-| Design Squad | `squads/marketing/design-squad/` | `design-chief` | Design systems, UX/UI, atomic design, componentes |
-| Hormozi Squad | `squads/marketing/hormozi-squad/` | `hormozi-chief` | Ofertas, lead gen, pricing, vendas, hooks, lançamentos |
-| Movement | `squads/marketing/movement/` | `movement-chief` | Construção de movimentos, manifestos, identidade coletiva |
-| Storytelling | `squads/marketing/storytelling/` | `story-chief` | Narrativas, roteiros, brand storytelling, pitches |
-| Traffic Masters | `squads/marketing/traffic-masters/` | `traffic-chief` | Tráfego pago, Facebook/YouTube/Google Ads, media buying |
-
-### Estrutura de cada squad
-
-```
-squads/{area}/{squad-name}/
-├── squad.yaml           # Manifesto: agentes, tasks, workflows, routing
-├── config/config.yaml   # Tiers, handoffs, ativação
-├── agents/              # Agentes MD (chief + especialistas)
-├── tasks/               # Definições de tarefas com input/output
-├── workflows/           # Orquestrações multi-fase (YAML)
-├── checklists/          # Quality gates
-└── data/                # Catálogos de frameworks e routing
-```
-
-## Brand Book NTICS
-
-Identidade completa da NTICS em `brand-book/`. Recurso compartilhado por todos os workflows e squads.
-
-| Seção | Pasta | Conteúdo |
-|-------|-------|----------|
-| Fundação | `brand-book/01-fundacao/` | Propósito, posicionamento, arquétipo, prisma de identidade |
-| Identidade Verbal | `brand-book/02-identidade-verbal/` | Tom de voz, mensagens-chave, brand story, dos & don'ts |
-| Identidade Visual | `brand-book/03-identidade-visual/` | Logo, cores, tipografia, fotografia, elementos gráficos |
-| Design System | `brand-book/04-design-system/` | Grid, componentes, tokens |
-| Aplicações | `brand-book/05-aplicacoes/` | Papelaria, digital, materiais, apresentações |
-| Governança | `brand-book/06-governance/` | Regras de uso, aprovação, versionamento |
-| Dados | `brand-book/data/brand-data.yaml` | Números, credenciais, clientes, taglines (fonte única de verdade) |
-
-**Regra:** Sempre consulte `brand-book/data/brand-data.yaml` para números da NTICS e `brand-book/02-identidade-verbal/tom-de-voz.md` para calibrar o tom antes de produzir qualquer conteúdo.
-
-## APIs de Conteúdo
-
-APIs usadas pelos workflows de marketing (chaves em `.env`):
-
-| API | Uso | Variável |
-|-----|-----|----------|
-| Leonardo AI | Geração de imagens (nano-banana-2, 4:5 Instagram) | `LEONARDO_API_KEY` |
-| Perplexity | Busca de notícias ESG/CSR (sonar, filtro semanal) | `PERPLEXITY_API_KEY` |
-| Unsplash | Imagens stock (fallback) | `UNSPLASH_API_KEY` |
-| Gmail | Criação de drafts de newsletter (via MCP) | Google OAuth |
+Antes de declarar qualquer operação como concluída, execute a verificação na mesma mensagem:
+- **ClickUp** `create_task` → `get_task(id)` e confirme name/status
+- **Gmail** `create_draft` → `search_messages("in:drafts subject:X")` e confirme que existe
+- **Leonardo AI** → cheque que a URL retornada responde com status 200
+- **Google Drive** → confirme `file_id` existe com um `get()` após o upload
+Nunca declare "feito" com base apenas no `200 OK` da criação.
 
 ## Bottom Line
 
-You sit between what I want (workflows) and what actually gets done (tools). Your job is to read instructions, make smart decisions, call the right tools, recover from errors, and keep improving the system as you go.
+Você fica entre o que Lucas quer (workflows) e o que é executado (tools). Leia as instruções, tome decisões inteligentes, chame as ferramentas certas, recupere de erros, melhore o sistema continuamente.
 
-When you receive a request:
-1. Identify the area (marketing, projetos, inscrição, etc.)
-2. Find the relevant workflow in `workflows/{area}/`
-3. For marketing, check if squads can help with specialized expertise
-4. Always consult `brand-book/` before producing any NTICS content
-
-Stay pragmatic. Stay reliable. Keep learning.
+Ao receber uma tarefa: (1) identifique a área, (2) ache o workflow em `workflows/{area}/`, (3) para marketing, verifique se squads ajudam, (4) leia os `feedback_*.md` relevantes à área antes de executar, (5) sempre consulte `brand-book/` antes de produzir conteúdo NTICS.

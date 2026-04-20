@@ -19,14 +19,87 @@
 - 3.2 Devolutivas governamentais (produtos MINC, evidências, acessibilidade)
 
 ### 4) Engajamento
-- 4.1 Local (governança, porta de entrada, território, logística)
-- 4.2 Para atividades (público, acesso, mobilização, pré-engajamento)
-- 4.3 Voluntariado patrocinador
-- 4.4 Território sensível
+
+#### 4.1 Classificação
+- Tipo: □ Interno (escola/público cativo) □ Externo (público aberto, inscrição voluntária) □ Misto
+- Se externo/misto → §4.4 é obrigatório
+- Território sensível: □ Sim □ Não → se sim, §4.6
+
+#### 4.2 Governança e acesso local
+- Porta de entrada institucional (Secretaria, ONG âncora, liderança)
+- Modelo de articulação com poder público
+- Logística de acesso ao território
+
+#### 4.3 Mobilização em território (presencial)
+- Associações locais e ONGs parceiras — quem, papel, contrapartida
+- Lideranças comunitárias — mapeamento e abordagem
+- Mobilizadores em campo — quantos, região, cronograma
+
+#### 4.4 Engajamento externo — plano de captação de público
+*(OBRIGATÓRIO quando há atividade aberta com inscrição voluntária)*
+
+**Canais**
+- WhatsApp: grupos, listas, ponto focal por grupo
+- Indicações via lideranças/ONGs (ver §4.3)
+- Redes NTICS + patrocinador (impulsionamento orgânico)
+- Impulsionamento pago: □ Sim □ Não | Verba: R$ ___ | Responsável: ___
+
+**Peças EXTRAS obrigatórias de engajamento**
+*(Não substituem a grade padrão de §5 — produção adicional a ser orçada)*
+
+| Peça | Formato | Quando | Uso |
+|------|---------|--------|-----|
+| Vídeo impulsionamento **PRÉ-atividade** | Vertical/reels | Antes da inscrição | Gancho de inscrição (redes + WhatsApp) |
+| Vídeo impulsionamento **DURANTE** | Vertical/reels | Após 1ª sessão (ou ao iniciar ciclo) | Imagens reais → puxa mais público |
+| **Imagem-convite WhatsApp** | Quadrado/vertical | Antes de cada ciclo | Envio direto em grupos |
+| Card de inscrição | Feed/story | Antes da inscrição | Link/QR da inscrição |
+
+> **Oficinas com múltiplos ciclos** (ex.: mensais durante vários meses): vídeo DURANTE pode ser refeito a cada ciclo para renovar gancho. Definir cadência aqui.
+
+**Conclusão da fase de engajamento** = gatilho para oficialização da grade de postagens (ver §5.5).
+
+#### 4.5 Voluntariado patrocinador
+
+#### 4.6 Território sensível
 
 ### 5) Comunicação
-- 5.1 Materiais de comunicação (régua, camiseta, rollup, banner, site, posts, carrossel, relatório)
-- 5.2 Materiais audiovisual (vídeo pré, durante, resultados)
+
+> Toda comunicação de redes sociais segue a **Diretriz de Matérias para Redes Sociais** (ClickUp doc `8cje8p1-19631`). A grade padrão de 6 peças não é alterável; o TAP registra sua aplicação ao projeto.
+
+#### 5.1 Materiais gráficos e de produção
+*(régua visual, camiseta, rollup, banner, exposição, kit, premiação…)*
+- Lista por atividade, quantidade, prazo de produção
+
+#### 5.2 Grade padrão de redes sociais — aplicação ao projeto
+
+| Fase | Peça | Formato | Projeto todo | Por cidade (multi-cidade) |
+|------|------|---------|--------------|---------------------------|
+| Pré | Vídeo apresentação ("projeto chegando na cidade") | **Vertical/reels** | 1 total | — |
+| Pré | Carrossel informativo | Feed | 1 total | — |
+| Durante | Vídeo cobertura ("acontecendo") | **Vertical/reels** | — | **1 por cidade** (compilado) |
+| Durante | Carrossel editorial (destaques + depoimentos) | Feed | — | 1 por cidade |
+| Pós | Vídeo case final (impacto, indicadores, depoimentos) | **Horizontal, 2-3 min** | 1 total | — |
+| Pós | Carrossel encerramento (números + fotos + narrativa) | Feed | 1 total | — |
+
+> Quantidade final confirmada após negociação com editor, designer e budget.
+
+#### 5.3 Peças extras de engajamento
+→ Ver §4.4. Produção e aprovação seguem o mesmo fluxo da grade padrão.
+
+#### 5.4 Diretrizes com patrocinador *(definidas no kickoff)*
+- Modalidade de postagem: □ **Collab (default para vídeo pré)** □ Marca/menção □ Repost
+- Identidade visual: □ Cores/KV do patrocinador (default) □ Outro: ___
+- Hashtags obrigatórias: ___
+- Prazos de revisão patrocinador *(conforme diretriz)*: pré/pós = **7 dias** | durante = **3 dias**
+- Fluxo de aprovação interno: Coordenador + Responsável Comunicação NTICS (ambos obrigatórios)
+- Restrições do patrocinador: ___
+
+#### 5.5 Cronograma-base de postagens
+- Estrutura inicial por fase no TAP (sem datas fechadas)
+- **Gatilho para datas finais:** oficialização da grade do projeto + conclusão da fase de engajamento (§4.4)
+- Ao gatilhar, setar simultaneamente as 4 datas por peça: briefing, produção, aprovação, postagem
+- Prazo mínimo aprovação → postagem: 1 dia
+- Responsável pelo calendário: Head de Comunicação NTICS
 
 ### 6) Indicadores
 - 6.1 Gerais NTICS (obrigatórios): diretos, indiretos, alcance, perfil, satisfação, NPS

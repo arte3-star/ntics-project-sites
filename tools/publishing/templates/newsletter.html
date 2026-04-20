@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="color-scheme" content="light dark">
+  <title>{{ newsletter_name }} | {{ edition }}</title>
+  <style>
+    body, table, td, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+    table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
+    img { -ms-interpolation-mode: bicubic; border: 0; height: auto; line-height: 100%; outline: none; text-decoration: none; }
+    body { margin: 0; padding: 0; width: 100% !important; background-color: #F4F4F4; font-family: Arial, Helvetica, sans-serif; }
+    @media (prefers-color-scheme: dark) {
+      .dark-bg { background-color: #1a1a1a !important; }
+      .dark-card { background-color: #2D2D2D !important; }
+      .dark-text { color: #E4E2E1 !important; }
+    }
+    @media only screen and (max-width: 620px) {
+      .container { width: 100% !important; padding: 0 12px !important; }
+      .section-padding { padding-left: 16px !important; padding-right: 16px !important; }
+      .mobile-hide { display: none !important; }
+      .mobile-stack { display: block !important; width: 100% !important; }
+      .news-img { width: 100% !important; height: auto !important; border-radius: 10px 10px 0 0 !important; }
+      .news-text { padding: 14px !important; }
+      .stat-card { display: block !important; width: 100% !important; margin-bottom: 8px !important; }
+      .horiz-img { width: 100% !important; height: auto !important; border-radius: 10px 10px 0 0 !important; }
+      .horiz-text { display: block !important; width: 100% !important; }
+    }
+  </style>
+</head>
+<body style="margin: 0; padding: 0; background-color: #F4F4F4; font-family: Arial, Helvetica, sans-serif;">
+
+<!-- Preheader (hidden) -->
+<div style="display: none; max-height: 0; overflow: hidden; mso-hide: all;">
+  {{ preheader_text }}
+</div>
+
+<table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="background-color: #F4F4F4;">
+<tr><td align="center" style="padding: 24px 0;">
+
+<table role="presentation" cellpadding="0" cellspacing="0" width="600" class="container" style="max-width: 600px; width: 100%;">
+
+  <!-- ========== HEADER ========== -->
+  <tr>
+    <td style="background-color: #005F73; border-radius: 12px 12px 0 0;">
+      <table role="presentation" cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+          <td style="padding: 28px 32px;">
+            <table role="presentation" cellpadding="0" cellspacing="0" width="100%"><tr>
+              <td style="vertical-align: middle; width: 50%;">
+                <a href="https://ntics.com.br" style="text-decoration: none;">
+                  <img src="{{ logo_url }}" alt="NTICS Projetos" width="140" style="display: block; max-width: 140px; height: auto;" />
+                </a>
+              </td>
+              <td style="vertical-align: middle; text-align: right;">
+                <span style="font-family: Arial, Helvetica, sans-serif; font-size: 26px; font-weight: bold; color: #FFFFFF; line-height: 30px; display: block;">{{ newsletter_name }}</span>
+                <span style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; color: rgba(255,255,255,0.6); display: block; margin-top: 3px;">{{ tagline }}</span>
+              </td>
+            </tr></table>
+          </td>
+        </tr>
+        <!-- Barra 6 cores -->
+        <tr>
+          <td style="font-size: 0; line-height: 0;">
+            <table role="presentation" cellpadding="0" cellspacing="0" width="100%"><tr>
+              <td style="width: 16.66%; height: 6px; background-color: #3DAA35;"></td>
+              <td style="width: 16.66%; height: 6px; background-color: #00A5B8;"></td>
+              <td style="width: 16.66%; height: 6px; background-color: #005F73;"></td>
+              <td style="width: 16.66%; height: 6px; background-color: #D41A6A;"></td>
+              <td style="width: 16.66%; height: 6px; background-color: #E86428;"></td>
+              <td style="width: 16.70%; height: 6px; background-color: #F5B800;"></td>
+            </tr></table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+
+  <!-- ========== EDITION BADGE ========== -->
+  <tr>
+    <td style="background-color: #FFFFFF; padding: 20px 32px 0 32px;">
+      <table role="presentation" cellpadding="0" cellspacing="0" width="100%"><tr>
+        <td><span style="font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; color: #6B7280; letter-spacing: 2px; text-transform: uppercase;">NEWSLETTER {{ periodicidade | upper }}</span></td>
+        <td style="text-align: right;"><span style="font-family: Arial, sans-serif; font-size: 11px; color: #6B7280;">{{ edition }}</span></td>
+      </tr></table>
+    </td>
+  </tr>
+
+  <!-- ========== ARTIGO DESTAQUE ========== -->
+  {% if article and article.title %}
+  <tr>
+    <td style="background-color: #FFFFFF; padding: 20px 32px 32px 32px;" class="section-padding">
+      <table role="presentation" cellpadding="0" cellspacing="0" width="100%">
+        <tr><td style="padding-bottom: 14px;">
+          <span style="background-color: #3DAA35; padding: 4px 12px; border-radius: 4px; font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; color: #FFFFFF; letter-spacing: 1px; text-transform: uppercase;">{% if periodicidade == 'mensal' %}Artigo do M&ecirc;s{% else %}Artigo da Semana{% endif %}</span>
+        </td></tr>
+      </table>
+      <table role="presentation" cellpadding="0" cellspacing="0" width="100%">
+        {% if article.image_url %}
+        <tr><td style="padding-bottom: 16px;">
+          <a href="{{ article.url }}" style="text-decoration: none;">
+            <img src="{{ article.image_url }}" alt="{{ article.title }}" width="536" style="display: block; width: 100%; height: auto; border-radius: 12px;" />
+          </a>
+        </td></tr>
+        {% endif %}
+        {% if article.category %}
+        <tr><td style="padding-bottom: 6px;">
+          <span style="font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; color: #00A5B8; letter-spacing: 2px; text-transform: uppercase;">{{ article.category }}</span>
+        </td></tr>
+        {% endif %}
+        <tr><td style="padding-bottom: 10px;">
+          <a href="{{ article.url }}" style="text-decoration: none;">
+            <span style="font-family: Arial, sans-serif; font-size: 22px; font-weight: bold; color: #2D2D2D; line-height: 30px;">{{ article.title }}</span>
+          </a>
+        </td></tr>
+        <tr><td>
+          <p style="font-family: Arial, sans-serif; font-size: 15px; line-height: 24px; color: #2D2D2D; margin: 0 0 12px 0;">{{ article.excerpt }}</p>
+          {% if article.author or article.read_time %}
+          <span style="font-family: Arial, sans-serif; font-size: 12px; color: #6B7280;">{% if article.read_time %}{{ article.read_time }} de leitura{% endif %}{% if article.author and article.read_time %} &middot; {% endif %}{% if article.author %}Por {{ article.author }}{% endif %}</span>
+          {% endif %}
+        </td></tr>
+        <tr><td style="padding-top: 16px;">
+          <table role="presentation" cellpadding="0" cellspacing="0"><tr>
+            <td style="background-color: #3DAA35; border-radius: 8px;">
+              <a href="{{ article.url }}" style="font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; color: #FFFFFF; text-decoration: none; display: inline-block; padding: 12px 24px;">Ler artigo completo &rarr;</a>
+            </td>
+          </tr></table>
+        </td></tr>
+      </table>
+    </td>
+  </tr>
+  {% endif %}
+
+  <tr><td style="height: 2px; background-color: #F4F4F4;"></td></tr>
+
+  <!-- ========== PROJETOS DA NTICS EM CAMPO ========== -->
+  {% if projetos_ctx and projetos_ctx.visible %}
+  <tr>
+    <td style="background-color: #FFFFFF; padding: 28px 32px 32px 32px;" class="section-padding">
+      <table role="presentation" cellpadding="0" cellspacing="0" width="100%">
+        <tr><td style="padding-bottom: 6px;">
+          <span style="font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; color: #005F73; letter-spacing: 2px; text-transform: uppercase;">Em Campo Agora</span>
+        </td></tr>
+        <tr><td style="padding-bottom: 20px;">
+          <span style="font-family: Arial, sans-serif; font-size: 22px; font-weight: bold; color: #2D2D2D;">Projetos da NTICS em campo</span>
+        </td></tr>
+      </table>
+
+      {% for p in projetos_ctx.visible %}
+      <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="background-color: #FAFAFA; border-radius: 12px; margin-bottom: 16px; overflow: hidden; border: 1px solid #E4E2E1;">
+        {% if p.photo_url or p.kv_url %}
+        <tr>
+          <td style="padding: 0; line-height: 0; position: relative;">
+            <img src="{{ p.photo_url or p.kv_url }}" alt="{{ p.project_short_name }}" width="536" class="news-img" style="display: block; width: 100%; height: auto; max-height: 280px; object-fit: cover; border-radius: 12px 12px 0 0;" />
+          </td>
+        </tr>
+        {% endif %}
+        <tr>
+          <td style="padding: 20px 22px 22px; border-left: 3px solid {{ p.accent_color|default('#005F73') }};">
+            {% if p.sponsors %}
+            <span style="display: inline-block; background-color: {{ p.accent_color|default('#005F73') }}; color: #FFFFFF; font-family: Arial, sans-serif; font-size: 10px; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; padding: 3px 10px; border-radius: 4px; margin-bottom: 10px;">{{ p.sponsors | map(attribute='name') | join(' + ') }}</span>
+            {% endif %}
+            <p style="margin: 0 0 12px; font-family: Arial, sans-serif; font-size: 18px; font-weight: bold; color: #2D2D2D; line-height: 1.3;">{{ p.project_short_name }}</p>
+            {% if p.editorial_text %}
+            <p style="margin: 0 0 14px; font-family: Arial, sans-serif; font-size: 14px; color: #2D2D2D; line-height: 1.6;">{{ p.editorial_text }}</p>
+            {% endif %}
+            <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="border-top: 1px solid #E4E2E1; padding-top: 10px;"><tr>
+              <td style="font-family: Arial, sans-serif; font-size: 12px; color: #6B7280;">
+                {% if p.cities %}{{ p.cities | map(attribute='name') | join(' &middot; ') }}{% endif %}
+              </td>
+              {% if p.start_date_br %}
+              <td style="text-align: right; font-family: Arial, sans-serif; font-size: 12px; font-weight: bold; color: #005F73;">In&iacute;cio: {{ p.start_date_br }}</td>
+              {% endif %}
+            </tr></table>
+          </td>
+        </tr>
+      </table>
+      {% endfor %}
+
+      {% if projetos_ctx.extra_count and projetos_ctx.extra_count > 0 %}
+      <p style="margin: 14px 0 0; font-family: Arial, sans-serif; font-size: 13px; color: #005F73; text-align: center;">+{{ projetos_ctx.extra_count }} outros em execu&ccedil;&atilde;o</p>
+      {% endif %}
+    </td>
+  </tr>
+
+  <tr><td style="height: 2px; background-color: #F4F4F4;"></td></tr>
+  {% endif %}
+
+  <!-- ========== CTA DE VENDAS (apos projetos do mes) ========== -->
+  <tr>
+    <td style="background-color: #005F73; padding: 32px; text-align: center;">
+      <span style="font-family: Arial, sans-serif; font-size: 20px; font-weight: bold; color: #FFFFFF;">Quer transformar o impacto da sua empresa?</span><br>
+      <span style="font-family: Arial, sans-serif; font-size: 13px; color: rgba(255,255,255,0.7); display: block; margin-top: 6px;">22 anos de experi&ecirc;ncia em projetos com resultados mensur&aacute;veis.</span>
+      <table role="presentation" cellpadding="0" cellspacing="0" align="center" style="margin-top: 20px;"><tr>
+        <td style="background-color: #E86428; border-radius: 8px;">
+          <a href="https://ntics.com.br/fale-com-a-ntics/" style="font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; color: #FFFFFF; text-decoration: none; display: inline-block; padding: 12px 28px;">Agendar conversa &rarr;</a>
+        </td>
+      </tr></table>
+    </td>
+  </tr>
+
+  <tr><td style="height: 2px; background-color: #F4F4F4;"></td></tr>
+
+  <!-- ========== STAT DA SEMANA (hero, legacy) ========== -->
+  {% if stat_of_week and stat_of_week.number and stat_of_week.number != '—' %}
+  <tr>
+    <td style="background-color: #FFFFFF; padding: 32px 32px;" class="section-padding">
+      <p style="margin: 0 0 12px; font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; color: #E86428;">Destaque da Semana</p>
+      <table role="presentation" cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+          <td style="border-left: 4px solid #E86428; padding-left: 20px;">
+            <p style="margin: 0 0 8px; font-family: Arial, sans-serif; font-size: 48px; font-weight: 900; color: #005F73; line-height: 1; letter-spacing: -2px;">{{ stat_of_week.number }}</p>
+            <p style="margin: 0 0 12px; font-family: Arial, sans-serif; font-size: 18px; font-weight: 600; color: #2D2D2D; line-height: 1.4;">{{ stat_of_week.label }}</p>
+            <p style="margin: 0; font-family: Arial, sans-serif; font-size: 13px; color: #6B7280;">Fonte: <a href="{{ stat_of_week.source_url }}" style="color: #00A5B8; text-decoration: none;">{{ stat_of_week.source }}</a></p>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+
+  <tr><td style="height: 2px; background-color: #F4F4F4;"></td></tr>
+  {% endif %}
+
+  <!-- ========== BOAS NOTICIAS (reduzida: lista compacta) ========== -->
+  {% if noticias %}
+  <tr>
+    <td style="background-color: #FFFFFF; padding: 24px 32px 28px 32px;" class="section-padding">
+      <table role="presentation" cellpadding="0" cellspacing="0" width="100%">
+        <tr><td style="padding-bottom: 4px;">
+          <span style="font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; color: #F5B800; letter-spacing: 2px; text-transform: uppercase;">Boas Not&iacute;cias do Mundo</span>
+        </td></tr>
+        <tr><td style="padding-bottom: 14px;">
+          <span style="font-family: Arial, sans-serif; font-size: 18px; font-weight: bold; color: #2D2D2D;">R&aacute;pidas para voc&ecirc; se inspirar</span>
+        </td></tr>
+      </table>
+
+      {% set news_colors = ['#3DAA35', '#00A5B8', '#D41A6A'] %}
+      {% for n in noticias[:3] %}
+      <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: {% if not loop.last %}8px{% else %}0{% endif %};">
+        <tr>
+          <td style="vertical-align: top; padding: 10px 14px; background-color: #FAFAFA; border-left: 3px solid {{ news_colors[loop.index0] }}; border-radius: 6px;">
+            {% if n.source %}
+            <span style="font-family: Arial, sans-serif; font-size: 10px; font-weight: bold; color: {{ news_colors[loop.index0] }}; letter-spacing: 1px; text-transform: uppercase;">{{ n.source }}</span>
+            {% endif %}
+            <p style="margin: 3px 0 4px; font-family: Arial, sans-serif; font-size: 13px; font-weight: bold; color: #2D2D2D; line-height: 1.35;">
+              <a href="{{ n.url }}" style="color: #2D2D2D; text-decoration: none;">{{ n.title }}</a>
+            </p>
+            {% if n.summary %}
+            <p style="margin: 0; font-family: Arial, sans-serif; font-size: 12px; color: #6B7280; line-height: 1.45;">{{ n.summary }}</p>
+            {% endif %}
+          </td>
+        </tr>
+      </table>
+      {% endfor %}
+    </td>
+  </tr>
+
+  <tr><td style="height: 2px; background-color: #F4F4F4;"></td></tr>
+  {% endif %}
+
+  <!-- ========== WINS (legacy story-based format) ========== -->
+  {% if wins_environment or wins_social or wins_governance %}
+  <tr>
+    <td style="background-color: #FFFFFF; padding: 28px 32px 32px 32px;" class="section-padding">
+      <table role="presentation" cellpadding="0" cellspacing="0" width="100%">
+        <tr><td style="padding-bottom: 6px;">
+          <span style="font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; color: #F5B800; letter-spacing: 2px; text-transform: uppercase;">Boas Not&iacute;cias do Mundo</span>
+        </td></tr>
+        <tr><td style="padding-bottom: 20px;">
+          <span style="font-family: Arial, sans-serif; font-size: 20px; font-weight: bold; color: #2D2D2D;">Not&iacute;cias que inspiram</span>
+        </td></tr>
+      </table>
+
+      {% if wins_environment %}
+      <p style="margin: 0 0 12px; font-family: Arial, sans-serif; font-size: 12px; font-weight: bold; color: #3DAA35; text-transform: uppercase; letter-spacing: 1px; border-bottom: 2px solid #D6F0C5; padding-bottom: 8px;">Meio Ambiente</p>
+      {% for story in wins_environment %}
+      <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="background-color: #F6FBF2; border-radius: 8px; border: 1px solid #D6F0C5; margin-bottom: 10px; overflow: hidden;">
+        {% if story.image_url %}
+        <tr><td style="padding: 0; line-height: 0;"><img src="{{ story.image_url }}" alt="{{ story.title }}" width="536" style="width: 100%; max-width: 536px; height: 180px; object-fit: cover; display: block; border-radius: 8px 8px 0 0;" /></td></tr>
+        {% endif %}
+        <tr><td style="padding: 16px 18px;">
+          {% if story.company %}<p style="margin: 0 0 4px; font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; color: #3DAA35; text-transform: uppercase; letter-spacing: 0.5px;">{{ story.company }}</p>{% endif %}
+          <p style="margin: 0 0 6px; font-family: Arial, sans-serif; font-size: 14px; font-weight: 600; color: #2D2D2D; line-height: 1.3;">{{ story.title }}</p>
+          <p style="margin: 0 0 8px; font-family: Arial, sans-serif; font-size: 13px; color: #555; line-height: 1.5;">{{ story.summary }}</p>
+          {% if story.headline_stat %}<span style="font-family: Arial, sans-serif; font-size: 12px; font-weight: bold; color: #155724; background-color: #D4EDDA; display: inline-block; padding: 3px 8px; border-radius: 4px;">{{ story.headline_stat }}</span>{% endif %}
+          <a href="{{ story.url }}" style="font-family: Arial, sans-serif; font-size: 12px; color: #3DAA35; text-decoration: none; font-weight: 600; display: inline-block; margin-top: 8px;">Ler &rarr;</a>
+        </td></tr>
+      </table>
+      {% endfor %}
+      {% endif %}
+
+      {% if wins_social %}
+      <p style="margin: 16px 0 12px; font-family: Arial, sans-serif; font-size: 12px; font-weight: bold; color: #005F73; text-transform: uppercase; letter-spacing: 1px; border-bottom: 2px solid #CCE5FF; padding-bottom: 8px;">Social</p>
+      {% for story in wins_social %}
+      <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="background-color: #F0F6FF; border-radius: 8px; border: 1px solid #CCE5FF; margin-bottom: 10px; overflow: hidden;">
+        {% if story.image_url %}
+        <tr><td style="padding: 0; line-height: 0;"><img src="{{ story.image_url }}" alt="{{ story.title }}" width="536" style="width: 100%; max-width: 536px; height: 180px; object-fit: cover; display: block; border-radius: 8px 8px 0 0;" /></td></tr>
+        {% endif %}
+        <tr><td style="padding: 16px 18px;">
+          {% if story.company %}<p style="margin: 0 0 4px; font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; color: #005F73; text-transform: uppercase; letter-spacing: 0.5px;">{{ story.company }}</p>{% endif %}
+          <p style="margin: 0 0 6px; font-family: Arial, sans-serif; font-size: 14px; font-weight: 600; color: #2D2D2D; line-height: 1.3;">{{ story.title }}</p>
+          <p style="margin: 0 0 8px; font-family: Arial, sans-serif; font-size: 13px; color: #555; line-height: 1.5;">{{ story.summary }}</p>
+          {% if story.headline_stat %}<span style="font-family: Arial, sans-serif; font-size: 12px; font-weight: bold; color: #005F73; background-color: #CCE5FF; display: inline-block; padding: 3px 8px; border-radius: 4px;">{{ story.headline_stat }}</span>{% endif %}
+          <a href="{{ story.url }}" style="font-family: Arial, sans-serif; font-size: 12px; color: #005F73; text-decoration: none; font-weight: 600; display: inline-block; margin-top: 8px;">Ler &rarr;</a>
+        </td></tr>
+      </table>
+      {% endfor %}
+      {% endif %}
+
+      {% if wins_governance %}
+      <p style="margin: 16px 0 12px; font-family: Arial, sans-serif; font-size: 12px; font-weight: bold; color: #6B2D7B; text-transform: uppercase; letter-spacing: 1px; border-bottom: 2px solid #E2D9F3; padding-bottom: 8px;">Governan&ccedil;a</p>
+      {% for story in wins_governance %}
+      <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="background-color: #FAF7FF; border-radius: 8px; border: 1px solid #E2D9F3; margin-bottom: 10px; overflow: hidden;">
+        {% if story.image_url %}
+        <tr><td style="padding: 0; line-height: 0;"><img src="{{ story.image_url }}" alt="{{ story.title }}" width="536" style="width: 100%; max-width: 536px; height: 180px; object-fit: cover; display: block; border-radius: 8px 8px 0 0;" /></td></tr>
+        {% endif %}
+        <tr><td style="padding: 16px 18px;">
+          {% if story.company %}<p style="margin: 0 0 4px; font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; color: #6B2D7B; text-transform: uppercase; letter-spacing: 0.5px;">{{ story.company }}</p>{% endif %}
+          <p style="margin: 0 0 6px; font-family: Arial, sans-serif; font-size: 14px; font-weight: 600; color: #2D2D2D; line-height: 1.3;">{{ story.title }}</p>
+          <p style="margin: 0 0 8px; font-family: Arial, sans-serif; font-size: 13px; color: #555; line-height: 1.5;">{{ story.summary }}</p>
+          {% if story.headline_stat %}<span style="font-family: Arial, sans-serif; font-size: 12px; font-weight: bold; color: #6B2D7B; background-color: #E2D9F3; display: inline-block; padding: 3px 8px; border-radius: 4px;">{{ story.headline_stat }}</span>{% endif %}
+          <a href="{{ story.url }}" style="font-family: Arial, sans-serif; font-size: 12px; color: #6B2D7B; text-decoration: none; font-weight: 600; display: inline-block; margin-top: 8px;">Ler &rarr;</a>
+        </td></tr>
+      </table>
+      {% endfor %}
+      {% endif %}
+    </td>
+  </tr>
+
+  <tr><td style="height: 2px; background-color: #F4F4F4;"></td></tr>
+  {% endif %}
+
+  <!-- ========== TENDENCIAS (trend_watch) ========== -->
+  {% if trend_watch %}
+  <tr>
+    <td style="background-color: #FFFFFF; padding: 28px 32px;" class="section-padding">
+      <p style="margin: 0 0 16px; font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; color: #00A5B8;">Tend&ecirc;ncias</p>
+      <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="background-color: #F4F4F4; border-radius: 10px;">
+        <tr><td style="padding: 24px 28px;">
+          <p style="margin: 0; font-family: Arial, sans-serif; font-size: 15px; color: #2D2D2D; line-height: 1.7;">{{ trend_watch }}</p>
+        </td></tr>
+      </table>
+    </td>
+  </tr>
+
+  <tr><td style="height: 2px; background-color: #F4F4F4;"></td></tr>
+  {% endif %}
+
+  <!-- ========== FOOTER COMPACTO ========== -->
+  <tr>
+    <td style="background-color: #2D2D2D; padding: 24px 32px; border-radius: 0 0 12px 12px;">
+      <table role="presentation" cellpadding="0" cellspacing="0" width="100%">
+        <!-- Linha 1: Logo + social icons -->
+        <tr>
+          <td style="vertical-align: middle;">
+            <a href="https://ntics.com.br" style="text-decoration: none;">
+              <img src="{{ logo_url }}" alt="NTICS Projetos" width="100" style="display: block; max-width: 100px; height: auto;" />
+            </a>
+          </td>
+          <td style="text-align: right; vertical-align: middle;">
+            <a href="https://www.instagram.com/nticsprojetos" style="text-decoration: none; margin-left: 8px;"><img src="https://cdn2.iconfinder.com/data/icons/social-media-2285/512/1_Instagram_colored_svg_1-128.png" alt="IG" width="28" height="28" style="border: 0; border-radius: 6px; vertical-align: middle;" /></a>
+            <a href="https://www.linkedin.com/company/nticsprojetos" style="text-decoration: none; margin-left: 8px;"><img src="https://cdn2.iconfinder.com/data/icons/social-media-2285/512/1_Linkedin_unofficial_colored_svg-128.png" alt="LI" width="28" height="28" style="border: 0; border-radius: 6px; vertical-align: middle;" /></a>
+            <a href="https://www.youtube.com/@nticsprojetos/featured" style="text-decoration: none; margin-left: 8px;"><img src="https://cdn2.iconfinder.com/data/icons/social-media-2285/512/1_Youtube_colored_svg-128.png" alt="YT" width="28" height="28" style="border: 0; border-radius: 6px; vertical-align: middle;" /></a>
+            <a href="https://www.facebook.com/nticsprojetoss" style="text-decoration: none; margin-left: 8px;"><img src="https://cdn2.iconfinder.com/data/icons/social-media-2285/512/1_Facebook_colored_svg_copy-128.png" alt="FB" width="28" height="28" style="border: 0; border-radius: 6px; vertical-align: middle;" /></a>
+          </td>
+        </tr>
+        <!-- Linha 2: Links + email -->
+        <tr>
+          <td colspan="2" style="padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.1);">
+            <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="margin-top: 10px;"><tr>
+              <td>
+                <a href="https://ntics.com.br/pilar-desenvolvimento-sustentavel/" style="font-family: Arial, sans-serif; font-size: 11px; color: rgba(255,255,255,0.5); text-decoration: none;">Projetos</a>
+                <span style="color: rgba(255,255,255,0.2);"> &bull; </span>
+                <a href="https://ntics.com.br/equipe-ntics/" style="font-family: Arial, sans-serif; font-size: 11px; color: rgba(255,255,255,0.5); text-decoration: none;">Equipe</a>
+                <span style="color: rgba(255,255,255,0.2);"> &bull; </span>
+                <a href="https://ntics.com.br/notes" style="font-family: Arial, sans-serif; font-size: 11px; color: rgba(255,255,255,0.5); text-decoration: none;">Notes</a>
+                <span style="color: rgba(255,255,255,0.2);"> &bull; </span>
+                <a href="https://ntics.com.br/relatorio" style="font-family: Arial, sans-serif; font-size: 11px; color: rgba(255,255,255,0.5); text-decoration: none;">Relat&oacute;rio</a>
+              </td>
+              <td style="text-align: right;">
+                <span style="font-family: Arial, sans-serif; font-size: 11px; color: rgba(255,255,255,0.4);">contato@ntics.com.br</span>
+              </td>
+            </tr></table>
+          </td>
+        </tr>
+        <!-- Linha 3: Copyright + unsubscribe -->
+        <tr>
+          <td colspan="2" style="text-align: center; padding-top: 10px;">
+            <span style="font-family: Arial, sans-serif; font-size: 10px; color: rgba(255,255,255,0.3);">
+              &copy; 2026 NTICS Projetos &mdash; (11) 3042-4023 &bull;
+              <a href="{{ unsubscribe_url }}" style="color: rgba(255,255,255,0.4); text-decoration: underline;">Descadastrar</a> &bull;
+              <a href="https://ntics.com.br/politica-de-privacidade-e-seguranca-de-dados/" style="color: rgba(255,255,255,0.4); text-decoration: underline;">Privacidade</a>
+            </span>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+
+</table>
+</td></tr>
+</table>
+</body>
+</html>

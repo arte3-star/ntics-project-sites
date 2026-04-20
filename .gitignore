@@ -1,6 +1,34 @@
+# Secrets
 .env
+.env.*
 credentials.json
 token.json
+token_*.json
+*.key
+*.pem
+.mcp.json
+
+# Caches e temporários
 .tmp/
+.cache/
+.agents/
 __pycache__/
 *.pyc
+node_modules/
+
+# Diretórios pesados ou regeneráveis (fora do repo)
+SB/
+assets/
+output/
+queue/
+SecondBrain/
+
+# Scratch / testes locais do site Negócio Cultural
+nc_*.html
+curso_*.json
+
+# Artefatos de build/lock
+skills-lock.json
+
+# Binários pesados específicos (arquivo >30MB)
+workflows/knowledge/salic/MANUAL DE REGISTRO IMAGENS*.pptx

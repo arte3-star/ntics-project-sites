@@ -1,1 +1,0 @@
-# Pending Atas\n\nPasta monitorada pelo trigger remoto Claude.\nMake commita atas aqui, o agente processa e deleta.

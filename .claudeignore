@@ -1,0 +1,8 @@
+# Diretórios temporários e build artifacts
+.tmp/
+node_modules/
+*.pyc
+__pycache__/
+
+# Arquivos grandes que não devem ser indexados
+*.jsonl

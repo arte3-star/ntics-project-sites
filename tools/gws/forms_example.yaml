@@ -1,0 +1,31 @@
+title: "Briefing de Projeto NTICS"
+description: "Preencha para iniciarmos o projeto. Leva cerca de 5 minutos."
+collect_email: true
+
+items:
+  - title: "Nome do projeto"
+    type: text
+    required: true
+
+  - title: "Descreva o objetivo em uma frase"
+    type: paragraph
+    required: true
+
+  - title: "Categoria"
+    type: radio
+    options: [Educação, Cultura, Sustentabilidade, Esporte]
+    required: true
+
+  - title: "Públicos atendidos"
+    type: checkbox
+    options: [Crianças, Jovens, Adultos, Idosos, Comunidades tradicionais]
+
+  - title: "Prioridade"
+    type: scale
+    low: 1
+    high: 5
+    low_label: Baixa
+    high_label: Alta
+
+  - title: "Data prevista de início"
+    type: date

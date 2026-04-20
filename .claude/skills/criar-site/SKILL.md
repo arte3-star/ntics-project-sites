@@ -23,7 +23,7 @@ Leia e execute o workflow completo em `workflows/escritorio-projetos/criar_site_
 
 | Ferramenta | Arquivo | Funcao |
 |-----------|---------|--------|
-| Gerador de sites | `tools/generate_project_site.py` | Renderiza HTML via Jinja2 + Tailwind |
+| Gerador de sites | `tools/publishing/generate_project_site.py` | Renderiza HTML via Jinja2 + Tailwind |
 | Template HTML | `tools/templates/project_site.html` | Template Jinja2 com design avancado |
 | Dados dos projetos | `.tmp/sites/projects_data.json` | JSON com dados de todos os projetos |
 

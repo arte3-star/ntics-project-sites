@@ -9,7 +9,15 @@
       "mcp__c1fc4002-5f49-5f9d-a4e5-93c4ef5d6a75__google_drive_search",
       "Bash(python tools/generate_project_site.py --data .tmp/sites/projects_data.json)",
       "Bash(start \"\" \"G:\\\\O meu disco\\\\AUTOMAÇÕES\\\\.tmp\\\\sites\\\\127_pie.html\")",
-      "Bash(PYTHONIOENCODING=utf-8 python tools/parse_salic_excel.py --input \"/c/Users/lucas/Downloads/grid_PlanilhaOrcamentaria_Homologada.xlsx\")"
+      "Bash(PYTHONIOENCODING=utf-8 python tools/parse_salic_excel.py --input \"/c/Users/lucas/Downloads/grid_PlanilhaOrcamentaria_Homologada.xlsx\")",
+      "mcp__5cef576d-bc98-4847-9b33-9ca9928ad708__clickup_update_task",
+      "mcp__5cef576d-bc98-4847-9b33-9ca9928ad708__clickup_add_tag_to_task",
+      "Bash(PYTHONIOENCODING=utf-8 python \"g:/O meu disco/AUTOMAÇÕES/tools/gws/gws_cli.py\" *)",
+      "Bash(export PATH=\"$PATH:/c/Users/lucas/AppData/Local/Google/Cloud SDK/google-cloud-sdk/bin\" && gcloud *)",
+      "Bash(date +%s)",
+      "Bash(rm -f \"/c/Users/lucas/.claude/.dream-pending\")",
+      "Bash(rm -f /c/Users/lucas/.claude/.dream-pending)",
+      "mcp__6cb631c3-0fb1-4cd3-98be-3f3398bbd9d0__list_events"
     ]
   }
 }

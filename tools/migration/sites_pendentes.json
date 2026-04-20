@@ -1,0 +1,110 @@
+[
+  {
+    "nome_planilha": "Teatro dos Bons Hábitos",
+    "rf_url": "https://24321761-1313206.renderforestsites.com/",
+    "numero_ntics": 86,
+    "nome_projeto": "TEATRO DOS BONS HÁBITOS",
+    "patrocinador": "FERROPORTE",
+    "folder_name": "86. TEATRO DOS BONS HÁBITOS (FERROPORTE)",
+    "slug_snake": "teatro_bons_habitos_ferroporte",
+    "subdomain": "teatro-dos-bons-habitos-ferroporte",
+    "lovable_name": "86 - Teatro dos Bons Hábitos (Ferroporte)",
+    "github_slug": "86_teatro_bons_habitos_ferroporte"
+  },
+  {
+    "nome_planilha": "Teatro e Oficinas Robótica nas Escolas 2ª Edição",
+    "rf_url": "https://24321761-1313178.renderforestsites.com/",
+    "numero_ntics": 106,
+    "nome_projeto": "TEATRO E OFICINA ROBÓTICA 2ªED",
+    "patrocinador": "CNH",
+    "folder_name": "106. TEATRO E OFICINA ROBÓTICA 2ªED (CNH)",
+    "slug_snake": "teatro_oficina_robotica_2aed_cnh",
+    "subdomain": "teatro-oficina-robotica-2aed-cnh",
+    "lovable_name": "106 - Teatro e Oficina Robótica 2ªED (CNH)",
+    "github_slug": "106_teatro_oficina_robotica_2aed_cnh"
+  },
+  {
+    "nome_planilha": "Exposição Culinária Sustentável",
+    "rf_url": "https://24321761-1316311.renderforestsites.com/",
+    "numero_ntics": 87,
+    "nome_projeto": "EXPOSIÇÃO CULINÁRIA SUSTENTÁVEL",
+    "patrocinador": "IMETAME",
+    "folder_name": "87. EXPOSIÇÃO CULINÁRIA SUSTENTÁVEL (IMETAME)",
+    "slug_snake": "exposicao_culinaria_sustentavel_imetame",
+    "subdomain": "exposicao-culinaria-sustentavel-imetame",
+    "lovable_name": "87 - Exposição Culinária Sustentável (Imetame)",
+    "github_slug": "87_exposicao_culinaria_sustentavel_imetame"
+  },
+  {
+    "nome_planilha": "Robótica Cultural nas Escolas",
+    "rf_url": "https://24321761-1313158.renderforestsites.com/",
+    "numero_ntics": 82,
+    "nome_projeto": "ROBÓTICA CULTURAL NAS ESCOLAS",
+    "patrocinador": "",
+    "folder_name": "82. ROBÓTICA CULTURAL NAS ESCOLAS",
+    "slug_snake": "robotica_cultural_nas_escolas",
+    "subdomain": "robotica-cultural-nas-escolas",
+    "lovable_name": "82 - Robótica Cultural nas Escolas",
+    "github_slug": "82_robotica_cultural_nas_escolas"
+  },
+  {
+    "nome_planilha": "Programa de Empreendedorismo e Cultura 3ª Edição",
+    "rf_url": "https://24321761-1319932.renderforestsites.com/",
+    "numero_ntics": 104,
+    "nome_projeto": "PROGRAMA DE EMPREENDEDORISMO E CULTURA 3ªED",
+    "patrocinador": "PORTO ITAPOÁ",
+    "folder_name": "104. PROGRAMA DE EMPREENDEDORISMO E CULTURA 3ªED (PORTO ITAPOÁ)",
+    "slug_snake": "pec_3aed_porto_itapoa",
+    "subdomain": "pec-3aed-porto-itapoa",
+    "lovable_name": "104 - PEC 3ªED (Porto Itapoá)",
+    "github_slug": "104_pec_3aed_porto_itapoa"
+  },
+  {
+    "nome_planilha": "Teatro dos ODS",
+    "rf_url": "https://24321761-1319948.renderforestsites.com/",
+    "numero_ntics": 91,
+    "nome_projeto": "TEATRO DOS ODS",
+    "patrocinador": "",
+    "folder_name": "91. TEATRO NAS ESCOLAS - ODS",
+    "slug_snake": "teatro_dos_ods",
+    "subdomain": "teatro-dos-ods",
+    "lovable_name": "91 - Teatro dos ODS",
+    "github_slug": "91_teatro_dos_ods"
+  },
+  {
+    "nome_planilha": "Oficina de Teatro Sustentável",
+    "rf_url": "https://24321761-1349929.renderforestsites.com/",
+    "numero_ntics": 89,
+    "nome_projeto": "OFICINA DE TEATRO SUSTENTÁVEL",
+    "patrocinador": "FERROPORT",
+    "folder_name": "89. OFICINA DE TEATRO SUSTENTÁVEL (FERROPORT)",
+    "slug_snake": "oficina_teatro_sustentavel_ferroport",
+    "subdomain": "oficina-teatro-sustentavel-ferroport",
+    "lovable_name": "89 - Oficina de Teatro Sustentável (Ferroport)",
+    "github_slug": "89_oficina_teatro_sustentavel_ferroport"
+  },
+  {
+    "nome_planilha": "Conhecendo os ODS",
+    "rf_url": "https://24321761-1349983.renderforestsites.com/",
+    "numero_ntics": 98,
+    "nome_projeto": "CONHECENDO OS ODS",
+    "patrocinador": "",
+    "folder_name": "98. CONHECENDO OS ODS",
+    "slug_snake": "conhecendo_os_ods",
+    "subdomain": "conhecendo-os-ods",
+    "lovable_name": "98 - Conhecendo os ODS",
+    "github_slug": "98_conhecendo_os_ods"
+  },
+  {
+    "nome_planilha": "Caminhão da Cultura e Sustentabilidade",
+    "rf_url": "https://24321761-1349959.renderforestsites.com/",
+    "numero_ntics": 110,
+    "nome_projeto": "CAMINHÃO DA CULTURA E SUSTENTABILIDADE",
+    "patrocinador": "JAEPEL",
+    "folder_name": "110. CAMINHÃO DA CULTURA E SUSTENTABILIDADE (JAEPEL)",
+    "slug_snake": "caminhao_cultura_sustentabilidade_jaepel",
+    "subdomain": "caminhao-cultura-sustentabilidade-jaepel",
+    "lovable_name": "110 - Caminhão da Cultura e Sustentabilidade (Jaepel)",
+    "github_slug": "110_caminhao_cultura_sustentabilidade_jaepel"
+  }
+]

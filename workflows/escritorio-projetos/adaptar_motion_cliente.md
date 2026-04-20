@@ -44,7 +44,7 @@ Perguntar ao usuário:
 
 **Modo 1: Adaptar + Renderizar (completo)**
 ```bash
-python tools/adapt_motion_aftereffects.py \
+python tools/adobe/adapt_motion_aftereffects.py \
   --project "C:/projetos/template.aep" \
   --comp "Main Comp" \
   --texts "Titulo>Projeto Statkraft" "Patrocinador>Statkraft Energias" "Data>Março 2026" \
@@ -56,7 +56,7 @@ python tools/adapt_motion_aftereffects.py \
 
 **Modo 2: Adaptar sem renderizar (só preparar)**
 ```bash
-python tools/adapt_motion_aftereffects.py \
+python tools/adobe/adapt_motion_aftereffects.py \
   --project "C:/projetos/template.aep" \
   --config .tmp/motion_config.json \
   --no-render \
@@ -65,7 +65,7 @@ python tools/adapt_motion_aftereffects.py \
 
 **Modo 3: Só renderizar (sem alterar)**
 ```bash
-python tools/adapt_motion_aftereffects.py \
+python tools/adobe/adapt_motion_aftereffects.py \
   --project "C:/projetos/projeto.aep" \
   --comp "Final" \
   --output .tmp/rendered/video.mp4 \
@@ -74,7 +74,7 @@ python tools/adapt_motion_aftereffects.py \
 
 **Modo 4: Renderizar com aerender (mais rápido, sem GUI)**
 ```bash
-python tools/adapt_motion_aftereffects.py \
+python tools/adobe/adapt_motion_aftereffects.py \
   --project "C:/projetos/template.aep" \
   --config .tmp/motion_config.json \
   --output .tmp/rendered/video.mp4 \
@@ -123,7 +123,7 @@ python tools/adapt_motion_aftereffects.py \
 - manifest.json com detalhes da operação
 
 ## Tools Utilizados
-- `tools/adapt_motion_aftereffects.py` → `tools/jsx/adapt_motion.jsx`
+- `tools/adobe/adapt_motion_aftereffects.py` → `tools/adobe/jsx/adapt_motion.jsx`
 - `aerender.exe` (render headless)
 
 ## Checklist de Qualidade
