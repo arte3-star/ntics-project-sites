@@ -8,6 +8,9 @@ token_*.json
 *.pem
 .mcp.json
 
+# Google Drive pollution
+desktop.ini
+
 # Caches e temporários
 .tmp/
 .cache/
