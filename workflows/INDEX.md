@@ -20,6 +20,8 @@ SOPs de planejamento, estruturação e gestão de projetos NTICS.
 | Criar Site do Projeto | `criar_site_projeto.md` | Site institucional no Lovable (briefing ClickUp + assets Drive + GitHub + Jinja2/Tailwind) |
 | Form de Indicadores | `form_indicadores_projeto.md` | Gera Google Form de coleta de indicadores a partir da seção 6 do TAP (KPIs NTICS + Quantitativos + Específicos + ODS) |
 | Email Calendário Social | `email_calendario_social.md` | Gera email para o cliente com calendário de postagens (carrosséis/reels/case) a partir de TAP + Plano + Releases + tasks ClickUp |
+| Relatório Diário PMO | `relatorio_diario_pmo.md` | `/relatorio-pmo` — dashboard diário (cron 8h): saúde por coordenador, atrasos, marcos, bloqueios, decisões pendentes |
+| Relatório Semanal PMO | `relatorio_semanal_pmo.md` | `/relatorio-pmo-semanal` — balanço semanal (sexta 16h): entregue na semana + planejado próxima sprint |
 | **KV Derivar Projeto** | `kv_derivar_projeto.md` | `/kv-derivar` — gera KV do projeto a partir do manual do cliente + biblioteca de 12 ícones via Leonardo AI |
 | **Arte Impressão CMYK** | `arte_impressao_cmyk.md` | `/arte-impressao-cmyk` — gera .AI + .PDF CMYK + .PNG para rollup, pantojet, wind banner, saia bancada, placa fotos, moldura espelho |
 | **Estampa Têxtil** | `estampa_textil.md` | `/estampa-textil` — gera arte para avental, dolma, camiseta, jaleco, capa corte cabelo com cores Pantone e mockup visual |
@@ -134,3 +136,48 @@ APIs usadas pelos workflows de marketing (chaves em `.env`):
 | Gmail | Criação de drafts de newsletter (via MCP) | Google OAuth |
 | Brevo | Campanhas de email marketing (newsletter em massa) | `BREVO_API_KEY` |
 | Serper | Busca de imagens reais via Google Images (newsletter) | `SERPER_API_KEY` |
+
+## Skills (`.claude/skills/`)
+
+Cada skill `/comando` referencia um SOP em `workflows/`. Lista das skills com workflow vinculado:
+
+| Comando | Skill | Workflow correspondente |
+|---------|-------|-------------------------|
+| `/plano-mensal` | `plano-mensal/` | `marketing/producao/plano_mensal.md` |
+| `/carrossel-noticias` (via skill base) | `carrossel-cliente/` | `marketing/producao/carrosseis/carrossel_projeto_ativo_cliente.md` |
+| `/carrossel-educativo` | `carrossel-educativo/` | `marketing/producao/carrosseis/carrossel_educativo.md` |
+| `/briefing-video` | `briefing-video/` | `marketing/producao/carrosseis/briefing_carrossel_video.md` |
+| `/revisao-carrossel` | `revisao-carrossel/` | `marketing/revisao/revisao_carrossel.md` |
+| `/post-instagram` | `post-instagram/` | `marketing/producao/posts/post-instagram.md` |
+| `/capa-leonardo` | `capa-leonardo/` | `marketing/referencia/leonardo_ai_core.md` (gramática visual) |
+| `/capa-video` | `capa-video/` | `marketing/producao/videos/capa_video.md` |
+| `/criar-landing-ntics` | `criar-landing-ntics/` | `marketing/referencia/criar_landing_ntics.md` |
+| `/criar-landing-preprojeto` | `criar-landing-preprojeto/` | `marketing/producao/landing_preprojeto_ntics.md` |
+| `/publicar-drive` | `publicar-drive/` | `marketing/publicar_drive.md` |
+| `/relatorio-pmo` | `relatorio-pmo/` | `escritorio-projetos/relatorio_diario_pmo.md` |
+| `/relatorio-pmo-semanal` | `relatorio-pmo-semanal/` | `escritorio-projetos/relatorio_semanal_pmo.md` |
+| `/projeto-status` | `projeto-status/` | (lê `projects/{slug}/state.yaml` + sync ClickUp) |
+| `/projeto-briefing` | `projeto-briefing/` | delega a skill de produção do plugin ntics-brain |
+| `/projeto-email` | `projeto-email/` | usa `projects/{slug}/stakeholders.yaml` |
+| `/projeto-avanca` | `projeto-avanca/` | atualiza state.yaml + comenta evidência ClickUp |
+| `/projeto-sync` | `projeto-sync/` | invoca `tools/sync/projeto_sync.py` |
+| `/projeto-salvar` | `projeto-salvar/` | append em `SecondBrain/projetos/{slug}/` |
+| `/projeto-registrar` | `projeto-registrar/` | append em `projects/{slug}/historico.md` |
+| `/criar-site` | `criar-site/` | `escritorio-projetos/criar_site_projeto.md` |
+| `/kv-derivar` | `kv-derivar/` | `escritorio-projetos/kv_derivar_projeto.md` |
+| `/arte-impressao-cmyk` | `arte-impressao-cmyk/` | `escritorio-projetos/arte_impressao_cmyk.md` |
+| `/estampa-textil` | `estampa-textil/` | `escritorio-projetos/estampa_textil.md` |
+| `/google-slides-template` | `google-slides-template/` | `marketing/producao/google_slides_template.md` |
+| `/revisao-arte-impressao` | `revisao-arte-impressao/` | `marketing/revisao/revisao_arte_impressao.md` |
+| `/adaptar-arte` | `adaptar-arte/` | `marketing/producao/adaptar_arte.md` |
+| `/motion-projeto` | `motion-projeto/` | `marketing/producao/motion_projeto.md` |
+| `/vetorizar` | `vetorizar/` | `marketing/producao/vetorizar_imagem.md` |
+| `/video-analysis` | `video-analysis/` | `escritorio-projetos/analise_edicao_video.md` |
+| `/salvar` | `salvar/` | grava no vault Obsidian (segundo cérebro) |
+| `/verificar` | `verificar/` | gate antes de declarar sucesso |
+| `/debug` | `debug/` | investigação 4-fases para falhas de tools/APIs |
+| `/design-briefing` | `design-briefing/` | gate de aprovação antes de gerar imagem |
+| `/editar-negocio-cultural` | `editar-negocio-cultural/` | edição WordPress + Tutor LMS via API |
+| `/editar-linkedin` | `editar-linkedin/` | edição perfil LinkedIn via Voyager API |
+| `/postar-linkedin` | `postar-linkedin/` | publicação LinkedIn via Playwright |
+| `/editar-site-web` | `editar-site-web/` | automação Playwright + Chrome CDP genérica |
