@@ -1,0 +1,54 @@
+{
+  "name": "ntics-brain",
+  "owner": {
+    "name": "NTICS Projetos",
+    "email": "lucas@sbsustainablebusiness.com"
+  },
+  "metadata": {
+    "description": "Brain NTICS: metodologia, skills e workflows para execucao de projetos CSR/ESG",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "ntics-brain",
+      "source": "./",
+      "description": "Skills e workflows para producao e coordenacao de projetos NTICS (carrosseis, posts, briefings, KV, impressos, sites)",
+      "version": "0.1.0",
+      "strict": false,
+      "author": {
+        "name": "Lucas Rotta",
+        "email": "lucas@sbsustainablebusiness.com"
+      },
+      "category": "productivity",
+      "keywords": ["ntics", "csr", "esg", "marketing", "carrossel", "leonardo-ai", "projetos-sociais"],
+      "skills": [
+        "./.claude/skills/carrossel-cliente",
+        "./.claude/skills/carrossel-educativo",
+        "./.claude/skills/briefing-video",
+        "./.claude/skills/post-instagram",
+        "./.claude/skills/plano-mensal",
+        "./.claude/skills/kv-derivar",
+        "./.claude/skills/arte-impressao-cmyk",
+        "./.claude/skills/estampa-textil",
+        "./.claude/skills/google-slides-template",
+        "./.claude/skills/criar-site",
+        "./.claude/skills/criar-landing-ntics",
+        "./.claude/skills/criar-landing-preprojeto",
+        "./.claude/skills/design-briefing",
+        "./.claude/skills/revisao-carrossel",
+        "./.claude/skills/revisao-arte-impressao",
+        "./.claude/skills/time-design",
+        "./.claude/skills/time-social",
+        "./.claude/skills/producao-completa",
+        "./.claude/skills/vetorizar",
+        "./.claude/skills/adaptar-arte",
+        "./.claude/skills/motion-projeto",
+        "./.claude/skills/video-analysis",
+        "./.claude/skills/video-postprod",
+        "./.claude/skills/salvar",
+        "./.claude/skills/verificar",
+        "./.claude/skills/debug"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+status: pendente-de-definicao
+observacao: >-
+  Orçamento específico do 132 não foi compartilhado nos materiais recebidos.
+  Ordem de grandeza esperada: dentro do PIIS Samarco (R$ 8M/ano total para investimento social voluntário).
+  Solicitar a Cíntia/Abilio o valor contratado e breakdown.
+
+rubricas:
+  - categoria: educadores
+    descricao: culinarista MG+ES, educadoras beleza MG+ES, palestrante trilha inicial
+    aprovado: null
+    realizado: null
+  - categoria: producao-local
+    descricao: 4 produtores (2 MG + 2 ES), fotógrafos MG+ES, editor video
+    aprovado: null
+    realizado: null
+  - categoria: plataforma-digital
+    descricao: dev Lovable + e-certificado.com
+    aprovado: null
+    realizado: null
+  - categoria: kits-participante
+    descricao: avental, touca, tábua, faca (culinária) + kits beleza
+    aprovado: null
+    realizado: null
+  - categoria: estrutura-campo
+    descricao: pantojet inflável, rollups (6), wind banner, saia bancada, placas fotos, camisetas equipe
+    aprovado: null
+    realizado: null
+  - categoria: comunicacao
+    descricao: produção de peças NTICS (KV, carrosseis, vídeos, certificados)
+    aprovado: null
+    realizado: null
+  - categoria: impressos-locais
+    descricao: convites, folhetos por cidade (gráfica/copiadora local)
+    aprovado: null
+    realizado: null
+
+planilha_drive: null   # link a inserir quando Samarco compartilhar
+
+pendencias:
+  - Solicitar a Cíntia/Abilio o valor total contratado
+  - Breakdown do PIIS por município (solicitar síntese PMISE 2024 junto)
+  - Link para planilha de orçamento/prestação de contas NTICS

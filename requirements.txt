@@ -3,6 +3,8 @@ jinja2>=3.1.0
 premailer>=3.10.0
 requests>=2.31.0
 python-dotenv>=1.0.0
+PyYAML>=6.0
+holidays>=0.45
 
 # Meeting transcript workflow
 anthropic>=0.49.0

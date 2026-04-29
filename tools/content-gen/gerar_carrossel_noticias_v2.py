@@ -21,6 +21,7 @@ Usage:
 """
 
 import argparse
+import hashlib
 import json
 import os
 import re
@@ -30,6 +31,7 @@ import time
 from pathlib import Path
 
 import requests
+import yaml
 from dotenv import load_dotenv
 from PIL import Image, ImageDraw, ImageFont
 
@@ -130,8 +132,31 @@ def coletar_historico():
 # FASE 1: PESQUISA DE NOTICIAS (PERPLEXITY)
 # ══════════════════════════════════════════════════════════════════════════════
 
+def carregar_clientes_ntics():
+    """Carrega mapa cliente->dominio de brand-book/data/clientes-newsroom.yaml.
+
+    Retorna lista de dicts com {nome, dominio, aliases} ou [] se arquivo nao existir.
+    """
+    yaml_path = Path("brand-book/data/clientes-newsroom.yaml")
+    if not yaml_path.exists():
+        print("  [CLIENTES] YAML nao encontrado, pulando priorizacao de cliente")
+        return []
+    try:
+        data = yaml.safe_load(yaml_path.read_text(encoding="utf-8"))
+        return data.get("clientes", []) or []
+    except Exception as e:
+        print(f"  [CLIENTES] Erro ao ler YAML: {e}")
+        return []
+
+
 def pesquisar_noticias(tematica=None, urls_excluir=None, titulos_excluir=None, fontes_excluir=None):
-    """Busca 7 noticias ESG via Serper /news (URLs reais verificadas) + Claude para redigir campos."""
+    """Busca 7 noticias ESG via Serper /news (URLs reais verificadas) + Claude para redigir campos.
+
+    Prioridade: primeiro roda queries `site:{dominio}` para clientes NTICS (carregados de
+    brand-book/data/clientes-newsroom.yaml). Depois roda queries genericas ESG como fallback.
+    Candidatos de cliente sao tagueados com is_cliente_ntics=True + cliente_nome, e o Claude
+    recebe instrucao para priorizar esses ao selecionar 7.
+    """
     serper_key = os.getenv("SERPER_API_KEY")
     anthropic_key = os.getenv("ANTHROPIC_API_KEY")
     if not serper_key:
@@ -142,6 +167,8 @@ def pesquisar_noticias(tematica=None, urls_excluir=None, titulos_excluir=None, f
     # ── FASE 1A: Serper /news — busca noticias reais com URLs verificadas ──────
     from collections import Counter
 
+    clientes_ntics = carregar_clientes_ntics()
+
     queries = [
         "ESG sustentabilidade responsabilidade social corporativa Brasil 2026",
         "ESG sustainability corporate social responsibility impact 2026",
@@ -151,7 +178,40 @@ def pesquisar_noticias(tematica=None, urls_excluir=None, titulos_excluir=None, f
         queries.insert(0, f"{tematica} ESG sustentabilidade 2026")
 
     candidatos_raw = {}  # dedup por URL
-    print("  Buscando noticias reais via Serper /news...")
+
+    # Camada 1 — queries por cliente (site: filter) — prioridade
+    if clientes_ntics:
+        print(f"  Buscando noticias por cliente NTICS ({len(clientes_ntics)} dominios)...")
+        for cliente in clientes_ntics:
+            nome = cliente.get("nome", "")
+            dominio = cliente.get("dominio", "")
+            if not dominio:
+                continue
+            q = f"site:{dominio} ESG sustentabilidade responsabilidade social 2026"
+            payload = json.dumps({"q": q, "hl": "pt", "gl": "br", "num": 5, "tbs": "qdr:m"}).encode()
+            try:
+                r = requests.post(
+                    "https://google.serper.dev/news",
+                    data=payload,
+                    headers={"X-API-KEY": serper_key, "Content-Type": "application/json"},
+                    timeout=15,
+                )
+                if not r.ok:
+                    continue
+                items = r.json().get("news", [])
+                for item in items:
+                    url = item.get("link", "")
+                    if url and url not in candidatos_raw:
+                        item["is_cliente_ntics"] = True
+                        item["cliente_nome"] = nome
+                        candidatos_raw[url] = item
+                if items:
+                    print(f"    {nome}: {len(items)} candidatos")
+            except Exception:
+                continue
+
+    # Camada 2 — queries genericas ESG (fallback + diversidade)
+    print("  Buscando noticias ESG genericas...")
     for q in queries:
         payload = json.dumps({"q": q, "hl": "pt", "gl": "br", "num": 10, "tbs": "qdr:m"}).encode()
         r = requests.post(
@@ -166,9 +226,11 @@ def pesquisar_noticias(tematica=None, urls_excluir=None, titulos_excluir=None, f
         for item in r.json().get("news", []):
             url = item.get("link", "")
             if url and url not in candidatos_raw:
+                item["is_cliente_ntics"] = False
                 candidatos_raw[url] = item
 
-    print(f"  {len(candidatos_raw)} candidatos unicos coletados")
+    n_cliente = sum(1 for i in candidatos_raw.values() if i.get("is_cliente_ntics"))
+    print(f"  {len(candidatos_raw)} candidatos unicos ({n_cliente} de clientes NTICS)")
 
     # ── Verificar URLs (HTTP 200) ──────────────────────────────────────────────
     candidatos_ok = []
@@ -200,8 +262,11 @@ def pesquisar_noticias(tematica=None, urls_excluir=None, titulos_excluir=None, f
     # ── FASE 1B: Claude seleciona 7 e redige campos do carrossel ─────────────
     candidatos_txt = ""
     for i, item in enumerate(candidatos_ok):
+        tag_cliente = ""
+        if item.get("is_cliente_ntics"):
+            tag_cliente = f"[CLIENTE NTICS: {item.get('cliente_nome','')}] "
         candidatos_txt += (
-            f"[{i+1}] fonte={item.get('source','')} | url={item.get('link','')}\n"
+            f"[{i+1}] {tag_cliente}fonte={item.get('source','')} | url={item.get('link','')}\n"
             f"     titulo={item.get('title','')}\n"
             f"     snippet={item.get('snippet','')[:200]}\n"
             f"     imageUrl={item.get('imageUrl','')}\n\n"
@@ -219,13 +284,14 @@ def pesquisar_noticias(tematica=None, urls_excluir=None, titulos_excluir=None, f
 
 Abaixo estão {len(candidatos_ok)} noticias ESG reais coletadas pelo Serper (Google News). Selecione as 7 melhores e retorne os dados para o carrossel.
 
-CRITERIO DE SELECAO:
-- SOMENTE NOTICIAS POSITIVAS. Cada noticia deve celebrar um avanco, conquista, resultado ou iniciativa inspiradora. REJEITAR noticias com framing negativo — palavras como "trava", "enfrenta", "sofre", "cai", "desacelera", "crise", "problema", "fracasso" no titulo/snippet sao sinal de rejeicao. Na duvida, prefira a noticia mais positiva.
-- Impacto concreto: dados, numeros, metas alcancadas, projetos lancados
-- Tom positivo e inspirador para gestores de empresas brasileiras
-- Diversidade TEMATICA: cada noticia deve cobrir um TEMA diferente (ex: nao escolher duas sobre energia, ou duas sobre reportes/regulacao). Buscar variedade: uma de biodiversidade, uma de tecnologia, uma de educacao, etc.
-- Diversidade de FONTES: no maximo 2 noticias do mesmo veiculo/fonte
-- Categorias DIFERENTES para cada noticia{titulos_excluidos_hint}
+CRITERIO DE SELECAO (em ordem de prioridade):
+1. PRIORIDADE MAXIMA: noticias marcadas com [CLIENTE NTICS: Nome] sao de patrocinadores/clientes da NTICS Projetos — selecione quantas estiverem POSITIVAS e relevantes (ideal 3-4 de clientes, mas nao force se nao houver qualidade). Se houver menos de 3 noticias de clientes positivas, completa com as melhores genericas ESG — NAO forcar noticia fraca so porque e cliente.
+2. SOMENTE NOTICIAS POSITIVAS. Cada noticia deve celebrar um avanco, conquista, resultado ou iniciativa inspiradora. REJEITAR noticias com framing negativo — palavras como "trava", "enfrenta", "sofre", "cai", "desacelera", "crise", "problema", "fracasso" no titulo/snippet sao sinal de rejeicao. Regra vale TAMBEM para noticias de cliente — nao selecionar noticia negativa de cliente (ex: multa ambiental, acidente).
+3. Impacto concreto: dados, numeros, metas alcancadas, projetos lancados
+4. Tom positivo e inspirador para gestores de empresas brasileiras
+5. Diversidade TEMATICA: cada noticia deve cobrir um TEMA diferente (ex: nao escolher duas sobre energia, ou duas sobre reportes/regulacao). Buscar variedade: uma de biodiversidade, uma de tecnologia, uma de educacao, etc.
+6. Diversidade de FONTES: no maximo 2 noticias do mesmo veiculo/fonte
+7. Categorias DIFERENTES para cada noticia{titulos_excluidos_hint}
 
 CANDIDATOS:
 {candidatos_txt}
@@ -575,45 +641,60 @@ def gerar_card_leonardo(photo_path, categoria, titulo, highlight_words, corpo, f
     # Build headline text — no bracket markup (causes VALIDATION_ERROR)
     titulo_plain = _sanitize_prompt(titulo).upper()
 
-    # Prompt must stay under ~1400 chars — Leonardo VALIDATION_ERROR above that limit
-    _sem_foto = cena_foto and not (photo_path and Path(photo_path).exists())
-    cena_desc = f"Hyperrealistic photograph: {cena_foto}. " if _sem_foto else ""
+    # Prompt must stay under ~1000 chars — Leonardo v2 API VALIDATION_ERROR acima desse limite
+    # Truncar cena_foto em 150 chars pra garantir margem com titulo/corpo/fonte longos
+    cena_curta = (cena_foto or "")[:150].rstrip().rstrip(",.")
+    _com_foto_real = photo_path and Path(photo_path).exists()
 
-    # Se tem cena_foto especifica, usar ela como descricao — nao misturar com "natural organic scene"
-    if _sem_foto and cena_foto:
-        upper_half_desc = (
-            f"UPPER HALF: full-bleed hyperrealistic photojournalistic photograph of {cena_foto}. "
-            f"Canon EOS R5 50mm, visible film grain ISO 400, natural imperfect lighting, "
-            f"sharp details, real professional news photograph, NOT stock photo, NOT CGI. "
+    if _com_foto_real:
+        # Silencioso sobre a imagem: so aponta onde fica, image_reference HIGH cuida do resto
+        upper_half_desc = "UPPER HALF of the card: reference image, full-bleed, no text, no watermarks. "
+    elif cena_curta:
+        upper_half_desc = f"UPPER HALF photo: {cena_curta}. Natural light, film grain, real, not stock. "
+    else:
+        upper_half_desc = "UPPER HALF: hyperrealistic photograph, natural lighting. "
+
+    def _build(upper_desc_local):
+        return (
+            f"Instagram 4:5 card, no borders. "
+            f"{upper_desc_local}"
+            f"LOWER HALF: solid teal 005F73. TALL TEAL FADE at top of lower half, photo dissolves slowly into teal over long distance, monochromatic blend, diffuse like fog, NO rainbow here, only teal and photo. "
+            f"Lower half: rounded pill badge white uppercase '{categoria_str}', "
+            f"below LARGE white uppercase HEADLINE: {titulo_plain}, "
+            f"below body white: '{corpo_str}', "
+            f"below tiny italic gray: 'Fonte: {fonte_str}'. "
+            f"Top right: counter badge '{pag}'. "
+            f"BOTTOM EDGE only: thin rainbow stripe green to teal to pink to orange, separate from top fade. "
+            f"Editorial, no markers."
+        )
+
+    prompt = _build(upper_half_desc)
+    if len(prompt) > 1000 and not _com_foto_real:
+        # truncar cena_foto mais agressivamente (nao aplica quando ha foto real de referencia)
+        excess = len(prompt) - 995
+        cena_curta = cena_curta[:max(50, len(cena_curta) - excess)].rstrip().rstrip(",.")
+        upper_half_desc = f"UPPER HALF photo: {cena_curta}. Natural light, film grain, real, not stock. "
+        prompt = _build(upper_half_desc)
+        print(f"    [INFO] prompt truncado para {len(prompt)} chars")
+
+    # Quando ha foto real como referencia, o negative_prompt "anti-people" conflita com rostos reais.
+    # Sem foto: aplica o filtro completo (evita stock photos corporativos gerados por Leonardo)
+    # Com foto: negative minimo (apenas evitar ilustracao/CGI, mantem pessoas/rostos da foto real)
+    if _com_foto_real:
+        negative_prompt = (
+            "illustration, painting, CGI, render, cartoon, "
+            "text overlay on photo, watermark, logo on photo"
         )
     else:
-        upper_half_desc = (
-            f"UPPER HALF: full-bleed hyperrealistic high quality photograph, "
-            f"real-world environment, natural lighting. {cena_desc}"
+        negative_prompt = (
+            "people, person, human, face, portrait, man, woman, worker, crowd, "
+            "computer screen, laptop screen, TV screen, monitor, digital display, "
+            "office, desk, table, meeting room, boardroom, chair, "
+            "staged photo, stock photo, posed composition, "
+            "artificial lighting, studio setup, "
+            "illustration, painting, CGI, render, cartoon, "
+            "text overlay on photo, watermark, logo on photo"
         )
-
-    prompt = (
-        f"Instagram portrait social media card, no white borders, fills entire frame. "
-        f"{upper_half_desc}"
-        f"LOWER HALF: solid dark teal background 005F73. Smooth gradient transition between halves. "
-        f"Near top of lower half: small rounded pill badge white bold uppercase text '{categoria_str}'. "
-        f"Below badge LARGE BOLD HEADLINE white uppercase: {titulo_plain}. "
-        f"Below headline body text white regular: '{corpo_str}'. "
-        f"Below body tiny italic gray: 'Fonte: {fonte_str}'. "
-        f"Top right: small dark rounded badge white text '{pag}'. "
-        f"Bottom edge flush: horizontal gradient stripe full width green to teal to magenta to orange. "
-        f"Professional editorial design, no borders, no padding, no markers."
-    )
-
-    negative_prompt = (
-        "people, person, human, face, portrait, man, woman, worker, crowd, "
-        "computer screen, laptop screen, TV screen, monitor, digital display, "
-        "office, desk, table, meeting room, boardroom, chair, "
-        "staged photo, stock photo, posed composition, "
-        "artificial lighting, studio setup, "
-        "illustration, painting, CGI, render, cartoon, "
-        "text overlay on photo, watermark, logo on photo"
-    )
 
     headers = {
         "accept": "application/json",
@@ -623,12 +704,15 @@ def gerar_card_leonardo(photo_path, categoria, titulo, highlight_words, corpo, f
 
     params = {
         "prompt": prompt,
-        "negative_prompt": negative_prompt,
         "width": W,
         "height": H,
         "quantity": 1,
         "prompt_enhance": "OFF",
     }
+    # negative_prompt apenas quando NAO ha foto real (evitar stock photo gerado)
+    # Com foto real: padrao case carousel nao usa negative_prompt (evita conflito com rostos reais)
+    if not _com_foto_real:
+        params["negative_prompt"] = negative_prompt
 
     # Crop init_image para proporcao do card (1856x2304) — evita letterbox branco
     if photo_path and Path(photo_path).exists():
@@ -658,8 +742,9 @@ def gerar_card_leonardo(photo_path, categoria, titulo, highlight_words, corpo, f
         try:
             _check = Image.open(photo_path)
             _w, _h = _check.size
-            # Só usa init_image se a foto tiver resolução real (>= 800px) — thumbnails ~300px são descartados
-            if _w >= 800 and _h >= 600:
+            # Só usa init_image se a foto tiver resolução minima (>= 400px) — thumbnails ~300px são descartados
+            # Threshold considera crop 4:5 que reduz largura (ex: Natura 800x533 → cropped 429x533)
+            if _w >= 400 and _h >= 400:
                 _use_init = True
         except Exception:
             pass
@@ -667,9 +752,14 @@ def gerar_card_leonardo(photo_path, categoria, titulo, highlight_words, corpo, f
     if _use_init:
         init_id = upload_init_image_leonardo(api_key, photo_path)
         if init_id:
-            params["init_image_id"] = init_id
-            params["init_strength"] = 0.55
-            print(f"    Leonardo card: img2img (init_strength=0.55, {_w}x{_h})...")
+            # image_reference com strength HIGH preserva composicao/rostos fielmente
+            # (init_image+init_strength reinterpretava a foto, especialmente em portraits com rostos)
+            params["guidances"] = {
+                "image_reference": [
+                    {"image": {"id": init_id, "type": "UPLOADED"}, "strength": "HIGH"}
+                ]
+            }
+            print(f"    Leonardo card: image_reference HIGH ({_w}x{_h})...")
         else:
             print(f"    Leonardo card: upload falhou, gerando do zero...")
     else:
@@ -919,17 +1009,85 @@ def compor_card_noticia(photo_path, categoria, titulo, highlight_words, corpo, f
     return output_path
 
 
-def gerar_capa_leonardo(titulo_capa, noticias, output_path):
+def gerar_titulo_capa_dinamico(noticias, fallback_n):
+    """Gera titulo contextual da capa via Claude Haiku baseado nas noticias reais da semana.
+
+    O titulo deve: mencionar semana/semanal, ser curto (max 8 palavras, ~60 chars),
+    positivo, e refletir os temas da semana atual. Se Haiku falhar, cai num fallback generico.
+    """
+    anthropic_key = os.getenv("ANTHROPIC_API_KEY")
+    if not anthropic_key:
+        return f"{fallback_n} Boas Not\u00edcias ESG desta Semana"
+
+    # Montar resumo das noticias para o prompt
+    resumo_noticias = ""
+    for i, n in enumerate(noticias):
+        resumo_noticias += f"- [{n.get('categoria','')}] {n.get('titulo','')}\n"
+
+    prompt = f"""Voce e editor-chefe do carrossel ESG semanal da NTICS Projetos. Abaixo estao as {len(noticias)} noticias desta semana:
+
+{resumo_noticias}
+
+Escreva UM titulo de capa para o carrossel. Requisitos:
+- Max 8 palavras (vai em duas linhas no card)
+- DEVE mencionar "semana" ou "semanal" (ex: "desta semana", "da semana")
+- Tom positivo e editorial
+- Reflita o fio condutor tematico das noticias acima (nao seja generico)
+- Pode usar o numero {len(noticias)} se couber naturalmente
+- Nao use dois-pontos nem hifen
+- Nao use emojis
+- ATENCAO: as noticias cobrem Brasil E mundo (internacionais tambem). NAO restrinja o titulo apenas ao Brasil — use framing global/universal ou mencione "Brasil e mundo" se fizer sentido
+
+Exemplos de BONS titulos contextuais (GLOBAIS, nao so-Brasil):
+- "Do laboratorio aos mercados verdes desta semana"
+- "Ciencia e clima lideram as boas noticias da semana"
+- "{len(noticias)} conquistas que marcaram a semana ESG"
+- "Brasil e mundo avancam em ESG esta semana"
+- "Impacto global em sete frentes desta semana"
+- "Avancos ESG que marcaram a semana no mundo"
+
+Responda SOMENTE com o titulo, sem aspas, sem explicacao."""
+
+    try:
+        r = requests.post(
+            "https://api.anthropic.com/v1/messages",
+            headers={
+                "x-api-key": anthropic_key,
+                "anthropic-version": "2023-06-01",
+                "content-type": "application/json",
+            },
+            json={
+                "model": "claude-haiku-4-5-20251001",
+                "max_tokens": 100,
+                "messages": [{"role": "user", "content": prompt}],
+            },
+            timeout=30,
+        )
+        if not r.ok:
+            return f"{fallback_n} Boas Not\u00edcias ESG desta Semana"
+        titulo = r.json()["content"][0]["text"].strip().strip('"').strip("'").strip(".")
+        # Sanitizar — remover linhas extras, pegar so a primeira
+        titulo = titulo.split("\n")[0].strip()
+        if len(titulo) < 20 or len(titulo) > 80:
+            return f"{fallback_n} Boas Not\u00edcias ESG desta Semana"
+        return titulo
+    except Exception:
+        return f"{fallback_n} Boas Not\u00edcias ESG desta Semana"
+
+
+def gerar_capa_leonardo(titulo_capa, noticias, output_path, photo_path=None):
     """Gera o card capa completo via Leonardo AI (foto + layout em uma chamada).
 
-    Constroi cena a partir dos cena_foto das noticias.
-    Retorna output_path se OK, None em caso de falha.
+    Se photo_path fornecido: usa image_reference HIGH (preserva a foto real).
+    Senao: constroi cena sintetica a partir dos cena_foto das noticias.
     """
     api_key = os.getenv("LEONARDO_API_KEY")
     if not api_key:
         return None
 
-    # Escolher cena da noticia com mais elementos visuais especificos
+    titulo_upper = _sanitize_prompt(titulo_capa).upper()
+
+    # Escolher cena da noticia com mais elementos visuais especificos (usado apenas se sem foto real)
     def _score_cena(c):
         especifico = sum(c.lower().count(w) for w in ["port", "solar", "farm", "plant", "forest", "factory", "terminal", "station"])
         outdoor = sum(c.lower().count(w) for w in ["aerial", "field", "construction", "outdoor", "nature", "landscape"])
@@ -939,20 +1097,22 @@ def gerar_capa_leonardo(titulo_capa, noticias, output_path):
     cenas.sort(key=lambda x: x[1], reverse=True)
     cena = cenas[0][0] if cenas else "diverse professionals working on sustainability projects in Brazil, solar panels and green infrastructure visible"
 
-    titulo_upper = _sanitize_prompt(titulo_capa).upper()
+    # Silencioso sobre a imagem: so aponta onde fica, image_reference HIGH cuida do resto
+    if photo_path and Path(photo_path).exists():
+        upper_desc = "UPPER HALF of the card: reference image, full-bleed, no text, no watermarks. "
+    else:
+        upper_desc = f"UPPER HALF of the card: full-bleed hyperrealistic photojournalistic photograph of {cena}. Natural light, film grain, real photograph, NOT AI looking. "
 
     prompt = (
         f"Social media carousel cover card, Instagram portrait format, no white borders, fills entire frame. "
         f"IMPORTANT: Do NOT render any percentage signs, numbers, rulers or layout markers. "
-        f"UPPER HALF of the card: full-bleed hyperrealistic photojournalistic photograph of {cena}. "
-        f"Natural light, candid moment, film grain, looks exactly like a real photograph, NOT AI looking. "
-        f"LOWER HALF: solid dark teal background color 005F73. "
-        f"SMOOTH GRADIENT TRANSITION between photo and background. "
+        f"{upper_desc}"
+        f"LOWER HALF: solid dark teal 005F73. "
+        f"TALL TEAL FADE zone at top of lower half, photo dissolves slowly into teal, monochromatic blend, NO rainbow here. "
         f"CENTERED near top of lower half: small rounded green pill badge with white bold uppercase text "
-        f"'SUSTENTABILIDADE & RESPONSABILIDADE SOCIAL'. "
-        f"LARGE BOLD HEADLINE below badge: white centered uppercase sans-serif: {titulo_upper}. "
-        f"BOTTOM EDGE flush: thick horizontal gradient stripe spanning full width, "
-        f"colors flow smoothly from bright green to teal to magenta pink to orange. "
+        f"'NOT\u00cdCIAS DA SEMANA'. "
+        f"VERY LARGE BOLD HEADLINE below badge, occupies most of lower half, multiple lines centered, highly impactful typography: white uppercase sans-serif: {titulo_upper}. "
+        f"BOTTOM EDGE ONLY: thin rainbow stripe green to teal to pink to orange, separate from top fade. "
         f"Professional editorial cover design. No borders, no padding."
     )
 
@@ -961,11 +1121,33 @@ def gerar_capa_leonardo(titulo_capa, noticias, output_path):
         "content-type": "application/json",
         "authorization": f"Bearer {api_key}",
     }
-    payload = {
-        "model": "nano-banana-2",
-        "parameters": {"prompt": prompt, "width": W, "height": H, "quantity": 1, "prompt_enhance": "OFF"},
-        "public": False,
-    }
+    params = {"prompt": prompt, "width": W, "height": H, "quantity": 1, "prompt_enhance": "OFF"}
+
+    # Se photo_path fornecido, sobe como image_reference HIGH (preserva a foto real)
+    if photo_path and Path(photo_path).exists():
+        try:
+            _img = Image.open(photo_path).convert("RGB")
+            target_ratio = W / H
+            if abs(_img.width / _img.height - target_ratio) > 0.02:
+                if _img.width / _img.height > target_ratio:
+                    new_w = int(_img.height * target_ratio)
+                    left = (_img.width - new_w) // 2
+                    _img = _img.crop((left, 0, left + new_w, _img.height))
+                else:
+                    new_h = int(_img.width / target_ratio)
+                    top = (_img.height - new_h) // 2
+                    _img = _img.crop((0, top, _img.width, top + new_h))
+                _cp = Path(photo_path).with_suffix(".capa-crop.jpg")
+                _img.save(str(_cp), "JPEG", quality=95)
+                photo_path = str(_cp)
+        except Exception as _e:
+            print(f"  [CAPA] crop falhou: {_e}")
+        init_id = upload_init_image_leonardo(api_key, photo_path)
+        if init_id:
+            params["guidances"] = {"image_reference": [{"image": {"id": init_id, "type": "UPLOADED"}, "strength": "HIGH"}]}
+            print("  [CAPA] image_reference HIGH ativo")
+
+    payload = {"model": "nano-banana-2", "parameters": params, "public": False}
 
     print("  [CAPA] Iniciando geracao Leonardo AI...")
     try:
@@ -1319,13 +1501,20 @@ def main():
     total_cards = len(noticias) + 2  # capa + noticias + cta
     print(f"  [1/{total_cards}] Capa")
     capa_path = output_dir / "01-capa.jpg"
-    titulo_capa = f"{len(noticias)} Avan\u00e7os em Sustentabilidade que Marcaram Esta Semana"
+    # Titulo da capa: gerado dinamicamente pelo Claude Haiku a partir das noticias da semana
+    n = len(noticias)
+    titulo_capa = gerar_titulo_capa_dinamico(noticias, n)
+    print(f"  Titulo da capa (gerado dinamicamente): {titulo_capa}")
     if args.skip_capa_leo:
         print("  Capa: --skip-capa-leo ativo, pulando geracao")
     elif regen_cards is not None and "capa" not in regen_cards:
         print("  Capa: pulando (nao incluida em --cards)")
     else:
-        gerar_capa_leonardo(titulo_capa, noticias, capa_path)
+        # Capa pode opcionalmente usar foto real como referencia via env var CAPA_PHOTO_PATH
+        capa_photo = os.getenv("CAPA_PHOTO_PATH") or None
+        if capa_photo and not Path(capa_photo).exists():
+            capa_photo = None
+        gerar_capa_leonardo(titulo_capa, noticias, capa_path, photo_path=capa_photo)
     if capa_path.exists():
         card_files.append(str(capa_path))
 

@@ -77,11 +77,23 @@ Montar lista de exclusao para passar ao Perplexity.
 
 ### Fase 2: Pesquisa de Noticias (Serper /news + Claude Haiku)
 
-**Etapa 1a — Serper /news:** Buscar candidatos com URL verificada
-- Endpoint: `POST https://google.serper.dev/news`
-- Query: `"ESG sustentabilidade responsabilidade social"` + variantes tematicas
-- Verificar cada URL com HEAD request — descartar 404s
-- Coletar 20-30 candidatos unicos
+**Etapa 1a — Serper /news em duas camadas:**
+
+**Camada 1 (prioridade) — queries por cliente NTICS:**
+- Carregar `brand-book/data/clientes-newsroom.yaml` (lista de ~22 clientes com dominio)
+- Para cada cliente, query: `site:{dominio} ESG sustentabilidade responsabilidade social 2026`
+- Taggear candidatos retornados com `is_cliente_ntics=True` + `cliente_nome`
+- Objetivo: garantir que noticias dos patrocinadores entrem com prioridade no carrossel
+
+**Camada 2 (fallback + diversidade) — queries genericas ESG:**
+- Query: `"ESG sustentabilidade responsabilidade social"` + variantes (Brasil, mundo, tematicas)
+- Coletar 20-30 candidatos para completar o universo
+
+**Verificacao:**
+- HEAD request em cada URL — descartar 404s
+- Dedup por URL
+
+**Regra de fallback:** Se nenhum cliente NTICS tiver noticia positiva da semana (ou todas forem negativas), o pipeline segue normalmente com noticias ESG genericas. Nao forcar noticia fraca so porque e cliente.
 
 **Etapa 1b — Claude Haiku seleciona e redige:** A partir dos candidatos verificados, Claude seleciona as 7 melhores e preenche todos os campos abaixo. URLs fabricadas sao impossiveis — toda noticia tem URL verificada do Serper.
 
@@ -116,6 +128,8 @@ Exemplos:
 **Prompt template para Claude Haiku (recebe lista de candidatos Serper):**
 ```
 A partir dos candidatos abaixo (todos com URL verificada), selecione as 7 melhores noticias positivas sobre ESG, sustentabilidade e responsabilidade social corporativa no Brasil e no mundo.
+
+PRIORIDADE CLIENTE NTICS: candidatos marcados com [CLIENTE NTICS: Nome] sao patrocinadores/clientes da NTICS Projetos. Priorize POSITIVAS desses clientes (ideal 3-4 por carrossel). Se nao houver noticias positivas de clientes, complete com ESG genericas — NAO forcar noticia fraca ou negativa de cliente.
 
 ESCOPO GEOGRAFICO: Brasil e mundo. Noticias internacionais com impacto mensuravel ou licao aplicavel ao mercado brasileiro sao bem-vindas. Fontes como Reuters, Bloomberg Green, GreenBiz, ESG Today, Carbon Brief, UN News, Guardian Environment, Le Monde sao aceitas alem das brasileiras.
 
@@ -275,10 +289,18 @@ Professional editorial cover design. No borders, no padding.
 
 **Escolher a melhor cena para a capa:** Pontuar `cena_foto` das noticias por especificidade visual (termos como "aerial", "port", "factory", "solar", "terminal" pontuam mais). Usar a mais especifica.
 
-**Variacoes de titulo da capa:**
-- `"{N} boas noticias sobre sustentabilidade e responsabilidade social desta semana"`
-- `"O lado positivo do ESG que voce precisa conhecer"`
-- `"{N} avancos em sustentabilidade que marcaram esta semana"`
+**Variacoes de titulo da capa (rotacao automatica por hash da semana — 6 opcoes):**
+- `"{N} Avancos em Sustentabilidade que Marcaram Esta Semana"`
+- `"{N} Boas Noticias sobre Sustentabilidade e Responsabilidade Social"`
+- `"O Lado Positivo do ESG que Voce Precisa Conhecer"`
+- `"Destaques ESG: {N} Conquistas da Semana no Brasil e no Mundo"`
+- `"{N} Iniciativas ESG que Marcaram o Setor Esta Semana"`
+- `"{N} Historias de Impacto Socioambiental desta Semana"`
+
+O script usa `hashlib.md5(args.semana)` como seed — cada semana pega uma variacao diferente de forma deterministica (nao aleatoria).
+
+**Sobre o degradê (regra nova — abril 2026):**
+O prompt agora exige `WIDE SMOOTH GRADIENT BLEND ZONE` com linguagem explicita "like a sunset fade, NOT an abrupt edge, NOT a narrow line". Isso replica o visual dos carrosseis de case (ex: `educacao-cultural-statkraft`), onde a transicao foto->teal ocupa uma faixa visivel no meio do card, nao uma linha fina.
 
 ---
 

@@ -1,5 +1,7 @@
 # Workflows Index
 
+Template e convenções em [_TEMPLATE.md](_TEMPLATE.md) e [CONVENTIONS.md](CONVENTIONS.md). Todo SOP novo copia o template; refatorações seguem as convenções.
+
 ## Escritório de Projetos (`workflows/escritorio-projetos/`)
 
 SOPs de planejamento, estruturação e gestão de projetos NTICS.
@@ -14,6 +16,7 @@ SOPs de planejamento, estruturação e gestão de projetos NTICS.
 | Briefing Website | `briefing_website.md` | Montar conteúdo para site do projeto |
 | Engenhoca Prestação Contas | `engenhoca_prestacao_contas.md` | Automação de prestação de contas Rouanet |
 | Processamento de Reuniões | `process_meeting_transcript.md` | Transcrição → classificação → tasks no ClickUp |
+| Sembly → Pipedrive | `sembly_to_pipedrive.md` | Polling Sembly 4x/dia → reuniões SALES viram nota no deal Pipedrive (match por email) |
 | Criar Site do Projeto | `criar_site_projeto.md` | Site institucional no Lovable (briefing ClickUp + assets Drive + GitHub + Jinja2/Tailwind) |
 | Form de Indicadores | `form_indicadores_projeto.md` | Gera Google Form de coleta de indicadores a partir da seção 6 do TAP (KPIs NTICS + Quantitativos + Específicos + ODS) |
 | Email Calendário Social | `email_calendario_social.md` | Gera email para o cliente com calendário de postagens (carrosséis/reels/case) a partir de TAP + Plano + Releases + tasks ClickUp |
@@ -56,6 +59,8 @@ Organizado em 4 subpastas: `producao/`, `producao/carrosseis/`, `agentes/`, `ref
 | Post Instagram | `producao/posts/post-instagram.md` | `/post-instagram` | Capa 4:5 para post único feed Instagram (Leonardo + image_reference, padrão case) |
 | **Google Slides Template** | `producao/google_slides_template.md` | `/google-slides-template` | Template Google Slides editável com placeholders `{CIDADE}`, `{TRILHA}`, `{DATA}` (convite cidade, card QR, certificado) |
 | **Revisão Arte Impressão** | `revisao/revisao_arte_impressao.md` | `/revisao-arte-impressao` | Auditoria técnica PDF/AI antes da gráfica: CMYK, DPI, sangria, fontes, logo hierarquia |
+| **Landing Pré-Projeto** | `producao/landing_preprojeto_ntics.md` | `/criar-landing-preprojeto` | Landing de projeto ainda pré-execução em ntics.com.br (Lovable render + LAION+Sonnet ranking + Code Snippets API) |
+| **Publicar Drive** | `publicar_drive.md` | `/publicar-drive` | Sobe output final aprovado pra `Marketing/2026/` no Drive com mapeamento automático categoria→pasta |
 
 ### Carrosseis (`producao/carrosseis/`) — 4 Tipos
 
@@ -66,6 +71,12 @@ Organizado em 4 subpastas: `producao/`, `producao/carrosseis/`, `agentes/`, `ref
 | Case Projeto | `carrossel_case_projeto.md` | `/carrossel-case` | NTICS | 8 cards case pós-projeto (Leonardo + image_reference) |
 | Projeto Ativo Cliente | `carrossel_projeto_ativo_cliente.md` | `/carrossel-cliente` | **DO CLIENTE** | 8 cards com identidade do patrocinador (pré/durante/pós) |
 | Briefing Carrossel+Vídeo | `briefing_carrossel_video.md` | `/briefing-video` | DO CLIENTE | Companion: briefing carrossel + roteiro vídeo |
+
+### Vídeos (`producao/videos/`)
+
+| Tipo | Arquivo | Comando | Identidade | Quando usar |
+|------|---------|---------|------------|-------------|
+| Capa de Vídeo de Projeto | `producao/videos/capa_video.md` | `/capa-video` | DO CLIENTE | Capa estática 4:5 (3 versões) para Reels/feed via Leonardo (foto + logo projeto + logo patrocinador) |
 
 ### Agentes Autônomos (`agentes/`)
 

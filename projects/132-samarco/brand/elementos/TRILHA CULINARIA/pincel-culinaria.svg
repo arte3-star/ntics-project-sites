@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Camada_2" data-name="Camada 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 141 18.24">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #341d35;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: .75px;
+      }
+
+      .cls-2 {
+        fill: #c63f62;
+      }
+
+      .cls-3 {
+        fill: #95c23d;
+      }
+    </style>
+  </defs>
+  <g id="Page-3">
+    <g id="_Camada_" data-name="&amp;lt;Camada&amp;gt;">
+      <g>
+        <path class="cls-2" d="M118.48,18.22h22.15V.39h-22.15s-5.55-.43-10.25,2.56c-4.7,2.99-8.33,2.99-19.43,2.99S.38,7.44.38,7.44v3.73s77.31,1.5,88.42,1.5,14.74,0,19.43,2.99c4.7,2.99,10.25,2.56,10.25,2.56Z"/>
+        <path class="cls-3" d="M92.85,5.94c-1.24,0-2.58,0-4.06,0C77.69,5.94.38,7.44.38,7.44v3.73s77.31,1.5,88.42,1.5c1.48,0,2.82,0,4.06,0v-6.74Z"/>
+        <g>
+          <line class="cls-1" x1="118.05" y1=".38" x2="118.05" y2="17.79"/>
+          <line class="cls-1" x1="140.63" y1="2.17" x2="118.05" y2="2.17"/>
+          <line class="cls-1" x1="140.63" y1="3.9" x2="118.38" y2="3.9"/>
+          <line class="cls-1" x1="140.63" y1="5.77" x2="118.05" y2="5.77"/>
+          <line class="cls-1" x1="140.63" y1="7.51" x2="118.38" y2="7.51"/>
+          <line class="cls-1" x1="140.63" y1="9.37" x2="118.05" y2="9.37"/>
+          <line class="cls-1" x1="140.63" y1="11.11" x2="118.38" y2="11.11"/>
+          <line class="cls-1" x1="140.63" y1="12.98" x2="118.05" y2="12.98"/>
+          <line class="cls-1" x1="140.63" y1="14.71" x2="118.38" y2="14.71"/>
+          <line class="cls-1" x1="140.63" y1="16.54" x2="118.05" y2="16.54"/>
+        </g>
+        <line class="cls-1" x1=".38" y1="9.31" x2="104.27" y2="9.31"/>
+      </g>
+    </g>
+  </g>
+</svg>

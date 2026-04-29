@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PMO Diário - {{ data_curta }}</title>
+<style>
+  body { margin:0; padding:0; background:#F4F4F4; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; color:#2D2D2D; }
+  .wrap { max-width:640px; margin:0 auto; background:#FFFFFF; }
+  .header { background:#005F73; color:#FFFFFF; padding:24px; }
+  .header h1 { margin:0 0 4px; font-size:20px; font-weight:700; letter-spacing:0.2px; }
+  .header .meta { font-size:13px; opacity:0.85; }
+  .section { padding:20px 24px; border-bottom:1px solid #ECECEC; }
+  .section h2 { margin:0 0 12px; font-size:15px; font-weight:700; color:#005F73; text-transform:uppercase; letter-spacing:0.6px; }
+  .kpis { display:table; width:100%; border-spacing:6px 0; margin:0 -6px; }
+  .kpi { display:table-cell; background:#F4F4F4; border-radius:6px; padding:10px; text-align:center; }
+  .kpi .num { font-size:22px; font-weight:700; color:#2D2D2D; }
+  .kpi .lbl { font-size:11px; color:#6B7280; margin-top:2px; }
+  .summary-card { background:#FAFAFA; border-left:4px solid #00A5B8; padding:12px 14px; margin-bottom:8px; border-radius:0 6px 6px 0; }
+  .summary-card.good { border-left-color:#3DAA35; }
+  .summary-card.concern { border-left-color:#E86428; }
+  .summary-card.decide { border-left-color:#D41A6A; }
+  .summary-card .tag { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; color:#6B7280; margin-bottom:4px; }
+  .summary-card p { margin:0; font-size:14px; line-height:1.5; }
+  table { width:100%; border-collapse:collapse; font-size:13px; }
+  th { text-align:left; padding:8px 6px; background:#F4F4F4; color:#6B7280; font-weight:600; font-size:11px; text-transform:uppercase; letter-spacing:0.4px; }
+  td { padding:8px 6px; border-bottom:1px solid #F0F0F0; vertical-align:top; }
+  .badge { display:inline-block; padding:2px 8px; border-radius:10px; font-size:11px; font-weight:700; color:#FFFFFF; }
+  .badge.verde { background:#3DAA35; }
+  .badge.amarelo { background:#F5B800; color:#2D2D2D; }
+  .badge.vermelho { background:#D41A6A; }
+  .badge.cinza { background:#6B7280; }
+  .day-cell { background:#FAFAFA; }
+  .day-cell.today { background:#FFF8DC; }
+  .blocker { background:#FDECEC; border-left:4px solid #D41A6A; padding:10px 12px; margin-bottom:6px; border-radius:0 4px 4px 0; }
+  .blocker .name { font-weight:600; font-size:13px; }
+  .blocker .reason { font-size:12px; color:#6B7280; margin-top:2px; }
+  .changes-group { margin-bottom:12px; }
+  .changes-group h3 { font-size:13px; margin:0 0 4px; color:#2D2D2D; font-weight:700; }
+  .changes-group ul { margin:0; padding-left:18px; font-size:13px; }
+  .changes-group li { margin-bottom:2px; }
+  .changes-group li.fechada { color:#3DAA35; }
+  .small { font-size:12px; color:#6B7280; }
+  a { color:#005F73; text-decoration:none; }
+  a:hover { text-decoration:underline; }
+  .footer { padding:18px 24px; background:#FAFAFA; font-size:12px; color:#6B7280; text-align:center; }
+  .empty { color:#6B7280; font-size:13px; font-style:italic; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="header" data-section="header">
+  <h1>PMO Diário</h1>
+  <div class="meta">{{ data_extenso }} · Janela: últimas 24 horas</div>
+</div>
+
+<div class="section" data-section="resumo">
+  <h2>Resumo executivo</h2>
+  <div class="summary-card good">
+    <div class="tag">O que foi bom</div>
+    <p>{{ summary.good }}</p>
+  </div>
+  <div class="summary-card concern">
+    <div class="tag">O que preocupa</div>
+    <p>{{ summary.concern }}</p>
+  </div>
+  <div class="summary-card decide">
+    <div class="tag">Decidir hoje</div>
+    <p>{{ summary.decide_today }}</p>
+  </div>
+</div>
+
+<div class="section" data-section="kpis">
+  <h2>Visão geral</h2>
+  <div class="kpis">
+    <div class="kpi"><div class="num">{{ totals.projects or 0 }}</div><div class="lbl">Projetos</div></div>
+    <div class="kpi"><div class="num">{{ totals.tasks_open or 0 }}</div><div class="lbl">Tasks abertas</div></div>
+    <div class="kpi"><div class="num">{{ totals.overdue or 0 }}</div><div class="lbl">Atrasadas</div></div>
+    <div class="kpi"><div class="num">{{ totals.blockers or 0 }}</div><div class="lbl">Bloqueios</div></div>
+  </div>
+</div>
+
+
+<div class="section" data-section="saude">
+  <h2>Por coordenador</h2>
+  {% if coordinators %}
+    {% for c in coordinators %}
+    <div style="margin-bottom:18px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; padding:8px 10px; background:#FAFAFA; border-radius:6px; margin-bottom:6px;">
+        <div>
+          <b style="font-size:14px;">{{ c.name }}</b>
+          <span class="small">· {{ c.projects|length }} projeto(s) · {{ c.tasks_open }} abertas · {{ c.overdue }} atrasadas</span>
+        </div>
+        <span class="badge {{ c.health|lower }}">{{ c.health }}</span>
+      </div>
+      {% for p in c.projects %}
+      <div style="margin:0 0 14px 0; border:1px solid #ECECEC; border-radius:6px; padding:10px 12px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+          <div>
+            <b style="font-size:14px;">{{ p.name }}</b>
+            <span class="small">· {{ p.fase_dominante }} · {{ p.total_open }} abertas · {{ p.overdue|length }} atrasadas</span>
+          </div>
+          <span class="badge {{ p.health|lower }}">{{ p.health }}</span>
+        </div>
+        {% if p.overdue %}
+        <p class="small" style="margin:6px 0 4px;"><b>Atrasadas</b></p>
+        <ul style="margin:0; padding-left:18px; font-size:13px;">
+          {% for o in p.overdue[:8] %}
+          <li style="margin-bottom:6px;">
+            <a href="{{ o.url }}">{{ o.name }}</a>
+            <span class="small">· {{ o.due_date_br or o.due_date }}{% if o.assignees %} · {{ o.assignees|join(', ') }}{% endif %}</span>
+            {% if o.last_comment %}
+            <div style="margin-top:3px; padding:6px 8px; background:#FAFAFA; border-left:3px solid #00A5B8; font-size:12px; color:#2D2D2D; border-radius:0 4px 4px 0;">
+              <span class="small"><b>{{ o.last_comment.user }}</b> · {{ o.last_comment.date }}</span><br>
+              {{ o.last_comment.text }}
+            </div>
+            {% endif %}
+          </li>
+          {% endfor %}
+        </ul>
+        {% if p.overdue|length > 8 %}<p class="small">+{{ p.overdue|length - 8 }} outras atrasadas</p>{% endif %}
+        {% else %}
+        <p class="small empty">Sem atrasos.</p>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+    {% endfor %}
+  {% else %}
+  <p class="empty">Sem projetos no escopo.</p>
+  {% endif %}
+</div>
+
+<div class="section" data-section="design">
+  <h2>Design e vídeo</h2>
+  {% if creative %}
+    {% for c in creative %}
+    <div style="margin-bottom:14px;">
+      <div style="padding:8px 10px; background:#FAFAFA; border-radius:6px; margin-bottom:6px;">
+        <b style="font-size:14px;">{{ c.name }}</b>
+        <span class="small">· {{ c.abertas }} abertas · {{ c.atrasadas }} atrasadas · {{ c.proximas_7d }} nos próximos 7 dias</span>
+      </div>
+      {% if c.tasks_atrasadas %}
+      <p class="small" style="margin:4px 0;"><b>Atrasadas</b></p>
+      <ul style="margin:0 0 6px; padding-left:18px; font-size:13px;">
+        {% for t in c.tasks_atrasadas[:5] %}
+        <li><a href="{{ t.url }}">{{ t.name }}</a> <span class="small">· {{ t.project }} · {{ t.due_date_br or t.due_date }}</span></li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+      {% if c.tasks_proximas %}
+      <p class="small" style="margin:4px 0;"><b>Próximos 7 dias</b></p>
+      <ul style="margin:0 0 6px; padding-left:18px; font-size:13px;">
+        {% for t in c.tasks_proximas[:5] %}
+        <li><a href="{{ t.url }}">{{ t.name }}</a> <span class="small">· {{ t.project }} · {{ t.due_date_br or t.due_date }}</span></li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </div>
+    {% endfor %}
+  {% else %}
+  <p class="empty">Sem tasks ativas para o time de design e vídeo.</p>
+  {% endif %}
+</div>
+
+<div class="section" data-section="mudancas">
+  <h2>Mudanças nas últimas 24h</h2>
+  {% set changes_total = totals.changes_24h or 0 %}
+  {% if changes_total %}
+    {% for p in projects %}
+      {% if p.changes_24h %}
+      <div class="changes-group">
+        <h3>{{ p.name }}</h3>
+        <ul>
+          {% for c in p.changes_24h[:8] %}
+          <li class="{{ c.kind }}">{% if c.kind == 'fechada' %}[fechada]{% else %}[alterada]{% endif %} <a href="{{ c.url }}">{{ c.name }}</a>{% if c.assignees %} · {{ c.assignees|join(', ') }}{% endif %}</li>
+          {% endfor %}
+        </ul>
+        {% if p.changes_24h|length > 8 %}<p class="small">+{{ p.changes_24h|length - 8 }} outras</p>{% endif %}
+      </div>
+      {% endif %}
+    {% endfor %}
+  {% else %}
+  <p class="empty">Sem mudanças nas últimas 24 horas.</p>
+  {% endif %}
+</div>
+
+<div class="section" data-section="marcos">
+  <h2>Marcos próximos 7 dias</h2>
+  {% set marcos_total = totals.milestones_7d or 0 %}
+  {% if marcos_total %}
+  <table>
+    <thead>
+      <tr><th>Data</th><th>Marco</th><th>Projeto</th></tr>
+    </thead>
+    <tbody>
+      {% for p in projects %}
+        {% for m in p.milestones_7d %}
+        <tr>
+          <td>{{ m.due_date_br }}</td>
+          <td><a href="{{ m.url }}">{{ m.name }}</a></td>
+          <td><span class="small">{{ p.name }}</span></td>
+        </tr>
+        {% endfor %}
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p class="empty">Sem marcos críticos nos próximos 7 dias.</p>
+  {% endif %}
+</div>
+
+<div class="section" data-section="decisoes">
+  <h2>Decisões e bloqueios</h2>
+  {% if blockers or decisions %}
+    {% for b in blockers %}
+    <div class="blocker">
+      <div class="name"><a href="{{ b.url }}">{{ b.name }}</a></div>
+      <div class="reason">{{ b.project }} · {{ b.reason }}{% if b.assignees %} · {{ b.assignees|join(', ') }}{% endif %}</div>
+    </div>
+    {% endfor %}
+    {% for d in decisions %}
+    <div class="blocker">
+      <div class="name"><a href="{{ d.url }}">{{ d.name }}</a></div>
+      <div class="reason">{{ d.project }} · decisão pendente{% if d.assignees %} · {{ d.assignees|join(', ') }}{% endif %}</div>
+    </div>
+    {% endfor %}
+  {% else %}
+  <p class="empty">Nenhum bloqueio ou decisão pendente identificado.</p>
+  {% endif %}
+</div>
+
+<div class="footer" data-section="footer">
+  Gerado automaticamente pelo Hub de IA da NTICS · Responda este email para discutir.
+</div>
+
+</div>
+</body>
+</html>

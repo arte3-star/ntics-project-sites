@@ -1,0 +1,81 @@
+# Mapa cliente NTICS -> dominio para busca de noticias ESG semanais
+# Usado pelo pipeline de carrossel de noticias (tools/content-gen/gerar_carrossel_noticias_v2.py)
+#
+# Fluxo: Serper /news com "site:{dominio} ESG sustentabilidade" por cliente, em paralelo.
+# Fallback: se nenhum cliente tiver noticia da semana, cai pro fluxo ESG generico.
+#
+# Ordem = prioridade (mais projetos NTICS primeiro; depois marca forte em ESG).
+
+clientes:
+  - nome: Boticario
+    dominio: grupoboticario.com.br
+    aliases: ["Grupo Boticario", "Boticario"]
+  - nome: Whirlpool
+    dominio: whirlpool.com.br
+    aliases: ["Whirlpool", "Consul", "Brastemp"]
+  - nome: CNH Industrial
+    dominio: cnhindustrial.com
+    aliases: ["CNH", "CNH Industrial", "Case IH", "New Holland"]
+  - nome: Rabobank
+    dominio: rabobank.com.br
+    aliases: ["Rabobank Brasil", "Rabobank"]
+  - nome: Samarco
+    dominio: samarco.com
+    aliases: ["Samarco Mineracao", "Samarco"]
+  - nome: Statkraft
+    dominio: statkraft.com.br
+    aliases: ["Statkraft Brasil", "Statkraft"]
+  - nome: Repsol
+    dominio: repsol.com.br
+    aliases: ["Repsol Sinopec", "Repsol"]
+  - nome: Bayer
+    dominio: bayer.com.br
+    aliases: ["Bayer CropScience", "Bayer"]
+  - nome: ISA CTEEP
+    dominio: isacteep.com.br
+    aliases: ["ISA CTEEP", "CTEEP"]
+  - nome: Porto Itapoa
+    dominio: portoitapoa.com
+    aliases: ["Porto Itapoa"]
+  - nome: Sylvamo
+    dominio: sylvamo.com
+    aliases: ["Sylvamo", "Sylvamo Corporation"]
+  - nome: Nubank
+    dominio: nubank.com.br
+    aliases: ["Nubank", "Nu Holdings"]
+  - nome: Pague Menos
+    dominio: paguemenos.com.br
+    aliases: ["Pague Menos", "Extrafarma"]
+  - nome: Mahle
+    dominio: mahle.com
+    aliases: ["MAHLE Metal Leve", "Mahle"]
+  - nome: Moove
+    dominio: moove.com.br
+    aliases: ["Moove Lub", "Moove"]
+  - nome: Novelis
+    dominio: novelis.com
+    aliases: ["Novelis Brasil", "Novelis"]
+  - nome: Ingredion
+    dominio: ingredion.com.br
+    aliases: ["Ingredion"]
+  - nome: GRU Airport
+    dominio: gru.com.br
+    aliases: ["GRU Airport", "Aeroporto de Guarulhos"]
+  - nome: Celesc
+    dominio: celesc.com.br
+    aliases: ["Celesc"]
+  - nome: Eletromidia
+    dominio: eletromidia.com.br
+    aliases: ["Eletromidia"]
+  - nome: TCP
+    dominio: tcp.com.br
+    aliases: ["Terminal de Conteineres de Paranagua", "TCP"]
+  - nome: CTG Brasil
+    dominio: ctgbr.com.br
+    aliases: ["CTG Brasil", "China Three Gorges"]
+
+# Politica de fallback
+fallback:
+  min_noticias_cliente: 0  # 0 = se nenhum cliente tem noticia da semana, roda fluxo ESG generico normal
+  max_noticias_totais: 8   # max cards de noticia por carrossel (sem contar capa + CTA)
+  target_noticias_totais: 7  # alvo padrao = 7 noticias (capa + 7 + CTA = 9 cards)

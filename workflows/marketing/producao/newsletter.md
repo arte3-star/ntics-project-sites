@@ -1,6 +1,37 @@
-# /newsletter — ESG em Foco | NTICS Projetos
+# /newsletter, ESG em Foco | NTICS Projetos
 
 Gera a newsletter completa da NTICS e cria um rascunho HTML no Gmail pronto para enviar.
+
+---
+
+## Template canonico (estrutura aprovada)
+
+> **Modelo de referencia:** `tools/publishing/templates/newsletter-corporate.html`
+> **Exemplo aprovado:** `output/marketing/newsletters/2026-04/newsletter-m02-2026-04.html` (Brevo draft #21, abril/2026)
+
+Estrutura corporativa (ordem fixa):
+
+1. **Header** — logo NTICS + "ESG em Foco" + tagline ("Educacao, metodo e impacto auditavel") + barra quadriculada 6 cores
+2. **Edition Badge** — "NEWSLETTER MENSAL | Edicao - {Mes} de {Ano}"
+3. **Artigo do Mes** — hero 380px + categoria + titulo + lead + tempo de leitura + CTA verde "Ler artigo completo"
+4. **Destaque do Mes** — bloco editorial sobre evento real do mes (foto 544px full-width + 2 paragrafos + citacao em quote box verde)
+5. **Em Campo Agora** — intro com totais agregados (alunos, professores, empreendedores) + 1 card por projeto:
+   - Card layout: imagem full-width 544px no topo, texto embaixo, border-left 3px na cor do projeto
+   - Conteudo: categoria + titulo + linha unica (Patrocinio - Territorio - Alcance) + descricao + ODS
+   - **Excecao:** projetos sem foto institucional usam imagem 320px centrada
+6. **Por que isso importa** — tese editorial em 1 paragrafo + 3 bullets coloridos (Retorno persistente, Risco reduzido, Evidencia auditavel)
+7. **Impacto NTICS** — 2 cards lado a lado: "1.060+ Projetos Executados" + "11,4M Pessoas Beneficiadas"
+8. **CTA Corporativo** — fundo teal #005F73, headline + subtitle + botao laranja
+9. **Footer** — logo + 3 icones sociais em tabela horizontal aninhada (24px de padding-bottom antes da linha) + links + copyright
+
+**Regras criticas:**
+- Acentos PT-BR completos (UTF-8 declarado)
+- Sem travessao "—" em lugar nenhum (vide CLAUDE.md)
+- Sem secao "Boas Noticias do Mundo" (foi cortada na versao corporativa)
+- Sem NPS no Impacto (so 2 cards)
+- Imagens uploaded para WordPress NTICS via `tools/publishing/publicar_wordpress.py` (funcao `upload_image`)
+- Largura container: 600px max
+- Brevo: criar via `tools/publishing/publish_to_brevo.py --mode draft`
 
 ---
 

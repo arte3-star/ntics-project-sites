@@ -391,7 +391,7 @@ def generate_html(project: dict, colors: dict, scrape: dict) -> str:
     {f'<img src="{BASE}/FOTOS/{hero_img_name}" alt="{escape(nome)}" class="absolute inset-0 w-full h-full object-cover">' if hero_img_name else ''}
     <div class="absolute inset-0 hero-overlay"></div>
     <div class="relative z-10 text-center text-white px-6 max-w-4xl">
-      <img src="{BASE}/LOGOS/{logo}" alt="Logo" class="h-28 md:h-36 mx-auto mb-6 bg-white/95 rounded-2xl p-4 shadow-2xl">
+      <img src="{BASE}/LOGOS/{logo}" alt="Logo" class="h-40 md:h-56 lg:h-64 mx-auto mb-6 bg-white/95 rounded-2xl p-5 shadow-2xl">
       <h1 class="text-4xl md:text-6xl font-black mb-4 drop-shadow-2xl">{escape(hero_title)}</h1>
       <p class="text-xl md:text-2xl font-light">{escape(hero_subtitle)}</p>
     </div>
@@ -413,10 +413,10 @@ def generate_html(project: dict, colors: dict, scrape: dict) -> str:
 {body_sections_html}
 
   <!-- FOOTER + RÉGUA -->
-  <footer class="py-12 px-6 bg-white" style="border-top: 4px solid {primary};">
-    <div class="max-w-5xl mx-auto text-center">
-      <p class="text-sm uppercase tracking-widest text-slate-500 mb-6 font-semibold">Patrocínio &amp; Realização</p>
-      {f'<img src="{BASE}/REGUAS/{regua}" alt="Régua de patrocinadores" class="max-w-4xl w-full mx-auto mb-8">' if regua else ''}
+  <footer class="py-16 px-4 bg-white" style="border-top: 4px solid {primary};">
+    <div class="mx-auto text-center" style="max-width: 2200px;">
+      <p class="text-sm uppercase tracking-widest text-slate-500 mb-8 font-semibold">Patrocínio &amp; Realização</p>
+      {f'<img src="{BASE}/REGUAS/{regua}" alt="Régua de patrocinadores" class="w-full mx-auto mb-8" style="max-width: 2200px;">' if regua else ''}
       <p class="text-xs text-slate-400">
         Projeto realizado via Lei de Incentivo à Cultura (Lei Rouanet) — Ministério da Cultura — Governo Federal
       </p>

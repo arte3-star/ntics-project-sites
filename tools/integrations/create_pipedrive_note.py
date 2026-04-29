@@ -55,6 +55,8 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--input", default=".tmp/meeting_result.json")
     parser.add_argument("--url", default="")
+    parser.add_argument("--deal-id", type=int, default=0,
+                        help="If provided, skip name lookup and use this deal_id directly")
     args = parser.parse_args()
 
     input_path = Path(args.input)
@@ -73,13 +75,16 @@ def main():
     summary      = meeting.get("pipedrive_summary", "")
     file_url     = args.url or ""
 
-    # Search for deal
-    deal_id = None
-    for p in participants:
-        deal_id = search_deal(p)
-        if deal_id:
-            print(f"   🔗 Deal found for '{p}': {deal_id}")
-            break
+    # Deal resolution: caller-provided > name search > unlinked
+    deal_id = args.deal_id or None
+    if deal_id:
+        print(f"   🔗 Using caller-provided deal_id: {deal_id}")
+    else:
+        for p in participants:
+            deal_id = search_deal(p)
+            if deal_id:
+                print(f"   🔗 Deal found for '{p}': {deal_id}")
+                break
 
     if not deal_id:
         print("   ⚠️  No deal found — creating unlinked note")

@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Plataforma NTICS Projetos · Estação Samarco</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          ntics: {
+            verde: '#3DAA35',
+            verdeDark: '#2E8526',
+            azul: '#005F73',
+            rosa: '#D41A6A',
+          },
+        },
+        fontFamily: {
+          sans: ['Inter', 'system-ui', 'sans-serif'],
+        },
+      },
+    },
+  }
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="font-sans bg-slate-50 text-slate-900 antialiased">
+
+<!-- TOP BAR -->
+<header class="bg-white border-b border-slate-200 sticky top-0 z-40">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-lg bg-ntics-verde flex items-center justify-center text-white font-bold text-lg">N</div>
+      <div>
+        <p class="text-xs text-slate-500 leading-none">Plataforma de Cursos</p>
+        <p class="font-bold text-slate-900 leading-tight">NTICS Projetos</p>
+      </div>
+    </div>
+    <div class="flex items-center gap-3">
+      <a href="certificado-validar.html" class="hidden sm:inline-block text-sm text-slate-600 hover:text-ntics-azul">Validar certificado</a>
+      <a href="login.html" class="px-4 py-2 rounded-lg bg-ntics-verde text-white text-sm font-semibold hover:bg-ntics-verdeDark transition">Entrar</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="bg-gradient-to-b from-white to-slate-50 border-b border-slate-200">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-24">
+    <div class="max-w-3xl">
+      <p class="text-ntics-rosa font-semibold tracking-wide text-sm mb-3">PROGRAMA ESTAÇÃO SAMARCO · TERRITÓRIOS DO FUTURO</p>
+      <h1 class="text-4xl sm:text-5xl font-extrabold text-ntics-azul leading-tight mb-6">
+        Cursos de Qualificação Profissional
+      </h1>
+      <p class="text-lg text-slate-700 leading-relaxed mb-8">
+        Formação prática em modalidade híbrida, com 50 horas de carga horária total. Construída para empregabilidade, geração de renda e inclusão produtiva nas comunidades atendidas pelo Programa.
+      </p>
+      <div class="flex flex-wrap gap-3">
+        <a href="login.html" class="px-6 py-3 rounded-lg bg-ntics-verde text-white font-semibold hover:bg-ntics-verdeDark transition">Acessar minha conta</a>
+        <a href="#cursos" class="px-6 py-3 rounded-lg bg-white border border-slate-300 text-slate-700 font-semibold hover:bg-slate-50 transition">Conhecer os cursos</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CURSOS -->
+<section id="cursos" class="py-16 sm:py-20">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <h2 class="text-3xl font-bold text-ntics-azul mb-2">Cursos disponíveis</h2>
+    <p class="text-slate-600 mb-10">Escolha o curso correspondente à sua inscrição. Cada curso é independente, com certificação própria.</p>
+
+    <div class="grid sm:grid-cols-2 gap-6">
+
+      <!-- CARD CULINÁRIA -->
+      <article class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition">
+        <div class="h-2 bg-ntics-verde"></div>
+        <div class="p-7">
+          <span class="inline-block px-3 py-1 rounded-full bg-green-50 text-ntics-verdeDark text-xs font-semibold mb-4">CULINÁRIA</span>
+          <h3 class="text-2xl font-bold text-slate-900 mb-2">Estação Sabores</h3>
+          <p class="text-slate-600 mb-5 leading-relaxed">
+            Curso de Qualificação Profissional em Culinária. Formação prática em segurança alimentar, organização da produção, identidade gastronômica, padronização e venda.
+          </p>
+          <dl class="space-y-2 text-sm mb-6">
+            <div class="flex justify-between border-b border-slate-100 pb-2">
+              <dt class="text-slate-500">Carga horária</dt>
+              <dd class="font-semibold">50 horas</dd>
+            </div>
+            <div class="flex justify-between border-b border-slate-100 pb-2">
+              <dt class="text-slate-500">Modalidade</dt>
+              <dd class="font-semibold">Híbrida (28h presencial + 22h digital)</dd>
+            </div>
+            <div class="flex justify-between border-b border-slate-100 pb-2">
+              <dt class="text-slate-500">Módulos digitais</dt>
+              <dd class="font-semibold">8</dd>
+            </div>
+            <div class="flex justify-between">
+              <dt class="text-slate-500">Certificação</dt>
+              <dd class="font-semibold">NTICS Projetos · Validação digital</dd>
+            </div>
+          </dl>
+          <a href="login.html" class="block text-center px-4 py-3 rounded-lg bg-ntics-verde text-white font-semibold hover:bg-ntics-verdeDark transition">Acessar como aluno</a>
+        </div>
+      </article>
+
+      <!-- CARD BELEZA -->
+      <article class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition">
+        <div class="h-2 bg-ntics-rosa"></div>
+        <div class="p-7">
+          <span class="inline-block px-3 py-1 rounded-full bg-pink-50 text-ntics-rosa text-xs font-semibold mb-4">BELEZA</span>
+          <h3 class="text-2xl font-bold text-slate-900 mb-2">Estação Beleza</h3>
+          <p class="text-slate-600 mb-5 leading-relaxed">
+            Curso de Qualificação Profissional em Beleza. Formação prática em higiene e biossegurança, manicure, escova, maquiagem e atendimento ao cliente.
+          </p>
+          <dl class="space-y-2 text-sm mb-6">
+            <div class="flex justify-between border-b border-slate-100 pb-2">
+              <dt class="text-slate-500">Carga horária</dt>
+              <dd class="font-semibold">50 horas</dd>
+            </div>
+            <div class="flex justify-between border-b border-slate-100 pb-2">
+              <dt class="text-slate-500">Modalidade</dt>
+              <dd class="font-semibold">Híbrida (28h presencial + 22h digital)</dd>
+            </div>
+            <div class="flex justify-between border-b border-slate-100 pb-2">
+              <dt class="text-slate-500">Módulos digitais</dt>
+              <dd class="font-semibold">8</dd>
+            </div>
+            <div class="flex justify-between">
+              <dt class="text-slate-500">Certificação</dt>
+              <dd class="font-semibold">NTICS Projetos · Validação digital</dd>
+            </div>
+          </dl>
+          <a href="login.html" class="block text-center px-4 py-3 rounded-lg bg-ntics-rosa text-white font-semibold hover:opacity-90 transition">Acessar como aluno</a>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- TRILHA INICIAL -->
+    <div class="mt-6 bg-ntics-azul text-white rounded-2xl p-7">
+      <span class="inline-block px-3 py-1 rounded-full bg-white/20 text-white text-xs font-semibold mb-3">TRILHA INICIAL</span>
+      <h3 class="text-xl font-bold mb-2">Empreendedorismo & Inteligência Artificial</h3>
+      <p class="text-blue-100 mb-4 leading-relaxed max-w-3xl">
+        Componente comum aos dois cursos, ofertável também de forma autônoma (4 horas presenciais), com certificação própria para quem cursa apenas a trilha inicial.
+      </p>
+      <div class="flex flex-wrap gap-2 text-sm text-blue-100">
+        <span class="px-3 py-1 rounded-full bg-white/10">Mentalidade empreendedora</span>
+        <span class="px-3 py-1 rounded-full bg-white/10">Gestão básica</span>
+        <span class="px-3 py-1 rounded-full bg-white/10">Atendimento</span>
+        <span class="px-3 py-1 rounded-full bg-white/10">IA aplicada</span>
+        <span class="px-3 py-1 rounded-full bg-white/10">Comunicação digital</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section class="bg-white border-t border-slate-200 py-16">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <h2 class="text-3xl font-bold text-ntics-azul mb-10">Como funciona</h2>
+    <div class="grid sm:grid-cols-3 gap-8">
+      <div>
+        <div class="w-12 h-12 rounded-lg bg-green-50 flex items-center justify-center text-ntics-verde font-bold text-xl mb-3">1</div>
+        <h3 class="font-bold text-slate-900 mb-2">Encontros presenciais</h3>
+        <p class="text-slate-600 leading-relaxed">28 horas de prática supervisionada na sua cidade, com bancada equipada, materiais e facilitador local.</p>
+      </div>
+      <div>
+        <div class="w-12 h-12 rounded-lg bg-pink-50 flex items-center justify-center text-ntics-rosa font-bold text-xl mb-3">2</div>
+        <h3 class="font-bold text-slate-900 mb-2">Plataforma digital</h3>
+        <p class="text-slate-600 leading-relaxed">22 horas em vídeo, com atividades, materiais para baixar e quiz por módulo. No seu ritmo, em até 30 dias.</p>
+      </div>
+      <div>
+        <div class="w-12 h-12 rounded-lg bg-blue-50 flex items-center justify-center text-ntics-azul font-bold text-xl mb-3">3</div>
+        <h3 class="font-bold text-slate-900 mb-2">Certificação</h3>
+        <p class="text-slate-600 leading-relaxed">Certificado de 50 horas com código de validação digital, válido para LinkedIn, currículo e parceiros.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-slate-900 text-slate-400 py-10">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 grid sm:grid-cols-3 gap-8">
+    <div>
+      <p class="text-white font-bold mb-2">NTICS Projetos</p>
+      <p class="text-sm leading-relaxed">Construímos programas de transformação. Inovação, Impacto e Regeneração.</p>
+    </div>
+    <div>
+      <p class="text-white font-semibold mb-3 text-sm">Plataforma</p>
+      <ul class="space-y-2 text-sm">
+        <li><a href="login.html" class="hover:text-white">Entrar</a></li>
+        <li><a href="certificado-validar.html" class="hover:text-white">Validar certificado</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="text-white font-semibold mb-3 text-sm">Suporte</p>
+      <ul class="space-y-2 text-sm">
+        <li>suporte@ntics.com.br</li>
+        <li>WhatsApp da coordenação do programa</li>
+      </ul>
+    </div>
+  </div>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 mt-8 pt-6 border-t border-slate-800 text-xs text-slate-500 flex flex-wrap justify-between gap-3">
+    <span>© NTICS Projetos. Programa Estação Samarco, Territórios do Futuro.</span>
+    <span>Realização: NTICS Projetos · Patrocínio: Samarco Mineração</span>
+  </div>
+</footer>
+
+</body>
+</html>

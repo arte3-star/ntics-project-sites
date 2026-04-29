@@ -79,9 +79,17 @@ tools/
 | create_social_media_tasks.py | [agente_criador_semanal.md](../workflows/marketing/agentes/agente_criador_semanal.md) | ClickUp API | Ativo |
 | update_clickup_drive_links.py | [agente_criador_semanal.md](../workflows/marketing/agentes/agente_criador_semanal.md) | ClickUp, Google Drive | Ativo |
 | upload_to_drive.py | Vários workflows de output | Google Drive API | Ativo |
+| publicar_drive.py | [publicar_drive.md](../workflows/marketing/publicar_drive.md) | Google Drive API | Ativo |
+| drive_2026_discover.py | [publicar_drive.md](../workflows/marketing/publicar_drive.md) | Google Drive API | Ativo |
+| drive_2026_scaffold.py | [publicar_drive.md](../workflows/marketing/publicar_drive.md) | Google Drive API | Ativo |
+| drive_2026_reorg.py | [publicar_drive.md](../workflows/marketing/publicar_drive.md) | Google Drive API | One-shot (executado 2026-04-23) |
+| drive_import_designer_assets.py | — | Google Drive API | Ativo — baixa peças gráficas de projetos ativos p/ `assets/projetos/*/identidade-visual/` |
 | read_google_doc.py | Vários | Google Docs API | Ativo |
 | update_learning_registry.py | — | Google Sheets | Ativo |
-| create_pipedrive_note.py | — | Pipedrive API | Ativo |
+| create_pipedrive_note.py | [process_meeting_transcript.md](../workflows/escritorio-projetos/process_meeting_transcript.md), [sembly_to_pipedrive.md](../workflows/escritorio-projetos/sembly_to_pipedrive.md) | Pipedrive API | Ativo — aceita `--deal-id` para pular lookup |
+| pipedrive_match_deal.py | [sembly_to_pipedrive.md](../workflows/escritorio-projetos/sembly_to_pipedrive.md) | Pipedrive API | Ativo — match deal por email do participante (fallback domínio da org) |
+| sembly_pull_meetings.py | [sembly_to_pipedrive.md](../workflows/escritorio-projetos/sembly_to_pipedrive.md) | Sembly API v1 | Ativo — list/detail/transcript de meetings |
+| sembly_to_pipedrive.py | [sembly_to_pipedrive.md](../workflows/escritorio-projetos/sembly_to_pipedrive.md) | Sembly + Pipedrive + Anthropic | Ativo — orquestrador, scheduled 4x/dia |
 | webhook_server.py | n8n integrations | HTTP | Ativo |
 | gws/forms_create.py | [form_indicadores_projeto.md](../workflows/escritorio-projetos/form_indicadores_projeto.md) | Google Forms API v1 | Ativo |
 | gws/gws_cli.py | Vários (Gmail/Calendar/Drive CLI) | Google Workspace APIs | Ativo |

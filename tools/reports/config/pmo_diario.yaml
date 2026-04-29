@@ -1,0 +1,116 @@
+# Configuração do Relatório Diário PMO de Projetos NTICS
+# Editado por humano. Scripts em tools/reports/ leem este arquivo.
+
+# IDs ClickUp
+clickup:
+  workspace_id: "9011929793"
+  space_escritorio_projetos: "90113448115"
+  folder_projetos_ativos: "90115187061"
+  folder_sprint: "90115190074"
+  exclude_lists:
+    - "901113425673"     # triagem (atas não classificadas)
+    - "901108780010"     # Gestão do Escritório (não é projeto)
+  triage_list: "901113425673"
+
+# Destinatários do email
+recipients:
+  to:
+    - abilio@ntics.com.br
+    - bruna.seibel@ntics.com.br
+    - arte3@ntics.com.br
+  cc:
+    - lucas@sbsustainablebusiness.com
+  reply_to: lucas@sbsustainablebusiness.com
+
+# Conta de envio (Gmail OAuth)
+sender:
+  email: lucas@sbsustainablebusiness.com
+
+# Janela do relatório
+window:
+  hours: 24
+  timezone: America/Sao_Paulo
+
+# Saúde por projeto (regras)
+health:
+  green:
+    overdue_pct_max: 0.10
+    completion_min: 0.50
+  yellow:
+    overdue_pct_max: 0.25
+    completion_min: 0.30
+
+# Status considerados "concluído / done"
+# Normalizado lowercase + sem acento na comparação
+status_done:
+  - concluído
+  - concluido
+  - completo
+  - complete
+  - closed
+  - fechado
+  - entregue
+  - done
+
+# Detecção de bloqueios
+blockers:
+  status_keywords:
+    - blocked
+    - bloqueado
+    - em risco
+    - aguardando
+  tags:
+    - bloqueio
+    - bloqueado
+  decisao_tags:
+    - decisao
+    - decisao-pendente
+  decisao_name_prefix: "[DECISAO]"
+
+# Detecção de marcos próximos 7 dias
+milestones:
+  fase_milestone:
+    - Kick-off
+    - Fechamento
+  name_regex: "(?i)(kickoff|kick.?off|entrega|fechamento|encerramento|relatorio final|relatório final|aprovacao|aprovação)"
+  tags:
+    - marco
+    - milestone
+
+# Time (separa coordenadores de projetos vs equipe de design/video)
+# Match por substring case-insensitive no username do assignee
+team:
+  designers:
+    - Luisa
+    - Luísa
+    - Marina
+    - Alisson
+  video_makers:
+    - Marcos
+
+# Overrides manuais de coordenador por list_id.
+# Quando o assignee dominante não reflete o coordenador real do projeto.
+# O nome aqui deve coincidir com o primeiro nome do username no ClickUp.
+coordinator_overrides:
+  "901113597556": Raíza Araújo       # 115. CULTURA ROBOTICA 2ED (PEROXIDOS)
+  "901113597557": Raíza Araújo       # 115. CULTURA ROBOTICA 2ED (TUPY E BTG)
+  "901113654171": Abilio Martins     # 122. CULTURA ITINERANTE - ODS (REPSOL)
+  "901113597561": Abilio Martins     # 123. CIRCO NO BRASIL 2 ED (TCP)
+  "901113597559": Abilio Martins     # 133. ECOARTE CONTAINER NAS ESCOLAS (VIBRA)
+
+# Modelo IA para resumo executivo
+ai:
+  model: claude-haiku-4-5
+  temperature: 0.2
+  max_tokens: 600
+
+# Output
+output:
+  dir: output/relatorios/pmo-diario
+  tmp_dir: .tmp
+
+# Agendamento
+schedule:
+  cron: "0 8 * * 1-5"
+  timezone: America/Sao_Paulo
+  skip_holidays_br: true

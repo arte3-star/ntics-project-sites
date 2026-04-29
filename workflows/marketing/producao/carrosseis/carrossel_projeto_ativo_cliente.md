@@ -31,6 +31,28 @@ Quando precisar de carrossel de divulgacao para um projeto de cliente (pre-proje
 - Formato padrao: 4:5 Instagram, 1856x2304 px
 - Gerar apenas 1 carrossel por execucao (salvo pedido explicito de mais versoes)
 
+## Aprendizados Bloqueantes (validados PIE Guarulhos, abr/2026)
+
+Estas regras sao OBRIGATORIAS no prompt de cada card. Esquecer qualquer uma delas gera retrabalho.
+
+1. **Headline SEMPRE em painel branco arredondado** (cards 02-07 e CTA). Nunca texto solto sobre os blocos de cor da identidade do projeto, fica ilegivel. Excecao: capa pode ter headline branca grande sobre foto/blocos coloridos se houver contraste forte (testado caso a caso).
+
+2. **Template visual do projeto como image_reference em TODOS os cards.** Trava a identidade (paleta, blocos de cor, vocabulario decorativo, circulo branco com logo). Sem isso o modelo "esquece" e gera cada card com look diferente.
+
+3. **Logos como image_reference, nao como Pillow.** Card 03 (patrocinador) e card 08 (CTA) recebem logos do patrocinador e da NTICS como image_reference adicional, com instrucao explicita "preserved pixel-for-pixel exactly as the reference, keeping its original colors". Nano-banana-2 preserva logos com fidelidade. Pillow so como ultimo recurso.
+
+4. **nano-banana-2 aceita NO MAXIMO 3 image_references.** Quarta referencia retorna VALIDATION_ERROR sem mensagem clara. Distribuir: template + foto + logo. Se precisar de logo extra, mover pra prompt textual.
+
+5. **Prompt curto, sub-1500 chars.** Prompts longos ficam dando VALIDATION_ERROR no v2/generations. Encurtar removendo redundancia, mantendo so as instrucoes de zona, cor e referencia.
+
+6. **Proibir explicitamente a regua tricolor no rodape** dentro do prompt (`DO NOT add any tricolor stripe ruler or sponsor-logo bar at the bottom edge`). Sem essa instrucao o modelo reproduz a regua MinC do template de referencia.
+
+7. **Modo "sem preto" como variacao.** Se cliente pedir versao sem cor preta nos textos, regra explicita no prompt: `STRICT COLOR RULE: NO BLACK COLOR ANYWHERE in this card. All text MUST use the {paleta} only`. Excecao para logos de marca, que mantem cores originais.
+
+8. **Gen_id eh backup.** Apos `download(url, path)`, salvar tambem o gen_id em `descricao.txt`. Se a imagem for apagada por engano, dar um GET em `/api/rest/v1/generations/{gen_id}` recupera o URL no CDN.
+
+9. **Script suporta regerar card individual** via `python script.py {numero}` (ex: `python carrossel.py 03` regerar so o card 03). Padrao: ja gerado eh `skip`, so regenera quando passa numero explicito ou quando arquivo nao existe.
+
 ---
 
 ## Passo a Passo
@@ -287,6 +309,15 @@ Cores de degrade por card (variar para ritmo visual):
 
 ### Passo 7 — Geracao dos Cards (Leonardo AI)
 
+**Inputs por card** (3 image_references max):
+
+| Card | Ref 1 | Ref 2 | Ref 3 |
+|------|-------|-------|-------|
+| 01 Capa | Template visual | Foto principal (turma/cena forte) | — |
+| 02-07 | Template visual | Foto contextual do card | — |
+| 03 Patrocinador | Template visual | Foto do patrocinador (banner/contexto) | Logo patrocinador |
+| 08 CTA | Template visual | Logo NTICS (Realizacao) | Logo patrocinador |
+
 **Step 1 — Upload de cada foto:**
 ```python
 r = requests.post('https://cloud.leonardo.ai/api/rest/v1/init-image',
@@ -429,11 +460,23 @@ O Leonardo AI frequentemente introduz erros de texto nas imagens geradas. Esta f
 
 **Acao para cada card com erro:**
 
-1. Deletar o JPG com erro da pasta de output
-2. Ajustar o prompt para evitar a repeticao (encurtar headline, reformular frase)
-3. Fazer novo upload da foto + nova geracao via Leonardo AI
-4. Repetir a revisao no card regenerado
-5. Loop ate o card passar no checklist
+1. **NUNCA fazer `rm` direto sem backup.** Antes de apagar, registrar o `gen_id` do card defeituoso em `descricao.txt` para conseguir baixar do CDN se for preciso voltar.
+2. Renomear o JPG com erro para `{card}-defeito.jpg` (preserva ate validar a regeracao) ou apagar APOS conferir que tem o gen_id salvo.
+3. Ajustar o prompt para evitar a repeticao (encurtar headline, reformular frase)
+4. Regerar via `python script.py {numero}` (script aceita arg do card)
+5. Repetir a revisao no card regenerado
+6. Loop ate o card passar no checklist
+
+**Recuperar versao apagada via gen_id:**
+
+```python
+gid = "1f13ff1a-c288-6180-8159-e3906880fa9e"
+r = requests.get(f"https://cloud.leonardo.ai/api/rest/v1/generations/{gid}", headers=HEADERS)
+url = r.json()["generations_by_pk"]["generated_images"][0]["url"]
+open("recuperada.jpg", "wb").write(requests.get(url, timeout=60).content)
+```
+
+CDN do Leonardo nao expira tao cedo, da pra recuperar geracoes de dias atras.
 
 **Regra:** So apresentar o carrossel ao usuario quando TODOS os cards passarem no checklist. O usuario nao deve precisar apontar erros de texto — isso e responsabilidade do agente.
 

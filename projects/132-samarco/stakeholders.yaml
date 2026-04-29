@@ -1,0 +1,161 @@
+cliente:
+  samarco:
+    - nome: Cintia
+      cargo: Gestao do contrato / mediacao institucional Samarco
+      escopo: corporativo
+      papel: Governa relacao fornecedor-cliente, coordena cronograma, compliance, articulacao MG+ES
+      email: null
+      canal: teams-sharepoint
+      cadencia: quinzenal-pre / semanal-execucao
+      status: confirmado
+
+    - nome: Ricardo
+      cargo: Samarco (kickoff 17/04)
+      escopo: operacional
+      papel: Confirmou equipamentos (fornos/bancadas/pias de restaurante interno)
+      status: confirmado
+
+    - nome: Roberta
+      cargo: Articulacao local ES
+      escopo: ES
+      papel: Abertura de territorio ES (Meaipe, Mae-Ba, Parati, Recanto do Sol). Responsavel pela devolutiva de mapeamento de cidades+instituicoes.
+      status: confirmado
+      cadencia: mensal + pontuais
+
+    - nome: Thiago
+      cargo: Samarco (equipe sensibilizacao)
+      papel: Participou kickoff 17/04
+      status: confirmado
+
+    - nome: Glenda
+      cargo: Samarco (equipe sensibilizacao)
+      papel: Participou kickoff 17/04
+      status: confirmado
+
+    - nome: Vanessa (Joia)
+      cargo: Samarco (equipe sensibilizacao)
+      papel: Participou kickoff 17/04
+      status: confirmado
+
+    - nome: Tatiane (Tatiana Martins Alves)
+      cargo: Credenciamento / Acessos Samarco
+      papel: Contato para Teams/SharePoint/acessos
+      status: confirmado
+
+  comunicacao_samarco_transme:
+    # Equipe TransmeService que atua com Samarco Comunicacao. Subsume a referencia anterior a "Amanda" como
+    # contato principal de comunicacao. Mantida Amanda como ponto focal, com time ampliado.
+    - nome: Amanda
+      cargo: Comunicacao Corporativa Samarco (via TransmeService)
+      escopo: MG + ES
+      papel: Ponto focal de comunicacao, aprovacao de pecas, aplicacao de marca, hierarquia de logos
+      email: null   # a confirmar
+      canal: teams-sharepoint
+      cadencia: semanal
+      intensificar: janelas-de-aprovacao
+      status: confirmado
+
+    - nome: Camila
+      cargo: TransmeService / Comunicacao Samarco
+      papel: Participou reuniao 17/04 comunicacao
+      status: confirmado
+
+    - nome: Josiandra
+      cargo: TransmeService / Comunicacao Samarco
+      papel: Participou reuniao 17/04 comunicacao
+      status: confirmado
+
+    - nome: Ari
+      cargo: TransmeService / Comunicacao Samarco
+      papel: Participou reuniao 17/04 comunicacao
+      status: confirmado
+
+    - nome: Luiz Felipe
+      cargo: TransmeService / Comunicacao Samarco
+      papel: Participou reuniao 17/04 comunicacao
+      status: confirmado
+
+produtor_local:
+  mg:
+    - produtor_1: null   # TBD — indicações via Pâmela
+    - produtor_2: null   # TBD
+  es:
+    - produtor_1: null   # TBD — via Cíntia/Roberta
+    - produtor_2: null   # TBD
+
+time_ntics:
+  coordenacao:
+    - nome: Bruna Seibel
+      cargo: GP / Coordenacao + Gestao ClickUp Samarco (novo escopo desde 20/04)
+      criticidade: critico
+      aprovacao_interna: sim
+  atendimento:
+    - nome: Abilio Martins
+      cargo: Atendimento / Operacao
+      criticidade: critico
+  comunicacao:
+    - nome: Lucas Rotta
+      cargo: Dedicado a Samarco + CNH + Escritorio de Projetos + IA estrategica + design de sites (liberado de redes sociais desde 20/04)
+      email: lucas@sbsustainablebusiness.com
+      criticidade: critico
+      aprovacao_interna: sim
+  design:
+    - nome: Marina
+      cargo: Designer / KV / Social Media (em avaliacao para contrato mensal dedicado a midias sociais a partir de maio)
+      status: em-avaliacao
+  planejamento:
+    - nome: Ana Carolina Xavier
+      cargo: Planejamento mensal (puxa a partir do dia 30)
+      status: confirmado
+
+educadores:
+  culinaria:
+    mg:
+      - nome: Pâmela
+        base: Catas Altas (MG)
+        status: confirmado
+        origem: continuidade 2025
+    es:
+      - nome: null   # TBD
+        status: a-contratar
+  beleza:
+    mg:
+      - nome: null   # TBD — possivelmente dona de salão local
+    es:
+      - nome: null
+  trilha_inicial:
+    - nome: null   # TBD — cogitada Dani; avaliar alguém de BH/Mariana/Vitória
+
+fornecedores_criticos:
+  - categoria: dev-plataforma
+    plataforma: Lovable
+    nome: null
+    status: critico
+    prazo: antes-inicio-turmas
+  - categoria: certificacao
+    plataforma: e-certificado.com
+    nome: a-contratar
+    status: confirmado-no-budget
+  - categoria: fotografia-mg
+    nome: equipe-2025
+    status: a-reconfirmar
+  - categoria: fotografia-es
+    nome: null
+    status: TBD
+  - categoria: video-editor
+    nome: null
+    status: TBD
+    prazo: 15-dias-antes-primeira-cobertura
+  - categoria: estrutura-grafica
+    nome: null
+    status: TBD
+    prazo: 30-45-dias
+
+regras_compliance:
+  canal_arquivos: Teams / SharePoint Samarco (OBRIGATÓRIO)
+  canal_proibido: WhatsApp Web
+  prazo_aprovacao: "48h ideal / 24h minimo"
+  aprovacao_dupla: Amanda + Rayane (+ Cíntia se contratual)
+  aprovacao_interna_ntics: Bruna + Lucas
+  logo_soberana: Samarco
+  logo_realizacao: NTICS

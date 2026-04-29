@@ -1,0 +1,192 @@
+title: "Formulário de Indicadores — Estação Samarco 2026"
+description: |
+  Projeto Estação Samarco — Empreendedorismo. Suas respostas vão nos ajudar a avaliar o impacto do projeto e melhorar as próximas edições. Leva cerca de 5 minutos.
+
+items:
+  - title: "Cidade onde você mora"
+    type: radio
+    required: true
+    options:
+      - "MG — Camargos"
+      - "MG — Antônio Pereira"
+      - "MG — Bento Rodrigues"
+      - "MG — Paracatu de Baixo"
+      - "MG — Santa Rita Durão"
+      - "MG — Brumal"
+      - "MG — Catas Altas"
+      - "ES — Meaípe"
+      - "ES — Mãe-Bá"
+      - "ES — Parati"
+      - "ES — Ubu"
+      - "ES — Recanto do Sol"
+      - "Outra"
+
+  - title: "Faixa etária"
+    type: radio
+    required: true
+    options:
+      - "Menos de 18 anos"
+      - "18 a 24 anos"
+      - "25 a 34 anos"
+      - "35 a 44 anos"
+      - "45 a 59 anos"
+      - "60 anos ou mais"
+
+  - title: "Gênero"
+    type: radio
+    required: true
+    options:
+      - "Masculino"
+      - "Feminino"
+      - "Não-binário"
+      - "Outro"
+      - "Prefiro não responder"
+
+  - title: "Escolaridade"
+    type: radio
+    required: true
+    options:
+      - "Sem escolaridade formal"
+      - "Ensino Fundamental incompleto"
+      - "Ensino Fundamental completo"
+      - "Ensino Médio incompleto"
+      - "Ensino Médio completo"
+      - "Ensino Superior incompleto"
+      - "Ensino Superior completo"
+      - "Pós-graduação"
+
+  - title: "Raça/cor (autodeclaração)"
+    type: radio
+    required: true
+    options:
+      - "Branca"
+      - "Preta"
+      - "Parda"
+      - "Amarela"
+      - "Indígena"
+      - "Prefiro não responder"
+
+  - title: "Quais Objetivos de Desenvolvimento Sustentável (ODS) você conhece?"
+    type: checkbox
+    required: true
+    options:
+      - "ODS 1 — Erradicação da Pobreza"
+      - "ODS 5 — Igualdade de Gênero"
+      - "ODS 8 — Trabalho Decente e Crescimento Econômico"
+      - "ODS 10 — Redução das Desigualdades"
+      - "ODS 11 — Cidades e Comunidades Sustentáveis"
+      - "ODS 12 — Consumo e Produção Responsáveis"
+      - "ODS 17 — Parcerias e Meios de Implementação"
+      - "Não conheço nenhum"
+
+  - title: "Como você avalia a contribuição da Samarco para sua comunidade?"
+    type: scale
+    required: true
+    low: 1
+    high: 5
+    low_label: "Muito ruim"
+    high_label: "Excelente"
+
+  - title: "Situação profissional atual"
+    type: radio
+    required: true
+    options:
+      - "Empregado(a) com carteira assinada"
+      - "Empregado(a) sem carteira assinada"
+      - "Autônomo(a) / por conta própria"
+      - "Desempregado(a)"
+      - "Estudante"
+      - "Aposentado(a) / pensionista"
+      - "Do lar"
+
+  - title: "Faixa de renda familiar mensal"
+    type: radio
+    required: true
+    options:
+      - "Até 1 salário mínimo"
+      - "De 1 a 2 salários mínimos"
+      - "De 2 a 3 salários mínimos"
+      - "De 3 a 5 salários mínimos"
+      - "Mais de 5 salários mínimos"
+      - "Prefiro não responder"
+
+  - title: "Qual trilha você está cursando?"
+    type: radio
+    required: true
+    options:
+      - "Culinária Sustentável"
+      - "Beleza & Estética"
+      - "Apenas a Formação Inicial (Empreendedorismo & IA)"
+
+  - title: "Qual sua experiência prévia na área da trilha que escolheu?"
+    type: radio
+    required: true
+    options:
+      - "Nenhuma — é a primeira vez"
+      - "Amadora — faço por hobby ou para a família"
+      - "Profissional — já trabalho na área"
+
+  - title: "Hoje, qual percentual da sua renda vem dessa atividade?"
+    type: radio
+    required: true
+    options:
+      - "0% — não gera renda"
+      - "Até 50% da minha renda"
+      - "Mais de 50% da minha renda"
+
+  - title: "Você já tem algum negócio?"
+    type: radio
+    required: true
+    options:
+      - "Não tenho negócio"
+      - "Tenho um negócio informal (sem CNPJ)"
+      - "Tenho MEI"
+      - "Tenho ME ou empresa de porte maior"
+
+  - title: "Você já participou de oficinas ou cursos parecidos antes?"
+    type: radio
+    required: true
+    options:
+      - "Sim"
+      - "Não"
+      - "Não me lembro"
+
+  - title: "Quando você pretende aplicar o que aprendeu?"
+    type: radio
+    required: true
+    options:
+      - "Já estou aplicando"
+      - "Nos próximos 3 meses"
+      - "Nos próximos 6 meses"
+      - "Sem prazo definido"
+      - "Não pretendo aplicar"
+
+  - title: "Após o projeto, você pretende formalizar seu negócio (MEI ou ME)?"
+    type: radio
+    required: true
+    options:
+      - "Já sou formalizado(a)"
+      - "Sim, em até 6 meses"
+      - "Sim, sem prazo definido"
+      - "Não pretendo"
+      - "Não se aplica"
+
+  - title: "Qual sua avaliação geral da atividade?"
+    type: scale
+    required: true
+    low: 0
+    high: 10
+    low_label: "Péssima"
+    high_label: "Excelente"
+
+  - title: "De 0 a 10, quanto você recomendaria este projeto a um amigo ou familiar?"
+    type: scale
+    required: true
+    low: 0
+    high: 10
+    low_label: "Não recomendaria"
+    high_label: "Recomendaria com certeza"
+
+  - title: "Conte como esta atividade contribuiu para o seu conhecimento e perspectiva"
+    type: paragraph
+    required: true

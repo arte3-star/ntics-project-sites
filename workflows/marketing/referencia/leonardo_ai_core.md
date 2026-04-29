@@ -118,6 +118,20 @@ Estrutura correta de `guidances`: objeto com chave `image_reference`, não array
 
 Pegadinhas, múltiplas referências, polling, extração de `generationId`: [cookbook §6-10](leonardo_ai_cookbook.md#6-modo-2--image-reference-com-referência).
 
+### Regras de ouro com `image_reference` (validadas 2026-04-20)
+
+1. **Prompt silencioso sobre a imagem** — não descreva o conteúdo da foto. Só aponte onde fica:
+   - ✅ `"UPPER HALF of the card: reference image, full-bleed, no text, no watermarks."`
+   - ❌ `"UPPER HALF: hyperrealistic photograph of three scientists at gala ceremony..."`
+
+2. **NUNCA usar `negative_prompt` quando há foto real** — palavras como "people, person, face, portrait" conflitam com rostos reais e forçam o Leonardo a reinterpretar. Só use negative_prompt quando for geração sem referência (texto→imagem).
+
+3. **NUNCA usar linguagem defensiva** — `"EXACTLY as is"`, `"do NOT alter"`, `"do NOT reinterpret"` pioram o resultado. Negações múltiplas confundem o modelo. Prompt direto funciona melhor.
+
+4. **Threshold mínimo de tamanho:** 400x400 px após crop 4:5. Fotos landscape (ex: 800x533) ficam 429x533 após crop — threshold baixo evita cair no fallback "gerar do zero".
+
+5. **Limite conhecido:** nano-banana-2 preserva **paisagens, veículos, prédios, objetos, logos** com fidelidade. **Rostos específicos não são preservados** pixel-perfect — são usados como inspiração temática. Para identidade facial obrigatória, considerar Pillow ou outro modelo (Flux+ControlNet).
+
 ---
 
 ## 6. Parâmetros críticos

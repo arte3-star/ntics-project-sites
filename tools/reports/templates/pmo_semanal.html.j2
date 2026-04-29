@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PMO Semanal - {{ data_curta }}</title>
+<style>
+  body { margin:0; padding:0; background:#F4F4F4; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; color:#2D2D2D; }
+  .wrap { max-width:640px; margin:0 auto; background:#FFFFFF; }
+  .header { background:#005F73; color:#FFFFFF; padding:24px; }
+  .header h1 { margin:0 0 4px; font-size:20px; font-weight:700; letter-spacing:0.2px; }
+  .header .meta { font-size:13px; opacity:0.85; }
+  .section { padding:20px 24px; border-bottom:1px solid #ECECEC; }
+  .section h2 { margin:0 0 12px; font-size:15px; font-weight:700; color:#005F73; text-transform:uppercase; letter-spacing:0.6px; }
+  .kpis { display:table; width:100%; border-spacing:6px 0; margin:0 -6px; }
+  .kpi { display:table-cell; background:#F4F4F4; border-radius:6px; padding:10px; text-align:center; }
+  .kpi .num { font-size:22px; font-weight:700; color:#2D2D2D; }
+  .kpi .lbl { font-size:11px; color:#6B7280; margin-top:2px; }
+  .summary-card { background:#FAFAFA; border-left:4px solid #00A5B8; padding:12px 14px; margin-bottom:8px; border-radius:0 6px 6px 0; }
+  .summary-card.bom { border-left-color:#3DAA35; }
+  .summary-card.foco { border-left-color:#E86428; }
+  .summary-card.recomendacao { border-left-color:#6B2D7B; }
+  .summary-card .tag { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; color:#6B7280; margin-bottom:4px; }
+  .summary-card p { margin:0; font-size:14px; line-height:1.5; }
+  .coord-header { display:flex; justify-content:space-between; align-items:center; padding:10px 12px; background:#FAFAFA; border-radius:6px; margin:0 0 8px; }
+  .coord-header b { font-size:14px; }
+  .project-block { margin:0 0 16px; border:1px solid #ECECEC; border-radius:6px; padding:10px 12px; }
+  .project-name { font-weight:700; font-size:14px; margin-bottom:6px; }
+  .pill { display:inline-block; padding:2px 8px; border-radius:10px; font-size:11px; font-weight:700; color:#FFFFFF; }
+  .pill.entregue { background:#3DAA35; }
+  .pill.proxima { background:#005F73; }
+  ul.task-list { margin:4px 0 0; padding-left:18px; font-size:13px; }
+  ul.task-list li { margin-bottom:4px; }
+  .small { font-size:12px; color:#6B7280; }
+  a { color:#005F73; text-decoration:none; }
+  a:hover { text-decoration:underline; }
+  .footer { padding:18px 24px; background:#FAFAFA; font-size:12px; color:#6B7280; text-align:center; }
+  .empty { color:#6B7280; font-size:13px; font-style:italic; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="header" data-section="header">
+  <h1>PMO Semanal</h1>
+  <div class="meta">{{ data_extenso }} · Semana {{ past_window_br }} · Próxima {{ next_window_br }}</div>
+</div>
+
+<div class="section" data-section="resumo">
+  <h2>Resumo da semana</h2>
+  <div class="summary-card bom">
+    <div class="tag">O que foi entregue</div>
+    <p>{{ summary.bom }}</p>
+  </div>
+  <div class="summary-card foco">
+    <div class="tag">Foco da próxima semana</div>
+    <p>{{ summary.foco }}</p>
+  </div>
+  <div class="summary-card recomendacao">
+    <div class="tag">Atenção PMO</div>
+    <p>{{ summary.recomendacao }}</p>
+  </div>
+</div>
+
+<div class="section" data-section="kpis">
+  <h2>Visão geral</h2>
+  <div class="kpis">
+    <div class="kpi"><div class="num">{{ totals.entregues or 0 }}</div><div class="lbl">Entregues</div></div>
+    <div class="kpi"><div class="num">{{ totals.proximas or 0 }}</div><div class="lbl">Próxima sem.</div></div>
+    <div class="kpi"><div class="num">{{ totals.creative_entregues or 0 }}</div><div class="lbl">Design feito</div></div>
+    <div class="kpi"><div class="num">{{ totals.creative_proximas or 0 }}</div><div class="lbl">Design vir</div></div>
+  </div>
+</div>
+
+<div class="section" data-section="coordenadores">
+  <h2>Por coordenador</h2>
+  {% if coordinators %}
+    {% for c in coordinators %}
+    <div style="margin-bottom:18px;">
+      <div class="coord-header">
+        <b>{{ c.name }}</b>
+        <span class="small">· {{ c.entregues }} entregues · {{ c.proximas }} na próxima</span>
+      </div>
+      {% for p in c.projects %}
+      <div class="project-block">
+        <div class="project-name">{{ p.name }}</div>
+        {% if p.entregues %}
+        <p class="small" style="margin:6px 0 2px;"><span class="pill entregue">Entregue</span> <b>{{ p.total_entregues }} task(s)</b></p>
+        <ul class="task-list">
+          {% for t in p.entregues[:10] %}
+          <li>
+            <a href="{{ t.url }}">{{ t.name }}</a>
+            <span class="small">· {{ t.closed_date_br or t.closed_date }}{% if t.assignees %} · {{ t.assignees|join(', ') }}{% endif %}</span>
+          </li>
+          {% endfor %}
+        </ul>
+        {% if p.entregues|length > 10 %}<p class="small">+{{ p.entregues|length - 10 }} outras entregas</p>{% endif %}
+        {% endif %}
+        {% if p.proximas %}
+        <p class="small" style="margin:8px 0 2px;"><span class="pill proxima">Próxima semana</span> <b>{{ p.total_proximas }} task(s)</b></p>
+        <ul class="task-list">
+          {% for t in p.proximas[:10] %}
+          <li>
+            <a href="{{ t.url }}">{{ t.name }}</a>
+            <span class="small">· {{ t.due_iso_br or t.due_iso }}{% if t.assignees %} · {{ t.assignees|join(', ') }}{% endif %}</span>
+          </li>
+          {% endfor %}
+        </ul>
+        {% if p.proximas|length > 10 %}<p class="small">+{{ p.proximas|length - 10 }} outras pendentes</p>{% endif %}
+        {% endif %}
+        {% if not p.entregues and not p.proximas %}
+        <p class="small empty">Sem movimento na semana.</p>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+    {% endfor %}
+  {% else %}
+  <p class="empty">Sem atividade no período.</p>
+  {% endif %}
+</div>
+
+<div class="section" data-section="design">
+  <h2>Design e vídeo</h2>
+  {% if creative %}
+    {% for c in creative %}
+    <div class="project-block">
+      <div class="project-name">{{ c.name }}</div>
+      <p class="small">{{ c.total_entregues }} entregue(s) · {{ c.total_proximas }} para próxima</p>
+      {% if c.entregues %}
+      <p class="small" style="margin:6px 0 2px;"><span class="pill entregue">Entregue</span></p>
+      <ul class="task-list">
+        {% for t in c.entregues[:8] %}
+        <li><a href="{{ t.url }}">{{ t.name }}</a> <span class="small">· {{ t.project }} · {{ t.closed_date_br or t.closed_date }}</span></li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+      {% if c.proximas %}
+      <p class="small" style="margin:8px 0 2px;"><span class="pill proxima">Próxima semana</span></p>
+      <ul class="task-list">
+        {% for t in c.proximas[:8] %}
+        <li><a href="{{ t.url }}">{{ t.name }}</a> <span class="small">· {{ t.project }} · {{ t.due_iso_br or t.due_iso }}</span></li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </div>
+    {% endfor %}
+  {% else %}
+  <p class="empty">Sem tasks de design e vídeo no período.</p>
+  {% endif %}
+</div>
+
+<div class="footer" data-section="footer">
+  Gerado automaticamente pelo Hub de IA da NTICS · Responda este email para discutir.
+</div>
+
+</div>
+</body>
+</html>

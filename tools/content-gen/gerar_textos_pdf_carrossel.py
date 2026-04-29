@@ -152,6 +152,49 @@ Saiba mais: nticsprojetos.com.br
 #ImpactoSocial #ESG #LeiRouanet #EducacaoAmbiental #ODS #AgendaDiamante2030 #Statkraft #NTICSProjetos #ResponsabilidadeSocial #Cultura""",
     },
 
+    # ── Projeto Festival ODS Pocket ──────────────────────────────────────────
+    "festival-ods-pocket": {
+        "instagram": """Arte, cultura e sustentabilidade para 17 mil estudantes da rede pública. 🌍🎭
+
+O Festival ODS Pocket levou espetáculos teatrais, oficinas de arte, fotografia e mostra audiovisual para escolas públicas em Joinville, Manaus e Rio Claro — com patrocínio da Whirlpool via Lei Rouanet.
+
+📊 Resultados da edição 2024:
+→ 17.646 pessoas impactadas diretamente
+→ 4.440 alunos contemplados
+→ 210 professores atendidos
+→ 3 cidades em 3 estados
+→ 17 empregos locais gerados
+→ Nota 9.7 de avaliação
+
+Cada atividade traduziu os ODS em experiência prática, transformando o olhar de jovens sobre o futuro do planeta. 💚
+
+Salve e compartilhe com quem acredita que cultura transforma. 👇
+
+#FestivalODS #ImpactoSocial #ODS #Sustentabilidade #Whirlpool #LeiRouanet #NTICSProjetos #Educacao #ESG #AgendaDiamante2030""",
+
+        "linkedin": """17.646 pessoas impactadas. 4 linguagens artísticas. 3 cidades. Nota 9.7.
+
+O Festival ODS Pocket — realizado pela NTICS Projetos com patrocínio da Whirlpool via Lei Rouanet — levou arte e cultura para escolas públicas de Joinville (SC), Manaus (AM) e Rio Claro (SP) em 2024, traduzindo os Objetivos de Desenvolvimento Sustentável em experiências práticas para estudantes da rede pública.
+
+**Indicadores verificados:**
+• 17.646 pessoas impactadas diretamente
+• 4.440 alunos contemplados
+• 210 professores atendidos
+• 17 empregos locais gerados
+• Nota média de avaliação: 9.7
+• 3 cidades em 3 estados brasileiros
+
+**Metodologia em 4 linguagens:** espetáculo teatral, oficinas de arte, oficina de fotografia e mostra audiovisual. Cada atividade foi desenvolvida com foco nos ODS, promovendo pertencimento e protagonismo juvenil.
+
+O projeto está alinhado aos ODS 4 (Educação de Qualidade), ODS 11 (Cidades e Comunidades Sustentáveis), ODS 13 (Ação Climática) e ODS 17 (Parcerias para a Implementação).
+
+Para empresas que buscam associar marca a educação, cultura e impacto mensurávelvia Lei de Incentivo Cultural: este é o modelo Festival ODS.
+
+Saiba mais: nticsprojetos.com.br
+
+#ImpactoSocial #ESG #LeiRouanet #ODS #Sustentabilidade #Whirlpool #NTICSProjetos #ResponsabilidadeSocial #Cultura #AgendaDiamante2030""",
+    },
+
     # ── Projeto 2 ─────────────────────────────────────────────────────────────
     "teatro-robotica-cnh": {
         "instagram": """Crianças do interior do Piauí construindo robôs com materiais recicláveis. 🤖♻️
@@ -192,6 +235,47 @@ Para empresas que buscam associar sua marca a inovação, educação e impacto s
 
 #ImpactoSocial #ESG #LeiRouanet #EducacaoSTEAM #Robotica #ODS #Sustentabilidade #CNHCapital #NTICSProjetos #ResponsabilidadeSocial #Piaui""",
     },
+
+    # ── Projeto 5: Circo no Brasil ────────────────────────────────────────────
+    "circo-no-brasil": {
+        "instagram": """A magia do circo chegou ao Mato Grosso e transformou 20.930 vidas. 🎪
+
+Em 2024, o Circo no Brasil levou o espetáculo A Magia da Lona para 8 cidades, unindo arte circense, educação ambiental e valorização da vida no campo.
+
+📊 Os números que contam a história:
+→ 20.930 pessoas impactadas diretamente
+→ 10.070 crianças de escola pública
+→ 34 apresentações de A Magia da Lona
+→ 8 cidades atendidas em Mato Grosso
+→ 150 empregos gerados
+→ 38 matérias em mídia nacional (TV Globo, Record, SBT)
+
+Patrocínio Agro Baggio via Lei Rouanet, alinhado aos ODS 3, 4, 10, 11 e 13.
+
+Arte como ponte entre campo e futuro. 💚
+
+#CircoNoBrasil #ImpactoSocial #ESG #LeiRouanet #CulturaEDireito #AgroBaggio #NTICSProjetos #ResponsabilidadeSocial #ODS #MatoGrosso""",
+
+        "linkedin": """Em 2024, o projeto Circo no Brasil percorreu 8 cidades do Mato Grosso com impacto real e mensurável.
+
+Com patrocínio da Agro Baggio via Lei Rouanet, o espetáculo A Magia da Lona levou teatro, dança e técnicas circenses para regiões rurais e urbanas, retratando a vida no campo, a sustentabilidade e a educação ambiental.
+
+**Resultados da edição 2024:**
+• 20.930 pessoas impactadas diretamente
+• 10.070 crianças de escola pública beneficiadas
+• 34 apresentações de A Magia da Lona
+• 8 cidades: Sorriso, Lucas do Rio Verde, Nova Mutum, Sinop, Alta Floresta, Matupá, Boa Esperança do Norte e Tapurah
+• 150 empregos gerados
+• 38 matérias em mídia nacional (TV Globo, Record, SBT e Rádio Meridional)
+
+Trilha NTICS de projetos circenses (2024 e 2025): 27.975 pessoas impactadas diretamente, 16.609 alunos, 15 cidades e 208 empregos gerados em 2 projetos com patrocínio de Agro Baggio e Repsol.
+
+Alinhado aos ODS 3 (Saúde e Bem-Estar), 4 (Educação), 10 (Redução das Desigualdades), 11 (Cidades Sustentáveis) e 13 (Ação Climática).
+
+Para empresas comprometidas com ESG e com o desenvolvimento das comunidades rurais: a cultura é um instrumento concreto de transformação social sustentável.
+
+#ImpactoSocial #ESG #LeiRouanet #ODS #CulturaEDireito #ResponsabilidadeSocial #AgroBaggio #NTICSProjetos #MatoGrosso""",
+    },
 }
 
 # Cards por projeto — ordem de aparição no PDF
@@ -224,6 +308,22 @@ PROJETOS_PDF = [
             "01-capa.jpg", "02-o-projeto.jpg", "03-metodologia.jpg", "04-alcance.jpg",
             "05-a-empresa.jpg", "06-resultados.jpg", "07-impacto.jpg",
             "08-trilha-pec.jpg", "09-cta.jpg",
+        ],
+    },
+    {
+        "slug": "festival-ods-pocket",
+        "cards": [
+            "01-capa.jpg", "02-o-projeto.jpg", "03-metodologia.jpg", "04-alcance.jpg",
+            "05-a-empresa.jpg", "06-resultados.jpg", "07-impacto.jpg",
+            "08-trilha-festival-ods.jpg", "09-cta.jpg",
+        ],
+    },
+    {
+        "slug": "circo-no-brasil",
+        "cards": [
+            "01-capa.jpg", "02-o-projeto.jpg", "03-metodologia.jpg", "04-alcance.jpg",
+            "05-a-empresa.jpg", "06-resultados.jpg", "07-impacto.jpg",
+            "08-trilha-ntics.jpg", "09-cta.jpg",
         ],
     },
 ]

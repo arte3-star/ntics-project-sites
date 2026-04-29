@@ -123,13 +123,14 @@ def make_shareable(service, folder_id):
     return meta["webViewLink"]
 
 
-def upload_folder(service, source: Path, dest: str, pattern: str = "*"):
+def upload_folder(service, source: Path, dest: str, pattern: str = "*", root_id: str = None):
     """Upload de pasta local para caminho no Drive.
 
     Args:
         source: pasta local com arquivos
-        dest: caminho relativo dentro de Marketing/Conteudo (ex: "Carrosseis/Noticias/semana-2026-04-06")
+        dest: caminho relativo dentro de root_id (ex: "Carrosseis/Noticias/semana-2026-04-06")
         pattern: glob pattern para filtrar arquivos (ex: "*.jpg")
+        root_id: folder ID raiz. Default CONTEUDO_FOLDER_ID (compat com fluxos existentes).
 
     Returns:
         dict com folder_id e link
@@ -139,14 +140,14 @@ def upload_folder(service, source: Path, dest: str, pattern: str = "*"):
         sys.exit(1)
 
     # Criar subpastas no Drive
-    parent_id = CONTEUDO_FOLDER_ID
+    parent_id = root_id or CONTEUDO_FOLDER_ID
     for part in dest.split("/"):
         part = part.strip()
         if part:
             parent_id = get_or_create_folder(service, part, parent_id)
 
     drive_folder_id = parent_id
-    print(f"\nUpload: {source} → Marketing/Conteudo/{dest}")
+    print(f"\nUpload: {source} → {dest}")
 
     # Upload de arquivos
     uploaded = 0
@@ -181,11 +182,12 @@ def main():
         help="Caminho relativo dentro de Marketing/Conteudo/ no Drive",
     )
     parser.add_argument("--pattern", default="*", help="Glob pattern para filtrar (default: *)")
+    parser.add_argument("--root-id", default=None, help="Folder ID raiz no Drive (default: CONTEUDO_FOLDER_ID)")
     parser.add_argument("--json", action="store_true", help="Output em JSON (para scripts)")
     args = parser.parse_args()
 
     service = get_drive_service()
-    result = upload_folder(service, Path(args.source), args.dest, args.pattern)
+    result = upload_folder(service, Path(args.source), args.dest, args.pattern, args.root_id)
 
     if args.json:
         print(json.dumps(result, ensure_ascii=False))
