@@ -29,9 +29,22 @@ SecondBrain/
 # Scratch / testes locais do site Negócio Cultural
 nc_*.html
 curso_*.json
+_nc_*.png
+_nc_*.html
+
+# Dumps locais do ClickUp / scratch JSON na raiz
+/json
+/task.json
+/clickup_*.json
 
 # Artefatos de build/lock
 skills-lock.json
+.claude/scheduled_tasks.lock
+
+# Debug artifacts de scripts de sync
+tools/sync/_form_debug.*
+tools/sync/_*.html
+tools/sync/_*.png
 
 # Binários pesados específicos (arquivo >30MB)
 workflows/knowledge/salic/MANUAL DE REGISTRO IMAGENS*.pptx
