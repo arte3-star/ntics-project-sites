@@ -10,15 +10,15 @@ Quando o usuário invocar `/projeto-status <slug>`, gere um resumo executivo do 
 
 ## Entrada
 
-- `<slug>` — obrigatório. Nome da pasta em `projects/`. Ex: `132-samarco`.
-- Se slug não for fornecido, pergunte qual projeto ou liste opções de `projects/INDEX.md`.
+- `<slug>` — obrigatório. Nome da pasta em `SecondBrain/projetos/`. Ex: `132-estacao-samarco`. Aceita aliases curtos (`132-samarco`) e normaliza para o canônico via prefixo numérico.
+- Se slug não for fornecido, pergunte qual projeto ou liste opções de `SecondBrain/projetos/INDEX.md`.
 
 ## Passos
 
 1. **Ler contexto do projeto:**
-   - `projects/{slug}/CLAUDE.md` — contexto operacional
-   - `projects/{slug}/state.yaml` — fase, deliverables, blockers, próxima ação
-   - `projects/{slug}/tasks.yaml` — índice ClickUp
+   - `SecondBrain/projetos/{slug}/CLAUDE.md` — contexto operacional
+   - `SecondBrain/projetos/{slug}/state.yaml` — fase, deliverables, blockers, próxima ação
+   - `SecondBrain/projetos/{slug}/tasks.yaml` — índice ClickUp
 
 2. **Sincronizar status do ClickUp (se disponível):**
    - Usar MCP ClickUp para puxar status atual da `task_mae` em `tasks.yaml` via `get_task`.
@@ -55,4 +55,4 @@ Quando o usuário invocar `/projeto-status <slug>`, gere um resumo executivo do 
 
 - **Nunca invente status.** Se não conseguir ler state.yaml ou o projeto não existe, pergunte ao usuário.
 - **Não modifique arquivos** — esta skill é read-only.
-- Se o usuário pedir `/projeto-status` sem slug E só houver 1 projeto em `projects/INDEX.md`, use esse automaticamente.
+- Se o usuário pedir `/projeto-status` sem slug E só houver 1 projeto ativo em `SecondBrain/projetos/INDEX.md`, use esse automaticamente.

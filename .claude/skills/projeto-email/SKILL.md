@@ -10,18 +10,18 @@ Quando o usuário invocar `/projeto-email <slug> <tipo>`, gere um draft Gmail ap
 
 ## Entrada
 
-- `<slug>` — ex: `132-samarco`
+- `<slug>` — ex: `132-estacao-samarco`
 - `<tipo>` — um de: `calendario-social`, `relatorio-mensal`, `aviso-cidade`, `status-produtor`, `release-pauta`, `solicitacao` (livre)
 
 ## Passos
 
 1. **Carregar contexto (ordem obrigatória):**
    - `brand/NTICS-cheatsheet.md` — tom de voz NTICS, regras de pontuação (nunca travessão `—`), vocabulário preferido
-   - `SecondBrain/projetos/{slug-canonico}/brand-aplicacao-{patrocinador}.md` — tom específico do projeto (ex: Samarco = positivo, reconstrução, sem citar Fundão). Precedência sobre cheatsheet.
-   - `projects/{slug}/stakeholders.yaml` — destinatários, canais, cadência
-   - `projects/{slug}/CLAUDE.md` — contexto operacional
-   - `projects/{slug}/calendar.md` — quando aplicável (calendário social, relatório mensal)
-   - `projects/{slug}/state.yaml` — fase atual e deliverables recentes
+   - `SecondBrain/projetos/{slug}/brand-aplicacao-{patrocinador}.md` — tom específico do projeto (ex: Samarco = positivo, reconstrução, sem citar Fundão). Precedência sobre cheatsheet.
+   - `SecondBrain/projetos/{slug}/stakeholders.yaml` — destinatários, canais, cadência
+   - `SecondBrain/projetos/{slug}/CLAUDE.md` — contexto operacional
+   - `SecondBrain/projetos/{slug}/calendar.md` — quando aplicável (calendário social, relatório mensal)
+   - `SecondBrain/projetos/{slug}/state.yaml` — fase atual e deliverables recentes
 
 2. **Montar e-mail conforme tipo:**
 

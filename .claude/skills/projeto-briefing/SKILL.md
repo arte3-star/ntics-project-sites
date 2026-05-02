@@ -10,7 +10,7 @@ Quando o usuário invocar `/projeto-briefing <slug> <deliverable-id>`, orquestre
 
 ## Entrada
 
-- `<slug>` — ex: `132-samarco`
+- `<slug>` — ex: `132-estacao-samarco`
 - `<deliverable-id>` — ex: `A1`, `B2`, `C1`, `VIDEO-PRE-MG`
 
 ## Passos
@@ -18,11 +18,11 @@ Quando o usuário invocar `/projeto-briefing <slug> <deliverable-id>`, orquestre
 1. **Carregar contexto (ordem obrigatória):**
    - `brand/NTICS-cheatsheet.md` — regras genéricas de voz, cores, vocabulário (sempre primeiro)
    - `SecondBrain/projetos/{slug-canonico}/brand-aplicacao-{patrocinador}.md` — SUBSTITUI regras NTICS quando aplicável (logo do cliente soberana, tom editorial específico, territórios sensíveis). Se este arquivo existir, **as regras dele têm precedência sobre o cheatsheet NTICS**.
-   - `projects/{slug}/CLAUDE.md` — contexto operacional
-   - `projects/{slug}/state.yaml` — encontrar o deliverable por id, extrair: `tipo`, `skill`, `formato_final`, `formato_entrega`, `dependencia`, `nome`
-   - `projects/{slug}/stakeholders.yaml` — fluxo de aprovação, canais, cadência
-   - `SecondBrain/projetos/{slug-canonico}/decisoes.md` — restrições recentes capturadas pelo sync
-   - `projects/{slug}/brief/tap.md` e fontes apontadas — referências complementares
+   - `SecondBrain/projetos/{slug}/CLAUDE.md` — contexto operacional
+   - `SecondBrain/projetos/{slug}/state.yaml` — encontrar o deliverable por id, extrair: `tipo`, `skill`, `formato_final`, `formato_entrega`, `dependencia`, `nome`
+   - `SecondBrain/projetos/{slug}/stakeholders.yaml` — fluxo de aprovação, canais, cadência
+   - `SecondBrain/projetos/{slug}/decisoes.md` — restrições recentes capturadas pelo sync
+   - `SecondBrain/projetos/{slug}/brief/tap.md` e fontes apontadas — referências complementares
 
 2. **Validar:**
    - Se `dependencia` contiver algum deliverable com status ≠ `concluido`, alertar o usuário: "A1 precisa estar concluído antes de B2. Continuar mesmo assim?" e só prosseguir com confirmação.
@@ -33,7 +33,7 @@ Quando o usuário invocar `/projeto-briefing <slug> <deliverable-id>`, orquestre
    - Injetar no briefing:
      - Patrocinador + regras de marca de `stakeholders.yaml`
      - Tom editorial de `CLAUDE.md` do projeto
-     - Referências de fotos (ex: `AUTOMAÇÕES/assets/projetos/{slug}/`, se existir)
+     - Referências de fotos (ex: `SecondBrain/projetos/{slug}/assets/`, se existir)
      - Formato final e de entrega do `state.yaml`
 
 4. **Delegar para skill de produção do plugin `ntics-brain`:**
@@ -50,7 +50,7 @@ Quando o usuário invocar `/projeto-briefing <slug> <deliverable-id>`, orquestre
    | `/google-slides-template` | Invocar com placeholders nomeados |
    | `null` | Entregar o briefing em markdown para execução manual (ex: mockup Figma) |
 
-5. **Salvar output do deliverable** em `projects/{slug}/content/{deliverable-id}/` com subpasta por tipo de arquivo.
+5. **Salvar output do deliverable** em `SecondBrain/projetos/{slug}/content/{deliverable-id}/` com subpasta por tipo de arquivo.
 
 6. **Ao final**, sugira: "Após revisão visual, use `/projeto-avanca {slug} {deliverable-id}` para marcar concluído e comentar no ClickUp."
 

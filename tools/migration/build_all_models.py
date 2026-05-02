@@ -19,6 +19,14 @@ SITES = {
         "hero_subtitle": "Tecnologia, Sustentabilidade e Educação nas Escolas",
         "sonnet_pool": "robotica",
         "include_oficina_foto": False,
+        # Ordem: 1=Palestra, 2=Artes Plásticas, 3=Robótica, 4=Feira, 5=Espetáculo
+        "force_atividade_photo_file": {
+            1: r"g:\O meu disco\AUTOMAÇÕES\assets\melhores-fotos\2. PEC   PIE   PED\061_pec-pie-ped_evento_grande-plateia-criancas-adultos-auditorio-escolar.jpg",
+            2: r"g:\O meu disco\AUTOMAÇÕES\assets\melhores-fotos\2. PEC   PIE   PED\PEC\082_pec-pie-ped_oficina_crianca-criando-globo-terrestre-colorido.jpeg",
+            3: r"g:\O meu disco\AUTOMAÇÕES\assets\melhores-fotos\5. ROBÓTICA NAS ESCOLAS\082_robotica-escolas_robotica_criancas-montando-kit-robotica-com-instrutor.jpg",
+            4: r"g:\O meu disco\AUTOMAÇÕES\assets\melhores-fotos\5. ROBÓTICA NAS ESCOLAS\087_robotica-escolas_robotica_criancas-explorando-kit-robotica-com-educadora.jpg",
+            5: r"g:\O meu disco\AUTOMAÇÕES\assets\melhores-fotos\5. ROBÓTICA NAS ESCOLAS\091_robotica-escolas_robotica_criancas-personificadas-robos-apresentacao-palco.jpg",
+        },
     },
     "117": {
         "dir": "117. TEATRO E OFICINA ROBÓTICA 4ED (WHIRLPOOL)",
@@ -29,6 +37,13 @@ SITES = {
         "hero_subtitle": "Teatro, robótica e criatividade nas escolas públicas",
         "sonnet_pool": "robotica",
         "include_oficina_foto": False,
+        # Ordem: 1=Arte+Criatividade, 2=Robótica reciclados, 3=Feira, 4=Espetáculo
+        "force_atividade_photo_file": {
+            1: r"g:\O meu disco\AUTOMAÇÕES\assets\melhores-fotos\5. ROBÓTICA NAS ESCOLAS\33_cultura-robotica_oficina_B_aluna-cola-quente-robo-papelao.jpg",
+            2: r"g:\O meu disco\AUTOMAÇÕES\assets\melhores-fotos\5. ROBÓTICA NAS ESCOLAS\072_robotica-escolas_robotica_criancas-apresentando-robo-feito-papelao.jpg",
+            3: r"g:\O meu disco\AUTOMAÇÕES\assets\melhores-fotos\5. ROBÓTICA NAS ESCOLAS\087_robotica-escolas_robotica_criancas-explorando-kit-robotica-com-educadora.jpg",
+            4: r"g:\O meu disco\AUTOMAÇÕES\assets\melhores-fotos\5. ROBÓTICA NAS ESCOLAS\091_robotica-escolas_robotica_criancas-personificadas-robos-apresentacao-palco.jpg",
+        },
     },
     "119": {
         "dir": "119. PEC EU FAÇO PARTE 2ªED (SYLVAMO)",
@@ -39,12 +54,11 @@ SITES = {
         "hero_subtitle": "Educação, cidadania e protagonismo juvenil",
         "sonnet_pool": "pec",
         "include_oficina_foto": True,  # tem Oficinas de Fotografia Digital
-        # Atividade 3 = Oficina de Fotografia: criança fotografando com câmera Canon outdoor
-        # Atividade 4 = Feira de Ideias: crianças decorando parede com borboletas coloridas
-        # (usando caminho absoluto porque arquivos foram renomeados após o último ranking)
+        # Ordem: 1=Workshop Formação Professores, 2=Oficina Educação Ambiental, 3=Oficina Fotografia, 4=Feira de Ideias
         "force_atividade_photo_file": {
+            1: r"g:\O meu disco\AUTOMAÇÕES\assets\melhores-fotos\2. PEC   PIE   PED\061_pec-pie-ped_evento_grande-plateia-criancas-adultos-auditorio-escolar.jpg",
             3: r"g:\O meu disco\AUTOMAÇÕES\assets\melhores-fotos\OFICINA DE FOTOGRAFIA\029_oficina-fotografia_oficina_crianca-fotografando-camera-canon-outdoor.jpg",
-            4: r"g:\O meu disco\AUTOMAÇÕES\assets\melhores-fotos\2. PEC   PIE   PED\PEC\068_pec-pie-ped_oficina_criancas-decorando-parede-borboletas-coloridas.jpeg",
+            4: r"g:\O meu disco\AUTOMAÇÕES\assets\melhores-fotos\2. PEC   PIE   PED\PEC\065_pec-pie-ped_oficina_criancas-explorando-experimento-agua-com-educadores.jpeg",
         },
     },
     "125": {
@@ -57,9 +71,12 @@ SITES = {
         "sonnet_pool": "culinaria",
         "include_oficina_foto": True,  # tem Oficina de Fotografia
         "galeria_n": 12,  # pool grande de culinaria — mais fotos
-        "force_atividade_photo": {
-            1: "57_103_Exposicao",
-            2: "59_gastronomia-arte_exposicao_C_paineis-sala-vazia",
+        # Ordem: 1=Culinária, 2=Workshop Foto, 3=Exposição (sem foto), 4=Palestra Educadores
+        "force_atividade_photo_file": {
+            1: r"g:\O meu disco\AUTOMAÇÕES\assets\melhores-fotos\7. CULINÁRIA SUSTENTÁVEL\093_culinaria-sustentavel_culinaria_mulher-preparando-pratos-culinaria-sustentavel_enercan.png",
+            2: r"g:\O meu disco\AUTOMAÇÕES\assets\melhores-fotos\OFICINA DE FOTOGRAFIA\029_oficina-fotografia_oficina_crianca-fotografando-camera-canon-outdoor.jpg",
+            3: "__NONE__",  # exposição sem foto (Lucas pediu para deixar sem)
+            4: r"g:\O meu disco\AUTOMAÇÕES\assets\melhores-fotos\2. PEC   PIE   PED\PEC\074_pec-pie-ped_palestra_educadora-apresentando-projeto-sala-aula.jpg",
         },
     },
     "124": {
@@ -73,13 +90,12 @@ SITES = {
         "include_oficina_foto": True,
         "galeria_n": 12,
         "galeria_pool_priority": ["culinaria","oficina_foto"],  # culinaria primeiro, foto no fim
-        # Nova ordem: 1=Palestra, 2=Culinária, 3=Workshop Foto, 4=Exposição
-        "force_atividade_photo": {
-            4: "57_103_Exposicao",  # Exposição agora é a 4
-        },
+        # Ordem: 1=Palestra, 2=Culinária, 3=Workshop Foto, 4=Exposição
         "force_atividade_photo_file": {
-            # Atividade 1 = Palestra Virtual — foto de facilitadora dando palestra
             1: r"g:\O meu disco\AUTOMAÇÕES\assets\melhores-fotos\10 - Negócio Cultural\03_negocio-cultural_capacitacao_A_facilitadora-amarelo-plateia-sala.jpg",
+            2: r"g:\O meu disco\AUTOMAÇÕES\assets\melhores-fotos\7. CULINÁRIA SUSTENTÁVEL\093_culinaria-sustentavel_culinaria_mulher-preparando-pratos-culinaria-sustentavel_enercan.png",
+            3: r"g:\O meu disco\AUTOMAÇÕES\assets\melhores-fotos\OFICINA DE FOTOGRAFIA\029_oficina-fotografia_oficina_crianca-fotografando-camera-canon-outdoor.jpg",
+            4: r"g:\O meu disco\AUTOMAÇÕES\assets\melhores-fotos\7. CULINÁRIA SUSTENTÁVEL\085_culinaria-sustentavel_exposicao_visitantes-observando-paineis-gastronomia-arte.jpg",
         },
     },
     "127G": {
@@ -91,7 +107,13 @@ SITES = {
         "hero_subtitle": "Programa de Inovação e Empreendedorismo nas escolas",
         "sonnet_pool": "pie",
         "include_oficina_foto": False,
-        "force_sobre_photo": "LaisVieiraFotografia-0467",  # foto dos materiais PIE
+        # Ordem: 1=Palestra Abertura, 2=EU CRIADOR (artes), 3=PROBLEMAS VIRAM IDEIAS, 4=Feira de Ideias
+        "force_atividade_photo_file": {
+            1: r"g:\O meu disco\AUTOMAÇÕES\assets\melhores-fotos\2. PEC   PIE   PED\PIE\096_pec-pie-ped_palestra_agente-educador-apresentando-para-plateia-sentada.jpg",
+            2: r"g:\O meu disco\AUTOMAÇÕES\assets\melhores-fotos\2. PEC   PIE   PED\PEC\082_pec-pie-ped_oficina_crianca-criando-globo-terrestre-colorido.jpeg",
+            3: r"g:\O meu disco\AUTOMAÇÕES\assets\melhores-fotos\2. PEC   PIE   PED\PIE\095_pec-pie-ped_oficina_instrutor-orientando-grupo-adolescentes-mesa.jpg",
+            4: r"g:\O meu disco\AUTOMAÇÕES\assets\melhores-fotos\2. PEC   PIE   PED\PIE\099_pec-pie-ped_evento_grupo-jovens-segurando-cartazes-pie-programa.jpg",
+        },
     },
     "127S": {
         "dir": "127. PIE EMPREENDEDORISMO É ARTE 2ED (SOTREQ)",
@@ -102,7 +124,13 @@ SITES = {
         "hero_subtitle": "Programa de Inovação e Empreendedorismo nas escolas",
         "sonnet_pool": "pie",
         "include_oficina_foto": False,
-        "force_sobre_photo": "LaisVieiraFotografia-0467",
+        # Mesma sequência do 127G
+        "force_atividade_photo_file": {
+            1: r"g:\O meu disco\AUTOMAÇÕES\assets\melhores-fotos\2. PEC   PIE   PED\PIE\096_pec-pie-ped_palestra_agente-educador-apresentando-para-plateia-sentada.jpg",
+            2: r"g:\O meu disco\AUTOMAÇÕES\assets\melhores-fotos\2. PEC   PIE   PED\PEC\082_pec-pie-ped_oficina_crianca-criando-globo-terrestre-colorido.jpeg",
+            3: r"g:\O meu disco\AUTOMAÇÕES\assets\melhores-fotos\2. PEC   PIE   PED\PIE\095_pec-pie-ped_oficina_instrutor-orientando-grupo-adolescentes-mesa.jpg",
+            4: r"g:\O meu disco\AUTOMAÇÕES\assets\melhores-fotos\2. PEC   PIE   PED\PIE\099_pec-pie-ped_evento_grupo-jovens-segurando-cartazes-pie-programa.jpg",
+        },
     },
 }
 
@@ -292,6 +320,10 @@ def build_site(site_id, cfg):
     force_file_map = cfg.get("force_atividade_photo_file", {})
     for i, a in enumerate(content.get("atividades",[]), 1):
         chosen = None
+        # Prioridade 0: __NONE__ explicit = renderiza sem foto
+        if force_file_map.get(i) == "__NONE__":
+            ativ_photos.append((a["titulo"], a["descricao"], None))
+            continue
         # Prioridade 1: arquivo absoluto (de outra pasta)
         if i in force_file_map:
             src = Path(force_file_map[i])
@@ -354,11 +386,22 @@ def build_site(site_id, cfg):
         side = "reveal-left" if i % 2 == 1 else "reveal-right"
         order_img = "lg:order-1" if i % 2 == 1 else "lg:order-2"
         order_text = "lg:order-2" if i % 2 == 1 else "lg:order-1"
-        img_html = (
-            f'<img src="{img}" alt="{titulo}" loading="lazy" class="w-full h-full object-cover">'
-            if img else
-            f'<div class="w-full h-full flex items-center justify-center text-white/70 text-sm">{titulo}</div>'
-        )
+        if not img:
+            # Layout sem foto — ocupa coluna única, mais elegante
+            ativ_html_parts.append(f'''
+      <div class="max-w-3xl mx-auto text-center {side}">
+        <div class="flex items-center gap-4 mb-6 justify-center">
+          <div class="w-14 h-14 rounded-2xl flex items-center justify-center font-display text-2xl text-white" style="background: {cfg['color_main']}; box-shadow: 0 8px 24px {cfg['color_main']}40;">
+            {i:02d}
+          </div>
+        </div>
+        <h3 class="font-display text-2xl sm:text-3xl lg:text-4xl mb-5" style="color: {cfg['color_main']}; letter-spacing: -0.02em; line-height: 1.15;">
+          {titulo}
+        </h3>
+        <p class="text-base lg:text-lg text-slate-600" style="line-height: 1.8;">{desc}</p>
+      </div>''')
+            continue
+        img_html = f'<img src="{img}" alt="{titulo}" loading="lazy" class="w-full h-full object-cover">'
         ativ_html_parts.append(f'''
       <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center {side}">
         <div class="{order_text}">
@@ -380,8 +423,9 @@ def build_site(site_id, cfg):
         </div>
       </div>''')
 
-    # Cidades section (optional)
+    # Cidades section (optional). Se 1 cidade só, centraliza com texto descritivo.
     cidades_html = ""
+    cidades_uma_so = len(cidades) == 1
     if cidades:
         cidade_cards = "".join([
             f'''<div class="bg-white rounded-2xl p-6 text-center shadow-md hover:shadow-xl transition reveal">
@@ -391,6 +435,21 @@ def build_site(site_id, cfg):
                   <h4 class="font-bold text-lg text-slate-800">{c}</h4>
                 </div>''' for c in cidades
         ])
+        # Layout adapta por número de cidades — 1 cidade fica centralizada com texto descritivo
+        if cidades_uma_so:
+            cidade_unica = cidades[0]
+            descricao_cidade = f"O projeto acontece em <strong>{cidade_unica}</strong>, articulado com escolas, secretarias municipais e organizações parceiras locais."
+            cidade_cards_wrapper = f'''<div class="max-w-md mx-auto">
+                <div class="bg-white rounded-3xl p-10 text-center shadow-lg reveal">
+                  <div class="w-20 h-20 rounded-full mx-auto mb-5 flex items-center justify-center" style="background: {cfg['color_main']}15;">
+                    <svg class="w-10 h-10" style="color: {cfg['color_main']};" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
+                  </div>
+                  <h3 class="font-display text-3xl font-extrabold mb-3" style="color: {cfg['color_main']};">{cidade_unica}</h3>
+                  <p class="text-slate-600 text-base leading-relaxed">{descricao_cidade}</p>
+                </div>
+              </div>'''
+        else:
+            cidade_cards_wrapper = f'<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 max-w-3xl mx-auto">{cidade_cards}</div>'
         cidades_html = f'''
   <!-- ═══════════════ CIDADES ═══════════════ -->
   <section id="cidades" class="py-20 lg:py-28 px-6 lg:px-10 bg-slate-50">
@@ -398,11 +457,11 @@ def build_site(site_id, cfg):
       <div class="text-center mb-12 reveal">
         <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-[0.2em] mb-6" style="background: {cfg['color_main']}15; color: {cfg['color_main']};">
           <span class="w-2 h-2 rounded-full" style="background: {cfg['color_main']};"></span>
-          Cidades Atendidas
+          {'Onde Acontece' if cidades_uma_so else 'Cidades Atendidas'}
         </div>
         <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold" style="color: {cfg['color_main']}; letter-spacing: -0.03em;">Por Onde Passamos</h2>
       </div>
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 max-w-3xl mx-auto">{cidade_cards}</div>
+      {cidade_cards_wrapper}
     </div>
   </section>'''
 
@@ -443,7 +502,7 @@ def build_site(site_id, cfg):
                   </div>
                   <div class="flex items-baseline gap-2 mb-4">
                     <span class="font-display text-4xl font-extrabold" style="color: {cfg['color_main']};">{f"{cb['total_alunos']:,}".replace(",", ".")}</span>
-                    <span class="text-sm text-slate-500">alunos · {len(cb['escolas'])} escola{'s' if len(cb['escolas']) != 1 else ''}</span>
+                    <span class="text-sm text-slate-500">{'alunos' if all(e.get('publico','alunos')=='alunos' for e in cb['escolas']) else 'participantes'} · {len(cb['escolas'])} {('local' if len(cb['escolas']) == 1 else 'locais') if not all(e.get('publico','alunos')=='alunos' for e in cb['escolas']) else ('escola' if len(cb['escolas']) == 1 else 'escolas')}</span>
                   </div>
                   <ul class="mt-auto">{escolas_html}</ul>
                 </div>''')
@@ -465,7 +524,7 @@ def build_site(site_id, cfg):
           Onde Estamos
         </div>
         <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-main" style="letter-spacing: -0.03em;">Onde Estamos</h2>
-        <p class="text-slate-600 mt-4 text-lg">{n_cidades} cidade{'s' if n_cidades != 1 else ''}, {total_escolas} escolas, {f"{total_alunos:,}".replace(",", ".")} estudantes alcançados.</p>
+        <p class="text-slate-600 mt-4 text-lg">{n_cidades} cidade{'s' if n_cidades != 1 else ''}, {total_escolas} {('escolas' if total_escolas != 1 else 'escola') if all(e.get('publico','alunos')=='alunos' for cb in cidade_list for e in cb['escolas']) else ('locais' if total_escolas != 1 else 'local')}, {f"{total_alunos:,}".replace(",", ".")} {('estudantes alcançados' if all(e.get('publico','alunos')=='alunos' for cb in cidade_list for e in cb['escolas']) else 'participantes alcançados')}.</p>
         <p class="text-xs text-slate-400 mt-2">Atualizado em {atualizado}</p>
       </div>
       <div class="{wrapper_class}">{"".join(cards_html_parts)}</div>
