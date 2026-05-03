@@ -2,15 +2,17 @@
 """
 projeto_sync.py — Sync incremental do estado do projeto a partir do ClickUp.
 
-Opção D (SessionStart hook): roda ao abrir Claude Code em projects-os, puxa
+Opção D (SessionStart hook): roda ao abrir Claude Code em Claude-NTICS-Projetos, puxa
 task-mãe + subtasks + comentários do ClickUp, diffa contra cache, e só chama
 Haiku (LLM) quando há delta real. Em dia sem mudança, custo = 0 tokens LLM
 (só 1-2 chamadas HTTP ClickUp).
 
 Uso:
-    python tools/sync/projeto_sync.py 132-samarco
-    python tools/sync/projeto_sync.py 132-samarco --quiet
-    python tools/sync/projeto_sync.py 132-samarco --dry-run
+    python tools/sync/projeto_sync.py 132-estacao-samarco
+    python tools/sync/projeto_sync.py 132-estacao-samarco --quiet
+    python tools/sync/projeto_sync.py 132-estacao-samarco --dry-run
+
+Aceita também aliases curtos como '132-samarco' (resolvido por prefixo numérico).
 """
 
 from __future__ import annotations
@@ -37,7 +39,7 @@ if hasattr(sys.stdout, "reconfigure"):
         pass
 
 ROOT = Path(__file__).resolve().parents[2]
-PROJECTS_DIR = ROOT / "projects"
+PROJECTS_DIR = ROOT / "SecondBrain" / "projetos"
 AUTOMACOES_ROOT = ROOT.parent / "AUTOMAÇÕES"
 AUTOMACOES_ENV = AUTOMACOES_ROOT / ".env"
 
@@ -176,6 +178,7 @@ Para cada delta, responda em JSON estrito (sem markdown, sem comentário):
       "task_id": "...",
       "tipo": "status_change" | "new_comment" | "name_change" | "assignee_change" | "email_novo" | "email_resposta",
       "fonte": "clickup" | "gmail",
+      "categoria": "operacional" | "marca_escopo" | "decisao" | "ruido",
       "resumo": "frase curta do que mudou",
       "deliverable_id_afetado": "A1" ou null (se o nome da task bater com um deliverable conhecido do state.yaml, ex: A1, B2, C1),
       "acao_sugerida": "frase curta do que o coordenador deve fazer OU null",
@@ -188,12 +191,16 @@ Para cada delta, responda em JSON estrito (sem markdown, sem comentário):
 }}
 
 Regras:
-- Comentário "ok", "vi", emoji sozinho = baixa relevância.
-- Mudança de status, menção a aprovação/rejeição/deadline = alta.
-- Se comentário contém "aprovado", "rejeitado", "ajustar", "enviar até", extrair como decisão.
+- Comentário "ok", "vi", emoji sozinho = baixa relevância, categoria=ruido.
+- Mudança de status, menção a aprovação/rejeição/deadline = alta, categoria=operacional.
+- Se comentário/email contém "aprovado", "rejeitado", "ajustar", "enviar até", "decidimos", "definido" → categoria=decisao + extrair como decisão.
+- Se email/comentário traz informação sobre marca, posicionamento, identidade visual, manual de marca, KV, paleta, tom de voz, escopo do projeto, novos territórios/cidades, mudança de público-alvo → categoria=marca_escopo.
+- Tudo o mais que é movimentação de tarefa/entrega no dia a dia → categoria=operacional.
 - Nunca invente deliverable_id_afetado. Só preencha se o nome/id da task bater claramente."""
 
-    raw = call_haiku(prompt, max_tokens=1500)
+    # 250 tokens por delta como buffer; minimo 2000, maximo 6000
+    max_tokens = max(2000, min(6000, 250 * max(1, len(deltas))))
+    raw = call_haiku(prompt, max_tokens=max_tokens)
     clean = raw.strip()
     # Tira cerca ```json ... ```
     if clean.startswith("```"):
@@ -370,15 +377,29 @@ def append_events_log(project_dir: Path, entries: list[str]) -> None:
             f.write(e + "\n")
 
 
+def find_sb_dir(slug: str) -> Path:
+    """Resolve pasta canônica em SecondBrain/projetos/ a partir de slug livre.
+
+    Tenta match exato; se falhar, usa prefixo numérico (ex: '132-samarco' → '132-estacao-samarco').
+    Cria pasta com slug cru se nada bater (caminho de bootstrap).
+    """
+    exact = PROJECTS_DIR / slug
+    if exact.exists():
+        return exact
+    prefix = slug.split("-", 1)[0]
+    if prefix.isdigit() and PROJECTS_DIR.exists():
+        for child in PROJECTS_DIR.iterdir():
+            if child.is_dir() and child.name.startswith(f"{prefix}-"):
+                return child
+    exact.mkdir(parents=True, exist_ok=True)
+    return exact
+
+
 def append_decisoes_sb(slug: str, decisoes: list[str], fonte: str = "sync") -> None:
-    """Append decisões capturadas no SecondBrain local de projects-os."""
+    """Append decisões capturadas no SecondBrain do projeto."""
     if not decisoes:
         return
-    sb_dir = ROOT / "SecondBrain" / "projetos" / slug.replace("132-samarco", "132-estacao-samarco")
-    # Fallback: se dir específico não existir, criar por slug cru
-    if not sb_dir.exists():
-        sb_dir = ROOT / "SecondBrain" / "projetos" / slug
-        sb_dir.mkdir(parents=True, exist_ok=True)
+    sb_dir = find_sb_dir(slug)
     path = sb_dir / "decisoes.md"
     ts = datetime.now(timezone.utc).isoformat(timespec="minutes")
     with path.open("a", encoding="utf-8") as f:
@@ -387,8 +408,58 @@ def append_decisoes_sb(slug: str, decisoes: list[str], fonte: str = "sync") -> N
                 f.write(f"\n[{ts}] [AUTO] {d.strip()}\n")
 
 
+def append_execucao_sb(slug: str, eventos_op: list[dict]) -> None:
+    """Append eventos operacionais (status, comentários, emails de movimentação) no execucao.md."""
+    if not eventos_op:
+        return
+    sb_dir = find_sb_dir(slug)
+    path = sb_dir / "execucao.md"
+    ts = datetime.now(timezone.utc).isoformat(timespec="minutes")
+    if not path.exists():
+        path.write_text(f"# Log de execução — {slug}\n\nAppend-only. Auto-gerado por projeto_sync.py.\n\n", encoding="utf-8")
+    with path.open("a", encoding="utf-8") as f:
+        for ev in eventos_op:
+            tipo = ev.get("tipo", "evento")
+            fonte = ev.get("fonte", "?")
+            resumo = (ev.get("resumo") or "").strip()
+            deliverable = ev.get("deliverable_id_afetado")
+            acao = ev.get("acao_sugerida")
+            line = f"[{ts}] [auto:{fonte}/{tipo}] {resumo}"
+            if deliverable:
+                line += f" (deliverable={deliverable})"
+            if acao:
+                line += f" → {acao}"
+            f.write(line + "\n")
+
+
+def append_brand_block(project_dir: Path, eventos_brand: list[dict]) -> None:
+    """Append eventos de marca/escopo num bloco auto-gerado no fim do CLAUDE.md do projeto."""
+    if not eventos_brand:
+        return
+    claude_md = project_dir / "CLAUDE.md"
+    if not claude_md.exists():
+        return  # não cria do zero — projeto sem CLAUDE.md inicializado é problema separado
+    ts = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    marker = "## Atualizações automáticas (auto-gerado)"
+    body = claude_md.read_text(encoding="utf-8")
+    bloco_novo = []
+    for ev in eventos_brand:
+        fonte = ev.get("fonte", "?")
+        resumo = (ev.get("resumo") or "").strip()
+        if resumo:
+            bloco_novo.append(f"- **[{ts}] [{fonte}]** {resumo}")
+    if not bloco_novo:
+        return
+    if marker in body:
+        # append no fim do arquivo (novo bloco datado)
+        novo = body.rstrip() + "\n\n" + "\n".join(bloco_novo) + "\n"
+    else:
+        novo = body.rstrip() + f"\n\n{marker}\n\n" + "\n".join(bloco_novo) + "\n"
+    claude_md.write_text(novo, encoding="utf-8")
+
+
 def write_cache(project_dir: Path, snapshot: dict) -> None:
-    cache_path = project_dir / ".cache" / "clickup-snapshot.json"
+    cache_path = project_dir / "_cache" / "clickup-snapshot.json"
     cache_path.parent.mkdir(exist_ok=True)
     cache_path.write_text(
         json.dumps(snapshot, ensure_ascii=False, indent=2), encoding="utf-8"
@@ -396,7 +467,7 @@ def write_cache(project_dir: Path, snapshot: dict) -> None:
 
 
 def read_cache(project_dir: Path) -> dict:
-    cache_path = project_dir / ".cache" / "clickup-snapshot.json"
+    cache_path = project_dir / "_cache" / "clickup-snapshot.json"
     if not cache_path.exists():
         return {}
     try:
@@ -406,7 +477,7 @@ def read_cache(project_dir: Path) -> dict:
 
 
 def sync_project(slug: str, dry_run: bool = False, quiet: bool = False) -> dict:
-    project_dir = PROJECTS_DIR / slug
+    project_dir = find_sb_dir(slug)
     if not project_dir.exists():
         raise SystemExit(f"Projeto não encontrado: {project_dir}")
 
@@ -536,6 +607,12 @@ def sync_project(slug: str, dry_run: bool = False, quiet: bool = False) -> dict:
     if not dry_run:
         append_events_log(project_dir, linhas)
         append_decisoes_sb(slug, classificacao.get("decisoes_capturadas", []))
+        # Roteamento por categoria
+        eventos = classificacao.get("eventos", [])
+        eventos_op = [e for e in eventos if e.get("categoria") == "operacional" and e.get("relevancia") != "baixa"]
+        eventos_brand = [e for e in eventos if e.get("categoria") == "marca_escopo"]
+        append_execucao_sb(slug, eventos_op)
+        append_brand_block(project_dir, eventos_brand)
         write_cache(project_dir, snap_atual)
 
     log(f"[ok] Sync completo. {len(classificacao.get('eventos', []))} evento(s) registrado(s).", quiet)
@@ -550,7 +627,7 @@ def sync_project(slug: str, dry_run: bool = False, quiet: bool = False) -> dict:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("slug", help="Slug do projeto (ex: 132-samarco)")
+    parser.add_argument("slug", help="Slug do projeto (ex: 132-estacao-samarco; aceita alias '132-samarco')")
     parser.add_argument("--dry-run", action="store_true", help="Não grava cache nem log")
     parser.add_argument("--quiet", action="store_true", help="Silencia logs no stderr")
     parser.add_argument("--json", action="store_true", help="Imprime resultado como JSON no stdout")

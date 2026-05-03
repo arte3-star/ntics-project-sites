@@ -10,18 +10,18 @@ Use quando quiser puxar mudanças recentes do ClickUp + Gmail sem abrir nova ses
 
 ## Entrada
 
-- `<slug>` — opcional. Se omitido e houver 1 só projeto em `projects/INDEX.md`, usa esse automaticamente. Ex: `132-samarco`.
+- `<slug>` — opcional. Se omitido e houver 1 só projeto ativo em `SecondBrain/projetos/INDEX.md`, usa esse automaticamente. Ex: `132-estacao-samarco`.
 
 ## Passos
 
 1. Rodar no terminal:
    ```bash
-   python "g:/O meu disco/projects-os/tools/sync/projeto_sync.py" {slug}
+   python "g:/O meu disco/Claude-NTICS-Projetos/tools/sync/projeto_sync.py" {slug}
    ```
 
 2. **Ler stdout** do script. Se retornar "Sem mudanças desde último sync", reportar ao usuário: "nada novo desde última sincronização ({timestamp do cache})".
 
-3. Se houver eventos, ler as últimas linhas de `projects/{slug}/comms/events.log` (equivalente ao que o script imprimiu) e resumir de forma executiva:
+3. Se houver eventos, ler as últimas linhas de `SecondBrain/projetos/{slug}/comms/events.log` (equivalente ao que o script imprimiu) e resumir de forma executiva:
    - Quantos eventos de alta/média/baixa relevância
    - Principais ações sugeridas
    - Se alguma decisão foi capturada

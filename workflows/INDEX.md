@@ -156,13 +156,13 @@ Cada skill `/comando` referencia um SOP em `workflows/`. Lista das skills com wo
 | `/publicar-drive` | `publicar-drive/` | `marketing/publicar_drive.md` |
 | `/relatorio-pmo` | `relatorio-pmo/` | `escritorio-projetos/relatorio_diario_pmo.md` |
 | `/relatorio-pmo-semanal` | `relatorio-pmo-semanal/` | `escritorio-projetos/relatorio_semanal_pmo.md` |
-| `/projeto-status` | `projeto-status/` | (lê `projects/{slug}/state.yaml` + sync ClickUp) |
+| `/projeto-status` | `projeto-status/` | (lê `SecondBrain/projetos/{slug}/state.yaml` + sync ClickUp) |
 | `/projeto-briefing` | `projeto-briefing/` | delega a skill de produção do plugin ntics-brain |
-| `/projeto-email` | `projeto-email/` | usa `projects/{slug}/stakeholders.yaml` |
+| `/projeto-email` | `projeto-email/` | usa `SecondBrain/projetos/{slug}/stakeholders.yaml` |
 | `/projeto-avanca` | `projeto-avanca/` | atualiza state.yaml + comenta evidência ClickUp |
 | `/projeto-sync` | `projeto-sync/` | invoca `tools/sync/projeto_sync.py` |
 | `/projeto-salvar` | `projeto-salvar/` | append em `SecondBrain/projetos/{slug}/` |
-| `/projeto-registrar` | `projeto-registrar/` | append em `projects/{slug}/historico.md` |
+| `/projeto-registrar` | `projeto-registrar/` | append em `SecondBrain/projetos/{slug}/historico.md` |
 | `/criar-site` | `criar-site/` | `escritorio-projetos/criar_site_projeto.md` |
 | `/kv-derivar` | `kv-derivar/` | `escritorio-projetos/kv_derivar_projeto.md` |
 | `/arte-impressao-cmyk` | `arte-impressao-cmyk/` | `escritorio-projetos/arte_impressao_cmyk.md` |

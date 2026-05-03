@@ -1,17 +1,17 @@
-# Registra o auto-sync do 132-samarco como Windows Scheduled Task rodando a cada 2h.
+# Registra o auto-sync de um projeto como Windows Scheduled Task rodando a cada 2h.
 # Rode UMA VEZ no PowerShell (admin ou usuário comum) para ativar.
-# Para desativar: schtasks /Delete /TN "NTICS-projeto-sync-132" /F
+# Para desativar: schtasks /Delete /TN "NTICS-projeto-sync-<slug>" /F
 
 param(
-    [string]$Slug = "132-samarco",
+    [string]$Slug = "132-estacao-samarco",
     [int]$IntervaloMinutos = 120,
-    [string]$ProjectsOsPath = "g:\O meu disco\projects-os"
+    [string]$RepoPath = "g:\O meu disco\Claude-NTICS-Projetos"
 )
 
 $TaskName = "NTICS-projeto-sync-$Slug"
 $PythonExe = (Get-Command python).Source
-$ScriptPath = Join-Path $ProjectsOsPath "tools\sync\projeto_sync.py"
-$LogPath = Join-Path $ProjectsOsPath "projects\$Slug\.cache\cron.log"
+$ScriptPath = Join-Path $RepoPath "tools\sync\projeto_sync.py"
+$LogPath = Join-Path $RepoPath "SecondBrain\projetos\$Slug\_cache\cron.log"
 
 if (-not (Test-Path $ScriptPath)) {
     Write-Error "Script não encontrado: $ScriptPath"

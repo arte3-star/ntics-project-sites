@@ -1,19 +1,19 @@
 ---
 name: projeto-salvar
-description: "Salva nota/decisão/ata no SecondBrain local de projects-os (execucao.md, decisoes.md, atas/) — não no vault canônico NTICS em AUTOMAÇÕES"
+description: "Salva nota/decisão/ata no SecondBrain do projeto (execucao.md, decisoes.md, atas/) — não no vault canônico NTICS em AUTOMAÇÕES"
 user-invocable: true
 ---
 
 # /projeto-salvar — Gravar no SecondBrain local do projeto
 
-Diferente de `/salvar` (skill do plugin ntics-brain, que escreve no vault canônico NTICS em `AUTOMAÇÕES/SecondBrain/`), esta skill grava na memória de **execução** de um projeto específico em `projects-os/SecondBrain/projetos/{slug}/`.
+Diferente de `/salvar` (skill do plugin ntics-brain, que escreve no vault canônico NTICS em `AUTOMAÇÕES/SecondBrain/`), esta skill grava na memória de **execução** de um projeto específico em `SecondBrain/projetos/{slug}/`.
 
 ## Quando usar qual
 
 | Skill | Quando usar | Destino |
 |---|---|---|
 | `/salvar` (plugin) | Decisão estratégica NTICS, conhecimento transversal, ata institucional | `AUTOMAÇÕES/SecondBrain/` |
-| `/projeto-salvar` (esta) | Ação/decisão/evidência específica de um projeto em execução | `projects-os/SecondBrain/projetos/{slug}/` |
+| `/projeto-salvar` (esta) | Ação/decisão/evidência específica de um projeto em execução | `SecondBrain/projetos/{slug}/` |
 
 ## Entrada
 

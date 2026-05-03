@@ -10,13 +10,13 @@ Quando o usuário invocar `/projeto-avanca <slug> <deliverable-id>`, encerre o d
 
 ## Entrada
 
-- `<slug>` — ex: `132-samarco`
+- `<slug>` — ex: `132-estacao-samarco`
 - `<deliverable-id>` — id do deliverable a marcar concluído (ex: `A1`, `B2`, `VIDEO-PRE-MG`)
 
 ## Passos
 
 1. **Validar:**
-   - Ler `projects/{slug}/state.yaml` e localizar o deliverable.
+   - Ler `SecondBrain/projetos/{slug}/state.yaml` e localizar o deliverable.
    - Se `status` já for `concluido`, perguntar: "já estava concluído, atualizar mesmo assim?"
    - Se `output` estiver vazio, pedir ao usuário o caminho do arquivo/link final antes de continuar.
 
@@ -27,7 +27,7 @@ Quando o usuário invocar `/projeto-avanca <slug> <deliverable-id>`, encerre o d
    - Recalcular `proxima_acao`: primeiro deliverable com status `pendente` e sem dependência bloqueada, ordenado por prioridade.
 
 3. **Comentar no ClickUp:**
-   - Ler `projects/{slug}/tasks.yaml` e localizar a subtask correspondente ao deliverable.
+   - Ler `SecondBrain/projetos/{slug}/tasks.yaml` e localizar a subtask correspondente ao deliverable.
    - Se a subtask ainda não existir (ids vazios em `subtasks_design_a_criar`), sugerir ao usuário criar antes — não criar automaticamente sem autorização.
    - Usar `mcp__claude_ai_ClickUp__clickup_create_task_comment` com:
      ```
@@ -37,9 +37,9 @@ Quando o usuário invocar `/projeto-avanca <slug> <deliverable-id>`, encerre o d
      ```
    - Após comentar, verificar com `clickup_get_task_comments` que o comentário existe.
 
-4. **Salvar no SecondBrain LOCAL (projects-os/SecondBrain/):**
-   - Caminho: `SecondBrain/projetos/{slug-canonico}/execucao.md` (append no final).
-     - Normalizar slug: `132-samarco` → `132-estacao-samarco`.
+4. **Salvar no SecondBrain (casa única do projeto):**
+   - Caminho: `SecondBrain/projetos/{slug}/execucao.md` (append no final).
+     - Normalizar slug se vier no formato curto: `132-samarco` → `132-estacao-samarco`.
    - Formato: `[{timestamp ISO UTC}] [deliverable_concluido] {deliverable.id} {deliverable.nome} concluído. Output: {link}`.
    - Para decisões formais detectadas no processo, também append em `decisoes.md` com tag `[MANUAL]`.
    - Não escrever em `AUTOMAÇÕES/SecondBrain/` — aquele vault é canônico e recebe só atas institucionais e contexto estratégico, não log operacional.
