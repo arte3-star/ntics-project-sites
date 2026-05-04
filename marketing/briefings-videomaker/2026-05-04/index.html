@@ -1,0 +1,1705 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Briefing Captação · Maio 2026 · NTICS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --verde: #3DAA35;
+  --azul: #005F73;
+  --rosa: #D41A6A;
+  --laranja: #E86428;
+  --amarelo: #F5B800;
+  --teal: #00A5B8;
+  --roxo: #6B2D7B;
+  --branco: #FFFFFF;
+  --cinza-claro: #F4F4F4;
+  --cinza-medio: #6B7280;
+  --grafite: #2D2D2D;
+  --grafite-mais-escuro: #1A1A1A;
+  --font: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+body {
+  font-family: var(--font);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--grafite);
+  background: var(--cinza-claro);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ===== Sidebar ===== */
+.sidebar {
+  position: fixed;
+  left: 0; top: 0; bottom: 0;
+  width: 300px;
+  background: var(--grafite-mais-escuro);
+  color: var(--branco);
+  padding: 32px 0;
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+}
+.brand {
+  padding: 0 24px 24px 24px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.brand-logo {
+  display: flex; align-items: center; gap: 12px;
+  font-weight: 800; font-size: 20px; letter-spacing: -0.02em;
+}
+.brand-logo .dot {
+  width: 32px; height: 32px;
+  background: linear-gradient(135deg, var(--verde) 0%, var(--teal) 100%);
+  border-radius: 8px;
+  display: grid; place-items: center;
+  font-size: 14px; font-weight: 800; color: white;
+}
+.brand-meta {
+  margin-top: 8px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(255,255,255,0.5);
+  font-weight: 500;
+}
+.nav-list { padding: 24px 12px; flex: 1; overflow-y: auto; }
+.nav-item {
+  width: 100%;
+  display: flex; align-items: center; gap: 14px;
+  padding: 14px 16px;
+  background: transparent;
+  border: none;
+  border-radius: 12px;
+  color: rgba(255,255,255,0.65);
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  font-size: 14px;
+  transition: all 200ms;
+  margin-bottom: 4px;
+}
+.nav-item:hover { background: rgba(255,255,255,0.06); color: white; }
+.nav-item.active {
+  background: rgba(255,255,255,0.10);
+  color: white;
+  box-shadow: inset 3px 0 0 var(--accent, var(--verde));
+}
+.nav-num {
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  background: var(--accent, var(--verde));
+  color: white;
+  display: grid; place-items: center;
+  font-weight: 700;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+.nav-item[data-view="117"] { --accent: var(--azul); }
+.nav-item[data-view="119"] { --accent: var(--verde); }
+.nav-item[data-view="116"] { --accent: var(--laranja); }
+.nav-item[data-view="127"] { --accent: var(--teal); }
+.nav-item[data-view="120"] { --accent: var(--amarelo); }
+.nav-item[data-view="124"] { --accent: var(--roxo); }
+.nav-item[data-view="125"] { --accent: var(--rosa); }
+.nav-item[data-view="aline"] { --accent: var(--rosa); }
+.nav-item[data-view="aline"] .nav-num { background: var(--rosa); font-size: 12px; }
+.nav-text strong { display: block; font-weight: 600; line-height: 1.2; }
+.nav-text small { display: block; font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 2px; }
+.sidebar-footer {
+  padding: 16px 24px;
+  font-size: 11px;
+  color: rgba(255,255,255,0.4);
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+/* ===== Main ===== */
+main {
+  margin-left: 300px;
+  min-height: 100vh;
+  padding: 48px 56px 80px 56px;
+}
+.view { display: none; max-width: 1100px; }
+.view.active { display: block; animation: fadeIn 320ms ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ===== Hero por projeto ===== */
+.hero {
+  position: relative;
+  border-radius: 24px;
+  padding: 56px 48px;
+  color: white;
+  margin-bottom: 48px;
+  overflow: hidden;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  right: -80px; top: -80px;
+  width: 320px; height: 320px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  right: 80px; bottom: -120px;
+  width: 240px; height: 240px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.06);
+}
+.view-117 .hero { background: linear-gradient(135deg, var(--azul) 0%, #003D4A 100%); }
+.view-119 .hero { background: linear-gradient(135deg, var(--verde) 0%, #2A7D24 100%); }
+.view-116 .hero { background: linear-gradient(135deg, var(--laranja) 0%, #B84A1A 100%); }
+.view-127 .hero { background: linear-gradient(135deg, var(--teal) 0%, #007A8A 100%); }
+.view-120 .hero { background: linear-gradient(135deg, var(--amarelo) 0%, #C49000 100%); }
+.view-124 .hero { background: linear-gradient(135deg, var(--roxo) 0%, #3D1A47 100%); }
+.view-125 .hero { background: linear-gradient(135deg, var(--rosa) 0%, #8B0F47 100%); }
+.view-aline .hero { background: linear-gradient(135deg, var(--rosa) 0%, #8B0F47 100%); }
+
+.overline {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-weight: 600;
+  opacity: 0.85;
+  margin-bottom: 12px;
+}
+.hero h1 {
+  font-size: 48px;
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  margin-bottom: 20px;
+  position: relative;
+}
+.hero .lead {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.45;
+  opacity: 0.92;
+  max-width: 720px;
+  position: relative;
+}
+.hero-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px 32px;
+  margin-top: 36px;
+  position: relative;
+}
+.hero-meta div {
+  border-left: 3px solid rgba(255,255,255,0.5);
+  padding-left: 14px;
+}
+.hero-meta strong {
+  display: block;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  opacity: 0.75;
+  margin-bottom: 4px;
+}
+.hero-meta span { font-weight: 500; font-size: 15px; }
+
+/* ===== Block sections ===== */
+.block { margin-bottom: 56px; }
+.block-header { margin-bottom: 28px; }
+.block-header .overline { color: var(--accent); }
+.view-117 { --accent: var(--azul); }
+.view-119 { --accent: var(--verde); }
+.view-116 { --accent: var(--laranja); }
+.view-127 { --accent: var(--teal); }
+.view-120 { --accent: var(--amarelo); }
+.view-124 { --accent: var(--roxo); }
+.view-125 { --accent: var(--rosa); }
+.view-aline { --accent: var(--rosa); }
+
+.block h2 {
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--grafite);
+}
+.block h2 + p.subtitle {
+  margin-top: 8px;
+  font-size: 17px;
+  color: var(--cinza-medio);
+  max-width: 720px;
+}
+
+/* ===== Video cards ===== */
+.video-cards { display: grid; gap: 16px; }
+.video-card {
+  background: white;
+  border-radius: 16px;
+  padding: 28px 32px;
+  border-left: 4px solid var(--accent);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  transition: box-shadow 200ms;
+}
+.video-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.06); }
+.card-tag {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  background: var(--accent);
+  color: white;
+  padding: 5px 12px;
+  border-radius: 999px;
+  margin-bottom: 14px;
+}
+.video-card h3 {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+  margin-bottom: 12px;
+  color: var(--grafite);
+}
+.video-card .story {
+  font-size: 15.5px;
+  line-height: 1.65;
+  color: #333;
+  margin-bottom: 18px;
+}
+.video-card .story strong { color: var(--accent); font-weight: 600; }
+.video-meta {
+  display: flex; flex-wrap: wrap; gap: 10px;
+  border-top: 1px solid var(--cinza-claro);
+  padding-top: 16px;
+}
+.chip {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--cinza-claro);
+  color: var(--grafite);
+}
+.chip strong { font-weight: 700; margin-right: 4px; color: var(--cinza-medio); text-transform: uppercase; font-size: 10px; letter-spacing: 0.1em; }
+
+/* ===== Captação grid ===== */
+.cap-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.cap-block {
+  background: white;
+  border-radius: 16px;
+  padding: 28px 32px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.cap-block.full { grid-column: 1 / -1; }
+.cap-block h4 {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  font-weight: 700;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--cinza-claro);
+}
+.cap-block h4 .icon { display: inline-block; margin-right: 8px; }
+.persona { margin-bottom: 24px; }
+.persona:last-child { margin-bottom: 0; }
+.persona-name {
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--grafite);
+  margin-bottom: 4px;
+}
+.persona-why {
+  font-size: 13px;
+  color: var(--cinza-medio);
+  margin-bottom: 10px;
+  font-style: normal;
+}
+.cap-block ul {
+  list-style: none;
+  padding: 0;
+}
+.cap-block ul li {
+  position: relative;
+  padding-left: 22px;
+  margin-bottom: 10px;
+  font-size: 14.5px;
+  line-height: 1.55;
+}
+.cap-block ul li::before {
+  content: '';
+  position: absolute;
+  left: 4px; top: 9px;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.cap-block .question {
+  background: #FAFAFA;
+  border-left: 3px solid var(--accent);
+  padding: 12px 16px;
+  border-radius: 0 8px 8px 0;
+  margin-bottom: 8px;
+  font-size: 14.5px;
+  line-height: 1.5;
+}
+.cap-block .question::before {
+  content: '"';
+  color: var(--accent);
+  font-weight: 700;
+  margin-right: 4px;
+}
+.cap-block .question::after {
+  content: '"';
+  color: var(--accent);
+  font-weight: 700;
+  margin-left: 2px;
+}
+
+/* ===== Aline-specific ===== */
+.fila-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.fila-table th, .fila-table td {
+  padding: 16px 20px;
+  text-align: left;
+  border-bottom: 1px solid var(--cinza-claro);
+  font-size: 14px;
+}
+.fila-table th {
+  background: #FAFAFA;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  color: var(--cinza-medio);
+}
+.fila-table tr:last-child td { border-bottom: none; }
+.fila-num {
+  display: inline-flex;
+  align-items: center; justify-content: center;
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 12px;
+  color: white;
+}
+.fila-num.c117 { background: var(--azul); }
+.fila-num.c119 { background: var(--verde); }
+.fila-num.c116 { background: var(--laranja); }
+
+.bio-card {
+  background: linear-gradient(135deg, var(--rosa) 0%, #8B0F47 100%);
+  color: white;
+  border-radius: 16px;
+  padding: 32px;
+  margin-bottom: 16px;
+}
+.bio-card .label {
+  font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em;
+  opacity: 0.8; font-weight: 600; margin-bottom: 8px;
+}
+.bio-card .text { font-size: 22px; font-weight: 600; line-height: 1.35; }
+
+.links-grid { display: grid; gap: 12px; }
+.link-row {
+  background: white;
+  border-radius: 12px;
+  padding: 18px 24px;
+  display: flex; align-items: center; gap: 18px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.link-row .order {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: var(--rosa);
+  color: white;
+  display: grid; place-items: center;
+  font-weight: 700; font-size: 13px;
+  flex-shrink: 0;
+}
+.link-row strong { display: block; font-size: 15px; margin-bottom: 2px; }
+.link-row span { font-size: 13px; color: var(--cinza-medio); }
+
+.posts-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.post-pin {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  border-top: 4px solid var(--rosa);
+}
+.post-pin .pin-num {
+  font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em;
+  color: var(--rosa); margin-bottom: 8px;
+}
+.post-pin h4 {
+  font-size: 18px; font-weight: 700; margin-bottom: 6px; color: var(--grafite);
+}
+.post-pin .obj { font-size: 12px; color: var(--cinza-medio); margin-bottom: 16px; font-weight: 500; }
+.post-pin ol {
+  padding-left: 18px;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: #333;
+}
+.post-pin ol li { margin-bottom: 6px; }
+
+.highlight-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+.highlight-item {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  border-bottom: 3px solid var(--rosa);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.highlight-item strong { display: block; font-size: 15px; margin-bottom: 4px; }
+.highlight-item span { font-size: 13px; color: var(--cinza-medio); }
+
+.calendar-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  font-size: 13px;
+}
+.calendar-table th { background: var(--rosa); color: white; padding: 12px 14px; text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; }
+.calendar-table td { padding: 11px 14px; border-bottom: 1px solid var(--cinza-claro); vertical-align: top; }
+.calendar-table tr:nth-child(even) td { background: #FAFAFA; }
+.calendar-table .week { font-weight: 700; color: var(--rosa); width: 50px; }
+.calendar-table .month { font-weight: 600; width: 50px; color: var(--cinza-medio); font-size: 11px; text-transform: uppercase; }
+.calendar-table .phase {
+  display: inline-block; font-size: 10px; padding: 3px 9px;
+  background: var(--cinza-claro); border-radius: 999px;
+  font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em;
+}
+.principios-list {
+  background: white;
+  border-radius: 16px;
+  padding: 28px 32px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.principios-list ul { list-style: none; }
+.principios-list li {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--cinza-claro);
+  font-size: 15px;
+  display: flex; align-items: center; gap: 14px;
+}
+.principios-list li:last-child { border-bottom: none; }
+.principios-list .num {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--rosa); color: white;
+  display: grid; place-items: center;
+  font-size: 12px; font-weight: 700;
+  flex-shrink: 0;
+}
+
+.flow-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  align-items: stretch;
+}
+.flow-step {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.flow-step .step-num {
+  font-size: 11px; font-weight: 700; color: var(--rosa);
+  text-transform: uppercase; letter-spacing: 0.12em;
+  margin-bottom: 6px;
+}
+.flow-step strong { display: block; font-size: 14px; margin-bottom: 4px; }
+.flow-step span { font-size: 12px; color: var(--cinza-medio); line-height: 1.4; display: block; }
+
+.welcome-section {
+  background: white;
+  border-radius: 16px;
+  padding: 32px;
+  margin-bottom: 32px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.welcome-section h3 { font-size: 18px; font-weight: 700; margin-bottom: 16px; }
+.welcome-section p { margin-bottom: 12px; line-height: 1.65; }
+.welcome-section p:last-child { margin-bottom: 0; }
+
+/* Diretivas Ana banner */
+.directives-banner {
+  background: linear-gradient(135deg, #003D4A 0%, var(--azul) 100%);
+  color: white;
+  border-radius: 16px;
+  padding: 28px 32px;
+  margin-bottom: 32px;
+}
+.directives-banner h4 {
+  font-size: 12px; text-transform: uppercase; letter-spacing: 0.14em;
+  opacity: 0.85; margin-bottom: 12px; font-weight: 600;
+}
+.directives-banner ul { list-style: none; padding: 0; }
+.directives-banner li {
+  padding: 8px 0;
+  font-size: 14.5px;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+.directives-banner li:last-child { border: none; }
+.directives-banner li strong { font-weight: 700; }
+
+/* ===== Stories cards ===== */
+.stories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+.story-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  border-left: 4px solid var(--accent);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+.story-num {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+.story-card h4 { font-size: 14px; font-weight: 700; margin-bottom: 6px; line-height: 1.35; }
+.story-card p { font-size: 13px; color: var(--cinza-medio); line-height: 1.5; }
+
+/* ===== Folder tree ===== */
+.folder-tree {
+  background: var(--grafite);
+  color: #D0D0D0;
+  border-radius: 12px;
+  padding: 24px 28px;
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+  line-height: 2;
+  overflow-x: auto;
+}
+.folder-tree .folder { color: var(--accent); font-weight: 600; }
+.folder-tree .file-note { color: #7A8A9A; font-size: 12px; }
+.naming-rule {
+  background: white;
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-top: 16px;
+  border: 1px solid var(--cinza-claro);
+}
+.naming-rule h4 { font-size: 14px; font-weight: 700; margin-bottom: 12px; }
+.naming-rule ul { list-style: none; padding: 0; }
+.naming-rule li { font-size: 13px; color: var(--cinza-medio); margin-bottom: 6px; }
+.naming-rule code { background: var(--cinza-claro); border-radius: 5px; padding: 2px 6px; font-size: 12px; font-family: 'Courier New', monospace; color: var(--grafite); }
+.drive-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--accent);
+  color: white;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: 'Courier New', monospace;
+  margin-top: 16px;
+  word-break: break-all;
+}
+.drive-badge-label { font-family: var(--font); font-size: 11px; text-transform: uppercase; letter-spacing: .08em; opacity: .85; }
+
+/* Responsivo */
+@media (max-width: 1000px) {
+  .sidebar { width: 240px; }
+  main { margin-left: 240px; padding: 32px 28px; }
+  .hero { padding: 40px 32px; }
+  .hero h1 { font-size: 36px; }
+  .cap-grid { grid-template-columns: 1fr; }
+  .posts-grid { grid-template-columns: 1fr; }
+  .flow-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 700px) {
+  .sidebar {
+    position: relative; width: 100%; height: auto;
+    flex-direction: row; padding: 16px;
+    overflow-x: auto;
+  }
+  .brand { padding: 0 16px 0 0; border: none; border-right: 1px solid rgba(255,255,255,0.1); }
+  .nav-list { display: flex; gap: 8px; padding: 0 0 0 16px; flex: none; }
+  .nav-item { flex: 0 0 auto; min-width: 200px; margin: 0; }
+  .sidebar-footer { display: none; }
+  main { margin-left: 0; padding: 24px; }
+}
+</style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="brand">
+    <div class="brand-logo"><span class="dot">N</span><span>NTICS</span></div>
+    <div class="brand-meta">Captação · Maio 2026</div>
+  </div>
+  <nav class="nav-list">
+    <button class="nav-item" data-view="116">
+      <span class="nav-num">116</span>
+      <div class="nav-text"><strong>Áster</strong><small>3 cidades MS</small></div>
+    </button>
+    <button class="nav-item active" data-view="117">
+      <span class="nav-num">117</span>
+      <div class="nav-text"><strong>Whirlpool</strong><small>Joinville · começa hoje</small></div>
+    </button>
+    <button class="nav-item" data-view="119">
+      <span class="nav-num">119</span>
+      <div class="nav-text"><strong>Sylvamo</strong><small>Mogi Guaçu · 11/05</small></div>
+    </button>
+    <button class="nav-item" data-view="120">
+      <span class="nav-num">120</span>
+      <div class="nav-text"><strong>Negócio Cultural</strong><small>Itapoá · Uibaí · Ibipeba</small></div>
+    </button>
+    <button class="nav-item" data-view="124">
+      <span class="nav-num">124</span>
+      <div class="nav-text"><strong>Gastronomia Compagas</strong><small>Lapa · PR</small></div>
+    </button>
+    <button class="nav-item" data-view="125">
+      <span class="nav-num">125</span>
+      <div class="nav-text"><strong>Gastronomia GRU</strong><small>Guarulhos · SP</small></div>
+    </button>
+    <button class="nav-item" data-view="127">
+      <span class="nav-num">127</span>
+      <div class="nav-text"><strong>PIE GRU</strong><small>Guarulhos + Serra</small></div>
+    </button>
+    <button class="nav-item" data-view="aline">
+      <span class="nav-num">A</span>
+      <div class="nav-text"><strong>Aline</strong><small>Onboarding · Editora</small></div>
+    </button>
+  </nav>
+  <div class="sidebar-footer">NTICS Projetos · Brand Book v2.0</div>
+</aside>
+
+<main>
+
+<!-- ====== DIRETIVAS ANA banner repetido em cada view? Não, apenas nos de projeto ====== -->
+
+<!-- ============ 116 ÁSTER ============ -->
+<section class="view view-116" id="view-116">
+  <header class="hero">
+    <div class="overline">Projeto 116 · Cultura Robótica · Áster Máquinas</div>
+    <h1>Áster nas 3 cidades do MS</h1>
+    <p class="lead">No interior do Mato Grosso do Sul, criança não desenha foguete. Desenha colheitadeira do futuro.</p>
+    <div class="hero-meta">
+      <div><strong>Patrocinador</strong><span>Áster Máquinas</span></div>
+      <div><strong>Cidades</strong><span>3 cidades MS · Maracaju confirmada como 2ª</span></div>
+      <div><strong>Início</strong><span>Algumas semanas · datas pendentes</span></div>
+      <div><strong>Adicional</strong><span>Peça Hábitos Saudáveis (PRONAC separado)</span></div>
+    </div>
+  </header>
+
+  <div class="directives-banner">
+    <h4>Diretivas da reunião · Ana Carolina</h4>
+    <ul>
+      <li><strong>1 dia por cidade</strong> ("um dia tá de bom tamanho, não precisa ter mais que isso", fala da Ana). 3 cidades = 3 dias de filmagem.</li>
+      <li><strong>Cliente Áster vai estar em campo</strong> dando depoimento. Lucas precisa saber a data exata por cidade pra sincronizar videomaker.</li>
+      <li><strong>Formato leve</strong> tipo "Ação em [cidade]", precedente que a Ana citou.</li>
+      <li><strong>Pendência crítica:</strong> 3 cidades ainda em definição com Áster + Secretarias. Sem isso, não dá pra fechar agenda do videomaker nem reunião pré-projeto cliente.</li>
+    </ul>
+  </div>
+
+  <section class="block">
+    <div class="block-header">
+      <div class="overline">O que vamos produzir</div>
+      <h2>Vídeos a serem captados</h2>
+      <p class="subtitle">Mesma metodologia teatro+robótica do 117, mas contextualizada pra agronegócio. Inclui peça Hábitos Saudáveis com proponente diferente.</p>
+    </div>
+    <div class="video-cards">
+
+      <article class="video-card">
+        <div class="card-tag">Reel Durante · 1 por cidade · 3 ao todo</div>
+        <h3>Criança no MS inventa máquina agrícola do futuro pra ajudar quem trabalha na lavoura</h3>
+        <div class="story">3 Reels distintos, um por cidade, com mesma estrutura mas conteúdo diferente. Abre com close de protótipo de máquina agrícola sendo apresentado por criança. Plano da cidade MS estabelece localização. Depoimento de aluno explicando como a máquina ajuda a fazenda da família. Fecha com Áster (representante em campo). <strong>Hook viral:</strong> contraste de criança da região agro inventando solução agro com kit de robótica.</div>
+        <div class="video-meta">
+          <span class="chip"><strong>Formato</strong>9:16 vertical</span>
+          <span class="chip"><strong>Duração</strong>60s cada</span>
+          <span class="chip"><strong>Destino</strong>Redes (collab Áster)</span>
+        </div>
+      </article>
+
+      <article class="video-card">
+        <div class="card-tag">Case · 90 a 120s</div>
+        <h3>Por que faz sentido robótica falar com agro pelo olhar de uma criança</h3>
+        <div class="story">Case consolidado das 3 cidades, entregue à Áster. Gancho com criança apontando pra plantação e falando do invento dela. Contexto traz as 3 cidades em sequência + Áster como conector entre tecnologia agrícola e educação local. Jornada nas etapas teatro+robótica adaptadas pra agro. Impacto com soma das 3 cidades (1.800 alunos). <strong>Transformação com Áster + criança</strong> respondendo o que quer ser quando crescer. Fechamento Abílio.</div>
+        <div class="video-meta">
+          <span class="chip"><strong>Formato</strong>16:9 horizontal</span>
+          <span class="chip"><strong>Duração</strong>90 a 120s</span>
+          <span class="chip"><strong>Destino</strong>Entrega Áster</span>
+        </div>
+      </article>
+
+      <article class="video-card">
+        <div class="card-tag">Reel · Hábitos Saudáveis · proponente separado</div>
+        <h3>Peça Hábitos Saudáveis nas mesmas escolas</h3>
+        <div class="story">Reel separado por questão de proponente diferente (PRONAC 232827). Mesma estrutura de Reel Durante mas gancho na peça teatral. Depoimento de aluno sobre alimentação e saúde. <strong>Atenção na captação:</strong> troca de backdrop e régua entre uma peça e outra precisa estar visualmente diferenciada (Hábitos Saudáveis tem identidade visual própria).</div>
+        <div class="video-meta">
+          <span class="chip"><strong>Formato</strong>9:16 vertical</span>
+          <span class="chip"><strong>Duração</strong>60s</span>
+          <span class="chip"><strong>Destino</strong>Redes</span>
+        </div>
+      </article>
+
+      <article class="video-card">
+        <div class="card-tag">Banco Reels Case · NTICS</div>
+        <h3>Material para Reels Case Impacto e Reels Case Valor</h3>
+        <div class="story">Banco institucional NTICS. Foco em criança em ação, mosaico de protótipos agro, planos de cidade interior. Sem citar Áster nem cidades. Frases sobre futuro, propósito, oportunidade.</div>
+        <div class="video-meta">
+          <span class="chip"><strong>Formato</strong>9:16 vertical</span>
+          <span class="chip"><strong>Duração</strong>60s cada (2 versões)</span>
+          <span class="chip"><strong>Destino</strong>Captação NTICS</span>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+<!-- ============ 117 WHIRLPOOL ============ -->
+<section class="view view-117 active" id="view-117">
+  <header class="hero">
+    <div class="overline">Projeto 117 · Teatro e Oficina Robótica · 4ª Edição</div>
+    <h1>Whirlpool em Joinville</h1>
+    <p class="lead">Quando engenheiros viram professores por um dia, crianças viram inventoras pra vida.</p>
+    <div class="hero-meta">
+      <div><strong>Patrocinador</strong><span>Whirlpool</span></div>
+      <div><strong>Cidades</strong><span>Rio Claro/SP + Joinville/SC</span></div>
+      <div><strong>Início em campo</strong><span>04/05 (hoje)</span></div>
+      <div><strong>Aprovação peças</strong><span>FSB · Gabrielly Russo</span></div>
+    </div>
+  </header>
+
+  <div class="directives-banner">
+    <h4>Diretivas da reunião · Ana Carolina</h4>
+    <ul>
+      <li><strong>1 dia forte de filmagem</strong> em Joinville (não diária). Foco no dia da Feira de Ideias + Espetáculo, onde tem voluntário Whirlpool, criança no auge, premiação.</li>
+      <li><strong>Depoimento é obrigatório.</strong> Sem depoimento captado o Reels Case institucional não roda.</li>
+      <li><strong>Lucas brifa direto o videomaker</strong> e cria grupo de WhatsApp em campo para acompanhamento real-time.</li>
+      <li><strong>FSB valida tudo</strong> antes de publicar. Reel Durante e Case passam por Gabrielly antes de qualquer post.</li>
+    </ul>
+  </div>
+
+  <section class="block">
+    <div class="block-header">
+      <div class="overline">O que vamos produzir</div>
+      <h2>Vídeos a serem captados</h2>
+      <p class="subtitle">Toda captação em campo é matéria-prima para 3 produtos diferentes. Filmar pensando nos 3 ao mesmo tempo evita ter que voltar.</p>
+    </div>
+    <div class="video-cards">
+
+      <article class="video-card">
+        <div class="card-tag">Reel Durante · 60s</div>
+        <h3>Engenheiros da Whirlpool sentaram com crianças e ajudaram a construir o eletrodoméstico do futuro</h3>
+        <div class="story">Reel viral pra Instagram. Abre com close de mão pequena de criança parafusando uma peça enquanto ela explica o que está fazendo. Mostra a sala movimentada com voluntário Whirlpool agachado ajudando. Tem fala curta forte do voluntário ("o que muda em você quando vê uma criança te explicar o invento dela"), sequência rápida de 4 protótipos diferentes com criança em off, e fecha na premiação. <strong>Hook viral:</strong> contraste improvável entre engenheiro corporativo e criança em sala de aula pública.</div>
+        <div class="video-meta">
+          <span class="chip"><strong>Formato</strong>9:16 vertical</span>
+          <span class="chip"><strong>Duração</strong>60s</span>
+          <span class="chip"><strong>Destino</strong>Redes (collab Whirlpool)</span>
+          <span class="chip"><strong>Aprovação</strong>FSB</span>
+        </div>
+      </article>
+
+      <article class="video-card">
+        <div class="card-tag">Case · 90 a 120s</div>
+        <h3>O case da 4ª edição com a Whirlpool: 4 dias que mudam a forma como uma criança se enxerga</h3>
+        <div class="story">Vídeo institucional entregue à Whirlpool. Estrutura clássica: gancho emocional (frase forte de criança sobre o invento dela), contexto (Rio Claro + Joinville + Whirlpool), jornada cronológica (workshop → construção → IA animando → palco), impacto em números, transformação com depoimento do voluntário, fechamento com Abílio. <strong>Linha narrativa:</strong> a Whirlpool não doou só recurso, doou o tempo dos engenheiros dela e isso é o que faz o programa funcionar. Igualdade de gênero entra como pilar visual (menina em primeiro plano sempre que possível).</div>
+        <div class="video-meta">
+          <span class="chip"><strong>Formato</strong>16:9 horizontal</span>
+          <span class="chip"><strong>Duração</strong>90 a 120s</span>
+          <span class="chip"><strong>Destino</strong>Entrega Whirlpool</span>
+          <span class="chip"><strong>Aprovação</strong>FSB</span>
+        </div>
+      </article>
+
+      <article class="video-card">
+        <div class="card-tag">Banco Reels Case · NTICS</div>
+        <h3>Material para Reels Case Impacto e Reels Case Valor</h3>
+        <div class="story">Banco de B-roll e depoimentos genéricos pra alimentar os Reels institucionais de captação NTICS. Aqui não cita Whirlpool nem Joinville (regra de captação). Foco em planos de criança em ação, mosaicos de protótipos, depoimentos curtos focados em educação e propósito (sem citar marca). Também serve para o Reel "Sua empresa pode protagonizar a próxima edição".</div>
+        <div class="video-meta">
+          <span class="chip"><strong>Formato</strong>9:16 vertical</span>
+          <span class="chip"><strong>Duração</strong>60s cada (2 versões)</span>
+          <span class="chip"><strong>Destino</strong>Captação NTICS</span>
+          <span class="chip"><strong>Restrição</strong>Sem cidade, sem patrocinador</span>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+<!-- ============ 119 SYLVAMO ============ -->
+<section class="view view-119" id="view-119">
+  <header class="hero">
+    <div class="overline">Projeto 119 · PEC Eu Faço Parte · 2ª Edição</div>
+    <h1>Sylvamo em Mogi Guaçu</h1>
+    <p class="lead">Quando o problema da cidade vira a aula, a criança vira protagonista do território onde mora.</p>
+    <div class="hero-meta">
+      <div><strong>Patrocinador</strong><span>Sylvamo (grupo Chamex)</span></div>
+      <div><strong>Cidades</strong><span>Mogi Guaçu/SP + Guatapará/SP</span></div>
+      <div><strong>Início Mogi Guaçu</strong><span>11/05/2026</span></div>
+      <div><strong>Estrutura</strong><span>4 escolas · 1 semana cada</span></div>
+    </div>
+  </header>
+
+  <div class="directives-banner">
+    <h4>Diretivas da reunião · Ana Carolina</h4>
+    <ul>
+      <li><strong>Filmagem diária na 1ª escola</strong> (semana 1). Cobertura leve nas outras 3 escolas.</li>
+      <li><strong>Pico de cobertura dia 11</strong>: abertura na prefeitura com prefeito + workshop de professores. E no fechamento da semana, na Feira de Ideias.</li>
+      <li><strong>Depoimento triplo Abílio + Raísa + Sylvamo</strong> sentados juntos contando o case. É o material âncora do Vídeo Case. Reservar 30 minutos com tripé fixo dia 11.</li>
+      <li><strong>Reunião pré-projeto cliente</strong> obrigatória 1 semana antes. Confirmar com Raísa se já rolou ou se precisa encaixar.</li>
+    </ul>
+  </div>
+
+  <section class="block">
+    <div class="block-header">
+      <div class="overline">O que vamos produzir</div>
+      <h2>Vídeos a serem captados</h2>
+      <p class="subtitle">Filmagem diária na 1ª semana entrega 3 Reels Durante (versões diferentes do mesmo arco). Cobertura nas outras 3 escolas alimenta o Case.</p>
+    </div>
+    <div class="video-cards">
+
+      <article class="video-card">
+        <div class="card-tag">Reel Durante 1 · Abertura</div>
+        <h3>Quando o prefeito entra na sala de aula e o problema da cidade vira a aula</h3>
+        <div class="story">Reel da semana 1, sai dia 12 ou 13. Abre com aluno apontando pro mapa do bairro dele dizendo "o problema aqui é...". Mostra a abertura na prefeitura, o prefeito falando, criança ouvindo. Tem depoimento curto de criança sobre o problema que ela quer resolver. Fecha com depoimento triplo Abílio+Raísa+Sylvamo (3 segundos de cada). <strong>Hook viral:</strong> autoridade pública entrando na escola, contexto raro pra Reel.</div>
+        <div class="video-meta">
+          <span class="chip"><strong>Formato</strong>9:16 vertical</span>
+          <span class="chip"><strong>Duração</strong>60s</span>
+          <span class="chip"><strong>Destino</strong>Redes (collab Sylvamo)</span>
+        </div>
+      </article>
+
+      <article class="video-card">
+        <div class="card-tag">Reel Durante 2 · Feira de Ideias</div>
+        <h3>750 crianças. 4 escolas. Uma semana pra resolver problemas que adulto nenhum tinha resolvido</h3>
+        <div class="story">Reel do fechamento da semana 1. Estrutura pelo clímax da Feira de Ideias e premiação. Mostra criança apresentando solução pro próprio bairro pra adulto que ouve, mural construído, premiação. <strong>Hook viral:</strong> número grande logo no primeiro segundo + criança encarando adulto.</div>
+        <div class="video-meta">
+          <span class="chip"><strong>Formato</strong>9:16 vertical</span>
+          <span class="chip"><strong>Duração</strong>60s</span>
+          <span class="chip"><strong>Destino</strong>Redes (collab Sylvamo)</span>
+        </div>
+      </article>
+
+      <article class="video-card">
+        <div class="card-tag">Reel Durante 3 · Outras escolas</div>
+        <h3>Reel consolidando 2ª, 3ª e 4ª escolas + Guatapará</h3>
+        <div class="story">Reel das outras escolas, sai mais para o fim do mês. Cobertura leve, foco em depoimentos novos diferentes da semana 1. Pode incluir cena de Guatapará se a janela permitir. Mantém a narrativa "o problema da cidade vira a aula" mas com contextos diferentes.</div>
+        <div class="video-meta">
+          <span class="chip"><strong>Formato</strong>9:16 vertical</span>
+          <span class="chip"><strong>Duração</strong>60s</span>
+          <span class="chip"><strong>Destino</strong>Redes (collab Sylvamo)</span>
+        </div>
+      </article>
+
+      <article class="video-card">
+        <div class="card-tag">Case · 90 a 120s</div>
+        <h3>O PEC que a Sylvamo escolheu: educação que sai da sala e volta para o território</h3>
+        <div class="story">Vídeo institucional entregue à Sylvamo. Gancho com criança falando do problema do bairro + plano amplo de Mogi Guaçu. Contexto traz Sylvamo na cidade (operação local) e por que faz sentido patrocinar educação ali. Jornada cronológica do PEC em 6 etapas. Impacto com workshop de professores em escala. <strong>Transformação com depoimento triplo Abílio+Raísa+Sylvamo</strong> (este é o âncora). Fechamento com Sylvamo dizendo o que esse projeto representa pro relatório ESG do ano.</div>
+        <div class="video-meta">
+          <span class="chip"><strong>Formato</strong>16:9 horizontal</span>
+          <span class="chip"><strong>Duração</strong>90 a 120s</span>
+          <span class="chip"><strong>Destino</strong>Entrega Sylvamo</span>
+        </div>
+      </article>
+
+      <article class="video-card">
+        <div class="card-tag">Banco Reels Case · NTICS</div>
+        <h3>Material para Reels Case Impacto e Reels Case Valor</h3>
+        <div class="story">Banco institucional NTICS. Foco em diagnóstico territorial (criança apontando pro bairro), workshop de professores, mural, premiação. Sem citar Sylvamo nem cidade. Frases curtas de aluno e professor sobre transformação.</div>
+        <div class="video-meta">
+          <span class="chip"><strong>Formato</strong>9:16 vertical</span>
+          <span class="chip"><strong>Duração</strong>60s cada (2 versões)</span>
+          <span class="chip"><strong>Destino</strong>Captação NTICS</span>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+<!-- ============ 120 NEGÓCIO CULTURAL ============ -->
+<section class="view view-120" id="view-120">
+  <header class="hero">
+    <div class="overline">Projeto 120 · Negócio Cultural · 2ª Edição · Lei Rouanet</div>
+    <h1>Empreendedores culturais de Itapoá, Uibaí e Ibipeba</h1>
+    <p class="lead">Biólogo, artesã, chef, músico. Cada um com um negócio esperando ser descoberto.</p>
+    <div class="hero-meta">
+      <div><strong>Patrocinadores</strong><span>Statkraft + Porto Itapoá</span></div>
+      <div><strong>Cidades</strong><span>Itapoá/SC · Uibaí/BA · Ibipeba/BA</span></div>
+      <div><strong>Meta</strong><span>3.500 pessoas</span></div>
+      <div><strong>GP</strong><span>Bruna Seibel · Account: Fernando Clark</span></div>
+    </div>
+  </header>
+
+  <div class="directives-banner">
+    <h4>Contexto do projeto · Execução em andamento</h4>
+    <ul>
+      <li><strong>Porto Itapoá (SC):</strong> público adulto, empreendedores locais (biólogos, artesãos, pescadores, hotelaria, gastronomia). SEM ações em escolas. Trilha presencial + mentorias consultivas + plataforma digital.</li>
+      <li><strong>Statkraft (BA):</strong> 2 cidades (Uibaí + Ibipeba), público misto empreendedores + alunos de escolas públicas. Articulação via Tetra Mais (consultoria de campo). Mobilizadora local: Nara.</li>
+      <li><strong>Regra critica Statkraft:</strong> NÃO usar logo da empresa. Usar apenas lettering "Complexo Santa Eugênia" (eólico + solar). Monitorar ruído ONG Umbu + fake news antes de qualquer marco público.</li>
+      <li><strong>Aprovações:</strong> Statkraft via Joana Bischoff (joana.bischoff@statkraft.com, 3 dias úteis). Porto Itapoá via Patrícia Dall'Onder (patricia.dallonder@portoitapoa.com).</li>
+    </ul>
+  </div>
+
+  <section class="block">
+    <div class="block-header">
+      <div class="overline">O que vamos produzir</div>
+      <h2>Vídeos a serem captados</h2>
+      <p class="subtitle">Dois contextos distintos: empreendedorismo adulto em Itapoá e formação mista empreendedores+escola em Uibaí e Ibipeba. Cada um tem sua voz e seu ângulo.</p>
+    </div>
+    <div class="video-cards">
+
+      <article class="video-card">
+        <div class="card-tag">Reel Durante · Porto Itapoá</div>
+        <h3>Pescadora de Itapoá descobre que seu jeito de cozinhar é um negócio de impacto</h3>
+        <div class="story">Abre com close de mãos limpando peixe recém-pescado, praia de Itapoá ao fundo. Corte para a participante anotando no caderno durante mentoria consultiva. Cena da calculadora de negócio na tela mostrando projeção de faturamento. Fecha com a participante falando o que vai mudar na forma como ela vende seu trabalho. <strong>Hook viral:</strong> transformação financeira de quem sempre fez por amor, sem nunca ter sido ensinada a cobrar.</div>
+        <div class="video-meta">
+          <span class="chip"><strong>Formato</strong>9:16 vertical</span>
+          <span class="chip"><strong>Duração</strong>60s</span>
+          <span class="chip"><strong>Destino</strong>Redes (collab Porto Itapoá)</span>
+        </div>
+      </article>
+
+      <article class="video-card">
+        <div class="card-tag">Reel Durante · Statkraft · BA</div>
+        <h3>Em Uibaí, artesã usa IA pra criar coleção que vai além da Chapada</h3>
+        <div class="story">Abre com close de peça artesanal sendo finalizada e a tela do tablet gerando variações do padrão com IA. Plano aberto do sertão baiano estabelece contexto. Cena da oficina de artes visuais com kit. Depoimento de 10s da participante sobre o que mudou. Fecha com b-roll do Complexo Santa Eugênia (turbinas + painéis), sem citar logo da Statkraft. <strong>Hook viral:</strong> artesã do sertão usando IA pra escalar negócio cultural.</div>
+        <div class="video-meta">
+          <span class="chip"><strong>Formato</strong>9:16 vertical</span>
+          <span class="chip"><strong>Duração</strong>60s</span>
+          <span class="chip"><strong>Destino</strong>Redes</span>
+        </div>
+      </article>
+
+      <article class="video-card">
+        <div class="card-tag">Case · Porto Itapoá · 2 a 3 min</div>
+        <h3>Como o Porto Itapoá transformou talentos locais em negócios culturais sustentáveis</h3>
+        <div class="story">Patrícia ou Larissa abre com a visão do Porto Itapoá sobre desenvolvimento local e turismo cultural. Jornada: trilha de conhecimento, sessão de mentoria, plataforma digital. Dois perfis distintos de participante (artesão + hoteleiro ou gastrônomo). Fecha com número consolidado 1.500 pessoas e frase de Patrícia sobre o que esse investimento representa para o território.</div>
+        <div class="video-meta">
+          <span class="chip"><strong>Formato</strong>16:9 horizontal</span>
+          <span class="chip"><strong>Duração</strong>2 a 3 min</span>
+          <span class="chip"><strong>Destino</strong>Entrega Porto Itapoá</span>
+        </div>
+      </article>
+
+      <article class="video-card">
+        <div class="card-tag">Case · Complexo Santa Eugênia · BA</div>
+        <h3>A energia do sertão baiano movendo o empreendedorismo de Uibaí e Ibipeba</h3>
+        <div class="story">Abertura com paisagem da chapada + b-roll de turbinas eólicas e painéis solares. Voz de Joana ou Maite sobre missão do Complexo, sem citar logo ou marca Statkraft. Jornada nas 2 cidades em sequência. Depoimento de um participante por cidade. Fecha com número consolidado 2.000 pessoas e perspectiva de futuro. <strong>Atenção:</strong> revisar corte com Joana antes de finalizar para confirmar que não aparece nenhum elemento de marca da Statkraft.</div>
+        <div class="video-meta">
+          <span class="chip"><strong>Formato</strong>16:9 horizontal</span>
+          <span class="chip"><strong>Duração</strong>2 a 3 min</span>
+          <span class="chip"><strong>Destino</strong>Entrega Statkraft (sem logo, "Complexo Santa Eugênia")</span>
+        </div>
+      </article>
+
+      <article class="video-card">
+        <div class="card-tag">Banco Reels Case · NTICS institucional</div>
+        <h3>Material para Reels Case Impacto e Valor</h3>
+        <div class="story">Artesão em ação, mentoria consultiva com câmera de cima, plataforma digital em uso, paisagem de cidade interiorana. Frases sobre empreendedorismo criativo, território e futuro cultural. Sem citar patrocinador ou cidade.</div>
+        <div class="video-meta">
+          <span class="chip"><strong>Formato</strong>9:16 vertical</span>
+          <span class="chip"><strong>Duração</strong>60s cada (2 versões)</span>
+          <span class="chip"><strong>Destino</strong>Captação NTICS</span>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+<!-- ============ 124 GASTRONOMIA COMPAGAS ============ -->
+<section class="view view-124" id="view-124">
+  <header class="hero">
+    <div class="overline">Projeto 124 · Arte, Gastronomia e Sustentabilidade · Lei Rouanet</div>
+    <h1>Quando a cozinha da Lapa vira espaço de arte e sustentabilidade</h1>
+    <p class="lead">Panela, fotografia e aproveitamento integral. A gastronomia artesanal como linguagem de transformação.</p>
+    <div class="hero-meta">
+      <div><strong>Patrocinador</strong><span>Compagas</span></div>
+      <div><strong>Cidade</strong><span>Lapa/PR</span></div>
+      <div><strong>Meta</strong><span>1.280 pessoas</span></div>
+      <div><strong>GP</strong><span>Mayara Ferreira · Account: Abilio</span></div>
+    </div>
+  </header>
+
+  <div class="directives-banner">
+    <h4>Contexto do projeto · Execução em andamento</h4>
+    <ul>
+      <li><strong>Cronograma:</strong> início campo 04/05/2026. Exposição final de arte: 19/06/2026.</li>
+      <li><strong>Aprovação de materiais:</strong> Ana Feitoza (Compagas, comunicação) valida TODA peça antes de publicar. Fluxo: NTICS cria, envia Ana Feitoza, aguarda aprovação, publica.</li>
+      <li><strong>Atividades:</strong> 4 turmas de culinária sustentável (30 pessoas/turma) + workshop de fotografia (160 alunos de escolas públicas) + exposição pública de arte (1.000 visitantes estimados).</li>
+      <li><strong>Site do projeto:</strong> ntics.com.br/exposicaodeartesgastronomiatambemearte</li>
+    </ul>
+  </div>
+
+  <section class="block">
+    <div class="block-header">
+      <div class="overline">O que vamos produzir</div>
+      <h2>Vídeos a serem captados</h2>
+      <p class="subtitle">Três atividades distintas com linguagens visuais próprias: culinária sustentável, fotografia artística e exposição pública. Cada uma gera um Reel com identidade própria.</p>
+    </div>
+    <div class="video-cards">
+
+      <article class="video-card">
+        <div class="card-tag">Reel · Oficina Culinária</div>
+        <h3>Na Lapa, sobra de alimento vira prato de chef e consciência de comunidade</h3>
+        <div class="story">Abre com mãos picando talos e cascas que normalmente iriam pro lixo. Chef explica em 10s o princípio do aproveitamento integral. Cena da turma experimentando a receita, risos, surpresa com o sabor. Fecha com participante olhando pro prato e falando o que vai mudar em casa. <strong>Hook viral:</strong> o que descartamos pode ser o melhor prato da semana, preparado com gás natural limpo.</div>
+        <div class="video-meta">
+          <span class="chip"><strong>Formato</strong>9:16 vertical</span>
+          <span class="chip"><strong>Duração</strong>60s</span>
+          <span class="chip"><strong>Destino</strong>Redes (collab Compagas)</span>
+        </div>
+      </article>
+
+      <article class="video-card">
+        <div class="card-tag">Reel · Workshop Fotografia</div>
+        <h3>Aluno de escola pública fotografa comida e descobre que enquadramento é arte</h3>
+        <div class="story">Abre com tela de câmera de celular enquadrando um prato com luz natural lateral. Professor de fotografia ajusta a posição do aluno. Close do aluno olhando pras fotos na galeria do celular com expressão de surpresa. Fecha com galeria de 4 fotos dos alunos em sequência rápida, cada uma melhor que a anterior. <strong>Hook:</strong> você não precisa de câmera profissional pra fotografar arte.</div>
+        <div class="video-meta">
+          <span class="chip"><strong>Formato</strong>9:16 vertical</span>
+          <span class="chip"><strong>Duração</strong>60s</span>
+          <span class="chip"><strong>Destino</strong>Redes</span>
+        </div>
+      </article>
+
+      <article class="video-card">
+        <div class="card-tag">Reel · Exposição de Arte</div>
+        <h3>As fotos que alunos tiraram de comida viraram exposição no centro histórico da Lapa</h3>
+        <div class="story">B-roll da montagem: equipe fixando fotos grandes na parede. Primeiro visitante parando na frente de uma fotografia e ficando em silêncio. Plano aberto do espaço de exposição com o patrimônio histórico da Lapa visível ao fundo. Curador ou professor de fotografia falando sobre o projeto em 10s. Fecha com close de placa da exposição.</div>
+        <div class="video-meta">
+          <span class="chip"><strong>Formato</strong>9:16 vertical</span>
+          <span class="chip"><strong>Duração</strong>60s</span>
+          <span class="chip"><strong>Destino</strong>Redes</span>
+        </div>
+      </article>
+
+      <article class="video-card">
+        <div class="card-tag">Case · Compagas · 2 a 3 min</div>
+        <h3>Gastronomia, arte e gás natural: como a Compagas conectou energia limpa a uma nova consciência alimentar</h3>
+        <div class="story">Rafaela (Compagas) abre com a visão da empresa sobre responsabilidade social e energia limpa. Jornada pelas 3 atividades: culinária, fotografia, exposição. Depoimento de participante da oficina culinária + depoimento de aluno cujo trabalho foi exposto. Fecha com número consolidado (1.280 pessoas) e imagem da exposição no espaço cultural da Lapa. <strong>Aprovação obrigatória de Ana Feitoza antes de finalizar o corte.</strong></div>
+        <div class="video-meta">
+          <span class="chip"><strong>Formato</strong>16:9 horizontal</span>
+          <span class="chip"><strong>Duração</strong>2 a 3 min</span>
+          <span class="chip"><strong>Destino</strong>Entrega Compagas</span>
+        </div>
+      </article>
+
+      <article class="video-card">
+        <div class="card-tag">Banco Reels Case · NTICS institucional</div>
+        <h3>Material para Reels Case Impacto e Valor</h3>
+        <div class="story">Mãos em preparo culinário, aluno com câmera fotografando prato, exposição de arte em espaço público, patrimônio histórico como moldura. Frases sobre gastronomia, arte, sustentabilidade. Sem citar Compagas.</div>
+        <div class="video-meta">
+          <span class="chip"><strong>Formato</strong>9:16 vertical</span>
+          <span class="chip"><strong>Duração</strong>60s cada (2 versões)</span>
+          <span class="chip"><strong>Destino</strong>Captação NTICS</span>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+<!-- ============ 125 GASTRONOMIA GRU ============ -->
+<section class="view view-125" id="view-125">
+  <header class="hero">
+    <div class="overline">Projeto 125 · Gastronomia Também é Arte · 2ª Edição · ProAC/SP</div>
+    <h1>Da comunidade Malvinas ao aeroporto internacional de Guarulhos</h1>
+    <p class="lead">O mesmo prato que se aprende na oficina de bairro vai parar exposto no aeroporto que conecta o mundo.</p>
+    <div class="hero-meta">
+      <div><strong>Patrocinador</strong><span>GRU Airport</span></div>
+      <div><strong>Cidade</strong><span>Guarulhos/SP</span></div>
+      <div><strong>Meta</strong><span>8.100 pessoas</span></div>
+      <div><strong>GP</strong><span>Jéssica Lora · Account: Abilio</span></div>
+    </div>
+  </header>
+
+  <div class="directives-banner">
+    <h4>Contexto do projeto · Execução em andamento</h4>
+    <ul>
+      <li><strong>Exposição aeroporto GRU (lado terra):</strong> vistoria técnica + VT obrigatórios para aprovação de layout ANTES da montagem. Materiais em braile (7×42cm) com 10 a 15 dias de antecedência mínima.</li>
+      <li><strong>Comunidade Malvinas (oficinas):</strong> entrada SEMPRE via Mariah (ESG GRU). Nunca abordagem direta NTICS. GRU abre portas com Secretaria, NTICS assume a operação.</li>
+      <li><strong>Lei de incentivo:</strong> ProAC (estadual SP), NÃO Rouanet/federal. Atenção ao mencionar incentivo fiscal em qualquer contexto.</li>
+      <li><strong>Projetos 125 e 127 compartilham assessoria de imprensa.</strong> Aprovação de materiais via Mariah antes de qualquer publicação.</li>
+    </ul>
+  </div>
+
+  <section class="block">
+    <div class="block-header">
+      <div class="overline">O que vamos produzir</div>
+      <h2>Vídeos a serem captados</h2>
+      <p class="subtitle">Quatro atividades distintas, mas o arco narrativo é único: do bairro ao aeroporto. A exposição no GRU é a culminância visual de tudo que acontece nas oficinas.</p>
+    </div>
+    <div class="video-cards">
+
+      <article class="video-card">
+        <div class="card-tag">Reel · Exposição no Aeroporto</div>
+        <h3>A arte de cozinhar de uma mulher de Guarulhos chegou ao aeroporto que o mundo passa</h3>
+        <div class="story">Abre com close de passageiro parando diante de fotografia grande no corredor do GRU. Câmera recua lentamente para mostrar o corredor inteiro da exposição com fluxo real de passageiros. Entrevista espontânea de 15s com visitante: "O que essa foto te diz?" Fecha com placa da exposição e logo GRU visível. <strong>Hook viral:</strong> arte feita em Malvinas sendo vista por quem passa por Guarulhos de avião.</div>
+        <div class="video-meta">
+          <span class="chip"><strong>Formato</strong>9:16 vertical</span>
+          <span class="chip"><strong>Duração</strong>60s</span>
+          <span class="chip"><strong>Destino</strong>Redes (collab GRU)</span>
+        </div>
+      </article>
+
+      <article class="video-card">
+        <div class="card-tag">Reel · Oficina Culinária · Malvinas</div>
+        <h3>Na comunidade Malvinas, cozinhar sustentável é resistência e geração de renda</h3>
+        <div class="story">Abre com mãos de participante da comunidade separando ingredientes com cuidado. Chef da oficina ensinando técnica de aproveitamento integral. Reação coletiva do grupo ao experimentar o prato. Fecha com participante falando o que muda no orçamento de casa quando se aprende a usar o alimento inteiro. <strong>Atenção operacional:</strong> coordenar entrada em Malvinas com Mariah antes de qualquer filmagem.</div>
+        <div class="video-meta">
+          <span class="chip"><strong>Formato</strong>9:16 vertical</span>
+          <span class="chip"><strong>Duração</strong>60s</span>
+          <span class="chip"><strong>Destino</strong>Redes</span>
+        </div>
+      </article>
+
+      <article class="video-card">
+        <div class="card-tag">Reel · Workshop Fotografia · Escolas</div>
+        <h3>Aluno de escola pública de Guarulhos fotografa comida e vira artista no aeroporto</h3>
+        <div class="story">Abre com aluno enquadrando prato com celular, luz natural da janela da sala de aula. Educador visual ajustando a composição. Corte direto para a mesma foto impressa e exposta no corredor do GRU. Reação do aluno ao ver a própria obra no aeroporto pela primeira vez. <strong>Essa cena de reação é a mais importante do projeto. Câmera sempre pronta.</strong></div>
+        <div class="video-meta">
+          <span class="chip"><strong>Formato</strong>9:16 vertical</span>
+          <span class="chip"><strong>Duração</strong>60s</span>
+          <span class="chip"><strong>Destino</strong>Redes</span>
+        </div>
+      </article>
+
+      <article class="video-card">
+        <div class="card-tag">Case · GRU Airport · 2 a 3 min</div>
+        <h3>Por que o GRU decidiu transformar gastronomia popular em arte de aeroporto internacional</h3>
+        <div class="story">Mariah abre com a visão do GRU Airport sobre desenvolvimento da comunidade de Guarulhos e o papel social do aeroporto. Jornada cronológica: oficinas em Malvinas, workshop fotografia nas escolas, montagem da exposição, abertura com público. Depoimento de participante de Malvinas + depoimento de aluno com obra exposta. Plano final da exposição com fluxo real de passageiros. <strong>Aprovação de Mariah antes de finalizar o corte.</strong></div>
+        <div class="video-meta">
+          <span class="chip"><strong>Formato</strong>16:9 horizontal</span>
+          <span class="chip"><strong>Duração</strong>2 a 3 min</span>
+          <span class="chip"><strong>Destino</strong>Entrega GRU Airport</span>
+        </div>
+      </article>
+
+      <article class="video-card">
+        <div class="card-tag">Banco Reels Case · NTICS institucional</div>
+        <h3>Material para Reels Case Impacto e Valor</h3>
+        <div class="story">Mãos em culinária, aluno com câmera de celular, exposição em espaço público de grande fluxo. Frases sobre gastronomia como arte, acesso cultural, protagonismo de comunidade. Sem citar GRU ou Guarulhos diretamente.</div>
+        <div class="video-meta">
+          <span class="chip"><strong>Formato</strong>9:16 vertical</span>
+          <span class="chip"><strong>Duração</strong>60s cada (2 versões)</span>
+          <span class="chip"><strong>Destino</strong>Captação NTICS</span>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+<!-- ============ 127 PIE GRU + SOTREQ ============ -->
+<section class="view view-127" id="view-127">
+  <header class="hero">
+    <div class="overline">Projeto 127 · PIE Empreendedorismo é Arte · 2ª Edição</div>
+    <h1>PIE em Guarulhos (GRU) e Serra (SOTREQ)</h1>
+    <p class="lead">Quando um jovem de periferia inventa um negócio com arte e IA, ele não está sonhando. Está treinando para o futuro.</p>
+    <div class="hero-meta">
+      <div><strong>Patrocinadores</strong><span>GRU Airport + SOTREQ</span></div>
+      <div><strong>Cidades</strong><span>Guarulhos/SP (GRU) · Serra/ES (SOTREQ)</span></div>
+      <div><strong>Meta</strong><span>5.000 alunos + 100 professores</span></div>
+      <div><strong>GP</strong><span>Jéssica Lora</span></div>
+    </div>
+  </header>
+
+  <div class="directives-banner">
+    <h4>Contexto do projeto · Execução em andamento</h4>
+    <ul>
+      <li><strong>GRU (Guarulhos):</strong> escolas Alexandre Lopes (PIE 18-19/05), PEI Soimco II (04, 05, 13, 14, 28 e 29/05), Mario Nakata (16-17/04 ja realizado). Secretaria de Educação de Guarulhos recebeu o projeto de forma muito positiva e se prontificou a apoiar engajamento das escolas.</li>
+      <li><strong>Regra critica GRU (Malvinas):</strong> entrada em comunidade SEMPRE mediada pela Mariah (ESG do GRU). Nunca abordagem direta NTICS. GRU abre portas com Secretaria, NTICS assume a operação.</li>
+      <li><strong>SOTREQ (Serra/ES):</strong> cota separada, mesma metodologia. Contato principal Rayssa Alves (rayssa.alves@sotreq.com.br).</li>
+      <li><strong>Aprovacao de materiais:</strong> GRU via Mariah. SOTREQ confirmar prazo com Rayssa antes de postar qualquer conteúdo.</li>
+    </ul>
+  </div>
+
+  <section class="block">
+    <div class="block-header">
+      <div class="overline">O que vamos produzir</div>
+      <h2>Vídeos a serem captados</h2>
+      <p class="subtitle">PIE tem 3 oficinas + palestra + Feira de Ideias. O ângulo de captação é a jornada do aluno: entra sem saber o que quer fazer, sai com um projeto estruturado feito com IA e arte.</p>
+    </div>
+    <div class="video-cards">
+
+      <article class="video-card">
+        <div class="card-tag">Reel Durante · GRU · 1 por escola (3 ao todo)</div>
+        <h3>Estudante de Guarulhos cria projeto de impacto com arte, IA e empreendedorismo</h3>
+        <div class="story">Abre com close do Autorretrato Simbólico sendo finalizado pelo aluno, plano da fachada da escola. Corte para GPT/tablet em uso na Oficina 2: aluno digitando a descrição do problema que vai resolver. Cena de apresentação do projeto, professor reagindo. Fecha com o aluno olhando direto para a câmera e falando o que vai fazer diferente daqui pra frente. <strong>Hook viral:</strong> jovem de periferia usando IA pra inventar solução pra problema real da comunidade dele.</div>
+        <div class="video-meta">
+          <span class="chip"><strong>Formato</strong>9:16 vertical</span>
+          <span class="chip"><strong>Duração</strong>60s cada</span>
+          <span class="chip"><strong>Destino</strong>Redes (collab GRU)</span>
+        </div>
+      </article>
+
+      <article class="video-card">
+        <div class="card-tag">Reel Durante · SOTREQ · Serra/ES</div>
+        <h3>Em Serra, alunos criam projetos com IA e arte cênica patrocinados pela SOTREQ</h3>
+        <div class="story">Mesma estrutura do Reel GRU, adaptada para o contexto de Serra/ES e com menção a SOTREQ. Depoimento curto de Rayssa ou representante SOTREQ em campo. Fecha com aluno apresentando projeto. <strong>Atenção:</strong> identidade visual e régua SOTREQ distintas do GRU, não misturar material bruto das duas cotas na edição.</div>
+        <div class="video-meta">
+          <span class="chip"><strong>Formato</strong>9:16 vertical</span>
+          <span class="chip"><strong>Duração</strong>60s</span>
+          <span class="chip"><strong>Destino</strong>Redes (collab SOTREQ)</span>
+        </div>
+      </article>
+
+      <article class="video-card">
+        <div class="card-tag">Case · GRU Airport · 2 a 3 min</div>
+        <h3>Por que o GRU decidiu transformar escolas de Guarulhos em laboratórios de empreendedorismo</h3>
+        <div class="story">Case entregue ao GRU Airport. Abre com Mariah contando o que levou o GRU a investir em educação de impacto em Guarulhos. Jornada pelas 3 oficinas com cenas de cada etapa, mostrando a progressão do aluno. Depoimento de professor sobre a mudança de postura dos alunos. Aluno apresentando projeto com IA na Feira de Ideias como cena de virada. Fechamento com Mariah e a perspectiva do GRU sobre o legado na cidade que recebe o aeroporto.</div>
+        <div class="video-meta">
+          <span class="chip"><strong>Formato</strong>16:9 horizontal</span>
+          <span class="chip"><strong>Duração</strong>2 a 3 min</span>
+          <span class="chip"><strong>Destino</strong>Entrega GRU Airport</span>
+        </div>
+      </article>
+
+      <article class="video-card">
+        <div class="card-tag">Case · SOTREQ · Serra/ES</div>
+        <h3>SOTREQ e educação de impacto: como empreendedorismo e arte entram na escola pública de Serra</h3>
+        <div class="story">Case espelho do GRU, com Rayssa/representante SOTREQ como voz institucional. Mesmo arco narrativo: problema, jornada nas oficinas, apresentação de projeto, impacto. Fecha com número consolidado SOTREQ (2.000 alunos) e depoimento de aluno. Aprovação obrigatória de Rayssa antes de qualquer publicação.</div>
+        <div class="video-meta">
+          <span class="chip"><strong>Formato</strong>16:9 horizontal</span>
+          <span class="chip"><strong>Duração</strong>2 a 3 min</span>
+          <span class="chip"><strong>Destino</strong>Entrega SOTREQ</span>
+        </div>
+      </article>
+
+      <article class="video-card">
+        <div class="card-tag">Banco Reels Case · NTICS institucional</div>
+        <h3>Material para Reels Case Impacto e Reels Case Valor</h3>
+        <div class="story">Banco institucional NTICS sem citar patrocinador nem cidade. Foco em: mãos de aluno desenhando autorretrato, tela de GPT gerando imagem de negócio, grupo de jovens apresentando projeto. Frases sobre criatividade, protagonismo, futuro do trabalho. Sem Rouanet ou MinC mencionados no vídeo.</div>
+        <div class="video-meta">
+          <span class="chip"><strong>Formato</strong>9:16 vertical</span>
+          <span class="chip"><strong>Duração</strong>60s cada (2 versões)</span>
+          <span class="chip"><strong>Destino</strong>Captação NTICS</span>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-header">
+      <div class="overline">Para o videomaker em campo</div>
+      <h2>Plano de captação</h2>
+      <p class="subtitle">Dois contextos principais: Malvinas (entrada sempre via Mariah) e aeroporto GRU (alto fluxo, logística de credenciamento necessária). Coordenar com Jéssica antes de cada ida a campo.</p>
+    </div>
+    <div class="cap-grid">
+
+      <div class="cap-block">
+        <h4>Quem entrevistar</h4>
+        <div class="persona">
+          <div class="persona-name">Mariah (GRU Airport, ESG)</div>
+          <div class="persona-why">Voz institucional do patrocinador. Confirmar disponibilidade de data com Jéssica. Gravar no aeroporto ou na sede GRU, não em Malvinas.</div>
+        </div>
+        <div class="persona">
+          <div class="persona-name">2 participantes das oficinas em Malvinas</div>
+          <div class="persona-why">Perfis com história de vida clara: mulher da comunidade com antes e depois do projeto. Entrada via Mariah, nunca abordagem direta NTICS.</div>
+        </div>
+        <div class="persona">
+          <div class="persona-name">1 aluno cuja foto está na exposição</div>
+          <div class="persona-why">A cena de reação ao ver a própria foto no aeroporto é a mais valiosa do projeto. Coordenar data de visita ao GRU com a escola.</div>
+        </div>
+        <div class="persona">
+          <div class="persona-name">Chef ou oficineiro de culinária</div>
+          <div class="persona-why">Explica o aproveitamento integral em linguagem simples. 1 minuto de câmera é suficiente.</div>
+        </div>
+        <div class="persona">
+          <div class="persona-name">Educador visual (workshop fotografia)</div>
+          <div class="persona-why">Contextualiza como a fotografia transforma a forma de ver o alimento cotidiano como arte.</div>
+        </div>
+      </div>
+
+      <div class="cap-block">
+        <h4>Perguntas-chave por personagem</h4>
+
+        <div class="persona">
+          <div class="persona-name">Mariah (GRU)</div>
+          <div class="question">O GRU é o aeroporto de Guarulhos. O que significa pra vocês expor a arte da comunidade Malvinas pra quem passa pelo aeroporto?</div>
+          <div class="question">Por que gastronomia como tema de responsabilidade social faz sentido pra missão do GRU?</div>
+          <div class="question">O que você espera que os moradores de Guarulhos sintam quando souberem que a arte deles está no aeroporto?</div>
+        </div>
+
+        <div class="persona">
+          <div class="persona-name">Participante de Malvinas</div>
+          <div class="question">O que você aprendeu aqui que vai direto pra sua cozinha de casa?</div>
+          <div class="question">Como é viver numa comunidade como Malvinas e ter um projeto como esse chegando aqui?</div>
+        </div>
+
+        <div class="persona">
+          <div class="persona-name">Aluno com foto exposta</div>
+          <div class="question">Como foi aprender a fotografar comida? Você imaginava que ia terminar numa exposição?</div>
+          <div class="question">[Na frente da foto no aeroporto] Como você se sente vendo seu trabalho aqui?</div>
+        </div>
+
+        <div class="persona">
+          <div class="persona-name">Educador visual</div>
+          <div class="question">Por que a comida do dia a dia pode ser um objeto de arte?</div>
+        </div>
+      </div>
+
+      <div class="cap-block">
+        <h4>Pontos-chave · o que caçar</h4>
+        <ul>
+          <li><strong>Exposição no GRU:</strong> corredor com fluxo real de passageiros (não captar de madrugada quando está vazio), close de fotografia grande, passageiro em silêncio diante da obra, placa da exposição.</li>
+          <li><strong>Malvinas (culinária):</strong> mãos de participante com ingrediente, fogão em uso, reação coletiva ao provar.</li>
+          <li><strong>Workshop fotografia:</strong> celular enquadrando prato, luz natural em detalhe, aluno vendo galeria de fotos na tela.</li>
+          <li><strong>Cena prioritária de todas:</strong> aluno vendo pela primeira vez a própria foto exposta no aeroporto. Câmera sempre pronta nesse momento. Não há segunda chance.</li>
+          <li>Fachada ou plano aéreo do aeroporto para estabelecer localização no Case.</li>
+        </ul>
+      </div>
+
+      <div class="cap-block">
+        <h4>Critérios de entrega</h4>
+        <ul>
+          <li><strong>Drive raiz GRU:</strong> 14piNCgicGep0ZG1JbhPAWoeP9wWmuRX-</li>
+          <li><strong>Drive evidências:</strong> 1siZctWTo-mcPZkp3uNSVOLfd65ZINLnS</li>
+          <li>Entrada em Malvinas: coordenar com Mariah 48h antes. Nunca aparecer sem aviso.</li>
+          <li>Filmagem no aeroporto: credenciamento de imprensa ou autorização GRU. Confirmar com Jéssica.</li>
+          <li>Upload diário do bruto no Drive ao fim de cada dia.</li>
+          <li>Áudio com lapela ou direcional em todo depoimento.</li>
+          <li><strong>Aprovação Mariah</strong> antes de qualquer publicação. ProAC: não citar mecanismo de incentivo fiscal nos Reels e Case.</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-header">
+      <div class="overline">Stories para Instagram</div>
+      <h2>10 captações · Arco narrativo do dia</h2>
+      <p class="subtitle">Dois ambientes com linguagens opostas: Malvinas (comunidade, calor, intimidade) e GRU (movimento, escala, surpresa). Adaptar o tom ao espaço.</p>
+    </div>
+    <div class="stories-grid">
+      <div class="story-card"><div class="story-num">Story 01 · Chegada</div><h4>Entrando no espaço</h4><p>Captador na entrada da cozinha em Malvinas ou no corredor da exposição no GRU. "Hoje estou em Guarulhos com Gastronomia Também é Arte."</p></div>
+      <div class="story-card"><div class="story-num">Story 02 · Antes</div><h4>Setup do dia</h4><p>Ingredientes sobre a bancada ou equipe fixando últimas fotos na parede da exposição. Energia de preparação.</p></div>
+      <div class="story-card"><div class="story-num">Story 03 · Apresentação</div><h4>Quem é cada um</h4><p>Participantes de Malvinas falando nome e bairro em 5s cada. Na exposição: visitante falando de onde vem e o que acha.</p></div>
+      <div class="story-card"><div class="story-num">Story 04 · Ação 1</div><h4>O ingrediente ou a fotografia</h4><p>Close de mãos com ingrediente sendo preparado, ou close de fotografia grande impressa no corredor do GRU. O visual mais forte do dia.</p></div>
+      <div class="story-card"><div class="story-num">Story 05 · Ação 2</div><h4>Aprendizado em tempo real</h4><p>Chef ensinando técnica ou educador ajustando enquadramento. Transmissão de conhecimento em cena.</p></div>
+      <div class="story-card"><div class="story-num">Story 06 · Bastidores</div><h4>O momento espontâneo</h4><p>15s sem roteiro: participante provando algo pela primeira vez, aluno vendo a própria foto no celular antes de ver no aeroporto, passageiro fotografando a exposição.</p></div>
+      <div class="story-card"><div class="story-num">Story 07 · Pergunta rápida</div><h4>"O que essa arte te faz sentir?"</h4><p>Pergunta pra visitantes da exposição ou participantes das oficinas. 3 a 4 respostas de 5s em sequência.</p></div>
+      <div class="story-card"><div class="story-num">Story 08 · Depoimento relâmpago</div><h4>20 segundos sem roteiro</h4><p>Participante de Malvinas ou aluno com foto exposta. Câmera no nível dos olhos, sem preparação: "Fala o que esse projeto significa pra você."</p></div>
+      <div class="story-card"><div class="story-num">Story 09 · Virada</div><h4>A cena mais importante</h4><p>Aluno vendo pela primeira vez a própria foto no aeroporto. Participante de Malvinas vendo o prato finalizado. O pico emocional do dia. Câmera sempre pronta.</p></div>
+      <div class="story-card"><div class="story-num">Story 10 · Saída</div><h4>Fechamento do dia</h4><p>Corredor da exposição com fluxo de passageiros ao fundo, ou cozinha vazia após a oficina. "Isso foi Guarulhos. Arte que começa na comunidade e chega ao mundo."</p></div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-header">
+      <div class="overline">Estrutura de Pastas · Drive</div>
+      <h2>Organização do material captado</h2>
+      <p class="subtitle">Usar esta estrutura para upload diário. Nomenclatura padronizada facilita a edição e o arquivamento.</p>
+    </div>
+    <div class="folder-tree">
+<span class="folder">[125] Gastronomia Também é Arte · Guarulhos/SP</span>
+├── <span class="folder">01_DEPOIMENTOS</span>
+│   ├── <span class="folder">PATROCINADOR</span> <span class="file-note">← Mariah (GRU Airport)</span>
+│   ├── <span class="folder">PROFESSORES</span> <span class="file-note">← chef, educador visual</span>
+│   └── <span class="folder">PARTICIPANTES</span> <span class="file-note">← Malvinas (culinária) e alunos (fotografia)</span>
+├── <span class="folder">02_STORIES</span> <span class="file-note">← S01 a S10 por data e local</span>
+├── <span class="folder">03_BROLL</span>
+│   ├── <span class="folder">CHEGADA</span> <span class="file-note">← entrada Malvinas / corredor GRU até exposição</span>
+│   └── <span class="folder">GERAL</span> <span class="file-note">← culinária, fotografia, exposição, aeroporto</span>
+├── <span class="folder">04_FOTOS</span>
+│   ├── <span class="folder">SELECIONADAS</span>
+│   ├── <span class="folder">SENSIBILIDADE</span> <span class="file-note">← menores ou imagem que precisa de autorização</span>
+│   └── <span class="folder">TOP15</span> <span class="file-note">← seleção final, máx 15 fotos</span>
+└── <span class="folder">05_BRUTO</span></div>
+    <div class="naming-rule">
+      <h4>Convenção de nomeação</h4>
+      <ul>
+        <li>Depoimentos: <code>captador_depoente_descricao.mp4</code> → ex: <code>jessica_mariah-gru_papel-do-aeroporto.mp4</code></li>
+        <li>Stories: <code>S01_chegada-malvinas.mp4</code>, <code>S09_aluno-vendo-foto-gru.mp4</code></li>
+        <li>B-roll: <code>BROLL_chegada-malvinas.mp4</code>, <code>BROLL_corredor-exposicao-gru.mp4</code></li>
+        <li>Fotos: <code>FOTO_001_exposicao-abertura.jpg</code>, <code>FOTO_002_participante-malvinas.jpg</code></li>
+      </ul>
+    </div>
+    <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:16px;">
+      <div class="drive-badge"><span class="drive-badge-label">Drive raiz GRU</span> 14piNCgicGep0ZG1JbhPAWoeP9wWmuRX-</div>
+      <div class="drive-badge"><span class="drive-badge-label">Drive evidências</span> 1siZctWTo-mcPZkp3uNSVOLfd65ZINLnS</div>
+    </div>
+  </section>
+</section>
+
+
+<!-- ============ ALINE ============ -->
+<section class="view view-aline" id="view-aline">
+  <header class="hero">
+    <div class="overline">Onboarding · Editora de vídeo</div>
+    <h1>Bem-vinda, Aline</h1>
+    <p class="lead">Você é a editora que vai transformar o material captado em campo nos vídeos que constroem o portfólio Instagram da NTICS.</p>
+    <div class="hero-meta">
+      <div><strong>Trabalha com</strong><span>Lucas, Ana, coordenadores</span></div>
+      <div><strong>Ritmo</strong><span>Sextas: sprint Lucas+Ana</span></div>
+      <div><strong>Cobertura</strong><span>Calendário 1 semana antes</span></div>
+      <div><strong>Pilares</strong><span>5 pilares editoriais NTICS</span></div>
+    </div>
+  </header>
+
+  <section class="block">
+    <div class="block-header">
+      <div class="overline">Comece por aqui</div>
+      <h2>Sua fila de edição imediata</h2>
+      <p class="subtitle">Estes são os vídeos dos 3 projetos em execução nas próximas semanas. Cada um tem briefing detalhado nas abas do menu lateral.</p>
+    </div>
+    <table class="fila-table">
+      <thead>
+        <tr>
+          <th>Projeto</th>
+          <th>Vídeos</th>
+          <th>Janela</th>
+          <th>Aprovação</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="fila-num c117">117</span> <strong>Whirlpool</strong> · Joinville</td>
+          <td>1 Reel Durante + 1 Case + banco Reels Case</td>
+          <td>Maio · semana 1</td>
+          <td>FSB · Gabrielly Russo</td>
+        </tr>
+        <tr>
+          <td><span class="fila-num c119">119</span> <strong>Sylvamo</strong> · Mogi Guaçu</td>
+          <td>3 Reels Durante + 1 Case + banco Reels Case</td>
+          <td>11/05 a 29/05</td>
+          <td>Lucas + Léo (1 sem antes)</td>
+        </tr>
+        <tr>
+          <td><span class="fila-num c116">116</span> <strong>Áster</strong> · 3 cidades MS</td>
+          <td>3 Reels Durante + 1 Case + 1 Reel Hábitos Saudáveis + banco</td>
+          <td>Algumas semanas (datas pendentes)</td>
+          <td>Lucas (datas a confirmar)</td>
+        </tr>
+        <tr>
+          <td><strong style="color: var(--rosa);">Banco institucional</strong> · NTICS</td>
+          <td>2 Reels Case (Impacto + Valor)</td>
+          <td>Pós-captação dos 3 projetos</td>
+          <td>Lucas + Ana</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="block">
+    <div class="block-header">
+      <div class="overline">Posicionamento Instagram NTICS</div>
+      <h2>Como o feed precisa ser lido</h2>
+      <p class="subtitle">Instagram da NTICS funciona como vitrine e portfólio institucional. Cada Reel que você editar entra dentro dessa lógica.</p>
+    </div>
+
+    <div class="bio-card">
+      <div class="label">Bio oficial</div>
+      <div class="text">Viabilizamos projetos de impacto social que conectam empresas, comunidades e territórios.</div>
+    </div>
+
+    <h3 style="font-size:18px; margin: 28px 0 14px 0; color: var(--grafite);">Links na bio · ordem oficial</h3>
+    <div class="links-grid">
+      <div class="link-row">
+        <div class="order">1</div>
+        <div><strong>Quero patrocinar um projeto</strong><span>Página com formulário ou WhatsApp comercial · conversão direta</span></div>
+      </div>
+      <div class="link-row">
+        <div class="order">2</div>
+        <div><strong>Link ativo (quando houver)</strong><span>Evento, inscrição ou campanha · sobe para o topo quando for prioridade</span></div>
+      </div>
+      <div class="link-row">
+        <div class="order">3</div>
+        <div><strong>Site institucional</strong><span>Aprofundar proposta, apresentar portfólio, gerar confiança</span></div>
+      </div>
+      <div class="link-row">
+        <div class="order">4</div>
+        <div><strong>LinkedIn</strong><span>Reforço institucional, validação B2B</span></div>
+      </div>
+    </div>
+    <p style="margin-top: 14px; font-size: 14px; color: var(--cinza-medio);"><strong>Regra:</strong> poucos links, claros e orientados à ação.</p>
+  </section>
+
+  <section class="block">
+    <div class="block-header">
+      <div class="overline">Estrutura do feed</div>
+      <h2>3 posts fixos no topo</h2>
+      <p class="subtitle">Funil completo em 3 posts: autoridade, clareza, prova. Funciona como cartão de visitas do perfil.</p>
+    </div>
+    <div class="posts-grid">
+      <div class="post-pin">
+        <div class="pin-num">Post 1 · Topo</div>
+        <h4>Quem Somos</h4>
+        <div class="obj">Autoridade + posicionamento</div>
+        <ol>
+          <li>Viabilizamos projetos de impacto social que transformam a sociedade há mais de 20 anos</li>
+          <li>Desde 2002, conectamos educação, sustentabilidade e inovação</li>
+          <li>Transformamos o propósito das empresas em projetos com resultados reais</li>
+          <li>Atuação nacional</li>
+          <li>+1108 projetos · +11M impactadas · +48 mil professores · +4.230 empregos</li>
+          <li>Pacto Global ONU · ODS</li>
+          <li>Prazer, somos a NTICS Projetos</li>
+        </ol>
+      </div>
+      <div class="post-pin">
+        <div class="pin-num">Post 2 · Meio</div>
+        <h4>O Que Fazemos</h4>
+        <div class="obj">Clareza de oferta</div>
+        <ol>
+          <li>Projetos de impacto que conectam empresas e sociedade</li>
+          <li>Fortalecimento de estratégias ESG e posicionamento</li>
+          <li>Desenvolvimento humano (educação, cultura, social)</li>
+          <li>Sustentabilidade (consciência e território)</li>
+          <li>Projetos personalizados</li>
+          <li>Empresas que já transformaram conosco (logos)</li>
+          <li>Sua empresa pode gerar impacto real</li>
+        </ol>
+      </div>
+      <div class="post-pin">
+        <div class="pin-num">Post 3 · Base</div>
+        <h4>Projetos / Portfólio</h4>
+        <div class="obj">Prova concreta</div>
+        <ol>
+          <li>Projetos que geram impacto real</li>
+          <li>Conhecendo os ODS</li>
+          <li>Caminhão ODS</li>
+          <li>Culinária Sustentável</li>
+          <li>Negócio Cultural</li>
+          <li>Da Amazônia para o Mundo</li>
+          <li>Centros de Educação Ambiental</li>
+          <li>Saberes Essenciais e Hábitos Saudáveis</li>
+          <li>Projetos personalizados</li>
+          <li>Quer um projeto com a sua marca?</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-header">
+      <div class="overline">Highlights</div>
+      <h2>Destaques do perfil</h2>
+      <p class="subtitle">Vitrine, não arquivo. Critério único: isso ajuda a vender a NTICS?</p>
+    </div>
+    <div class="highlight-grid">
+      <div class="highlight-item"><strong>Projetos 2025</strong><span>Recentes / em andamento</span></div>
+      <div class="highlight-item"><strong>Projetos</strong><span>Melhores entregas históricas</span></div>
+      <div class="highlight-item"><strong>Na mídia</strong><span>Reportagens e publicações</span></div>
+      <div class="highlight-item"><strong>Depoimentos</strong><span>Clientes, parceiros, participantes</span></div>
+      <div class="highlight-item"><strong>Bastidores</strong><span>Execução real (montagem, equipe)</span></div>
+    </div>
+    <p style="margin-top: 16px; font-size: 14px; color: var(--cinza-medio);"><strong>Etapa obrigatória:</strong> revisar e limpar os atuais. Remover conteúdo antigo, baixa qualidade, excesso sem curadoria.</p>
+  </section>
+
+  <section class="block">
+    <div class="block-header">
+      <div class="overline">Como editar</div>
+      <h2>Princípios de execução</h2>
+      <p class="subtitle">Aplicáveis a Reels, carrosséis e qualquer peça do feed.</p>
+    </div>
+    <div class="principios-list">
+      <ul>
+        <li><span class="num">1</span><span><strong>Texto curto e direto.</strong> Leitura em até 2 segundos por tela.</span></li>
+        <li><span class="num">2</span><span><strong>Clareza acima de explicação.</strong> Se precisa explicar, encurtou pouco.</span></li>
+        <li><span class="num">3</span><span><strong>Prova real sempre que possível.</strong> Número, depoimento, cena de campo.</span></li>
+        <li><span class="num">4</span><span><strong>CTA presente.</strong> Toda peça orienta uma ação (siga, fale, acompanhe).</span></li>
+        <li><span class="num">5</span><span><strong>Evitar linguagem genérica.</strong> Específico vence vago todas as vezes.</span></li>
+        <li><span class="num">6</span><span><strong>Reuse máximo.</strong> Material já existente vira post antes de produzir novo.</span></li>
+        <li><span class="num">7</span><span><strong>Sem travessão</strong> em copy publicado (regra interna NTICS). Use vírgula, ponto ou reescrita.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-header">
+      <div class="overline">Pilares editoriais</div>
+      <h2>O que comunicamos</h2>
+    </div>
+    <div class="highlight-grid">
+      <div class="highlight-item"><strong>1. CSR na prática</strong><span>Conceitos, frameworks, tendências, governança</span></div>
+      <div class="highlight-item"><strong>2. Como patrocinar</strong><span>Lei de incentivo, passo a passo, checklist</span></div>
+      <div class="highlight-item"><strong>3. Cases e impacto</strong><span>Histórias, resultados, números, bastidores</span></div>
+      <div class="highlight-item"><strong>4. Na mídia e eventos</strong><span>Repercussão e presença institucional</span></div>
+      <div class="highlight-item"><strong>5. Institucional</strong><span>Quem somos, propósito, diferenciais</span></div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-header">
+      <div class="overline">Seu fluxo</div>
+      <h2>Como o trabalho chega até você</h2>
+    </div>
+    <div class="flow-grid">
+      <div class="flow-step"><div class="step-num">Etapa 1</div><strong>Captação em campo</strong><span>Videomaker grava com base no briefing das abas 117/119/116</span></div>
+      <div class="flow-step"><div class="step-num">Etapa 2</div><strong>Upload diário no Drive</strong><span>Bruto sobe na pasta do projeto</span></div>
+      <div class="flow-step"><div class="step-num">Etapa 3</div><strong>Edição (você)</strong><span>Reels e Cases conforme briefing de cada projeto</span></div>
+      <div class="flow-step"><div class="step-num">Etapa 4</div><strong>Aprovação</strong><span>Lucas + Léo (1 sem antes) · FSB no caso 117</span></div>
+      <div class="flow-step"><div class="step-num">Etapa 5</div><strong>Publicação</strong><span>Lucas posta no perfil seguindo cadência semanal</span></div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-header">
+      <div class="overline">Funil estratégico do feed</div>
+      <h2>Estrutura de conversão</h2>
+      <p class="subtitle">Cada elemento do perfil cumpre uma função no funil. Guia de edição em qualquer dúvida sobre prioridade.</p>
+    </div>
+    <div class="flow-grid">
+      <div class="flow-step"><div class="step-num">Topo</div><strong>Post 1</strong><span>Autoridade</span></div>
+      <div class="flow-step"><div class="step-num">Meio</div><strong>Post 2</strong><span>Clareza</span></div>
+      <div class="flow-step"><div class="step-num">Base</div><strong>Post 3</strong><span>Prova</span></div>
+      <div class="flow-step"><div class="step-num">Apoio</div><strong>Destaques</strong><span>Validação</span></div>
+      <div class="flow-step"><div class="step-num">Saída</div><strong>Bio + Links</strong><span>Conversão</span></div>
+    </div>
+  </section>
+
+</section>
+
+</main>
+
+<script>
+document.querySelectorAll('.nav-item').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const view = btn.dataset.view;
+    document.querySelectorAll('.nav-item').forEach(x => x.classList.remove('active'));
+    document.querySelectorAll('.view').forEach(x => x.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('view-' + view).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  });
+});
+</script>
+
+</body>
+</html>
