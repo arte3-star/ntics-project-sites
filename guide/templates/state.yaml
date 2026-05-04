@@ -1,0 +1,47 @@
+# State do Projeto — atualizado a cada sessão
+# Preencha ao iniciar o projeto e atualize conforme avança
+
+projeto:
+  nome: "Nome do Projeto"
+  cliente: "Nome do Cliente"
+  slug: "nome-slug"                     # usado em pastas e links
+  inicio: "2026-01-01"
+  previsao_fim: "2026-12-31"
+
+fase:
+  atual: "planejamento"                 # planejamento | execucao | encerramento
+  descricao: "Estamos na fase de..."
+  inicio_fase: "2026-05-01"
+
+proxima_acao:
+  descricao: "O que precisa acontecer agora"
+  responsavel: "Nome"
+  prazo: "2026-05-10"
+
+deliverables:
+  pendentes:
+    - nome: "Deliverable 1"
+      prazo: "2026-05-15"
+      responsavel: "Nome"
+      status: "em andamento"            # nao iniciado | em andamento | em revisao
+    - nome: "Deliverable 2"
+      prazo: "2026-06-01"
+      responsavel: "Nome"
+      status: "nao iniciado"
+
+  concluidos:
+    - nome: "Deliverable X"
+      entregue_em: "2026-04-20"
+      evidencia: "link ou descricao"
+
+blockers:
+  - descricao: "O que está travando"
+    responsavel_resolucao: "Nome"
+    prazo_resolucao: "2026-05-08"
+
+# Deixe vazio se não houver blockers:
+# blockers: []
+
+notas:
+  - data: "2026-05-04"
+    texto: "Reunião com cliente — aprovaram calendário social"

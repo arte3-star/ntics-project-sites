@@ -1,0 +1,47 @@
+# Stakeholders do Projeto
+# Quem é quem, como comunicar, o que cada um precisa saber
+
+stakeholders:
+
+  - nome: "Nome Completo"
+    papel: "Gerente de Patrocínio"
+    empresa: "Empresa Cliente"
+    email: "nome@empresa.com"
+    whatsapp: "+55 11 99999-9999"
+    canal_preferido: "email"             # email | whatsapp | reuniao | linkedin
+    tom: "formal"                        # formal | semiformal | informal
+    idioma: "pt-BR"
+    o_que_precisa_saber:
+      - "Status mensal do projeto"
+      - "Aprovações de material de comunicação"
+      - "Mudanças de cronograma"
+    nao_incomodar_com:
+      - "Operacional do dia a dia"
+      - "Dúvidas técnicas de execução"
+    notas: "Prefere reuniões por Teams. Responde rápido por WhatsApp."
+
+  - nome: "Nome Coordenador"
+    papel: "Coordenador de Campo"
+    empresa: "NTICS Projetos"
+    email: "coordenador@ntics.com.br"
+    whatsapp: "+55 11 88888-8888"
+    canal_preferido: "whatsapp"
+    tom: "informal"
+    idioma: "pt-BR"
+    o_que_precisa_saber:
+      - "Cronograma detalhado por cidade"
+      - "Briefings de ação"
+      - "Mudanças operacionais de última hora"
+    notas: "No campo, prefere mensagem curta. Leva até 2h pra responder."
+
+  - nome: "Nome Produtor Local"
+    papel: "Produtor Parceiro"
+    empresa: "Parceiro Regional"
+    email: "produtor@email.com"
+    canal_preferido: "whatsapp"
+    tom: "informal"
+    idioma: "pt-BR"
+    o_que_precisa_saber:
+      - "Briefing técnico da ação"
+      - "Lista de materiais necessários"
+      - "Horários e confirmações de presença"

@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Assessor Pessoal IA — NTICS Projetos</title>
+<style>
+  :root {
+    --verde: #3DAA35;
+    --azul: #005F73;
+    --rosa: #D41A6A;
+    --laranja: #E86428;
+    --amarelo: #F5B800;
+    --teal: #00A5B8;
+    --roxo: #6B2D7B;
+    --grafite: #2D2D2D;
+    --cinza-medio: #6B7280;
+    --cinza-claro: #F4F4F4;
+    --branco: #FFFFFF;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", system-ui, sans-serif;
+    color: var(--grafite);
+    line-height: 1.6;
+    background: var(--branco);
+    font-size: 16px;
+  }
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
+  section { padding: 80px 0; }
+  section.alt { background: var(--cinza-claro); }
+  h1, h2, h3, h4 { line-height: 1.2; letter-spacing: -0.01em; }
+  h1 { font-size: 56px; font-weight: 800; margin-bottom: 24px; }
+  h2 { font-size: 38px; font-weight: 800; margin-bottom: 12px; color: var(--azul); }
+  h3 { font-size: 22px; font-weight: 700; margin-bottom: 12px; }
+  h4 { font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--cinza-medio); margin-bottom: 16px; }
+  p { margin-bottom: 16px; }
+  .lead { font-size: 20px; color: var(--cinza-medio); max-width: 720px; margin-bottom: 24px; }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, var(--azul) 0%, var(--verde) 100%);
+    color: white;
+    padding: 100px 0 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: "";
+    position: absolute;
+    right: -100px; top: -100px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, var(--amarelo) 0%, transparent 70%);
+    opacity: 0.25;
+  }
+  .hero h1 { color: white; }
+  .hero .eyebrow {
+    display: inline-block;
+    background: rgba(255,255,255,0.18);
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 24px;
+  }
+  .hero p { color: rgba(255,255,255,0.92); font-size: 22px; max-width: 760px; }
+  .hero-meta {
+    margin-top: 40px;
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    font-size: 14px;
+    color: rgba(255,255,255,0.85);
+  }
+  .hero-meta span strong { color: white; display: block; font-size: 18px; font-weight: 700; }
+
+  /* TLDR */
+  .tldr {
+    background: var(--branco);
+    border-left: 6px solid var(--verde);
+    padding: 32px 36px;
+    margin: -40px auto 0;
+    max-width: 1016px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+    position: relative;
+    z-index: 2;
+  }
+  .tldr h4 { color: var(--verde); margin-bottom: 12px; }
+  .tldr p { font-size: 17px; margin: 0; }
+
+  /* GRID DE CARDS */
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .card {
+    background: var(--branco);
+    padding: 28px;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+  }
+  .card.dark { background: var(--grafite); color: white; border-color: var(--grafite); }
+  .card .tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 4px 10px;
+    border-radius: 3px;
+    margin-bottom: 14px;
+  }
+  .tag-verde { background: rgba(61,170,53,0.12); color: var(--verde); }
+  .tag-rosa { background: rgba(212,26,106,0.12); color: var(--rosa); }
+  .tag-azul { background: rgba(0,95,115,0.12); color: var(--azul); }
+  .tag-roxo { background: rgba(107,45,123,0.12); color: var(--roxo); }
+  .tag-laranja { background: rgba(232,100,40,0.12); color: var(--laranja); }
+  .tag-teal { background: rgba(0,165,184,0.12); color: var(--teal); }
+
+  .card h3 { color: var(--azul); }
+  .card.dark h3 { color: white; }
+
+  .num {
+    font-size: 64px;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--verde);
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  /* PESSOAS DE REFERÊNCIA */
+  .ref {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 24px;
+    background: var(--branco);
+    padding: 28px;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+    margin-bottom: 16px;
+  }
+  .ref .avatar {
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 38px; font-weight: 800;
+    color: white;
+  }
+  .ref .meta {
+    font-size: 13px;
+    color: var(--cinza-medio);
+    margin-bottom: 8px;
+  }
+
+  /* QUOTE */
+  blockquote {
+    border-left: 4px solid var(--amarelo);
+    padding: 16px 24px;
+    margin: 24px 0;
+    font-size: 18px;
+    font-style: italic;
+    color: var(--grafite);
+    background: var(--cinza-claro);
+  }
+  blockquote cite { display: block; margin-top: 8px; font-size: 14px; font-style: normal; color: var(--cinza-medio); }
+
+  /* FOUR CS DIAGRAM */
+  .four-cs {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-top: 32px;
+  }
+  .four-cs .c {
+    padding: 24px 20px;
+    color: white;
+    border-radius: 8px;
+    position: relative;
+    min-height: 220px;
+  }
+  .four-cs .c .step {
+    font-size: 12px;
+    font-weight: 700;
+    opacity: 0.7;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 12px;
+  }
+  .four-cs .c h3 { color: white; font-size: 26px; }
+  .four-cs .c p { font-size: 14px; opacity: 0.95; margin-bottom: 0; }
+  .four-cs .c1 { background: var(--azul); }
+  .four-cs .c2 { background: var(--teal); }
+  .four-cs .c3 { background: var(--verde); }
+  .four-cs .c4 { background: var(--roxo); }
+
+  /* PERSONA TABLE */
+  .persona {
+    background: var(--branco);
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 32px;
+    margin-bottom: 24px;
+  }
+  .persona-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--cinza-claro);
+    padding-bottom: 20px;
+    margin-bottom: 24px;
+  }
+  .persona-header h3 { color: var(--azul); margin: 0; font-size: 24px; }
+  .persona-header .role {
+    background: var(--verde);
+    color: white;
+    padding: 6px 14px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .persona-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .persona-grid h4 { color: var(--azul); margin-bottom: 12px; }
+  .persona-grid ul { list-style: none; padding: 0; }
+  .persona-grid li {
+    padding: 10px 0;
+    padding-left: 24px;
+    position: relative;
+    border-bottom: 1px dashed #e5e7eb;
+    font-size: 15px;
+  }
+  .persona-grid li:last-child { border-bottom: none; }
+  .persona-grid li::before {
+    content: "›";
+    position: absolute;
+    left: 0;
+    color: var(--verde);
+    font-weight: 700;
+    font-size: 18px;
+  }
+  .skill-tag {
+    display: inline-block;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    background: var(--grafite);
+    color: var(--amarelo);
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  /* ANTES x DEPOIS */
+  .compare {
+    display: grid;
+    grid-template-columns: 1fr 80px 1fr;
+    gap: 0;
+    align-items: stretch;
+    margin: 24px 0;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #e5e7eb;
+  }
+  .compare > div { padding: 24px; }
+  .compare .antes { background: #fef2f2; }
+  .compare .depois { background: #f0fdf4; }
+  .compare .arrow {
+    background: var(--grafite);
+    color: var(--amarelo);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    font-weight: 800;
+  }
+  .compare h4 { margin-bottom: 8px; }
+  .compare .antes h4 { color: #b91c1c; }
+  .compare .depois h4 { color: var(--verde); }
+  .compare p { margin: 0; font-size: 15px; }
+
+  /* TIMELINE / ROADMAP */
+  .timeline {
+    position: relative;
+    padding-left: 40px;
+    margin-top: 32px;
+  }
+  .timeline::before {
+    content: "";
+    position: absolute;
+    left: 12px; top: 8px; bottom: 8px;
+    width: 2px;
+    background: var(--verde);
+  }
+  .milestone {
+    position: relative;
+    padding-bottom: 32px;
+  }
+  .milestone::before {
+    content: "";
+    position: absolute;
+    left: -34px; top: 6px;
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    background: var(--verde);
+    border: 3px solid white;
+    box-shadow: 0 0 0 2px var(--verde);
+  }
+  .milestone .when {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--rosa);
+    margin-bottom: 6px;
+  }
+  .milestone h3 { color: var(--azul); margin-bottom: 8px; }
+
+  /* ESTRUTURA DIAGRAM */
+  .arch {
+    background: var(--grafite);
+    color: white;
+    padding: 40px;
+    border-radius: 8px;
+    margin-top: 32px;
+  }
+  .arch h3 { color: white; margin-bottom: 24px; }
+  .layer {
+    background: rgba(255,255,255,0.06);
+    border-left: 4px solid var(--amarelo);
+    padding: 18px 24px;
+    margin-bottom: 12px;
+    border-radius: 4px;
+  }
+  .layer .label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--amarelo);
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .layer h4 { color: white; margin-bottom: 6px; font-size: 18px; text-transform: none; letter-spacing: 0; }
+  .layer p { margin: 0; opacity: 0.85; font-size: 14px; }
+
+  /* FOOTER */
+  footer {
+    background: var(--grafite);
+    color: rgba(255,255,255,0.7);
+    padding: 48px 0;
+    font-size: 14px;
+  }
+  footer h4 { color: white; }
+  footer a { color: var(--amarelo); text-decoration: none; }
+
+  @media (max-width: 768px) {
+    h1 { font-size: 36px; }
+    h2 { font-size: 28px; }
+    .grid-3, .grid-2, .four-cs, .persona-grid { grid-template-columns: 1fr; }
+    .compare { grid-template-columns: 1fr; }
+    .compare .arrow { padding: 12px; }
+    .ref { grid-template-columns: 1fr; text-align: center; }
+    .ref .avatar { margin: 0 auto; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container">
+    <span class="eyebrow">Relatório Estratégico · Maio 2026</span>
+    <h1>Assessor Pessoal IA<br>para a NTICS Projetos</h1>
+    <p>Como dar a cada pessoa da equipe — começando pela CEO — um copiloto que entende projetos, clientes, decisões e executa tarefas com a memória institucional da casa.</p>
+    <div class="hero-meta">
+      <span><strong>3 referências mundiais</strong>Chase H · Nate Herk · Garry Tan (YC)</span>
+      <span><strong>Estrutura comprovada</strong>Four Cs framework</span>
+      <span><strong>Roadmap 90 dias</strong>CEO primeiro, time depois</span>
+    </div>
+  </div>
+</header>
+
+<!-- TLDR -->
+<div class="container">
+  <div class="tldr">
+    <h4>Resumo executivo</h4>
+    <p>A NTICS já tem 70% da infraestrutura que as referências mundiais em IA-para-empresa estão construindo (Y Combinator, Chase H, Nate Herk). O salto que falta é transformar essa infraestrutura em <strong>assessores pessoais</strong> — um por papel, começando pela CEO. Não é chatbot. É um agente que sabe o que está rodando em cada projeto, conhece os stakeholders, redige no tom certo e age via ClickUp, Gmail, Drive e LinkedIn quando autorizado.</p>
+  </div>
+</div>
+
+<!-- O QUE ESTÁ ACONTECENDO NO MUNDO -->
+<section>
+  <div class="container">
+    <h4>Contexto</h4>
+    <h2>O que líderes de empresa estão construindo agora</h2>
+    <p class="lead">Nos últimos 60 dias, três frameworks open-source emergiram como referência mundial. Os três respondem a uma mesma pergunta: como transformar IA num <em>operador</em>, não num <em>assistente</em>.</p>
+
+    <div class="grid-3" style="margin-top: 40px;">
+
+      <div class="card">
+        <span class="tag tag-verde">Solo + Marketing</span>
+        <h3>Chase H</h3>
+        <p style="font-size: 14px; color: var(--cinza-medio);">175k seguidores · chaseai.io</p>
+        <p>Defende o <strong>"Agentic OS"</strong>: três camadas (memória, consistência, acesso) que fecham os gaps do Claude Code padrão. Caso comprovado: 90 vídeos em 30 dias com sistema de 7 skills, 10M views, 1 pessoa.</p>
+      </div>
+
+      <div class="card">
+        <span class="tag tag-roxo">Operador / Agência</span>
+        <h3>Nate Herk</h3>
+        <p style="font-size: 14px; color: var(--cinza-medio);">650k YouTube · ex-Goldman Sachs</p>
+        <p>Criou o <strong>AIOS — AI Operating System</strong>. Litmus test: <em>"enquanto você não está na mesa, sua IA observa um evento real e produz output melhor que você."</em> Frameworks Three Ms + Four Cs.</p>
+      </div>
+
+      <div class="card">
+        <span class="tag tag-rosa">Fundador / CEO</span>
+        <h3>Garry Tan</h3>
+        <p style="font-size: 14px; color: var(--cinza-medio);">CEO Y Combinator · 20k stars no GitHub</p>
+        <p>Lançou o <strong>gstack</strong>: 23 personas (CEO, Designer, QA, Release, Doc) que rodam como assessores. Roda 10-15 sessões em paralelo. Métrica pessoal: 810x mais produtivo que em 2013.</p>
+      </div>
+
+    </div>
+
+    <blockquote style="margin-top: 48px;">
+      "Sem processo, 10 agentes são 10 fontes de caos. Com processo (pensar → planejar → construir → revisar → testar → entregar), cada agente sabe exatamente o que fazer."
+      <cite>— Garry Tan, CEO Y Combinator</cite>
+    </blockquote>
+  </div>
+</section>
+
+<!-- OS 3 GAPS -->
+<section class="alt">
+  <div class="container">
+    <h4>O Diagnóstico</h4>
+    <h2>Por que IA "padrão" não vira operador</h2>
+    <p class="lead">Chase identificou três limitações que impedem um Claude/ChatGPT comum de virar infraestrutura de empresa. A NTICS já resolveu parcialmente as três — falta consolidar.</p>
+
+    <div class="grid-3" style="margin-top: 40px;">
+      <div class="card">
+        <span class="num" style="color: var(--rosa);">01</span>
+        <h3>Memória</h3>
+        <p>"O Claude esquece toda conversa por padrão." Sem memória persistente, cada sessão começa do zero — ninguém quer um assessor com amnésia diária.</p>
+        <p style="font-size: 13px; color: var(--cinza-medio); margin-top: 12px;"><strong>NTICS hoje:</strong> SecondBrain + Obsidian já existem. Falta automatizar a consolidação semanal.</p>
+      </div>
+      <div class="card">
+        <span class="num" style="color: var(--laranja);">02</span>
+        <h3>Consistência</h3>
+        <p>Mesma pergunta, resposta diferente. Para virar processo, a IA precisa repetir o mesmo passo a passo — versionado, testado, auditável.</p>
+        <p style="font-size: 13px; color: var(--cinza-medio); margin-top: 12px;"><strong>NTICS hoje:</strong> 50+ skills versionadas em markdown. Nesse ponto estamos avançados.</p>
+      </div>
+      <div class="card">
+        <span class="num" style="color: var(--teal);">03</span>
+        <h3>Acesso</h3>
+        <p>"Terminal exclui não-técnicos." Se só uma pessoa sabe rodar, a IA virou ferramenta pessoal — não infraestrutura de empresa.</p>
+        <p style="font-size: 13px; color: var(--cinza-medio); margin-top: 12px;"><strong>NTICS hoje:</strong> tudo passa pelo Lucas. Esse é o gargalo principal a resolver.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOUR Cs -->
+<section>
+  <div class="container">
+    <h4>Framework Adotado</h4>
+    <h2>Os Four Cs — arquitetura do assessor</h2>
+    <p class="lead">Estrutura criada por Nate Herk e validada por times solo até agências de médio porte. Define em que ordem construir as camadas. <strong>Pular etapas é o erro #1.</strong></p>
+
+    <div class="four-cs">
+      <div class="c c1">
+        <div class="step">Camada 1 · obrigatória</div>
+        <h3>Context</h3>
+        <p style="margin-top: 12px;"><strong>Conhece o negócio.</strong></p>
+        <p style="margin-top: 8px;">Sessão fresca responde "quem é o cliente, qual fase do projeto, qual o tom" sem buscar em lugar nenhum.</p>
+      </div>
+      <div class="c c2">
+        <div class="step">Camada 2 · paralela</div>
+        <h3>Connections</h3>
+        <p style="margin-top: 12px;"><strong>Alcança os sistemas.</strong></p>
+        <p style="margin-top: 8px;">ClickUp, Gmail, Drive, Calendar, LinkedIn — dados live, sem copy-paste manual.</p>
+      </div>
+      <div class="c c3">
+        <div class="step">Camada 3 · paralela</div>
+        <h3>Capabilities</h3>
+        <p style="margin-top: 12px;"><strong>Executa workflows.</strong></p>
+        <p style="margin-top: 8px;">Uma frase curta dispara um processo de várias etapas e devolve artefato pronto.</p>
+      </div>
+      <div class="c c4">
+        <div class="step">Camada 4 · por último</div>
+        <h3>Cadence</h3>
+        <p style="margin-top: 12px;"><strong>Roda sozinho.</strong></p>
+        <p style="margin-top: 8px;">Workflow dispara em horário ou evento. Laptop fechado, trabalho continua.</p>
+      </div>
+    </div>
+
+    <div style="background: #fef9c3; border-left: 4px solid var(--amarelo); padding: 20px 24px; margin-top: 32px; border-radius: 4px;">
+      <strong>Regra de ouro do Nate Herk:</strong> Context é não-pulável. Não automatize (Cadence) um workflow manual quebrado.
+    </div>
+  </div>
+</section>
+
+<!-- A NTICS HOJE -->
+<section class="alt">
+  <div class="container">
+    <h4>Onde a NTICS está</h4>
+    <h2>O que já existe na casa</h2>
+    <p class="lead">Comparando contra o estado da arte: estamos em <strong>nível 5 de 6</strong> na escala de maturidade do Chase. Só falta o "dashboard de acesso" para destravar o time.</p>
+
+    <div class="arch">
+      <h3>Arquitetura atual NTICS</h3>
+
+      <div class="layer">
+        <div class="label">Camada Context · ✓ Existe</div>
+        <h4>SecondBrain + Brand Book + Stakeholders por projeto</h4>
+        <p>Vault Obsidian com decisões, atas e histórico. Brand-book com tom, paleta e regras editoriais. Cada projeto tem state.yaml e stakeholders.yaml.</p>
+      </div>
+
+      <div class="layer">
+        <div class="label">Camada Connections · ✓ Existe</div>
+        <h4>9 integrações ativas via MCP</h4>
+        <p>ClickUp (PMO, tasks), Gmail (drafts, comunicação), Google Drive (assets, marketing), Google Calendar, Canva, Gamma, Make, LinkedIn (Playwright), Leonardo AI.</p>
+      </div>
+
+      <div class="layer">
+        <div class="label">Camada Capabilities · ✓ Existe (50+ skills)</div>
+        <h4>Time de Design + Time de Mídias Sociais + PMO</h4>
+        <p>De carrossel-cliente a relatorio-pmo, de kv-derivar a postar-linkedin. Cada skill versionada em markdown, testável.</p>
+      </div>
+
+      <div class="layer" style="border-left-color: var(--rosa); background: rgba(212,26,106,0.08);">
+        <div class="label" style="color: var(--rosa);">Camada Cadence · ⚠ Parcial</div>
+        <h4>Cron PMO diário 8h + relatório semanal sexta 16h</h4>
+        <p>Funciona, mas é apenas para o PMO interno. Falta cadence outbound (cliente) e inbound (evento dispara → IA responde).</p>
+      </div>
+
+      <div class="layer" style="border-left-color: var(--laranja); background: rgba(232,100,40,0.08);">
+        <div class="label" style="color: var(--laranja);">Camada Acesso · ✗ Falta</div>
+        <h4>Tudo passa pelo Lucas no terminal</h4>
+        <p>Nenhuma das outras pessoas roda skills sozinha. Se Lucas viaja ou está em reunião, a infraestrutura "para".</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- A PROPOSTA: ASSESSOR POR PAPEL -->
+<section>
+  <div class="container">
+    <h4>A Proposta</h4>
+    <h2>Um assessor pessoal por papel</h2>
+    <p class="lead">Ao invés de um Claude genérico para todos, cada pessoa ganha um copiloto com voz, prioridades e atribuições específicas — tudo apontando para a mesma memória da casa. Começamos pela CEO porque é onde a alavancagem é maior.</p>
+
+    <!-- CEO -->
+    <div class="persona">
+      <div class="persona-header">
+        <h3>Assessor da CEO</h3>
+        <span class="role" style="background: var(--rosa);">Prioridade 1 · Maio</span>
+      </div>
+      <p style="margin-bottom: 24px;"><strong>Mandato:</strong> ser os olhos e ouvidos da CEO sobre tudo que acontece na NTICS sem precisar perguntar a ninguém. Filtra ruído, prioriza decisões, redige na voz dela.</p>
+      <div class="persona-grid">
+        <div>
+          <h4>O que ele faz toda manhã (8h)</h4>
+          <ul>
+            <li>Lê ClickUp + Gmail noturno + Calendar do dia</li>
+            <li>Entrega briefing de 5 bullets: o que decidir hoje</li>
+            <li>Sinaliza projetos com risco antes de virar crise</li>
+            <li>Sugere 1 follow-up estratégico que está atrasando</li>
+            <li>Resume o que cada coordenador entregou ontem</li>
+          </ul>
+        </div>
+        <div>
+          <h4>O que ele faz sob demanda</h4>
+          <ul>
+            <li>Redige e-mail no tom da CEO p/ stakeholder X</li>
+            <li>Prepara material de reunião de cliente em 5 min</li>
+            <li>Compara 2 propostas comerciais com critério dela</li>
+            <li>Gera ata da reunião + decisões + responsáveis</li>
+            <li>Atualiza o calendário social com o que foi aprovado</li>
+          </ul>
+        </div>
+      </div>
+      <div style="margin-top: 24px; padding-top: 24px; border-top: 1px dashed #e5e7eb;">
+        <strong>Skills que já existem e seriam reaproveitadas:</strong>
+        <span class="skill-tag">/relatorio-pmo</span>
+        <span class="skill-tag">/projeto-status</span>
+        <span class="skill-tag">/projeto-email</span>
+        <span class="skill-tag">/projeto-salvar</span>
+      </div>
+    </div>
+
+    <!-- COORDENADOR PROJETOS -->
+    <div class="persona">
+      <div class="persona-header">
+        <h3>Assessor do Coordenador de Projetos</h3>
+        <span class="role" style="background: var(--azul);">Prioridade 2 · Junho</span>
+      </div>
+      <p style="margin-bottom: 24px;"><strong>Mandato:</strong> tirar o coordenador da operação reativa. Antecipa cidade, prepara briefing antes da reunião, redige update para cliente sem precisar pensar duas vezes.</p>
+      <div class="persona-grid">
+        <div>
+          <h4>Rotinas executadas</h4>
+          <ul>
+            <li>Briefing de cidade 7 dias antes (assets, equipe, contatos)</li>
+            <li>Update semanal para cliente sem ter que escrever do zero</li>
+            <li>Comunicação com produtor local pré-evento</li>
+            <li>Ata de reunião + tasks ClickUp criadas automaticamente</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Decisões facilitadas</h4>
+          <ul>
+            <li>"Esse deliverable está atrasando — escalar ou prorrogar?"</li>
+            <li>"Cliente pediu mudança X — cabe no escopo?"</li>
+            <li>"Próxima cidade tem hospedagem definida?"</li>
+            <li>"Faltam quantas peças até fechar a entrega?"</li>
+          </ul>
+        </div>
+      </div>
+      <div style="margin-top: 24px; padding-top: 24px; border-top: 1px dashed #e5e7eb;">
+        <strong>Skills:</strong>
+        <span class="skill-tag">/projeto-briefing</span>
+        <span class="skill-tag">/projeto-avanca</span>
+        <span class="skill-tag">/projeto-registrar</span>
+        <span class="skill-tag">/projeto-sync</span>
+      </div>
+    </div>
+
+    <!-- COMUNICAÇÃO -->
+    <div class="persona">
+      <div class="persona-header">
+        <h3>Assessor de Comunicação & Conteúdo</h3>
+        <span class="role" style="background: var(--verde);">Prioridade 3 · Julho</span>
+      </div>
+      <p style="margin-bottom: 24px;"><strong>Mandato:</strong> transformar 1 evento em 8 peças de conteúdo on-brand, em 4 plataformas, sem reunião de pauta. Voice-locked por cliente.</p>
+      <div class="persona-grid">
+        <div>
+          <h4>Pipeline cascata (uma cidade → 8 peças)</h4>
+          <ul>
+            <li>Carrossel cliente (8 cards) com KV do projeto</li>
+            <li>Reels curto com motion graphics</li>
+            <li>Post LinkedIn (voz institucional)</li>
+            <li>Post Instagram (voz pop, badge verde)</li>
+            <li>Newsletter HTML para mailing</li>
+            <li>Atualização do site do projeto</li>
+            <li>Carrossel educativo ESG (uso 2x ao mês)</li>
+            <li>Plano editorial mensal cliente</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Voice-locking por cliente</h4>
+          <ul>
+            <li>Cada projeto tem voice.md (tom, frases proibidas, exemplos)</li>
+            <li>LinkedIn: earnest expertise</li>
+            <li>Instagram: pop, frases curtas, destaques</li>
+            <li>Site: institucional, ODS conectado</li>
+            <li>WhatsApp p/ produtor: direto, prático</li>
+          </ul>
+        </div>
+      </div>
+      <div style="margin-top: 24px; padding-top: 24px; border-top: 1px dashed #e5e7eb;">
+        <strong>Skills:</strong>
+        <span class="skill-tag">/carrossel-cliente</span>
+        <span class="skill-tag">/post-instagram</span>
+        <span class="skill-tag">/postar-linkedin</span>
+        <span class="skill-tag">/plano-mensal</span>
+        <span class="skill-tag">/briefing-video</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ANTES X DEPOIS -->
+<section class="alt">
+  <div class="container">
+    <h4>Casos concretos</h4>
+    <h2>Antes vs. depois — rotina da CEO</h2>
+
+    <div class="compare">
+      <div class="antes">
+        <h4>Antes</h4>
+        <p><strong>Segunda 8h:</strong> CEO abre 4 abas (ClickUp, Gmail, Calendar, Drive), passa 45 min montando o estado do mundo na cabeça. Esquece de 1 follow-up importante.</p>
+      </div>
+      <div class="arrow">→</div>
+      <div class="depois">
+        <h4>Depois</h4>
+        <p><strong>Segunda 8h:</strong> abre o e-mail e já tem briefing pronto: 5 decisões a tomar hoje, 2 projetos com risco, 1 follow-up esquecido sinalizado. Tempo: 5 min.</p>
+      </div>
+    </div>
+
+    <div class="compare">
+      <div class="antes">
+        <h4>Antes</h4>
+        <p><strong>Cliente liga pedindo update:</strong> CEO precisa parar tudo, perguntar pro coordenador, esperar resposta, montar e-mail. Total: 1h-2h.</p>
+      </div>
+      <div class="arrow">→</div>
+      <div class="depois">
+        <h4>Depois</h4>
+        <p><strong>Cliente liga pedindo update:</strong> "/projeto-status samarco" devolve fase, próximas entregas, blockers. CEO redige resposta em 5 min, no tom dela.</p>
+      </div>
+    </div>
+
+    <div class="compare">
+      <div class="antes">
+        <h4>Antes</h4>
+        <p><strong>Reunião com sócio às 14h:</strong> ata vira PDF que ninguém lê. Decisões somem. 2 semanas depois ninguém lembra o combinado.</p>
+      </div>
+      <div class="arrow">→</div>
+      <div class="depois">
+        <h4>Depois</h4>
+        <p><strong>Reunião com sócio às 14h:</strong> CEO grava áudio, IA gera ata + decisões + responsáveis + tasks ClickUp + arquivamento no SecondBrain. Auditável para sempre.</p>
+      </div>
+    </div>
+
+    <div class="compare">
+      <div class="antes">
+        <h4>Antes</h4>
+        <p><strong>Sexta 18h:</strong> CEO ainda está montando o status para entregar segunda. Bruna e Abilio ficam no celular tirando dúvida.</p>
+      </div>
+      <div class="arrow">→</div>
+      <div class="depois">
+        <h4>Depois</h4>
+        <p><strong>Sexta 16h:</strong> relatório semanal é gerado automaticamente, agrupado por coordenador. CEO revisa, ajusta tom e aprova em 15 min.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ROADMAP 90 DIAS -->
+<section>
+  <div class="container">
+    <h4>Plano de Implementação</h4>
+    <h2>Roadmap 90 dias</h2>
+    <p class="lead">Começar pequeno, comprovar valor com a CEO, depois expandir para os coordenadores. Sem big-bang. Sem reescrever o que já funciona.</p>
+
+    <div class="timeline">
+
+      <div class="milestone">
+        <div class="when">Semana 1-2 · Maio</div>
+        <h3>Onboarding da CEO</h3>
+        <p>Entrevista guiada (15 min) gera o "context.md" pessoal: prioridades, projetos sob radar, pessoas-chave, tom de voz, quais decisões delegar e quais não. Voice-doc com 5 e-mails-modelo da CEO.</p>
+      </div>
+
+      <div class="milestone">
+        <div class="when">Semana 3-4 · Maio</div>
+        <h3>Briefing matinal automático</h3>
+        <p>Cron 7h45: lê ClickUp + Gmail unread + Calendar do dia + decisões abertas. Entrega em e-mail HTML às 8h. CEO valida 1 semana antes de virar oficial.</p>
+      </div>
+
+      <div class="milestone">
+        <div class="when">Semana 5-6 · Junho</div>
+        <h3>Memória institucional consolidada</h3>
+        <p>Toda decisão tomada na semana é registrada automaticamente em SecondBrain/decisoes/. CEO consulta histórico em linguagem natural: "o que decidimos sobre Samarco em março?".</p>
+      </div>
+
+      <div class="milestone">
+        <div class="when">Semana 7-8 · Junho</div>
+        <h3>Assessor do Coordenador (piloto Bruna)</h3>
+        <p>Replica o modelo da CEO para coordenação. Bruna ganha briefing matinal, geração de update para cliente, ata automática de reunião. Métrica: -3h/semana de operação reativa.</p>
+      </div>
+
+      <div class="milestone">
+        <div class="when">Semana 9-10 · Julho</div>
+        <h3>Pipeline cascata de comunicação</h3>
+        <p>Voice-doc por cliente. 1 cidade vira 8 peças automáticas. Tempo de produção cai de 2 dias para 4h, com aprovação humana em 2 pontos do fluxo.</p>
+      </div>
+
+      <div class="milestone">
+        <div class="when">Semana 11-12 · Julho</div>
+        <h3>Dashboard de acesso (não-terminal)</h3>
+        <p>Página HTML simples com botões: cada pessoa do time roda os assessores que precisa sem abrir terminal. Bruna e Abilio param de depender do Lucas para tudo.</p>
+      </div>
+
+      <div class="milestone" style="padding-bottom: 0;">
+        <div class="when">Semana 13 · Agosto</div>
+        <h3>Auditoria + retrospectiva</h3>
+        <p>Skill <span class="skill-tag">/audit</span> faz check dos Four Cs (estrutura completa?). Skill <span class="skill-tag">/level-up</span> identifica próxima alavancagem. Decide-se onde investir nos próximos 90 dias.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- INVESTIMENTO -->
+<section class="alt">
+  <div class="container">
+    <h4>Custo & ROI</h4>
+    <h2>O que isso custa</h2>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3 style="color: var(--azul);">Custo de operação</h3>
+        <p style="font-size: 14px; color: var(--cinza-medio); margin-bottom: 16px;">Estimativa para todo o time, mês cheio</p>
+        <ul style="list-style: none; padding: 0;">
+          <li style="padding: 8px 0; border-bottom: 1px dashed #e5e7eb;"><strong>Claude API (pay-per-use):</strong> US$ 80–150/mês</li>
+          <li style="padding: 8px 0; border-bottom: 1px dashed #e5e7eb;"><strong>Leonardo AI (já contratado):</strong> sem custo extra</li>
+          <li style="padding: 8px 0; border-bottom: 1px dashed #e5e7eb;"><strong>MCPs (ClickUp, Gmail, Drive):</strong> incluído</li>
+          <li style="padding: 8px 0;"><strong>Infraestrutura local:</strong> Mac mini sempre-ligado (já existe)</li>
+        </ul>
+        <p style="margin-top: 16px; font-size: 14px;"><strong>Modelo de uso:</strong> Haiku (mais barato, 25x menos que Opus) para coleta e triagem; Sonnet para produção; Opus só em decisões estratégicas.</p>
+      </div>
+
+      <div class="card" style="background: var(--verde); color: white; border: none;">
+        <h3 style="color: white;">Retorno esperado</h3>
+        <p style="font-size: 14px; opacity: 0.9; margin-bottom: 16px;">Estimativa baseada em casos comparáveis</p>
+        <ul style="list-style: none; padding: 0;">
+          <li style="padding: 8px 0; border-bottom: 1px dashed rgba(255,255,255,0.3);"><strong>CEO:</strong> ~1h/dia recuperada (briefing + comunicação)</li>
+          <li style="padding: 8px 0; border-bottom: 1px dashed rgba(255,255,255,0.3);"><strong>Coordenadores:</strong> ~3h/semana cada (operação reativa)</li>
+          <li style="padding: 8px 0; border-bottom: 1px dashed rgba(255,255,255,0.3);"><strong>Comunicação:</strong> 5x velocidade (1 evento → 8 peças em 4h)</li>
+          <li style="padding: 8px 0;"><strong>Memória:</strong> 0 decisões perdidas, auditável p/ sempre</li>
+        </ul>
+        <p style="margin-top: 16px; font-size: 14px;"><strong>Ponto de equilíbrio:</strong> 1h da CEO já paga 2 meses de API. ROI claro a partir do dia 1.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PERGUNTAS -->
+<section>
+  <div class="container">
+    <h4>Perguntas que aparecem</h4>
+    <h2>O que costuma travar a decisão</h2>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3 style="color: var(--rosa);">"Vai substituir gente?"</h3>
+        <p>Não. Tira a parte chata — copiar dado, montar tabela, escrever rascunho — e devolve tempo para o que IA não faz: relação humana, julgamento estratégico, fechamento comercial. Bruna não vira menos coordenadora; vira menos digitadora.</p>
+      </div>
+      <div class="card">
+        <h3 style="color: var(--rosa);">"E se errar e mandar besteira?"</h3>
+        <p>Regra dos três frameworks (Chase, Nate, Garry): <strong>human-in-the-loop sempre antes de publicar.</strong> Nada vai pra cliente, ClickUp ou LinkedIn sem aprovação humana. A IA escreve rascunhos; pessoas validam.</p>
+      </div>
+      <div class="card">
+        <h3 style="color: var(--rosa);">"Dados sensíveis ficam seguros?"</h3>
+        <p>Memória fica local, em pastas versionadas no Drive da NTICS. Nada vai para servidor de terceiro além das chamadas API ao Claude (mesma segurança de qualquer ferramenta empresarial). Audit trail completo do que cada agente fez.</p>
+      </div>
+      <div class="card">
+        <h3 style="color: var(--rosa);">"Time vai conseguir usar?"</h3>
+        <p>Por isso a fase de "dashboard de acesso" no roadmap. Botão na tela que executa skill — não terminal. Modelo Chase H validado: <em>"não-técnicos extraem 90% do valor sem abrir terminal."</em></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRÓXIMOS PASSOS -->
+<section class="alt">
+  <div class="container" style="text-align: center;">
+    <h4>Decisão</h4>
+    <h2>Próximos passos</h2>
+    <p class="lead" style="margin: 0 auto 32px;">Para iniciar a Fase 1 (Onboarding da CEO + briefing matinal) precisamos de duas coisas.</p>
+
+    <div class="grid-2" style="max-width: 800px; margin: 0 auto;">
+      <div class="card" style="text-align: left;">
+        <span class="num" style="color: var(--rosa); font-size: 48px;">1</span>
+        <h3>Aprovação da CEO</h3>
+        <p>Pra rodar piloto de 2 semanas com briefing matinal automatizado. Sem custo de implementação além da API (US$ 30 nas duas semanas).</p>
+      </div>
+      <div class="card" style="text-align: left;">
+        <span class="num" style="color: var(--rosa); font-size: 48px;">2</span>
+        <h3>1 hora de entrevista</h3>
+        <p>Lucas entrevista a CEO numa sessão guiada de 60 min para gerar o context.md pessoal. Voz, prioridades, projetos sob radar, decisões delegáveis.</p>
+      </div>
+    </div>
+
+    <p style="margin-top: 40px; font-size: 18px; max-width: 720px; margin-left: auto; margin-right: auto;">A NTICS já é uma das casas de marketing+impacto mais bem instrumentadas do Brasil em IA. <strong>O que falta é dar essa força ao time inteiro</strong> — não só ao Lucas. O assessor pessoal é o multiplicador.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="grid-3">
+      <div>
+        <h4>Fontes da pesquisa</h4>
+        <p style="font-size: 13px;">Anthropic, Y Combinator Library, Chase H (chaseai.io), Nate Herk (AI Automation Society), Simon Willison, Shrivu Shankar, blogs Anthropic e Claude Code Docs (mar–mai 2026).</p>
+      </div>
+      <div>
+        <h4>Frameworks citados</h4>
+        <p style="font-size: 13px;">gstack (Garry Tan, MIT) · AIS-OS (Nate Herk, MIT) · Agentic OS (Chase H) · Four Cs · Three Ms · Conductor Pattern.</p>
+      </div>
+      <div>
+        <h4>Próxima revisão</h4>
+        <p style="font-size: 13px;">Após Fase 1 do roadmap (2 semanas de piloto). Skill <span style="font-family: monospace; color: var(--amarelo);">/audit</span> avalia Four Cs e indica próximas alavancagens.</p>
+      </div>
+    </div>
+    <div style="border-top: 1px solid rgba(255,255,255,0.15); margin-top: 32px; padding-top: 24px; font-size: 12px; opacity: 0.6;">
+      Relatório preparado por Lucas Rotta · Maio 2026 · NTICS Projetos · Documento interno
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
