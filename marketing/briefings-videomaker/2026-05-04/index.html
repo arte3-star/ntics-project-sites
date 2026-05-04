@@ -664,6 +664,20 @@ main {
   .sidebar-footer { display: none; }
   main { margin-left: 0; padding: 24px; }
 }
+
+/* Arvore de pastas responsiva , substitui .folder-tree */
+.ftl-wrap { background: var(--grafite); border-radius: 12px; padding: 20px 24px; }
+.ftl { list-style: none; padding: 0; margin: 0; font-size: 13px; line-height: 1.9; }
+.ftl ul { list-style: none; padding-left: 20px; margin: 0;
+          border-left: 2px solid rgba(255,255,255,0.12); }
+.ftl-root { color: #ffffff; font-weight: 700; font-size: 14px;
+            font-family: 'Courier New', monospace; }
+.ftl-dir  { color: var(--accent); font-weight: 600;
+            font-family: 'Courier New', monospace; }
+.ftl-dir::before { content: "▸ "; font-size: 10px; opacity: .7; }
+.ftl-note { color: #757575; font-size: 11px; font-style: italic; margin-left: 8px; }
+.ftl-ex   { display: block; color: #9E9E9E; font-size: 11px;
+            font-family: 'Courier New', monospace; padding-left: 24px; }
 </style>
 </head>
 <body>
@@ -732,7 +746,7 @@ main {
     <h4>Diretivas da reunião · Ana Carolina</h4>
     <ul>
       <li><strong>1 dia por cidade</strong> ("um dia tá de bom tamanho, não precisa ter mais que isso", fala da Ana). 3 cidades = 3 dias de filmagem.</li>
-      <li><strong>Cliente Áster vai estar em campo</strong> dando depoimento. Lucas precisa saber a data exata por cidade pra sincronizar videomaker.</li>
+      
       <li><strong>Formato leve</strong> tipo "Ação em [cidade]", precedente que a Ana citou.</li>
       <li><strong>Pendência crítica:</strong> 3 cidades ainda em definição com Áster + Secretarias. Sem isso, não dá pra fechar agenda do videomaker nem reunião pré-projeto cliente.</li>
     </ul>
@@ -797,11 +811,14 @@ main {
     <div class="block-header">
       <div class="overline">Para o videomaker em campo</div>
       <h2>Plano de captação</h2>
-      <p class="subtitle">Três cidades no MS, 1 dia por cidade. Confirmar datas com Áster antes de fechar agenda. O cliente Áster estará em campo: sincronizar presença com Lucas.</p>
+      <p class="subtitle">Três cidades no MS, 1 dia por cidade. Ao chegar em cada cidade: identificar o representante da Áster presente, coletar nome e cargo antes de iniciar as gravações.</p>
     </div>
     <div class="cap-grid">
       <div class="cap-block">
-        <h4>Quem entrevistar</h4>
+        <h4>Perfis a buscar em campo</h4>
+        <div style="background:#FFF3E0;border-left:3px solid #FF8F00;border-radius:6px;padding:10px 14px;font-size:12px;margin-bottom:12px;color:#4E342E;">
+          Ao chegar: identifique quem esta presente, pergunte nome completo e funcao antes de iniciar qualquer gravacao. Os perfis abaixo sao referencias de quem buscar, nao confirmacoes de presenca.
+        </div>
         <div class="persona"><div class="persona-name">Representante Áster em campo</div><div class="persona-why">Voz institucional. Gravar fora da sala, preferencialmente com contexto agro ao fundo. Camera a 1,2 m, altura dos olhos, rack focus do fundo para o rosto no início.</div></div>
         <div class="persona"><div class="persona-name">1 aluno com protótipo de máquina agrícola por cidade</div><div class="persona-why">Projeto mais visual. Menina em primeiro plano sempre que possível. Camera a 1 m, plano médio fechado, leve movimento lateral para revelar o protótipo ao lado do aluno.</div></div>
         <div class="persona"><div class="persona-name">Professor ou dinamizador da oficina</div><div class="persona-why">30s de depoimento. Camera handheld a 1,5 m, plano médio. Fundo com kits de robótica desfocados.</div></div>
@@ -863,23 +880,42 @@ main {
       <h2>Organização do material captado</h2>
       <p class="subtitle">Criar subpasta por cidade. Hábitos Saudáveis em pasta separada com prefixo HS_.</p>
     </div>
-    <div class="folder-tree">
-<span class="folder">[116] Cultura Robótica · Áster · MS</span>
-├── <span class="folder">CIDADE_1</span> <span class="file-note">← repetir para cada cidade</span>
-│   ├── <span class="folder">01_DEPOIMENTOS</span>
-│   │   ├── <span class="folder">PATROCINADOR</span> <span class="file-note">← representante Áster</span>
-│   │   ├── <span class="folder">PROFESSORES</span> <span class="file-note">← dinamizador / professor</span>
-│   │   └── <span class="folder">ALUNOS</span> <span class="file-note">← destaque por cidade</span>
-│   ├── <span class="folder">02_STORIES</span> <span class="file-note">← S01 a S10</span>
-│   ├── <span class="folder">03_BROLL</span>
-│   │   ├── <span class="folder">CHEGADA</span> <span class="file-note">← entrada escola + contexto agro</span>
-│   │   └── <span class="folder">GERAL</span> <span class="file-note">← protótipos, kits, lavoura, paisagem MS</span>
-│   ├── <span class="folder">04_FOTOS</span>
-│   │   ├── <span class="folder">SELECIONADAS</span>
-│   │   ├── <span class="folder">SENSIBILIDADE</span> <span class="file-note">← menores: checar autorização</span>
-│   │   └── <span class="folder">TOP15</span>
-│   └── <span class="folder">05_BRUTO</span>
-└── <span class="folder">HABITOS_SAUDAVEIS</span> <span class="file-note">← PRONAC 232827 separado</span></div>
+    <div class="ftl-wrap">
+  <ul class="ftl">
+    <li><span class="ftl-root">[116] Cultura Robótica · Áster · MS</span>
+      <ul>
+        <li><span class="ftl-dir">CIDADE_1</span> <span class="ftl-note">repetir para CIDADE_2 e CIDADE_3</span>
+          <ul>
+            <li><span class="ftl-dir">01_DEPOIMENTOS</span>
+              <ul>
+                <li><span class="ftl-dir">PATROCINADOR</span> <span class="ftl-note">representante Áster</span>
+                  <span class="ftl-ex">captador_aster-[nome]_descricao.mp4</span>
+                </li>
+                <li><span class="ftl-dir">PROFESSORES</span> <span class="ftl-note">dinamizador / professor</span></li>
+                <li><span class="ftl-dir">ALUNOS</span> <span class="ftl-note">1 destaque por cidade</span></li>
+              </ul>
+            </li>
+            <li><span class="ftl-dir">02_STORIES</span> <span class="ftl-note">S01 a S10</span></li>
+            <li><span class="ftl-dir">03_BROLL</span>
+              <ul>
+                <li><span class="ftl-dir">CHEGADA</span> <span class="ftl-note">entrada escola + contexto agro</span></li>
+                <li><span class="ftl-dir">GERAL</span> <span class="ftl-note">protótipos, kits, lavoura, paisagem MS</span></li>
+              </ul>
+            </li>
+            <li><span class="ftl-dir">04_FOTOS</span>
+              <ul>
+                <li><span class="ftl-dir">SELECIONADAS</span></li>
+                <li><span class="ftl-dir">SENSIBILIDADE</span> <span class="ftl-note">rostos identificáveis , autorização antes de publicar</span></li>
+                <li><span class="ftl-dir">TOP15</span></li>
+              </ul>
+            </li>
+            <li><span class="ftl-dir">05_BRUTO</span></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
     <div class="naming-rule">
       <h4>Convenção de nomeação</h4>
       <ul>
@@ -915,7 +951,7 @@ main {
     <ul>
       <li><strong>1 dia forte de filmagem</strong> em Joinville (não diária). Foco no dia da Feira de Ideias + Espetáculo, onde tem voluntário Whirlpool, criança no auge, premiação.</li>
       <li><strong>Depoimento é obrigatório.</strong> Sem depoimento captado o Reels Case institucional não roda.</li>
-      <li><strong>Lucas brifa direto o videomaker</strong> e cria grupo de WhatsApp em campo para acompanhamento real-time.</li>
+      
       <li><strong>FSB valida tudo</strong> antes de publicar. Reel Durante e Case passam por Gabrielly antes de qualquer post.</li>
     </ul>
   </div>
@@ -968,12 +1004,15 @@ main {
     <div class="block-header">
       <div class="overline">Para o videomaker em campo</div>
       <h2>Plano de captação</h2>
-      <p class="subtitle">Foco no dia da Feira de Ideias em Joinville. Voluntário Whirlpool, criança no auge, premiação. Tudo aprovado por FSB (Gabrielly Russo) antes de qualquer post.</p>
+      <p class="subtitle">Teatro e Robótica nas Escolas · 4a Edição com a Whirlpool. Foco no dia da Feira de Ideias em Joinville: voluntário Whirlpool em interacao com criança, premiação. Aprovação FSB antes de qualquer publicação.</p>
     </div>
     <div class="cap-grid">
       <div class="cap-block">
-        <h4>Quem entrevistar</h4>
-        <div class="persona"><div class="persona-name">Voluntário Whirlpool (engenheiro)</div><div class="persona-why">Confirmar nome com Lucas antes. Gravar no intervalo da Feira. Camera a 1,2 m, plano médio, fundo desfocado. Handheld suave: leve movimento lateral valoriza o depoimento.</div></div>
+        <h4>Perfis a buscar em campo</h4>
+        <div style="background:#FFF3E0;border-left:3px solid #FF8F00;border-radius:6px;padding:10px 14px;font-size:12px;margin-bottom:12px;color:#4E342E;">
+          Ao chegar: identifique quem esta presente, pergunte nome completo e funcao antes de iniciar qualquer gravacao. Os perfis abaixo sao referencias de quem buscar, nao confirmacoes de presenca.
+        </div>
+        <div class="persona"><div class="persona-name">Voluntário Whirlpool (engenheiro)</div><div class="persona-why">Ao chegar, identificar quem e o voluntario presente e coletar nome completo e area de atuacao na Whirlpool. Gravar no intervalo da Feira. Camera a 1,2 m, plano médio, fundo desfocado. Handheld suave: leve movimento lateral valoriza o depoimento.</div></div>
         <div class="persona"><div class="persona-name">2 crianças com protótipos de destaque</div><div class="persona-why">Menina em primeiro plano sempre que possível (pilar ESG de gênero). Camera a 1 m, plano médio fechado. Abrir levemente para revelar protótipo ao lado da criança.</div></div>
         <div class="persona"><div class="persona-name">Professor da escola</div><div class="persona-why">30s de depoimento. Camera estática a 1,5 m. Fundo com sala de aula desfocado.</div></div>
       </div>
@@ -999,7 +1038,7 @@ main {
         <ul>
           <li><strong>Drive:</strong> confirmar ID com FSB / Gabrielly Russo antes de criar estrutura.</li>
           <li>Aprovação FSB obrigatória antes de qualquer post. Reel e Case passam por Gabrielly antes de qualquer etapa.</li>
-          <li>Lucas brifa o videomaker diretamente e cria grupo WhatsApp em campo.</li>
+          
           <li>Upload do bruto no Drive ao fim do dia.</li>
           <li>Áudio com lapela ou microfone direcional em todo depoimento.</li>
         </ul>
@@ -1033,23 +1072,43 @@ main {
       <h2>Organização do material captado</h2>
       <p class="subtitle">Separar Joinville e Rio Claro em subpastas. Confirmar ID do Drive com FSB antes de criar a estrutura.</p>
     </div>
-    <div class="folder-tree">
-<span class="folder">[117] Teatro e Robótica · Whirlpool · Joinville + Rio Claro</span>
-├── <span class="folder">JOINVILLE</span>
-│   ├── <span class="folder">01_DEPOIMENTOS</span>
-│   │   ├── <span class="folder">PATROCINADOR</span> <span class="file-note">← voluntário Whirlpool</span>
-│   │   ├── <span class="folder">PROFESSORES</span> <span class="file-note">← professor da escola</span>
-│   │   └── <span class="folder">ALUNOS</span> <span class="file-note">← menina em destaque preferencialmente</span>
-│   ├── <span class="folder">02_STORIES</span> <span class="file-note">← S01 a S10 - Feira de Ideias</span>
-│   ├── <span class="folder">03_BROLL</span>
-│   │   ├── <span class="folder">CHEGADA</span> <span class="file-note">← entrada escola + setup da Feira</span>
-│   │   └── <span class="folder">GERAL</span> <span class="file-note">← protótipos, voluntário, premiação, peça teatral</span>
-│   ├── <span class="folder">04_FOTOS</span>
-│   │   ├── <span class="folder">SELECIONADAS</span>
-│   │   ├── <span class="folder">SENSIBILIDADE</span> <span class="file-note">← menores: autorização obrigatória</span>
-│   │   └── <span class="folder">TOP15</span>
-│   └── <span class="folder">05_BRUTO</span>
-└── <span class="folder">RIO_CLARO</span> <span class="file-note">← mesma estrutura</span></div>
+    <div class="ftl-wrap">
+  <ul class="ftl">
+    <li><span class="ftl-root">[117] Teatro e Robótica nas Escolas · Whirlpool · Joinville + Rio Claro</span>
+      <ul>
+        <li><span class="ftl-dir">JOINVILLE</span>
+          <ul>
+            <li><span class="ftl-dir">01_DEPOIMENTOS</span>
+              <ul>
+                <li><span class="ftl-dir">PATROCINADOR</span> <span class="ftl-note">voluntário Whirlpool , coletar nome e área no dia</span>
+                  <span class="ftl-ex">captador_whirlpool-[nome]_descricao.mp4</span>
+                </li>
+                <li><span class="ftl-dir">PROFESSORES</span></li>
+                <li><span class="ftl-dir">ALUNOS</span></li>
+              </ul>
+            </li>
+            <li><span class="ftl-dir">02_STORIES</span> <span class="ftl-note">S01 a S10 , Feira de Ideias</span></li>
+            <li><span class="ftl-dir">03_BROLL</span>
+              <ul>
+                <li><span class="ftl-dir">CHEGADA</span></li>
+                <li><span class="ftl-dir">GERAL</span> <span class="ftl-note">protótipos, voluntário+criança, premiação, peça teatral</span></li>
+              </ul>
+            </li>
+            <li><span class="ftl-dir">04_FOTOS</span>
+              <ul>
+                <li><span class="ftl-dir">SELECIONADAS</span></li>
+                <li><span class="ftl-dir">SENSIBILIDADE</span></li>
+                <li><span class="ftl-dir">TOP15</span></li>
+              </ul>
+            </li>
+            <li><span class="ftl-dir">05_BRUTO</span></li>
+          </ul>
+        </li>
+        <li><span class="ftl-dir">RIO_CLARO</span> <span class="ftl-note">mesma estrutura de JOINVILLE</span></li>
+      </ul>
+    </li>
+  </ul>
+</div>
     <div class="naming-rule">
       <h4>Convenção de nomeação</h4>
       <ul>
@@ -1164,7 +1223,10 @@ main {
     </div>
     <div class="cap-grid">
       <div class="cap-block">
-        <h4>Quem entrevistar</h4>
+        <h4>Perfis a buscar em campo</h4>
+        <div style="background:#FFF3E0;border-left:3px solid #FF8F00;border-radius:6px;padding:10px 14px;font-size:12px;margin-bottom:12px;color:#4E342E;">
+          Ao chegar: identifique quem esta presente, pergunte nome completo e funcao antes de iniciar qualquer gravacao. Os perfis abaixo sao referencias de quem buscar, nao confirmacoes de presenca.
+        </div>
         <div class="persona"><div class="persona-name">Depoimento triplo: Abílio + Raísa + representante Sylvamo</div><div class="persona-why">Material âncora do Case. Sem esse depoimento o Case não fecha. Reservar 30 min com tripé fixo no dia 11/05. Camera estática a 2 m, plano americano dos três sentados. Gravar cada um individualmente também depois.</div></div>
         <div class="persona"><div class="persona-name">2 crianças da escola da semana 1</div><div class="persona-why">Perfis distintos: uma criança mais falante, outra mais tímida que surpreende. Camera a 1 m, plano médio, fundo da sala de aula desfocado. Handheld suave.</div></div>
         <div class="persona"><div class="persona-name">Professor que participou do workshop de formação</div><div class="persona-why">30s sobre a mudança de postura dos alunos no diagnóstico territorial. Camera estática a 1,5 m.</div></div>
@@ -1226,23 +1288,41 @@ main {
       <h2>Organização do material captado</h2>
       <p class="subtitle">Depoimento triplo tem pasta própria. Guatapará em subpasta separada se houver cobertura.</p>
     </div>
-    <div class="folder-tree">
-<span class="folder">[119] PEC Eu Faço Parte · Sylvamo · Mogi Guaçu + Guatapará</span>
-├── <span class="folder">01_DEPOIMENTOS</span>
-│   ├── <span class="folder">DEPOIMENTO_TRIPLO</span> <span class="file-note">← Abílio + Raísa + Sylvamo (arquivo único, tripé fixo)</span>
-│   ├── <span class="folder">PATROCINADOR</span> <span class="file-note">← representante Sylvamo (individual)</span>
-│   ├── <span class="folder">PROFESSORES</span> <span class="file-note">← professor escola 1 + workshop formação</span>
-│   └── <span class="folder">ALUNOS</span> <span class="file-note">← por escola: Mogi Guaçu e Guatapará</span>
-├── <span class="folder">02_STORIES</span> <span class="file-note">← S01 a S10 por semana de captação</span>
-├── <span class="folder">03_BROLL</span>
-│   ├── <span class="folder">CHEGADA</span> <span class="file-note">← prefeitura dia 11/05 + fachada escola 1</span>
-│   └── <span class="folder">GERAL</span> <span class="file-note">← mapa, mural, feira de ideias, diagnóstico</span>
-├── <span class="folder">04_FOTOS</span>
-│   ├── <span class="folder">SELECIONADAS</span>
-│   ├── <span class="folder">SENSIBILIDADE</span> <span class="file-note">← menores: checar autorização</span>
-│   └── <span class="folder">TOP15</span>
-├── <span class="folder">05_BRUTO</span>
-└── <span class="folder">GUATAPARA</span> <span class="file-note">← mesma estrutura se houver cobertura</span></div>
+    <div class="ftl-wrap">
+  <ul class="ftl">
+    <li><span class="ftl-root">[119] PEC Eu Faço Parte · Sylvamo · Mogi Guaçu + Guatapará</span>
+      <ul>
+        <li><span class="ftl-dir">01_DEPOIMENTOS</span>
+          <ul>
+            <li><span class="ftl-dir">DEPOIMENTO_TRIPLO</span> <span class="ftl-note">Abílio + Raísa + rep. Sylvamo , arquivo único, tripé fixo</span>
+              <span class="ftl-ex">DEP3_abilio-raisa-sylvamo_2026-05-11.mp4</span>
+            </li>
+            <li><span class="ftl-dir">PATROCINADOR</span> <span class="ftl-note">representante Sylvamo individual , coletar nome no dia</span>
+              <span class="ftl-ex">captador_sylvamo-[nome]_descricao.mp4</span>
+            </li>
+            <li><span class="ftl-dir">PROFESSORES</span> <span class="ftl-note">escola 1 + workshop de formação</span></li>
+            <li><span class="ftl-dir">ALUNOS</span> <span class="ftl-note">por escola: Mogi Guaçu e Guatapará</span></li>
+          </ul>
+        </li>
+        <li><span class="ftl-dir">02_STORIES</span> <span class="ftl-note">S01 a S10 por semana de captação</span></li>
+        <li><span class="ftl-dir">03_BROLL</span>
+          <ul>
+            <li><span class="ftl-dir">CHEGADA</span> <span class="ftl-note">prefeitura dia 11/05 + fachada escola 1</span></li>
+            <li><span class="ftl-dir">GERAL</span> <span class="ftl-note">mapa do bairro, mural, Feira de Ideias, protótipos</span></li>
+          </ul>
+        </li>
+        <li><span class="ftl-dir">04_FOTOS</span>
+          <ul>
+            <li><span class="ftl-dir">SELECIONADAS</span></li>
+            <li><span class="ftl-dir">SENSIBILIDADE</span></li>
+            <li><span class="ftl-dir">TOP15</span></li>
+          </ul>
+        </li>
+        <li><span class="ftl-dir">05_BRUTO</span></li>
+      </ul>
+    </li>
+  </ul>
+</div>
     <div class="naming-rule">
       <h4>Convenção de nomeação</h4>
       <ul>
@@ -1354,11 +1434,14 @@ main {
     <div class="block-header">
       <div class="overline">Para o videomaker em campo</div>
       <h2>Plano de captação</h2>
-      <p class="subtitle">Dois contextos distintos: Porto Itapoá (SC) com empreendedores adultos e Statkraft/BA com empreendedores e alunos. Aprovações com 3 dias úteis de antecedência em ambos.</p>
+      <p class="subtitle">Negócio Cultural · 2a Edição. Dois contextos distintos: Porto Itapoá/SC com empreendedores adultos e Complexo Santa Eugênia/BA com empreendedores e alunos. Ao chegar: coletar nome e negócio de cada participante antes de gravar.</p>
     </div>
     <div class="cap-grid">
       <div class="cap-block">
-        <h4>Quem entrevistar</h4>
+        <h4>Perfis a buscar em campo</h4>
+        <div style="background:#FFF3E0;border-left:3px solid #FF8F00;border-radius:6px;padding:10px 14px;font-size:12px;margin-bottom:12px;color:#4E342E;">
+          Ao chegar: identifique quem esta presente, pergunte nome completo e funcao antes de iniciar qualquer gravacao. Os perfis abaixo sao referencias de quem buscar, nao confirmacoes de presenca.
+        </div>
         <div class="persona"><div class="persona-name">Patrícia Dall'Onder ou Larissa (Porto Itapoá)</div><div class="persona-why">Voz institucional da cota Porto Itapoá. Camera a 1,2 m, plano médio, fundo do porto ou do espaço de mentoria desfocado. Handheld suave.</div></div>
         <div class="persona"><div class="persona-name">2 participantes com perfis distintos em Itapoá</div><div class="persona-why">Ex: artesão + gastrônomo, ou pescador + hoteleiro. Perfis contrastantes enriquecem o Case. Camera a 1 m, plano médio. Gravar no contexto de trabalho de cada um se possível.</div></div>
         <div class="persona"><div class="persona-name">Joana Bischoff ou Maite (Complexo Santa Eugênia)</div><div class="persona-why">Sem citar logo ou nome Statkraft. Camera a 1,2 m, fundo com turbinas ou painéis ao longe (sem logo visível). Confirmar aprovação com Joana antes de usar o material.</div></div>
@@ -1422,30 +1505,55 @@ main {
       <h2>Organização do material captado</h2>
       <p class="subtitle">Porto Itapoá e Statkraft/BA em pastas raiz separadas. Nunca misturar material das duas cotas na mesma pasta.</p>
     </div>
-    <div class="folder-tree">
-<span class="folder">[120] Negócio Cultural · Statkraft + Porto Itapoá</span>
-├── <span class="folder">PORTO_ITAPOA</span>
-│   ├── <span class="folder">01_DEPOIMENTOS</span>
-│   │   ├── <span class="folder">PATROCINADOR</span> <span class="file-note">← Patrícia ou Larissa</span>
-│   │   └── <span class="folder">PARTICIPANTES</span> <span class="file-note">← perfis distintos (artesão, pescador, gastrônomo)</span>
-│   ├── <span class="folder">02_STORIES</span> <span class="file-note">← S01 a S10 - Itapoá/SC</span>
-│   ├── <span class="folder">03_BROLL</span> <span class="file-note">← mar, barcos, mentoria, plataforma digital</span>
-│   ├── <span class="folder">04_FOTOS</span>
-│   │   ├── <span class="folder">SELECIONADAS</span>
-│   │   ├── <span class="folder">SENSIBILIDADE</span>
-│   │   └── <span class="folder">TOP15</span>
-│   └── <span class="folder">05_BRUTO</span>
-└── <span class="folder">STATKRAFT_BA</span> <span class="file-note">← NUNCA misturar com Porto Itapoá</span>
-    ├── <span class="folder">01_DEPOIMENTOS</span>
-    │   ├── <span class="folder">COMPLEXO_SE</span> <span class="file-note">← Joana ou Maite (sem logo Statkraft)</span>
-    │   └── <span class="folder">PARTICIPANTES</span> <span class="file-note">← 1 por cidade: Uibaí + Ibipeba</span>
-    ├── <span class="folder">02_STORIES</span> <span class="file-note">← por cidade</span>
-    ├── <span class="folder">03_BROLL</span> <span class="file-note">← turbinas/painéis (sem logo), sertão, artesanato</span>
-    ├── <span class="folder">04_FOTOS</span>
-    │   ├── <span class="folder">SELECIONADAS</span>
-    │   ├── <span class="folder">SENSIBILIDADE</span>
-    │   └── <span class="folder">TOP15</span>
-    └── <span class="folder">05_BRUTO</span></div>
+    <div class="ftl-wrap">
+  <ul class="ftl">
+    <li><span class="ftl-root">[120] Negócio Cultural · Porto Itapoá + Complexo Santa Eugênia BA</span>
+      <ul>
+        <li><span class="ftl-dir">PORTO_ITAPOA</span>
+          <ul>
+            <li><span class="ftl-dir">01_DEPOIMENTOS</span>
+              <ul>
+                <li><span class="ftl-dir">PATROCINADOR</span> <span class="ftl-note">rep. Porto Itapoá , coletar nome no dia</span></li>
+                <li><span class="ftl-dir">PARTICIPANTES</span> <span class="ftl-note">perfis distintos: artesão, pescador, gastrônomo, músico</span>
+                  <span class="ftl-ex">captador_[nome-participante]_[negocio].mp4</span>
+                </li>
+              </ul>
+            </li>
+            <li><span class="ftl-dir">02_STORIES</span> <span class="ftl-note">S01 a S10, Itapoá/SC</span></li>
+            <li><span class="ftl-dir">03_BROLL</span> <span class="ftl-note">mar, barcos, mentoria, plataforma digital</span></li>
+            <li><span class="ftl-dir">04_FOTOS</span>
+              <ul>
+                <li><span class="ftl-dir">SELECIONADAS</span></li>
+                <li><span class="ftl-dir">SENSIBILIDADE</span></li>
+                <li><span class="ftl-dir">TOP15</span></li>
+              </ul>
+            </li>
+            <li><span class="ftl-dir">05_BRUTO</span></li>
+          </ul>
+        </li>
+        <li><span class="ftl-dir">COMPLEXO_SANTA_EUGENIA_BA</span> <span class="ftl-note">NÃO misturar com Porto Itapoá , pastas e nomes separados</span>
+          <ul>
+            <li><span class="ftl-dir">UIBAI</span>
+              <ul>
+                <li><span class="ftl-dir">01_DEPOIMENTOS</span>
+                  <ul>
+                    <li><span class="ftl-dir">PATROCINADOR</span> <span class="ftl-note">coletar nome no dia , sem logo Statkraft</span></li>
+                    <li><span class="ftl-dir">PARTICIPANTES</span></li>
+                  </ul>
+                </li>
+                <li><span class="ftl-dir">02_STORIES</span></li>
+                <li><span class="ftl-dir">03_BROLL</span> <span class="ftl-note">chapada, turbinas, painéis solares, artesanato</span></li>
+                <li><span class="ftl-dir">04_FOTOS</span></li>
+                <li><span class="ftl-dir">05_BRUTO</span></li>
+              </ul>
+            </li>
+            <li><span class="ftl-dir">IBIPEBA</span> <span class="ftl-note">mesma estrutura de UIBAI</span></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
     <div class="naming-rule">
       <h4>Convenção de nomeação</h4>
       <ul>
@@ -1561,7 +1669,10 @@ main {
     </div>
     <div class="cap-grid">
       <div class="cap-block">
-        <h4>Quem entrevistar</h4>
+        <h4>Perfis a buscar em campo</h4>
+        <div style="background:#FFF3E0;border-left:3px solid #FF8F00;border-radius:6px;padding:10px 14px;font-size:12px;margin-bottom:12px;color:#4E342E;">
+          Ao chegar: identifique quem esta presente, pergunte nome completo e funcao antes de iniciar qualquer gravacao. Os perfis abaixo sao referencias de quem buscar, nao confirmacoes de presenca.
+        </div>
         <div class="persona"><div class="persona-name">Rafaela (Compagas, voz institucional)</div><div class="persona-why">Camera a 1,2 m, plano médio, fundo com cozinha ou espaço cultural da Lapa ao longe. Handheld suave. Enviar material para Ana Feitoza antes de usar.</div></div>
         <div class="persona"><div class="persona-name">Chef ou oficineiro de culinária</div><div class="persona-why">Gravar no próprio espaço da cozinha com contexto real: fogão, bancada, ingredientes. Camera a 1 m, fundo em ação desfocado. Não gravar na frente de parede vazia.</div></div>
         <div class="persona"><div class="persona-name">2 participantes da oficina culinária (perfis distintos)</div><div class="persona-why">Uma pessoa com histórico de aproveitamento integral em casa e outra que nunca tinha pensado nisso. Contraste de reações enriquece o Reel.</div></div>
@@ -1624,22 +1735,41 @@ main {
       <h2>Organização do material captado</h2>
       <p class="subtitle">Separar atividades em subpastas: culinária, fotografia e exposição têm linguagens distintas e podem gerar Reels independentes.</p>
     </div>
-    <div class="folder-tree">
-<span class="folder">[124] Arte, Gastronomia e Sustentabilidade · Compagas · Lapa/PR</span>
-├── <span class="folder">01_DEPOIMENTOS</span>
-│   ├── <span class="folder">PATROCINADOR</span> <span class="file-note">← Rafaela (Compagas)</span>
-│   ├── <span class="folder">PROFESSORES</span> <span class="file-note">← chef + professor de fotografia</span>
-│   └── <span class="folder">PARTICIPANTES</span> <span class="file-note">← culinária por turma + aluno com foto exposta</span>
-├── <span class="folder">02_STORIES</span> <span class="file-note">← S01 a S10 por atividade (culinária / fotografia / exposição)</span>
-├── <span class="folder">03_BROLL</span>
-│   ├── <span class="folder">CULINARIA</span> <span class="file-note">← cozinha, fogão a gás, mãos, ingredientes</span>
-│   ├── <span class="folder">FOTOGRAFIA</span> <span class="file-note">← aluno com câmera, galeria, enquadramento</span>
-│   └── <span class="folder">EXPOSICAO</span> <span class="file-note">← montagem, visitantes, patrimônio Lapa</span>
-├── <span class="folder">04_FOTOS</span>
-│   ├── <span class="folder">SELECIONADAS</span>
-│   ├── <span class="folder">SENSIBILIDADE</span> <span class="file-note">← menores: checar autorização</span>
-│   └── <span class="folder">TOP15</span>
-└── <span class="folder">05_BRUTO</span></div>
+    <div class="ftl-wrap">
+  <ul class="ftl">
+    <li><span class="ftl-root">[124] Arte, Gastronomia e Sustentabilidade · Compagas · Lapa/PR</span>
+      <ul>
+        <li><span class="ftl-dir">01_DEPOIMENTOS</span>
+          <ul>
+            <li><span class="ftl-dir">PATROCINADOR</span> <span class="ftl-note">rep. Compagas , coletar nome no dia</span>
+              <span class="ftl-ex">captador_compagas-[nome]_descricao.mp4</span>
+            </li>
+            <li><span class="ftl-dir">OFICINEIROS</span> <span class="ftl-note">chef + professor de fotografia</span></li>
+            <li><span class="ftl-dir">PARTICIPANTES</span> <span class="ftl-note">culinária por turma + aluno com foto exposta</span>
+              <span class="ftl-ex">captador_[nome-participante]_[descricao].mp4</span>
+            </li>
+          </ul>
+        </li>
+        <li><span class="ftl-dir">02_STORIES</span> <span class="ftl-note">S01 a S10 por atividade: culinária / fotografia / exposição</span></li>
+        <li><span class="ftl-dir">03_BROLL</span>
+          <ul>
+            <li><span class="ftl-dir">CULINARIA</span> <span class="ftl-note">cozinha, fogão, mãos, ingredientes</span></li>
+            <li><span class="ftl-dir">FOTOGRAFIA</span> <span class="ftl-note">aluno com câmera, galeria, enquadramento</span></li>
+            <li><span class="ftl-dir">EXPOSICAO</span> <span class="ftl-note">montagem, visitante parado, patrimônio Lapa ao fundo</span></li>
+          </ul>
+        </li>
+        <li><span class="ftl-dir">04_FOTOS</span>
+          <ul>
+            <li><span class="ftl-dir">SELECIONADAS</span></li>
+            <li><span class="ftl-dir">SENSIBILIDADE</span></li>
+            <li><span class="ftl-dir">TOP15</span></li>
+          </ul>
+        </li>
+        <li><span class="ftl-dir">05_BRUTO</span></li>
+      </ul>
+    </li>
+  </ul>
+</div>
     <div class="naming-rule">
       <h4>Convenção de nomeação</h4>
       <ul>
@@ -1750,15 +1880,18 @@ main {
     <div class="block-header">
       <div class="overline">Para o videomaker em campo</div>
       <h2>Plano de captacao</h2>
-      <p class="subtitle">Dois contextos com linguagens opostas: Malvinas (comunidade, calor, cozinha de bairro) e aeroporto GRU (escala, movimento, exposicao publica). Coordenar logistica de credenciamento GRU com Jessca Lora antes de cada ida a campo. Entrada em Malvinas sempre mediada pela Mariah.</p>
+      <p class="subtitle">Gastronomia Também é Arte · 2a Edição · ProAC SP. Dois contextos: comunidades de Guarulhos (oficinas de culinária) e aeroporto GRU (exposição fotográfica). Ao chegar: coletar nome completo e bairro de origem de cada participante antes de gravar. Credenciamento no GRU: coordenar com Jéssica Lora com antecedência.</p>
     </div>
     <div class="cap-grid">
 
       <div class="cap-block">
-        <h4>Quem entrevistar</h4>
+        <h4>Perfis a buscar em campo</h4>
+        <div style="background:#FFF3E0;border-left:3px solid #FF8F00;border-radius:6px;padding:10px 14px;font-size:12px;margin-bottom:12px;color:#4E342E;">
+          Ao chegar: identifique quem esta presente, pergunte nome completo e funcao antes de iniciar qualquer gravacao. Os perfis abaixo sao referencias de quem buscar, nao confirmacoes de presenca.
+        </div>
         <div class="persona">
           <div class="persona-name">Mariah (GRU Airport, ESG)</div>
-          <div class="persona-why">Voz institucional do patrocinador. Gravar no aeroporto ou sede GRU, nao em Malvinas. Confirmar disponibilidade com Jessca antes de agendar.</div>
+          <div class="persona-why">Voz institucional do GRU. Gravar no aeroporto ou sede GRU. Ao chegar, confirmar nome completo e cargo da pessoa que representa o GRU no dia.</div>
         </div>
         <div class="persona">
           <div class="persona-name">Chef/Oficineiro(a)</div>
@@ -1840,33 +1973,58 @@ main {
       <h2>Organizacao do material captado</h2>
       <p class="subtitle">Duas pastas raiz: uma para material das oficinas em Malvinas, uma para a exposicao no aeroporto GRU. Nomear sempre com prefixo de contexto (MALVINAS_ ou GRU_) para evitar confusao na edicao.</p>
     </div>
-    <div class="folder-tree">
-<span class="folder">[125] Gastronomia Tambem e Arte</span>
-├── <span class="folder">01_DEPOIMENTOS</span>
-│   ├── <span class="folder">PATROCINADOR</span>
-│   │   └── abilio_mariah-gru_[descricao].mp4
-│   ├── <span class="folder">CHEF_OFICINEIRO</span>
-│   │   └── abilio_chef_[descricao].mp4
-│   └── <span class="folder">PARTICIPANTES</span>
-│       ├── abilio_participante01-malvinas_[descricao].mp4
-│       └── abilio_aluno01-fotografia_foto-no-gru.mp4
-├── <span class="folder">02_STORIES</span>
-│   ├── MALVINAS_S01_chegada-cozinha.mp4
-│   ├── MALVINAS_S04_maos-na-massa.mp4
-│   └── GRU_S09_foto-exposta.mp4
-├── <span class="folder">03_BROLL</span>
-│   ├── <span class="folder">MALVINAS</span>
-│   │   ├── BROLL_cozinha-acao.mp4
-│   │   └── BROLL_comunidade-fachada.mp4
-│   └── <span class="folder">GRU_EXPOSICAO</span>
-│       ├── BROLL_corredor-passageiros.mp4
-│       └── BROLL_obra-detalhe.mp4
-├── <span class="folder">04_FOTOS</span>
-│   ├── <span class="folder">SELECIONADAS</span>
-│   ├── <span class="folder">SENSIBILIDADE</span>
-│   └── <span class="folder">TOP15</span>
-└── <span class="folder">05_BRUTO</span>
-    </div>
+    <div class="ftl-wrap">
+  <ul class="ftl">
+    <li><span class="ftl-root">[125] Gastronomia Também é Arte · 2a Edição · GRU Airport · Guarulhos/SP</span>
+      <ul>
+        <li><span class="ftl-dir">COMUNIDADES_GUARULHOS</span> <span class="ftl-note">oficinas de culinária , múltiplos bairros</span>
+          <ul>
+            <li><span class="ftl-dir">01_DEPOIMENTOS</span>
+              <ul>
+                <li><span class="ftl-dir">PATROCINADOR</span> <span class="ftl-note">rep. GRU Airport , coletar nome no dia</span>
+                  <span class="ftl-ex">captador_gru-[nome]_descricao.mp4</span>
+                </li>
+                <li><span class="ftl-dir">CHEF_OFICINEIRO</span>
+                  <span class="ftl-ex">captador_chef-[nome]_descricao.mp4</span>
+                </li>
+                <li><span class="ftl-dir">PARTICIPANTES</span>
+                  <span class="ftl-ex">captador_[nome-participante]_[bairro]_descricao.mp4</span>
+                </li>
+              </ul>
+            </li>
+            <li><span class="ftl-dir">02_STORIES</span>
+              <ul>
+                <li><span class="ftl-note">prefixo OFICINA_ para stories das comunidades</span></li>
+              </ul>
+            </li>
+            <li><span class="ftl-dir">03_BROLL</span> <span class="ftl-note">cozinha, mãos, bairros de Guarulhos</span></li>
+            <li><span class="ftl-dir">04_FOTOS</span></li>
+            <li><span class="ftl-dir">05_BRUTO</span></li>
+          </ul>
+        </li>
+        <li><span class="ftl-dir">EXPOSICAO_GRU</span> <span class="ftl-note">exposição fotográfica no aeroporto</span>
+          <ul>
+            <li><span class="ftl-dir">01_DEPOIMENTOS</span>
+              <ul>
+                <li><span class="ftl-dir">ALUNOS_FOTOGRAFIA</span> <span class="ftl-note">aluno ao lado da própria foto exposta , se possível</span>
+                  <span class="ftl-ex">captador_aluno-[nome]_foto-no-gru.mp4</span>
+                </li>
+              </ul>
+            </li>
+            <li><span class="ftl-dir">02_STORIES</span>
+              <ul>
+                <li><span class="ftl-note">prefixo GRU_ para stories da exposição</span></li>
+              </ul>
+            </li>
+            <li><span class="ftl-dir">03_BROLL</span> <span class="ftl-note">corredor com passageiros, obras em detalhe, montagem</span></li>
+            <li><span class="ftl-dir">04_FOTOS</span></li>
+            <li><span class="ftl-dir">05_BRUTO</span></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
     <div class="naming-rule">
       <h4>Convencao de nomenclatura</h4>
       <p>Depoimentos: <code>captador_depoente_descricao.mp4</code><br>
@@ -1980,15 +2138,18 @@ main {
     <div class="block-header">
       <div class="overline">Para o videomaker em campo</div>
       <h2>Plano de captacao</h2>
-      <p class="subtitle">Tres contextos de captacao: escolas de Guarulhos (GRU), escola de Serra/ES (SOTREQ) e Feira de Ideias como culminancia. Coordenar logistica de credenciamento escolar com Jessca Lora. Entrada em escolas de Guarulhos sempre comunicada com Mariah antes.</p>
+      <p class="subtitle">PIE Empreendedorismo Arte · 2a Edição · GRU Airport + SOTREQ. Tres contextos: escolas de Guarulhos, escola de Serra/ES e Feira de Ideias. Ao chegar em cada escola: identificar o professor responsavel e coletar nome antes de iniciar. Credenciamento escolar: coordenar com Jéssica Lora com antecedência.</p>
     </div>
     <div class="cap-grid">
 
       <div class="cap-block">
-        <h4>Quem entrevistar</h4>
+        <h4>Perfis a buscar em campo</h4>
+        <div style="background:#FFF3E0;border-left:3px solid #FF8F00;border-radius:6px;padding:10px 14px;font-size:12px;margin-bottom:12px;color:#4E342E;">
+          Ao chegar: identifique quem esta presente, pergunte nome completo e funcao antes de iniciar qualquer gravacao. Os perfis abaixo sao referencias de quem buscar, nao confirmacoes de presenca.
+        </div>
         <div class="persona">
           <div class="persona-name">Mariah (GRU Airport, ESG)</div>
-          <div class="persona-why">Voz institucional do GRU. Gravar no aeroporto ou na sede GRU, nao nas escolas. Confirmar disponibilidade com Jessca antes de agendar.</div>
+          <div class="persona-why">Voz institucional do GRU. Gravar no aeroporto ou na sede GRU, nao nas escolas. Ao chegar, confirmar nome completo e cargo da pessoa que vai representar o GRU no dia.</div>
         </div>
         <div class="persona">
           <div class="persona-name">Rayssa Alves (SOTREQ)</div>
@@ -2065,33 +2226,57 @@ main {
       <h2>Organizacao do material captado</h2>
       <p class="subtitle">Separar material de GRU e SOTREQ desde o bruto: nao misturar arquivos das duas cotas na mesma pasta raiz. Criar subpasta por escola dentro de cada cota.</p>
     </div>
-    <div class="folder-tree">
-<span class="folder">[127] PIE GRU + SOTREQ</span>
-├── <span class="folder">GRU_GUARULHOS</span>
-│   ├── <span class="folder">01_DEPOIMENTOS</span>
-│   │   ├── <span class="folder">PATROCINADOR</span>
-│   │   │   └── abilio_mariah-gru_[descricao].mp4
-│   │   ├── <span class="folder">PROFESSORES</span>
-│   │   │   └── abilio_prof_[escola]_[descricao].mp4
-│   │   └── <span class="folder">ALUNOS</span>
-│   │       └── abilio_aluno_[escola]_[descricao].mp4
-│   ├── <span class="folder">02_STORIES</span>
-│   │   └── S01_chegada-[escola].mp4
-│   ├── <span class="folder">03_BROLL</span>
-│   │   ├── BROLL_fachada-[escola].mp4
-│   │   └── BROLL_feira-ideias-geral.mp4
-│   ├── <span class="folder">04_FOTOS</span>
-│   └── <span class="folder">05_BRUTO</span>
-└── <span class="folder">SOTREQ_SERRA_ES</span>
-    ├── <span class="folder">01_DEPOIMENTOS</span>
-    │   ├── <span class="folder">PATROCINADOR</span>
-    │   │   └── abilio_rayssa-sotreq_[descricao].mp4
-    │   └── <span class="folder">ALUNOS</span>
-    ├── <span class="folder">02_STORIES</span>
-    ├── <span class="folder">03_BROLL</span>
-    ├── <span class="folder">04_FOTOS</span>
-    └── <span class="folder">05_BRUTO</span>
-    </div>
+    <div class="ftl-wrap">
+  <ul class="ftl">
+    <li><span class="ftl-root">[127] PIE Empreendedorismo Arte · 2a Edição · GRU Airport + SOTREQ</span>
+      <ul>
+        <li><span class="ftl-dir">GRU_GUARULHOS</span>
+          <ul>
+            <li><span class="ftl-dir">01_DEPOIMENTOS</span>
+              <ul>
+                <li><span class="ftl-dir">PATROCINADOR</span> <span class="ftl-note">rep. GRU Airport , coletar nome no dia</span>
+                  <span class="ftl-ex">captador_gru-[nome]_descricao.mp4</span>
+                </li>
+                <li><span class="ftl-dir">PROFESSORES</span> <span class="ftl-note">1 por escola , coletar nome no dia</span>
+                  <span class="ftl-ex">captador_prof-[nome]_[escola]_descricao.mp4</span>
+                </li>
+                <li><span class="ftl-dir">ALUNOS</span>
+                  <span class="ftl-ex">captador_aluno-[nome]_[escola]_descricao.mp4</span>
+                </li>
+              </ul>
+            </li>
+            <li><span class="ftl-dir">02_STORIES</span> <span class="ftl-note">S01 a S10 por escola</span></li>
+            <li><span class="ftl-dir">03_BROLL</span>
+              <ul>
+                <li><span class="ftl-note">BROLL_fachada-[escola].mp4</span></li>
+                <li><span class="ftl-note">BROLL_feira-ideias-geral.mp4</span></li>
+              </ul>
+            </li>
+            <li><span class="ftl-dir">04_FOTOS</span></li>
+            <li><span class="ftl-dir">05_BRUTO</span></li>
+          </ul>
+        </li>
+        <li><span class="ftl-dir">SOTREQ_SERRA_ES</span> <span class="ftl-note">NÃO misturar com GRU Guarulhos</span>
+          <ul>
+            <li><span class="ftl-dir">01_DEPOIMENTOS</span>
+              <ul>
+                <li><span class="ftl-dir">PATROCINADOR</span> <span class="ftl-note">rep. SOTREQ , coletar nome no dia</span>
+                  <span class="ftl-ex">captador_sotreq-[nome]_descricao.mp4</span>
+                </li>
+                <li><span class="ftl-dir">PROFESSORES</span></li>
+                <li><span class="ftl-dir">ALUNOS</span></li>
+              </ul>
+            </li>
+            <li><span class="ftl-dir">02_STORIES</span></li>
+            <li><span class="ftl-dir">03_BROLL</span></li>
+            <li><span class="ftl-dir">04_FOTOS</span></li>
+            <li><span class="ftl-dir">05_BRUTO</span></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
     <div class="naming-rule">
       <h4>Convencao de nomenclatura</h4>
       <p>Depoimentos: <code>captador_depoente_descricao.mp4</code><br>
