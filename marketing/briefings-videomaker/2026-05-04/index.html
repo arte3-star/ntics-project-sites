@@ -678,7 +678,25 @@ main {
 .ftl-note { color: #757575; font-size: 11px; font-style: italic; margin-left: 8px; }
 .ftl-ex   { display: block; color: #9E9E9E; font-size: 11px;
             font-family: 'Courier New', monospace; padding-left: 24px; }
-</style>
+
+    /* ── Agenda de campo ── */
+    .photographer-badge { display:inline-flex; align-items:center; gap:10px; background:var(--cinza-claro); border-radius:20px; padding:7px 16px; font-size:13px; margin-bottom:20px; flex-wrap:wrap; }
+    .photographer-badge .ph-label { color:var(--cinza-medio); }
+    .photographer-badge .ph-name { font-weight:700; color:var(--grafite); }
+    .photographer-badge a { color:var(--accent); text-decoration:none; font-weight:600; }
+    .schedule-table { width:100%; border-collapse:collapse; }
+    .schedule-table thead th { text-align:left; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--cinza-medio); padding:8px 14px 6px; border-bottom:2px solid var(--cinza-claro); }
+    .schedule-table td { padding:12px 14px; border-bottom:1px solid var(--cinza-claro); font-size:14px; vertical-align:top; }
+    .schedule-table tbody tr:last-child td { border-bottom:none; }
+    .schedule-table tbody tr:hover { background:#FAFAFA; }
+    .sched-date { font-weight:700; color:var(--grafite); white-space:nowrap; min-width:110px; }
+    .sched-activity { font-weight:600; font-size:14px; margin-bottom:4px; }
+    .sched-priority { font-size:12px; color:var(--cinza-medio); line-height:1.5; }
+    .sched-note { display:inline-block; background:#FFF3E0; color:#E65100; border-radius:4px; padding:2px 8px; font-size:11px; font-weight:600; margin-top:5px; }
+    .sched-coord { display:inline-block; background:#E3F2FD; color:#1565C0; border-radius:4px; padding:2px 8px; font-size:11px; font-weight:600; margin-top:5px; }
+    .agenda-tip { background:var(--cinza-claro); border-radius:8px; padding:10px 14px; font-size:12px; color:var(--cinza-medio); margin-top:16px; line-height:1.6; }
+    .agenda-tip strong { color:var(--grafite); }
+    </style>
 </head>
 <body>
 
@@ -837,6 +855,54 @@ main {
           <li>Banco NTICS: sem citar Áster, sem identificar cidade específica.</li>
         </ul>
       </div>
+    </div>
+  </section>
+
+    <section class="block">
+    <div class="block-header">
+      <div class="overline">Agenda confirmada</div>
+      <h2>Fotografo em campo · Mato Grosso do Sul</h2>
+    </div>
+    <div class="block-inner">
+      <div class="photographer-badge">
+        <span class="ph-label">Fotografo</span>
+        <span class="ph-name">Kassyano</span>
+        <a href="tel:67967609170">(67) 9676-0917</a>
+      </div>
+      <table class="schedule-table">
+        <thead>
+          <tr>
+            <th>Data</th>
+            <th>Cidade</th>
+            <th>O que capturar / prioridades</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="sched-date">12 · 13 · 14/05</td>
+            <td class="sched-activity">Sidrolandia</td>
+            <td>
+              <div class="sched-priority">Tres dias de oficina de robotica. Capturar jornada completa: chegada dos alunos, montagem do prototipo, momento de teste. Priorizar criancas do campo que nao tem contato com tecnologia no dia a dia.</div>
+              <span class="sched-coord">Coordenar ponto de encontro com representante Aster no primeiro dia</span>
+            </td>
+          </tr>
+          <tr>
+            <td class="sched-date">19/05</td>
+            <td class="sched-activity">Sao Gabriel do Oeste</td>
+            <td>
+              <div class="sched-priority">Mesma logica de Sidrolandia. Atentar para contexto agricola da cidade: se possivel, b-roll externo com paisagem agropecuaria antes de entrar na escola.</div>
+            </td>
+          </tr>
+          <tr>
+            <td class="sched-date">28/05</td>
+            <td class="sched-activity">Maracaju</td>
+            <td>
+              <div class="sched-priority">Ultima cidade. Se for dia de apresentacao ou encerramento, capturar com mais foco em reacoes e entrega. B-roll de prototipo funcionando (mesmo que simples) e crianca explicando o que construiu.</div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="agenda-tip"><strong>A cada cidade:</strong> ao chegar, identificar o representante da Aster presente, coletar nome e cargo antes de iniciar qualquer gravacao. Os prototipos podem ser simples: nao descartar cenas do que nao funcionou.</div>
     </div>
   </section>
 
@@ -1029,6 +1095,57 @@ main {
           <li>Áudio com lapela ou microfone direcional em todo depoimento.</li>
         </ul>
       </div>
+    </div>
+  </section>
+
+    <section class="block">
+    <div class="block-header">
+      <div class="overline">Agenda confirmada</div>
+      <h2>Fotografo em campo · Joinville</h2>
+    </div>
+    <div class="block-inner">
+      <div class="photographer-badge">
+        <span class="ph-label">Fotografo</span>
+        <span class="ph-name">Gabriel</span>
+        <a href="tel:47996798859">(47) 99679-8859</a>
+      </div>
+      <table class="schedule-table">
+        <thead>
+          <tr>
+            <th>Dia</th>
+            <th>Horario</th>
+            <th>O que capturar / prioridades</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="sched-date">Terca-feira</td>
+            <td>8h as 10h</td>
+            <td>
+              <div class="sched-activity">Atividades com alunos</div>
+              <div class="sched-priority">Voluntario Whirlpool em interacao com crianca. Momentos de concentracao, maos em movimento, reacoes autenticas. Apresentar-se ao responsavel da escola ao chegar.</div>
+            </td>
+          </tr>
+          <tr>
+            <td class="sched-date">Quinta-feira</td>
+            <td>8h as 10h</td>
+            <td>
+              <div class="sched-activity">Atividades com alunos</div>
+              <div class="sched-priority">Mesma logica da terca. Priorizar diversidade de rostos e idades nas fotos. B-roll de ambiente: sala de aula, materiais, espaco da feira.</div>
+            </td>
+          </tr>
+          <tr>
+            <td class="sched-date">Sexta-feira</td>
+            <td>9h as 10h30</td>
+            <td>
+              <div class="sched-activity">Atividades finais / premiacao</div>
+              <div class="sched-priority">Foco na premiacao e entrega de resultados. Capturar reacao dos alunos ao receber reconhecimento.</div>
+              <span class="sched-note">Cliente (Whirlpool) nao estara presente neste dia</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="agenda-tip"><strong>Aprovacao obrigatoria:</strong> toda imagem com crianca passa por FSB (Gabrielly Russo) antes de qualquer uso. Nunca postar direto da captacao.</div>
     </div>
   </section>
 
@@ -1695,6 +1812,42 @@ main {
     </div>
   </section>
 
+    <section class="block">
+    <div class="block-header">
+      <div class="overline">Agenda confirmada</div>
+      <h2>Datas de captacao · Lapa/PR</h2>
+    </div>
+    <div class="block-inner">
+      <table class="schedule-table">
+        <thead>
+          <tr>
+            <th>Data</th>
+            <th>Atividade</th>
+            <th>O que capturar / prioridades</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="sched-date">28/05</td>
+            <td class="sched-activity">Oficina de culinaria</td>
+            <td>
+              <div class="sched-priority">Turma de 30 pessoas. Foco em maos manipulando ingredientes, chef orientando, momento de provar e reagir. Capturar aproveitamento integral: o que seria descartado virando ingrediente. Identificar o nome do chef/oficineiro ao chegar.</div>
+              <span class="sched-coord">Aprovacao Ana Feitoza (Compagas) antes de usar qualquer imagem</span>
+            </td>
+          </tr>
+          <tr>
+            <td class="sched-date">29/05</td>
+            <td class="sched-activity">Workshop de fotografia</td>
+            <td>
+              <div class="sched-priority">Alunos fotografando comida. Capturar: aluno enquadrando prato, ajuste de luz, galeria de fotos na tela, curador orientando composicao. B-roll do patrimonio historico da Lapa ao fundo se possivel.</div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="agenda-tip"><strong>Fluxo obrigatorio:</strong> NTICS cria e envia para Ana Feitoza (Compagas) aprovar antes de publicar qualquer peça. Nao postar direto da captacao. GP: Mayara Ferreira.</div>
+    </div>
+  </section>
+
   <section class="block">
     <div class="block-header">
       <div class="overline">Stories para Instagram</div>
@@ -1930,6 +2083,43 @@ main {
         </ul>
       </div>
 
+    </div>
+  </section>
+
+    <section class="block">
+    <div class="block-header">
+      <div class="overline">Agenda confirmada</div>
+      <h2>Datas de captacao · Guarulhos/SP</h2>
+    </div>
+    <div class="block-inner">
+      <table class="schedule-table">
+        <thead>
+          <tr>
+            <th>Data</th>
+            <th>Atividade</th>
+            <th>Publico e prioridades</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="sched-date">13/05</td>
+            <td class="sched-activity">Oficina de culinaria</td>
+            <td>
+              <div class="sched-priority">Publico: idosos e comunidade. Capturar: maos de idoso no preparo, troca entre participantes, momento de provar, reacao ao aprender algo novo. Presenca mais emotiva, mais pausada. Identificar nome e bairro de origem de cada participante ao chegar.</div>
+              <span class="sched-coord">Entrada sempre via Mariah (GRU): nao abordar diretamente</span>
+            </td>
+          </tr>
+          <tr>
+            <td class="sched-date">15/05</td>
+            <td class="sched-activity">Oficina de culinaria</td>
+            <td>
+              <div class="sched-priority">Publico: pais. Energia diferente da turma de idosos: mais agitada, mais rapida. Capturar interacao entre pais, risos, comentarios espontaneos sobre o que estao aprendendo. B-roll: criancas esperando do lado de fora se houver.</div>
+              <span class="sched-coord">Mesma coordenacao via Mariah (GRU)</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="agenda-tip"><strong>Aprovacao via Mariah</strong> antes de qualquer publicacao. ProAC estadual SP: ao mencionar incentivo fiscal nos videos, nao confundir com Rouanet federal. GP: Jessica Lora.</div>
     </div>
   </section>
 
