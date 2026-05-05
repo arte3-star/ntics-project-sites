@@ -704,6 +704,31 @@ main {
     .question { font-size:14px; color:#333; line-height:1.6; margin-bottom:6px; }
     .question:last-child { margin-bottom:0; }
     .question-main { font-size:14px; color:#333; line-height:1.6; margin-bottom:8px; font-weight:500; }
+    
+    /* ── Calendario de producao ── */
+    .cal-table { width:100%; border-collapse:collapse; }
+    .cal-table thead th { text-align:left; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.07em; color:var(--cinza-medio); padding:8px 14px 6px; border-bottom:2px solid var(--cinza-claro); }
+    .cal-table td { padding:13px 14px; border-bottom:1px solid var(--cinza-claro); font-size:13px; vertical-align:top; line-height:1.55; }
+    .cal-table tbody tr:last-child td { border-bottom:none; }
+    .cal-date-cell { white-space:nowrap; font-weight:700; font-size:14px; color:var(--grafite); min-width:90px; }
+    .cal-day { display:block; font-size:11px; font-weight:400; color:var(--cinza-medio); text-transform:uppercase; letter-spacing:.06em; }
+    .cal-proj { display:inline-block; border-radius:6px; padding:2px 9px; font-size:11px; font-weight:700; color:#fff; margin-bottom:4px; }
+    .cp116 { background:var(--verde); }
+    .cp117 { background:var(--azul); }
+    .cp119 { background:#43A047; }
+    .cp124 { background:var(--roxo); }
+    .cp125 { background:var(--rosa); }
+    .cal-arrives { font-size:13px; color:var(--grafite); }
+    .cal-entrega-label { display:block; font-size:11px; font-weight:700; color:var(--accent); text-transform:uppercase; letter-spacing:.06em; margin-top:6px; }
+    .cal-entrega-text { font-size:13px; color:var(--grafite); }
+    .cal-stories-flag { display:inline-flex; align-items:center; gap:5px; background:#E91E63; color:#fff; border-radius:20px; padding:4px 12px; font-size:11px; font-weight:700; }
+    .cal-stories-flag::before { content:""; display:inline-block; width:7px; height:7px; background:#fff; border-radius:50%; }
+    .cal-note { font-size:12px; color:var(--cinza-medio); font-style:italic; margin-top:3px; }
+    .cal-section-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--cinza-medio); padding:10px 14px 4px; background:var(--cinza-claro); }
+    .cal-summary-box { background:var(--cinza-claro); border-radius:10px; padding:16px 18px; margin-top:20px; }
+    .cal-summary-box h4 { font-size:13px; font-weight:700; margin-bottom:10px; }
+    .cal-summary-box ul { margin:0; padding-left:18px; }
+    .cal-summary-box li { font-size:13px; color:var(--grafite); margin-bottom:5px; line-height:1.5; }
     </style>
 </head>
 <body>
@@ -2663,6 +2688,173 @@ main {
         </tr>
       </tbody>
     </table>
+  </section>
+
+    <section class="block">
+    <div class="block-header">
+      <div class="overline">Maio 2026</div>
+      <h2>Calendario de producao cruzado</h2>
+      <p class="subtitle">Cada data de captacao ja traz material para voce editar. Nos dias com Stories: o material bruto (cortes rapidos, reacoes, bastidores) deve virar post antes do fim do dia ou no dia seguinte de manha.</p>
+    </div>
+    <div class="block-inner">
+      <table class="cal-table">
+        <thead>
+          <tr>
+            <th>Data</th>
+            <th>Projeto</th>
+            <th>O que chega</th>
+            <th>Entrega Aline</th>
+            <th>Stories</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <!-- ── Semana de 05/05 ── -->
+          <tr>
+            <td class="cal-section-label" colspan="5">Semana 1 de maio</td>
+          </tr>
+          <tr>
+            <td class="cal-date-cell">05/05<span class="cal-day">Terca</span></td>
+            <td><span class="cal-proj cp117">117</span></td>
+            <td class="cal-arrives">Captacao Whirlpool · Joinville · Dia 1<br><span class="cal-note">Fotografo Gabriel · 8h-10h · Voluntario + criancas</span></td>
+            <td>
+              <span class="cal-entrega-label">Ate 07/05</span>
+              <span class="cal-entrega-text">Reel Durante · primeira versao<br>Gancho: crianca explica o que construiu para o voluntario</span>
+            </td>
+            <td><span class="cal-stories-flag">Stories hoje</span></td>
+          </tr>
+          <tr>
+            <td class="cal-date-cell">07/05<span class="cal-day">Quinta</span></td>
+            <td><span class="cal-proj cp117">117</span></td>
+            <td class="cal-arrives">Captacao Whirlpool · Joinville · Dia 2<br><span class="cal-note">Fotografo Gabriel · 8h-10h · Continuidade + b-roll</span></td>
+            <td>
+              <span class="cal-entrega-label">Acumula para Case</span>
+              <span class="cal-entrega-text">Selecionar depoimentos do Dia 2 para usar no Case completo</span>
+            </td>
+            <td><span class="cal-stories-flag">Stories hoje</span></td>
+          </tr>
+          <tr>
+            <td class="cal-date-cell">08/05<span class="cal-day">Sexta</span></td>
+            <td><span class="cal-proj cp117">117</span></td>
+            <td class="cal-arrives">Captacao Whirlpool · Joinville · Dia 3<br><span class="cal-note">Gabriel · 9h-10h30 · Cliente nao estara presente</span></td>
+            <td>
+              <span class="cal-entrega-label">Sprint sexta (Lucas + Ana)</span>
+              <span class="cal-entrega-text">Revisar Reel Durante do Dia 1. Iniciar montagem do Case com os 3 dias somados. Aprovacao FSB antes de qualquer publicacao.</span>
+            </td>
+            <td><span class="cal-stories-flag">Stories hoje</span></td>
+          </tr>
+
+          <!-- ── Semana de 11/05 ── -->
+          <tr>
+            <td class="cal-section-label" colspan="5">Semana 2 de maio</td>
+          </tr>
+          <tr>
+            <td class="cal-date-cell">11/05<span class="cal-day">Segunda</span></td>
+            <td><span class="cal-proj cp119">119</span></td>
+            <td class="cal-arrives">Abertura Sylvamo · Mogi Guacu<br><span class="cal-note">Inicio da janela de captacao 11/05 a 29/05</span></td>
+            <td>
+              <span class="cal-entrega-label">Ate 14/05</span>
+              <span class="cal-entrega-text">Reel Durante abertura: criancas chegando, diagnostico territorial, primeiro olhar para o bairro. Aprovacao Lucas + Leo com 1 semana de antecedencia antes de publicar.</span>
+            </td>
+            <td><span class="cal-stories-flag">Stories hoje</span></td>
+          </tr>
+          <tr>
+            <td class="cal-date-cell">12-14/05<span class="cal-day">Ter a Qui</span></td>
+            <td><span class="cal-proj cp116">116</span></td>
+            <td class="cal-arrives">Captacao Aster · Sidrolandia · 3 dias<br><span class="cal-note">Fotografo Kassyano · Jornada de robotica</span></td>
+            <td>
+              <span class="cal-entrega-label">Ate 16/05</span>
+              <span class="cal-entrega-text">Reel Durante Sidrolandia: crianca do interior inventando para resolver problema do campo. Material de 3 dias: selecionar o melhor momento de prototipos + reacoes. Aprovacao Lucas.</span>
+            </td>
+            <td><span class="cal-stories-flag">Stories a cada dia</span></td>
+          </tr>
+          <tr>
+            <td class="cal-date-cell">13/05<span class="cal-day">Quarta</span></td>
+            <td><span class="cal-proj cp125">125</span></td>
+            <td class="cal-arrives">Captacao GRU · Guarulhos · Oficina idosos e comunidade<br><span class="cal-note">Culinaria com aproveitamento integral</span></td>
+            <td>
+              <span class="cal-entrega-label">Ate 16/05</span>
+              <span class="cal-entrega-text">Reel Durante: maos de idoso no preparo, troca entre participantes, reacao ao provar. Tom mais pausado e emocional. Aprovacao Mariah (GRU) antes de publicar.</span>
+            </td>
+            <td><span class="cal-stories-flag">Stories hoje</span></td>
+          </tr>
+          <tr>
+            <td class="cal-date-cell">15/05<span class="cal-day">Sexta</span></td>
+            <td><span class="cal-proj cp125">125</span></td>
+            <td class="cal-arrives">Captacao GRU · Guarulhos · Oficina pais<br><span class="cal-note">Culinaria com aproveitamento integral · publico diferente</span></td>
+            <td>
+              <span class="cal-entrega-label">Sprint sexta</span>
+              <span class="cal-entrega-text">Complementar material do dia 13. Tom mais agitado e espontaneo do que a turma de idosos: usar isso a favor na edicao. Case 125 comecar a montar apos os 2 dias.</span>
+            </td>
+            <td><span class="cal-stories-flag">Stories hoje</span></td>
+          </tr>
+
+          <!-- ── Semana de 19/05 ── -->
+          <tr>
+            <td class="cal-section-label" colspan="5">Semana 3 de maio</td>
+          </tr>
+          <tr>
+            <td class="cal-date-cell">19/05<span class="cal-day">Terca</span></td>
+            <td><span class="cal-proj cp116">116</span></td>
+            <td class="cal-arrives">Captacao Aster · Sao Gabriel do Oeste<br><span class="cal-note">Fotografo Kassyano · Segunda cidade do MS</span></td>
+            <td>
+              <span class="cal-entrega-label">Ate 21/05</span>
+              <span class="cal-entrega-text">Reel Durante Sao Gabriel: mesma logica de Sidrolandia. Se o material for forte, pode virar Reel separado. Se nao, reservar para o Case completo com as 3 cidades.</span>
+            </td>
+            <td><span class="cal-stories-flag">Stories hoje</span></td>
+          </tr>
+
+          <!-- ── Semana de 26/05 ── -->
+          <tr>
+            <td class="cal-section-label" colspan="5">Semana 4 de maio</td>
+          </tr>
+          <tr>
+            <td class="cal-date-cell">28/05<span class="cal-day">Quinta</span></td>
+            <td><span class="cal-proj cp116">116</span></td>
+            <td class="cal-arrives">Captacao Aster · Maracaju · ultima cidade<br><span class="cal-note">Fotografo Kassyano</span></td>
+            <td>
+              <span class="cal-entrega-label">Ate 30/05</span>
+              <span class="cal-entrega-text">Reel Durante Maracaju. Apos esse dia: iniciar montagem do Case 116 com as 3 cidades (Sidrolandia + Sao Gabriel + Maracaju). Case e o video mais importante do projeto.</span>
+            </td>
+            <td><span class="cal-stories-flag">Stories hoje</span></td>
+          </tr>
+          <tr>
+            <td class="cal-date-cell">28/05<span class="cal-day">Quinta</span></td>
+            <td><span class="cal-proj cp124">124</span></td>
+            <td class="cal-arrives">Captacao Compagas · Lapa · Culinaria<br><span class="cal-note">Turma de 30 pessoas · aproveitamento integral</span></td>
+            <td>
+              <span class="cal-entrega-label">Ate 31/05</span>
+              <span class="cal-entrega-text">Reel Durante culinaria: sobra virando prato, reacao ao experimentar. Aprovacao Ana Feitoza (Compagas) antes de qualquer publicacao.</span>
+            </td>
+            <td><span class="cal-stories-flag">Stories hoje</span></td>
+          </tr>
+          <tr>
+            <td class="cal-date-cell">29/05<span class="cal-day">Sexta</span></td>
+            <td><span class="cal-proj cp124">124</span></td>
+            <td class="cal-arrives">Captacao Compagas · Lapa · Workshop fotografia<br><span class="cal-note">Alunos fotografando comida como arte</span></td>
+            <td>
+              <span class="cal-entrega-label">Sprint sexta</span>
+              <span class="cal-entrega-text">Reel Durante fotografia: aluno enquadrando prato, ajuste de luz, galeria na tela. Apos esse dia: montar Case 124 com culinaria + fotografia + exposicao. Aprovacao Ana Feitoza.</span>
+            </td>
+            <td><span class="cal-stories-flag">Stories hoje</span></td>
+          </tr>
+
+        </tbody>
+      </table>
+
+      <!-- Resumo de entregas finais -->
+      <div class="cal-summary-box">
+        <h4>Cases e banco institucional: janela de entrega pos-campo</h4>
+        <ul>
+          <li><strong>Case 117 Whirlpool</strong> · entregar ate 15/05 para aprovacao FSB ter tempo de checar antes de postar</li>
+          <li><strong>Case 125 GRU · Guarulhos</strong> · entregar ate 22/05 apos ter material dos 2 dias (13 e 15/05) · aprovacao Mariah</li>
+          <li><strong>Case 119 Sylvamo</strong> · entregar ate 05/06 · aprovacao Lucas + Leo com 1 semana de antecedencia</li>
+          <li><strong>Case 116 Aster (3 cidades)</strong> · entregar ate 05/06 · aprovacao Lucas</li>
+          <li><strong>Case 124 Compagas</strong> · entregar ate 05/06 · aprovacao Ana Feitoza</li>
+          <li><strong>Banco institucional NTICS</strong> (2 Reels: Impacto + Valor) · apos todos os cases aprovados · aprovacao Lucas + Ana</li>
+        </ul>
+      </div>
+    </div>
   </section>
 
   <section class="block">
