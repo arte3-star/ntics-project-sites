@@ -696,6 +696,14 @@ main {
     .sched-coord { display:inline-block; background:#E3F2FD; color:#1565C0; border-radius:4px; padding:2px 8px; font-size:11px; font-weight:600; margin-top:5px; }
     .agenda-tip { background:var(--cinza-claro); border-radius:8px; padding:10px 14px; font-size:12px; color:var(--cinza-medio); margin-top:16px; line-height:1.6; }
     .agenda-tip strong { color:var(--grafite); }
+    
+    /* ── Perguntas aprimoradas ── */
+    .q-main-badge { display:inline-block; background:var(--accent); color:#fff; border-radius:4px; padding:1px 7px; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; margin-bottom:5px; }
+    .persona { background:#fff; border-radius:10px; padding:16px 18px; margin-bottom:12px; border:1px solid var(--cinza-claro); }
+    .persona-name { font-weight:700; font-size:13px; color:var(--grafite); margin-bottom:8px; }
+    .question { font-size:14px; color:#333; line-height:1.6; margin-bottom:6px; }
+    .question:last-child { margin-bottom:0; }
+    .question-main { font-size:14px; color:#333; line-height:1.6; margin-bottom:8px; font-weight:500; }
     </style>
 </head>
 <body>
@@ -830,10 +838,27 @@ main {
         <div class="persona"><div class="persona-name">Professor ou dinamizador da oficina</div><div class="persona-why">30s de depoimento. Camera handheld a 1,5 m, plano médio. Fundo com kits de robótica desfocados.</div></div>
       </div>
       <div class="cap-block">
-        <h4>Perguntas-chave por personagem</h4>
-        <div class="persona"><div class="persona-name">Representante Áster</div><div class="question">Por que uma empresa de máquinas agrícolas investe em robótica educacional nas escolas do MS?</div><div class="question">O que você sentiu ao ver uma criança do campo inventando uma máquina para ajudar quem trabalha na lavoura?</div></div>
-        <div class="persona"><div class="persona-name">Aluno com protótipo</div><div class="question">O que a sua máquina faz? Como você teve essa ideia?</div><div class="question">Para quem no campo essa máquina seria útil?</div></div>
-        <div class="persona"><div class="persona-name">Professor</div><div class="question">O que muda no aluno quando ele constrói algo com as próprias mãos?</div></div>
+        <h4>Perguntas-chave por persona</h4>
+        <div class="persona">
+          <div class="persona-name">Representante Aster</div>
+          <span class="q-main-badge">Pergunta principal</span>
+          <p class="question-main">Quando voce ve uma crianca do interior do MS montando uma maquina que imita o que adultos fazem na lavoura, o que passa pela sua cabeca sobre o futuro desse estado?</p>
+          <p class="question">A Aster investe em educacao e tecnologia em regioes que dependem do agronegocio. Como a empresa enxerga sua responsabilidade no desenvolvimento dessas comunidades a longo prazo?</p>
+          <p class="question">O que esse projeto representa para alem de uma acao de comunicacao?</p>
+        </div>
+        <div class="persona">
+          <div class="persona-name">Aluno com prototipo</div>
+          <span class="q-main-badge">Pergunta principal</span>
+          <p class="question-main">Para quem no campo voce construiu essa maquina? Voce conhece essa pessoa?</p>
+          <p class="question">O que foi mais dificil: ter a ideia ou tentar fazer ela funcionar?</p>
+          <p class="question">O que voce quer ser quando crescer?</p>
+        </div>
+        <div class="persona">
+          <div class="persona-name">Professor</div>
+          <span class="q-main-badge">Pergunta principal</span>
+          <p class="question-main">O que muda num aluno quando ele percebe que pode criar algo util com as proprias maos?</p>
+          <p class="question">Teve algum aluno que voce nao esperava que fosse ate o fim e foi? O que aconteceu com ele?</p>
+        </div>
       </div>
       <div class="cap-block">
         <h4>Diretivas de câmera · como captar cada cena</h4>
@@ -1069,10 +1094,26 @@ main {
         <div class="persona"><div class="persona-name">Professor da escola</div><div class="persona-why">30s de depoimento. Camera estática a 1,5 m. Fundo com sala de aula desfocado.</div></div>
       </div>
       <div class="cap-block">
-        <h4>Perguntas-chave por personagem</h4>
-        <div class="persona"><div class="persona-name">Voluntário Whirlpool</div><div class="question">O que muda em você quando uma criança te explica o invento que ela criou?</div><div class="question">Por que você decidiu vir como voluntário?</div><div class="question">O que a Whirlpool ganha ao colocar seus engenheiros nesse programa?</div></div>
-        <div class="persona"><div class="persona-name">Criança com protótipo</div><div class="question">O que o seu robô ou máquina faz? Como você teve essa ideia?</div><div class="question">O que foi mais difícil de construir?</div></div>
-        <div class="persona"><div class="persona-name">Professor</div><div class="question">O que muda no aluno depois de participar de uma semana como essa?</div></div>
+        <h4>Perguntas-chave por persona</h4>
+        <div class="persona">
+          <div class="persona-name">Voluntario Whirlpool</div>
+          <span class="q-main-badge">Pergunta principal</span>
+          <p class="question-main">O que muda em voce quando uma crianca te explica o que inventou? O que voce leva disso de volta para o seu trabalho na Whirlpool?</p>
+          <p class="question">A Whirlpool tem engenheiros vindo voluntariamente para escola publica. Como a empresa enxerga essa responsabilidade social alem da linha de producao?</p>
+          <p class="question">Por que voce escolheu ser voluntario nesse programa?</p>
+        </div>
+        <div class="persona">
+          <div class="persona-name">Crianca com prototipo</div>
+          <span class="q-main-badge">Pergunta principal</span>
+          <p class="question-main">O que o seu robo ou maquina faz? Para quem voce o fez?</p>
+          <p class="question">O que foi mais dificil de construir?</p>
+        </div>
+        <div class="persona">
+          <div class="persona-name">Professor</div>
+          <span class="q-main-badge">Pergunta principal</span>
+          <p class="question-main">Como esses alunos chegaram no comeco da semana e como estao agora? Qual e a diferenca mais visivel para voce?</p>
+          <p class="question">Teve alguma coisa que aconteceu nessa semana que te surpreendeu de verdade?</p>
+        </div>
       </div>
       <div class="cap-block">
         <h4>Diretivas de câmera · como captar cada cena</h4>
@@ -1335,11 +1376,31 @@ main {
         <div class="persona"><div class="persona-name">Professor que participou do workshop de formação</div><div class="persona-why">30s sobre a mudança de postura dos alunos no diagnóstico territorial. Camera estática a 1,5 m.</div></div>
       </div>
       <div class="cap-block">
-        <h4>Perguntas-chave por personagem</h4>
-        <div class="persona"><div class="persona-name">Representante Sylvamo</div><div class="question">Por que Mogi Guaçu? O que a Sylvamo tem de ligação com esse território?</div><div class="question">O que esse projeto representa para o relatório ESG da Sylvamo este ano?</div></div>
-        <div class="persona"><div class="persona-name">Criança</div><div class="question">Qual problema do seu bairro ou cidade você quer resolver?</div><div class="question">O que você aprendeu sobre a sua cidade que não sabia antes?</div></div>
-        <div class="persona"><div class="persona-name">Professor</div><div class="question">Como foi fazer diagnóstico territorial com os seus alunos pela primeira vez?</div><div class="question">O que mudou na forma como seus alunos olham para o bairro deles?</div></div>
-        <div class="persona"><div class="persona-name">Depoimento triplo (pergunta guia)</div><div class="question">O que esse projeto significa para cada um de vocês? (deixar fluir, sem interromper)</div></div>
+        <h4>Perguntas-chave por persona</h4>
+        <div class="persona">
+          <div class="persona-name">Representante Sylvamo</div>
+          <span class="q-main-badge">Pergunta principal</span>
+          <p class="question-main">O que significa para a Sylvamo investir em educacao na mesma cidade onde a empresa opera? E responsabilidade? E retribuicao? Como voce chamaria isso?</p>
+          <p class="question">Como esse projeto entra no relatorio de sustentabilidade da Sylvamo? O que voce quer mostrar com isso para os stakeholders?</p>
+          <p class="question">Por que Mogi Guacu? O que a Sylvamo tem de ligacao com esse territorio alem da fabrica?</p>
+        </div>
+        <div class="persona">
+          <div class="persona-name">Crianca</div>
+          <span class="q-main-badge">Pergunta principal</span>
+          <p class="question-main">Qual problema do seu bairro ou cidade voce quer resolver? Por que esse e nao outro?</p>
+          <p class="question">O que voce aprendeu sobre a sua cidade que nao sabia antes?</p>
+        </div>
+        <div class="persona">
+          <div class="persona-name">Professor</div>
+          <span class="q-main-badge">Pergunta principal</span>
+          <p class="question-main">O que muda num aluno quando ele percebe que o bairro dele tem um problema que ele pode tentar resolver?</p>
+          <p class="question">Como foi fazer diagnostico territorial com seus alunos pela primeira vez?</p>
+        </div>
+        <div class="persona">
+          <div class="persona-name">Depoimento triplo (aluno + professor + representante)</div>
+          <span class="q-main-badge">Pergunta principal</span>
+          <p class="question-main">O que esse projeto significa para cada um de voces? (deixar fluir, sem interromper, gravar sem corte)</p>
+        </div>
       </div>
       <div class="cap-block">
         <h4>Diretivas de câmera · como captar cada cena</h4>
@@ -1551,11 +1612,26 @@ main {
         <div class="persona"><div class="persona-name">1 participante de Uibaí + 1 de Ibipeba</div><div class="persona-why">Perfis locais do sertão baiano. Gravar no contexto do negócio cultural de cada um. Camera handheld a 1 m.</div></div>
       </div>
       <div class="cap-block">
-        <h4>Perguntas-chave por personagem</h4>
-        <div class="persona"><div class="persona-name">Patrícia / Larissa (Porto Itapoá)</div><div class="question">Por que o Porto Itapoá escolheu investir em empreendedorismo cultural local?</div><div class="question">O que você vê de diferente em quem faz a trilha completa do programa?</div></div>
-        <div class="persona"><div class="persona-name">Participante de Itapoá</div><div class="question">O que você descobriu sobre o seu negócio que não sabia antes?</div><div class="question">Qual foi o momento que mais te surpreendeu nesse programa?</div></div>
-        <div class="persona"><div class="persona-name">Joana / Maite (Complexo Santa Eugênia)</div><div class="question">Como o Complexo Santa Eugênia enxerga o desenvolvimento cultural dessas cidades?</div><div class="question">O que significa ver esse programa acontecendo no sertão baiano?</div></div>
-        <div class="persona"><div class="persona-name">Participante de Uibaí ou Ibipeba</div><div class="question">O que esse programa mudou na forma como você olha para o seu trabalho cultural?</div></div>
+        <h4>Perguntas-chave por persona</h4>
+        <div class="persona">
+          <div class="persona-name">Patricia / Larissa (Porto Itapoa)</div>
+          <span class="q-main-badge">Pergunta principal</span>
+          <p class="question-main">O que acontece com um empreendedor cultural quando ele descobre que o que sempre fez por amor pode ser um negocio sustentavel?</p>
+          <p class="question">Por que o Porto Itapoa decidiu investir no desenvolvimento cultural e economico local? O que isso representa para o territorio?</p>
+          <p class="question">O que voce ve de diferente em quem faz a trilha completa do programa?</p>
+        </div>
+        <div class="persona">
+          <div class="persona-name">Joana / Maite (Complexo Santa Eugenia)</div>
+          <span class="q-main-badge">Pergunta principal</span>
+          <p class="question-main">O que significa para o Complexo Santa Eugenia existir no sertao baiano e ao mesmo tempo investir no desenvolvimento dos empreendedores locais? Como a empresa enxerga esse papel?</p>
+          <p class="question">O que voce quer que essas cidades sejam daqui a 10 anos? E qual e o papel da empresa nisso?</p>
+        </div>
+        <div class="persona">
+          <div class="persona-name">Participante (Itapoa ou Uibai/Ibipeba)</div>
+          <span class="q-main-badge">Pergunta principal</span>
+          <p class="question-main">O que voce descobriu sobre o seu negocio que nao sabia antes? Tem algo que voce estava fazendo errado sem perceber?</p>
+          <p class="question">Se voce pudesse voltar 5 anos no tempo e dar um conselho para voce mesmo sobre o seu trabalho, o que diria?</p>
+        </div>
       </div>
       <div class="cap-block">
         <h4>Diretivas de câmera · como captar cada cena</h4>
@@ -1782,11 +1858,32 @@ main {
         <div class="persona"><div class="persona-name">1 aluno cuja foto foi selecionada para a exposição</div><div class="persona-why">Depoimento na frente da foto exposta (se possível). Camera a 1 m, foto visível ao fundo. Plano médio com rack focus da foto para o rosto.</div></div>
       </div>
       <div class="cap-block">
-        <h4>Perguntas-chave por personagem</h4>
-        <div class="persona"><div class="persona-name">Rafaela (Compagas)</div><div class="question">Por que a Compagas decidiu conectar gás natural a gastronomia e arte?</div><div class="question">O que você vê de concreto nesse projeto que representa os valores da empresa?</div></div>
-        <div class="persona"><div class="persona-name">Chef</div><div class="question">Como o aproveitamento integral muda a relação da pessoa com a comida?</div><div class="question">Qual foi o momento mais surpreendente em uma das turmas?</div></div>
-        <div class="persona"><div class="persona-name">Participante da culinária</div><div class="question">O que você vai fazer diferente na sua cozinha de casa a partir de hoje?</div><div class="question">Como foi experimentar um prato feito só com o que vai para o lixo normalmente?</div></div>
-        <div class="persona"><div class="persona-name">Aluno com foto exposta</div><div class="question">Como foi aprender a fotografar comida como se fosse arte?</div><div class="question">O que sente ao ver o seu trabalho em exposição para o público?</div></div>
+        <h4>Perguntas-chave por persona</h4>
+        <div class="persona">
+          <div class="persona-name">Rafaela (Compagas)</div>
+          <span class="q-main-badge">Pergunta principal</span>
+          <p class="question-main">Como uma empresa de gas chega a conclusao de que seu papel vai alem de fornecer energia, e inclui apoiar arte e gastronomia em comunidades?</p>
+          <p class="question">O que a Compagas quer que a Lapa se lembre dessa empresa daqui a 20 anos? Qual legado esta sendo construido aqui?</p>
+          <p class="question">O que voce ve de concreto nesse projeto que representa os valores da Compagas?</p>
+        </div>
+        <div class="persona">
+          <div class="persona-name">Chef / Oficineiro(a)</div>
+          <span class="q-main-badge">Pergunta principal</span>
+          <p class="question-main">O que muda na relacao de alguem com a comida quando eles percebem que a sobra pode virar um prato?</p>
+          <p class="question">Qual foi o momento mais surpreendente em uma dessas turmas?</p>
+        </div>
+        <div class="persona">
+          <div class="persona-name">Participante da culinaria</div>
+          <span class="q-main-badge">Pergunta principal</span>
+          <p class="question-main">O que voce vai fazer diferente na sua cozinha de casa a partir de hoje? E o que voce vai contar para alguem da sua familia sobre isso?</p>
+          <p class="question">Como foi experimentar um prato feito so com o que normalmente vai para o lixo?</p>
+        </div>
+        <div class="persona">
+          <div class="persona-name">Aluno com foto exposta</div>
+          <span class="q-main-badge">Pergunta principal</span>
+          <p class="question-main">Como e saber que uma foto que voce tirou vai estar exposta para quem passa pela Lapa? O que voce sente quando pensa nisso?</p>
+          <p class="question">O que foi mais dificil: aprender a fotografar ou decidir o que fotografar?</p>
+        </div>
       </div>
       <div class="cap-block">
         <h4>Diretivas de câmera · como captar cada cena</h4>
@@ -2051,14 +2148,33 @@ main {
       </div>
 
       <div class="cap-block">
-        <h4>Perguntas por personagem</h4>
-        <div class="question"><strong>Mariah (GRU):</strong> O que levou o GRU a apoiar um projeto que conecta culinaria de comunidade a um aeroporto internacional? Como o GRU se relaciona com a cidade de Guarulhos alem do transporte? O que voce quer que um passageiro sinta ao ver essa exposicao?</div>
-        <div class="question"><strong>Chef/Oficineiro(a):</strong> O que e aproveitamento integral na pratica? O que muda na cabeca das pessoas quando elas percebem que a sobra vira prato? Qual foi o momento mais surpreendente de uma oficina?</div>
-        <div class="question"><strong>Participante culinaria:</strong> O que voce sabia cozinhar antes de entrar aqui? O que mudou na sua cozinha de casa depois disso? Se voce pudesse contar pra alguem o que aprendeu em 30 segundos, o que diria?</div>
-        <div class="question"><strong>Aluno fotografia:</strong> Voce ja havia fotografado antes? O que foi dificil de aprender a enxergar na comida como tema fotografico? Como foi saber que sua foto estaria exposta no aeroporto?</div>
-        <div class="question"><strong>Educador visual:</strong> Por que fotografia de alimentos como tema para jovens de escola publica? Como foi o processo de selecionar as obras para a exposicao no GRU?</div>
+        <h4>Perguntas-chave por persona</h4>
+        <div class="persona">
+          <div class="persona-name">Mariah (GRU Airport)</div>
+          <span class="q-main-badge">Pergunta principal</span>
+          <p class="question-main">O GRU conecta o mundo, mas tambem e vizinho de Guarulhos. Como o aeroporto enxerga sua responsabilidade com a cidade que o hospeda, alem do transporte?</p>
+          <p class="question">Por que o aeroporto decidiu trazer a arte de comunidades de Guarulhos para dentro do terminal? O que voce quer que um passageiro sinta ao parar na frente dessa exposicao?</p>
+          <p class="question">O que esse projeto representa para a relacao do GRU com Guarulhos a longo prazo?</p>
+        </div>
+        <div class="persona">
+          <div class="persona-name">Chef / Oficineiro(a)</div>
+          <span class="q-main-badge">Pergunta principal</span>
+          <p class="question-main">O que e aproveitamento integral na pratica? O que muda na cabeca das pessoas quando elas percebem que a sobra vira prato?</p>
+          <p class="question">Qual foi o momento mais surpreendente em uma dessas oficinas?</p>
+        </div>
+        <div class="persona">
+          <div class="persona-name">Participante da oficina</div>
+          <span class="q-main-badge">Pergunta principal</span>
+          <p class="question-main">Se voce fosse contar para alguem da sua familia o que aprendeu aqui hoje, em 30 segundos, o que diria?</p>
+          <p class="question">O que voce trouxe de casa para essa cozinha e o que voce vai levar dessa cozinha para casa?</p>
+        </div>
+        <div class="persona">
+          <div class="persona-name">Aluno de fotografia</div>
+          <span class="q-main-badge">Pergunta principal</span>
+          <p class="question-main">Como e saber que a foto que voce tirou vai estar no aeroporto internacional de Guarulhos, sendo vista por pessoas de todo o mundo?</p>
+          <p class="question">O que foi mais dificil: aprender a fotografar ou aprender a ver a comida de outro jeito?</p>
+        </div>
       </div>
-
       <div class="cap-block">
         <h4>B-roll prioritario</h4>
         <ul>
@@ -2342,13 +2458,34 @@ main {
       </div>
 
       <div class="cap-block">
-        <h4>Perguntas por personagem</h4>
-        <div class="question"><strong>Mariah (GRU):</strong> O que levou o GRU a investir em educacao empreendedora nas escolas de Guarulhos? Como o aeroporto se relaciona com a cidade alem do transporte? O que voce quer que os jovens levem do PIE pra vida?</div>
-        <div class="question"><strong>Rayssa (SOTREQ):</strong> Por que a SOTREQ decidiu apoiar formacao de jovens empreendedores em Serra? O que a empresa espera colher desse investimento no longo prazo?</div>
-        <div class="question"><strong>Professor(a):</strong> Como os alunos chegaram na Oficina 1 e como estavam na Feira de Ideias? Teve algum aluno que te surpreendeu? O PIE mudou alguma coisa na sua pratica de sala de aula?</div>
-        <div class="question"><strong>Aluno:</strong> O que voce criou no PIE? De onde veio a ideia do seu projeto? O que foi mais dificil: a parte de arte, a de IA ou a de empreendedorismo? Se voce pudesse mostrar seu projeto pra alguem importante, o que diria em 30 segundos?</div>
+        <h4>Perguntas-chave por persona</h4>
+        <div class="persona">
+          <div class="persona-name">Mariah (GRU Airport)</div>
+          <span class="q-main-badge">Pergunta principal</span>
+          <p class="question-main">O GRU investe em empreendedorismo nas escolas de Guarulhos. Como um aeroporto enxerga sua responsabilidade no desenvolvimento dos jovens da cidade onde ele esta?</p>
+          <p class="question">O que voce quer que esses jovens levem do PIE para a vida? E o que o GRU espera colher desse investimento a longo prazo?</p>
+          <p class="question">O que muda na sua visao de aeroporto quando voce ve um aluno de escola publica apresentando um projeto na Feira de Ideias?</p>
+        </div>
+        <div class="persona">
+          <div class="persona-name">Rayssa (SOTREQ)</div>
+          <span class="q-main-badge">Pergunta principal</span>
+          <p class="question-main">Por que a SOTREQ, uma empresa de equipamentos pesados, decidiu apoiar jovens empreendedores em Serra? O que a empresa enxerga de comum entre o seu negocio e o desenvolvimento desses alunos?</p>
+          <p class="question">O que a SOTREQ quer que Serra se lembre dessa empresa daqui a 10 anos?</p>
+        </div>
+        <div class="persona">
+          <div class="persona-name">Professor</div>
+          <span class="q-main-badge">Pergunta principal</span>
+          <p class="question-main">Como seus alunos chegaram no primeiro dia do PIE e como estao agora, na Feira de Ideias? Qual e a diferenca mais visivel para voce?</p>
+          <p class="question">Teve algum aluno que te surpreendeu de um jeito que voce nao esperava?</p>
+        </div>
+        <div class="persona">
+          <div class="persona-name">Aluno</div>
+          <span class="q-main-badge">Pergunta principal</span>
+          <p class="question-main">Se voce pudesse apresentar o seu projeto para alguem importante em 30 segundos, o que diria?</p>
+          <p class="question">De onde veio a ideia do seu projeto? O que no seu dia a dia te inspirou?</p>
+          <p class="question">O que foi mais dificil: a parte de arte, a de IA ou a de empreendedorismo? Por que?</p>
+        </div>
       </div>
-
       <div class="cap-block">
         <h4>B-roll prioritario</h4>
         <ul>
