@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Briefing de Campo · 117 Whirlpool · Joinville</title>
+  <style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: #F5F5F5;
+  color: #212121;
+  font-size: 15px;
+  line-height: 1.6;
+}
+a { color: #1565C0; }
+
+/* hero */
+.hero {
+  background: linear-gradient(135deg, #1565C0 0%, #0D47A1 100%);
+  color: white;
+  padding: 32px 20px 28px;
+}
+.hero-badge {
+  display: inline-block;
+  background: rgba(255,255,255,.18);
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.hero h1 { font-size: 24px; font-weight: 800; line-height: 1.25; margin-bottom: 8px; }
+.hero .lead { font-size: 14px; opacity: .88; margin-bottom: 16px; }
+.hero-contact {
+  background: rgba(255,255,255,.12);
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-size: 13px;
+}
+.hero-contact strong { display: block; font-size: 11px; text-transform: uppercase;
+  letter-spacing: .07em; opacity: .75; margin-bottom: 4px; }
+.hero-contact a { color: white; font-weight: 700; font-size: 16px; }
+
+/* alert */
+.alert {
+  background: #FFF3E0;
+  border-left: 4px solid #E65100;
+  padding: 14px 16px;
+  margin: 16px;
+  border-radius: 0 8px 8px 0;
+  font-size: 13px;
+  color: #BF360C;
+}
+.alert strong { display: block; margin-bottom: 4px; }
+
+/* blocks */
+.block { background: white; margin: 12px 16px; border-radius: 12px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.08); overflow: hidden; }
+.block-header { padding: 16px 18px 12px; border-bottom: 1px solid #EEEEEE; }
+.overline { font-size: 10px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .1em; color: #1565C0; margin-bottom: 4px; }
+.block-header h2 { font-size: 18px; font-weight: 700; }
+.block-header .subtitle { font-size: 13px; color: #757575; margin-top: 6px; }
+.block-inner { padding: 16px 18px; }
+
+/* agenda */
+.photographer-badge {
+  display: flex; align-items: center; gap: 10px;
+  background: #E3F2FD; border-radius: 8px; padding: 10px 14px;
+  margin-bottom: 14px; flex-wrap: wrap;
+}
+.ph-label { font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .07em; color: #1565C0; }
+.ph-name { font-weight: 700; }
+.photographer-badge a { font-weight: 700; color: #1565C0; font-size: 15px; }
+.schedule-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.schedule-table th { background: #EEEEEE; padding: 8px 10px; text-align: left;
+  font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: #616161; }
+.schedule-table td { padding: 10px 10px; border-top: 1px solid #F0F0F0; vertical-align: top; }
+.sched-date { font-weight: 700; white-space: nowrap; color: #1565C0; }
+.sched-activity { font-weight: 600; margin-bottom: 4px; }
+.sched-priority { font-size: 12px; color: #424242; }
+.sched-note { display: inline-block; background: #FFF3E0; color: #E65100;
+  border-radius: 4px; padding: 3px 8px; font-size: 11px; font-weight: 600; margin-top: 6px; }
+.agenda-tip { background: #F3E5F5; border-radius: 8px; padding: 10px 14px;
+  font-size: 12px; color: #6A1B9A; margin-top: 14px; }
+
+/* personas */
+.cap-grid { display: flex; flex-direction: column; gap: 14px; }
+.cap-block h4 { font-size: 12px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .07em; color: #757575; margin-bottom: 10px; }
+.persona { background: #F8F8F8; border-radius: 8px; padding: 14px;
+  border-left: 3px solid #1565C0; }
+.persona-name { font-weight: 700; font-size: 14px; margin-bottom: 8px; color: #1565C0; }
+.persona-why { font-size: 12px; color: #757575; margin-bottom: 8px; font-style: italic; }
+.q-main-badge, .q-rsc-badge {
+  display: inline-block; border-radius: 4px; padding: 2px 8px;
+  font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em;
+  margin-bottom: 6px; margin-top: 4px;
+}
+.q-main-badge { background: #1565C0; color: white; }
+.q-rsc-badge  { background: #1B5E20; color: white; }
+.question-main { font-size: 14px; font-weight: 600; color: #212121; margin-bottom: 8px;
+  line-height: 1.5; }
+.question { font-size: 13px; color: #424242; margin-bottom: 5px; padding-left: 12px;
+  border-left: 2px solid #E0E0E0; }
+.question-rsc { font-size: 13px; color: #2E7D32; margin-bottom: 5px;
+  padding-left: 12px; border-left: 2px solid #A5D6A7; font-style: italic; }
+.broll-list { list-style: none; padding: 0; }
+.broll-list li { font-size: 13px; padding: 7px 0; border-top: 1px solid #F0F0F0;
+  padding-left: 18px; position: relative; }
+.broll-list li::before { content: "▸"; position: absolute; left: 0; color: #1565C0; }
+
+/* stories */
+.stories-grid { display: flex; flex-direction: column; gap: 10px; }
+.story-card { background: #F8F8F8; border-radius: 8px; padding: 14px;
+  border-left: 3px solid #1565C0; }
+.story-num { font-size: 10px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .1em; color: #1565C0; margin-bottom: 6px; }
+.story-card h4 { font-size: 14px; font-weight: 700; margin-bottom: 5px; }
+.story-card p { font-size: 13px; color: #616161; line-height: 1.5; }
+
+/* pastas */
+.folder-tree {
+  background: #212121; color: #E0E0E0;
+  border-radius: 10px; padding: 18px;
+  font-family: "Courier New", monospace; font-size: 12px; line-height: 2;
+  overflow-x: auto;
+}
+.folder-tree .folder { color: #64B5F6; font-weight: 600; }
+.naming-rule { background: #F5F5F5; border-radius: 8px; padding: 14px;
+  margin-top: 12px; border: 1px solid #E0E0E0; }
+.naming-rule h4 { font-size: 12px; font-weight: 700; margin-bottom: 8px;
+  text-transform: uppercase; letter-spacing: .06em; color: #757575; }
+.naming-rule p { font-size: 12px; color: #424242; margin-bottom: 4px; }
+.naming-rule code { background: #E0E0E0; border-radius: 4px; padding: 1px 5px; font-size: 12px; }
+.drive-badge {
+  display: inline-block; background: #1565C0; color: white;
+  border-radius: 8px; padding: 10px 18px; font-size: 13px; font-weight: 700;
+  text-decoration: none; margin-top: 14px;
+}
+
+/* footer */
+.footer { text-align: center; padding: 24px 16px; font-size: 12px; color: #9E9E9E; }
+
+/* print / share */
+@media print {
+  .block { box-shadow: none; border: 1px solid #DDD; }
+}
+</style>
+</head>
+<body>
+
+  <header class="hero">
+    <div class="hero-badge">Briefing de Campo</div>
+    <h1>Teatro e Oficina Robótica 4ª Ed.<br>Whirlpool · Joinville</h1>
+    <p class="lead">O que capturar, quem entrevistar e como organizar o material. Página exclusiva para uso em campo.</p>
+    <div class="hero-contact">
+      <strong>Fotógrafo / Videomaker</strong>
+      Gabriel · <a href="tel:47996798859">(47) 99679-8859</a>
+    </div>
+  </header>
+
+  <div class="alert">
+    <strong>Atenção antes de sair:</strong>
+    Toda imagem com criança passa por aprovação da FSB (Gabrielly Russo) antes de qualquer uso. Dia 08/05 (sexta) o cliente Whirlpool não estará presente. Nunca postar direto da captação.
+  </div>
+
+  <section class="block">
+    <div class="block-header">
+      <div class="overline">Agenda confirmada</div>
+      <h2>Fotógrafo em campo · Joinville</h2>
+    </div>
+    <div class="block-inner">
+      <div class="photographer-badge">
+        <span class="ph-label">Fotógrafo</span>
+        <span class="ph-name">Gabriel</span>
+        <a href="tel:47996798859">(47) 99679-8859</a>
+      </div>
+      <table class="schedule-table">
+        <thead>
+          <tr>
+            <th>Dia</th>
+            <th>Horário</th>
+            <th>O que capturar / prioridades</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="sched-date">Terca-feira</td>
+            <td>8h as 10h</td>
+            <td>
+              <div class="sched-activity">Atividades com alunos</div>
+              <div class="sched-priority">Voluntario Whirlpool em interação com criança. Momentos de concentração, mãos em movimento, reações autenticas. Apresentar-se ao responsavel da escola ao chegar.</div>
+            </td>
+          </tr>
+          <tr>
+            <td class="sched-date">Quinta-feira</td>
+            <td>8h as 10h</td>
+            <td>
+              <div class="sched-activity">Atividades com alunos</div>
+              <div class="sched-priority">Mesma logica da terca. Priorizar diversidade de rostos e idades nas fotos. B-roll de ambiente: sala de aula, materiais, espaco da feira.</div>
+            </td>
+          </tr>
+          <tr>
+            <td class="sched-date">Sexta-feira</td>
+            <td>9h as 10h30</td>
+            <td>
+              <div class="sched-activity">Atividades finais / premiação</div>
+              <div class="sched-priority">Foco na premiação e entrega de resultados. Capturar reação dos alunos ao receber reconhecimento.</div>
+              <span class="sched-note">Cliente (Whirlpool) não estara presente neste dia</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="agenda-tip"><strong>Aprovação obrigatoria:</strong> toda imagem com criança passa por FSB (Gabrielly Russo) antes de qualquer uso. Nunca postar direto da captação.</div>
+    </div>
+  </section>
+  <section class="block">
+    <div class="block-header">
+      <div class="overline">Para o videomaker em campo</div>
+      <h2>Plano de captação</h2>
+      <p class="subtitle">Teatro e Robótica nas Escolas · 4ª Edição com a Whirlpool. Foco no dia da Feira de Ideias em Joinville: voluntário Whirlpool em interação com criança, premiação. Aprovação FSB antes de qualquer públicação.</p>
+    </div>
+    <div class="cap-grid">
+      <div class="cap-block">
+        <h4>Perfis a buscar em campo</h4>
+        <div style="background:#FFF3E0;border-left:3px solid #FF8F00;border-radius:6px;padding:10px 14px;font-size:12px;margin-bottom:12px;color:#4E342E;">
+          Ao chegar: identifique quem esta presente, pergunte nome completo e função antes de iniciar qualquer gravação. Os perfis abaixo sao referências de quem buscar, não confirmações de presença.
+        </div>
+        <div class="persona"><div class="persona-name">Voluntário Whirlpool (engenheiro)</div><div class="persona-why">Ao chegar, identificar quem e o voluntario presente e coletar nome completo e area de atuação na Whirlpool. Gravar no intervalo da Feira. Camera a 1,2 m, plano médio, fundo desfocado. Handheld suave: leve movimento lateral valoriza o depoimento.</div>
+    <span class="q-rsc-badge">Responsabilidade Corporativa</span>
+    <p class="question-rsc">Como este projeto se conecta à estratégia de responsabilidade social ou ESG da empresa?</p>
+    <p class="question-rsc">O que muda no território onde a empresa opera depois de um projeto como esse?</p>
+    <p class="question-rsc">Isso é uma ação pontual ou faz parte de uma estratégia de longo prazo da empresa com a comunidade?</p>
+    <p class="question-rsc">O que a empresa aprende com um projeto como esse? O que volta para dentro da organização?</p>
+    <p class="question-rsc">Que mensagem você daria para outra empresa que ainda não faz esse tipo de investimento social?</p>
+</div>
+        <div class="persona"><div class="persona-name">2 crianças com protótipos de destaque</div><div class="persona-why">Menina em primeiro plano sempre que possível (pilar ESG de gênero). Camera a 1 m, plano médio fechado. Abrir levemente para revelar protótipo ao lado da criança.</div></div>
+        <div class="persona"><div class="persona-name">Professor da escola</div><div class="persona-why">30s de depoimento. Camera estática a 1,5 m. Fundo com sala de aula desfocado.</div></div>
+      </div>
+      <div class="cap-block">
+        <h4>Perguntas-chave por persona</h4>
+        <div class="persona">
+          <div class="persona-name">Voluntario Whirlpool</div>
+          <span class="q-main-badge">Pergunta principal</span>
+          <p class="question-main">O que muda em você quando uma criança te explica o que inventou? O que você leva disso de volta para o seu trabalho na Whirlpool?</p>
+          <p class="question">A Whirlpool tem engenheiros vindo voluntariamente para escola pública. Como a empresa enxerga essa responsabilidade social além da linha de produção?</p>
+          <p class="question">Por que você escolheu ser voluntario nesse programa?</p>
+        </div>
+        <div class="persona">
+          <div class="persona-name">Criança com protótipo</div>
+          <span class="q-main-badge">Pergunta principal</span>
+          <p class="question-main">O que o seu robo ou maquina faz? Para quem você o fez?</p>
+          <p class="question">O que foi mais difícil de construir?</p>
+        </div>
+        <div class="persona">
+          <div class="persona-name">Professor</div>
+          <span class="q-main-badge">Pergunta principal</span>
+          <p class="question-main">Como esses alunos chegaram no começo da semana e como estão agora? Qual e a diferença mais visivel para você?</p>
+          <p class="question">Teve alguma coisa que aconteceu nessa semana que te surpreendeu de verdade?</p>
+        </div>
+      </div>
+      <div class="cap-block">
+        <h4>Diretivas de câmera · como captar cada cena</h4>
+        <ul>
+          <li><strong>Depoimento voluntário:</strong> camera a 1,2 m, handheld com estabilizador. Começar gravando antes de fazer a pergunta: o ajuste de postura antes de falar é material valioso.</li>
+          <li><strong>Cena voluntário + criança (prioridade máxima):</strong> camera lateral a 1,5 m, plano conjunto. Posicionar câmera ANTES de levar o voluntário para junto da criança. Não interromper a conversa para reajustar.</li>
+          <li><strong>Close de protótipo:</strong> camera de cima a 30 a 40 cm. Rack focus da peça para o rosto da criança. Leve micro-tremor natural aceito.</li>
+          <li><strong>Premiação:</strong> camera posicionada e gravando ANTES da entrega. Plano médio do aluno esperando. Não cortar: a reação espontânea é o material, não a entrega.</li>
+          <li><strong>Peça teatral:</strong> plano geral do palco para estabelecer o espaço. Close de expressão de aluno. Camera estática durante a cena: sem zoom abrupto.</li>
+          <li><strong>Banco NTICS:</strong> depoimentos de crianças sem nada da escola ou cidade identificável ao fundo.</li>
+        </ul>
+      </div>
+      <div class="cap-block">
+        <h4>Critérios de entrega</h4>
+        <ul>
+          <li><strong>Drive:</strong> confirmar ID com FSB / Gabrielly Russo antes de criar estrutura.</li>
+          <li>Aprovação FSB obrigatória antes de qualquer post. Reel e Case passam por Gabrielly antes de qualquer etapa.</li>
+          
+          <li>Upload do bruto no Drive ao fim do dia.</li>
+          <li>Áudio com lapela ou microfone direcional em todo depoimento.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section class="block">
+    <div class="block-header">
+      <div class="overline">Stories para Instagram</div>
+      <h2>10 captações · Arco narrativo do dia</h2>
+      <p class="subtitle">Dia da Feira de Ideias: do setup da manhã até a premiação. Voluntário Whirlpool como personagem de virada.</p>
+    </div>
+    <div class="stories-grid">
+      <div class="story-card"><div class="story-num">Story 01 · Chegada</div><h4>Entrando na Feira</h4><p>"Hoje estou em Joinville na 4a edição com a Whirlpool." Camera frontal a 60 cm, handheld, 15s.</p></div>
+      <div class="story-card"><div class="story-num">Story 02 · Antes</div><h4>Setup da feira</h4><p>Mesas com protótipos sendo posicionados. Pan lento revelando toda a sala. Crianças ajustando projetos com orgulho.</p></div>
+      <div class="story-card"><div class="story-num">Story 03 · Apresentação</div><h4>Os projetos de hoje</h4><p>Cada aluno fala o nome do projeto em 5s. Camera frontal a 60 cm. Editar em sequência rápida sem pausa.</p></div>
+      <div class="story-card"><div class="story-num">Story 04 · Ação 1</div><h4>O protótipo em destaque</h4><p>Close do protótipo mais visual: peça sendo ativada. Camera a 30 cm de cima. Rack focus da peça para o rosto ao fim.</p></div>
+      <div class="story-card"><div class="story-num">Story 05 · Ação 2</div><h4>O voluntário ouvindo</h4><p>Voluntário agachado ao lado da criança. Camera lateral a 1 m. Não interromper. O contraste de escala é o gancho desta cena.</p></div>
+      <div class="story-card"><div class="story-num">Story 06 · Bastidores</div><h4>O momento espontâneo</h4><p>15s sem roteiro. Camera discreta a 1,5 m. Criança mostrando projeto para colega ou bastidores da peça teatral. Não sinalizar.</p></div>
+      <div class="story-card"><div class="story-num">Story 07 · Pergunta rápida</div><h4>"Uma palavra pra descrever hoje"</h4><p>3 a 4 pessoas incluindo o voluntário. Camera a 60 cm. Corte direto entre respostas, sem transição.</p></div>
+      <div class="story-card"><div class="story-num">Story 08 · Depoimento relâmpago</div><h4>20 segundos</h4><p>Voluntário Whirlpool. Camera a 80 cm, nível dos olhos, handheld suave. "Fala o que sentiu quando a criança te explicou o invento dela." Sem preparação.</p></div>
+      <div class="story-card"><div class="story-num">Story 09 · Virada</div><h4>A premiação</h4><p>Camera gravando ANTES da entrega. Plano médio do aluno em espera. Reação em tempo real. Câmera não para: não há segunda chance.</p></div>
+      <div class="story-card"><div class="story-num">Story 10 · Saída</div><h4>Fechamento</h4><p>Espaço sendo desmontado ou fachada ao entardecer. Captador encerrando ao vivo. 15s máximo.</p></div>
+    </div>
+  </section>
+  <section class="block">
+    <div class="block-header">
+      <div class="overline">Estrutura de Pastas · Drive</div>
+      <h2>Organização do material captado</h2>
+      <p class="subtitle">Separar Joinville e Rio Claro em subpastas. Confirmar ID do Drive com FSB antes de criar a estrutura.</p>
+    </div>
+    <div class="ftl-wrap">
+  <ul class="ftl">
+    <li><span class="ftl-root">[117] Teatro e Robótica nas Escolas · Whirlpool · Joinville + Rio Claro</span>
+      <ul>
+        <li><span class="ftl-dir">JOINVILLE</span>
+          <ul>
+            <li><span class="ftl-dir">01_DEPOIMENTOS</span>
+              <ul>
+                <li><span class="ftl-dir">PATROCINADOR</span> <span class="ftl-note">voluntário Whirlpool , coletar nome e área no dia</span>
+                  <span class="ftl-ex">captador_whirlpool-[nome]_descricao.mp4</span>
+                </li>
+                <li><span class="ftl-dir">PROFESSORES</span></li>
+                <li><span class="ftl-dir">ALUNOS</span></li>
+              </ul>
+            </li>
+            <li><span class="ftl-dir">02_STORIES</span> <span class="ftl-note">S01 a S10 , Feira de Ideias</span></li>
+            <li><span class="ftl-dir">03_BROLL</span>
+              <ul>
+                <li><span class="ftl-dir">CHEGADA</span></li>
+                <li><span class="ftl-dir">GERAL</span> <span class="ftl-note">protótipos, voluntário+criança, premiação, peça teatral</span></li>
+              </ul>
+            </li>
+            <li><span class="ftl-dir">04_FOTOS</span>
+              <ul>
+                <li><span class="ftl-dir">SELECIONADAS</span></li>
+                <li><span class="ftl-dir">SENSIBILIDADE</span></li>
+                <li><span class="ftl-dir">TOP15</span></li>
+              </ul>
+            </li>
+            <li><span class="ftl-dir">05_BRUTO</span></li>
+          </ul>
+        </li>
+        <li><span class="ftl-dir">RIO_CLARO</span> <span class="ftl-note">mesma estrutura de JOINVILLE</span></li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    <div class="naming-rule">
+      <h4>Convenção de nomeação</h4>
+      <ul>
+        <li>Depoimentos: <code>captador_depoente_descricao.mp4</code> ex: <code>abilio_voluntario-whirlpool_o-que-muda.mp4</code></li>
+        <li>Stories: <code>S01_chegada-feira-joinville.mp4</code>, <code>S09_premiação.mp4</code></li>
+        <li>B-roll: <code>BROLL_feira-ideias.mp4</code>, <code>BROLL_voluntario-criança.mp4</code></li>
+        <li>Fotos: <code>FOTO_001_protótipo-destaque.jpg</code>, <code>FOTO_002_premiação.jpg</code></li>
+      </ul>
+    </div>
+    <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:16px;">
+      <div class="drive-badge"><span class="drive-badge-label">Drive 117</span> TBD - confirmar com FSB</div>
+    </div>
+  </section>
+
+  <div class="footer">
+    Briefing gerado por NTICS · Projeto 117 · Não distribuir fora da equipe de campo
+  </div>
+
+</body>
+</html>
