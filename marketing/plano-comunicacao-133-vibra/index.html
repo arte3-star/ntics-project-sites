@@ -1,0 +1,1456 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plano de Comunicação — Ecoarte Vibra 2026</title>
+<style>
+  :root {
+    --verde: #3DAA35;
+    --azul: #005F73;
+    --rosa: #D41A6A;
+    --laranja: #E86428;
+    --amarelo: #F5B800;
+    --teal: #00A5B8;
+    --roxo: #6B2D7B;
+    --grafite: #2D2D2D;
+    --cinza-medio: #6B7280;
+    --cinza-claro: #F4F4F4;
+    --branco: #FFFFFF;
+
+    --email-cor: #005F73;
+    --whats-cor: #3DAA35;
+    --social-cor: #D41A6A;
+    --imprensa-cor: #E86428;
+    --kit-cor: #6B2D7B;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #F4F4F4;
+    color: #2D2D2D;
+    line-height: 1.5;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(135deg, #005F73 0%, #003F4F 50%, #002830 100%);
+    color: white;
+    padding: 60px 48px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 320px; height: 320px;
+    background: rgba(61,170,53,0.15);
+    border-radius: 50%;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; left: 30%;
+    width: 200px; height: 200px;
+    background: rgba(212,26,106,0.12);
+    border-radius: 50%;
+  }
+  .hero-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 40px;
+  }
+  .hero-badge {
+    background: rgba(61,170,53,0.25);
+    border: 1px solid rgba(61,170,53,0.5);
+    color: #7DDF76;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .ntics-logo {
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .hero h1 {
+    font-size: 42px;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 8px;
+    position: relative;
+    z-index: 1;
+  }
+  .hero h1 span { color: #3DAA35; }
+  .hero-subtitle {
+    font-size: 18px;
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 24px;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-stat {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 12px;
+    padding: 20px 16px;
+    text-align: center;
+  }
+  .hero-stat-num {
+    font-size: 32px;
+    font-weight: 800;
+    display: block;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .hero-stat-label {
+    font-size: 11px;
+    color: rgba(255,255,255,0.6);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .stat-verde { color: #7DDF76; }
+  .stat-amarelo { color: #F5B800; }
+  .stat-rosa { color: #FF6DAD; }
+  .stat-teal { color: #5DDFF0; }
+  .stat-laranja { color: #FFA06C; }
+
+  /* ── CONTAINER ── */
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── SEÇÕES ── */
+  .section { padding: 48px 0; }
+  .section-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #005F73;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 2px;
+    background: linear-gradient(90deg, #005F73, transparent);
+  }
+  .section-subtitle {
+    font-size: 14px;
+    color: #6B7280;
+    margin-bottom: 28px;
+  }
+
+  /* ── TIMELINE ── */
+  .timeline-wrap {
+    background: white;
+    border-radius: 16px;
+    padding: 36px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    margin-bottom: 32px;
+  }
+  .timeline {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+    margin-top: 8px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    top: 32px;
+    left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #3DAA35, #F5B800, #E86428, #D41A6A, #005F73);
+    z-index: 0;
+  }
+  .tl-phase {
+    flex: 1;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    padding: 0 8px;
+  }
+  .tl-dot {
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    margin: 20px auto 16px;
+    border: 3px solid white;
+    box-shadow: 0 0 0 3px currentColor;
+  }
+  .tl-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+  .tl-date {
+    font-size: 18px;
+    font-weight: 800;
+    margin-bottom: 4px;
+  }
+  .tl-desc {
+    font-size: 11px;
+    color: #6B7280;
+    line-height: 1.4;
+  }
+  .tl-event {
+    background: white;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+    border-top: 4px solid currentColor;
+    text-align: left;
+    margin-top: 12px;
+  }
+  .tl-event-title {
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .tl-event-info {
+    font-size: 11px;
+    color: #6B7280;
+  }
+
+  .phase-now { color: #3DAA35; }
+  .phase-manaus { color: #F5B800; }
+  .phase-durante-manaus { color: #E86428; }
+  .phase-intervalo { color: #00A5B8; }
+  .phase-rj { color: #D41A6A; }
+  .phase-durante-rj { color: #005F73; }
+  .phase-pos { color: #6B2D7B; }
+
+  /* ── CANAL CARDS ── */
+  .canais-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    margin-bottom: 48px;
+  }
+  .canal-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .canal-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  }
+  .canal-header {
+    padding: 20px 20px 16px;
+    color: white;
+    position: relative;
+  }
+  .canal-icon {
+    font-size: 28px;
+    margin-bottom: 8px;
+    display: block;
+  }
+  .canal-name {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  .canal-body {
+    padding: 16px 20px 20px;
+  }
+  .canal-count {
+    font-size: 40px;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .canal-label {
+    font-size: 11px;
+    color: #6B7280;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 16px;
+  }
+  .canal-breakdown {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .canal-phase-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+  }
+  .canal-phase-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    margin-right: 6px;
+    display: inline-block;
+    flex-shrink: 0;
+  }
+  .canal-phase-label { color: #6B7280; display: flex; align-items: center; }
+  .canal-phase-num {
+    font-weight: 700;
+    font-size: 13px;
+  }
+
+  /* ── TABELA ETAPAS ── */
+  .table-wrap {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    margin-bottom: 48px;
+  }
+  .table-header-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 24px;
+    border-bottom: 1px solid #F4F4F4;
+  }
+  .table-header-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #2D2D2D;
+  }
+  .table-filters {
+    display: flex;
+    gap: 8px;
+  }
+  .filter-chip {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    border: 1px solid transparent;
+    cursor: pointer;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  thead tr {
+    background: #F4F4F4;
+  }
+  thead th {
+    padding: 10px 14px;
+    text-align: left;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #6B7280;
+    border-bottom: 1px solid #E5E7EB;
+    white-space: nowrap;
+  }
+  tbody tr {
+    border-bottom: 1px solid #F4F4F4;
+    transition: background 0.1s;
+  }
+  tbody tr:hover { background: #FAFAFA; }
+  tbody td {
+    padding: 10px 14px;
+    vertical-align: middle;
+  }
+  .section-row td {
+    background: #F8F9FA;
+    font-weight: 700;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: white;
+    padding: 8px 14px;
+    border-bottom: none;
+  }
+  .tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .tag-pre { background: #E8F5E9; color: #2E7D32; }
+  .tag-durante { background: #FFF3E0; color: #E65100; }
+  .tag-pos { background: #E3F2FD; color: #1565C0; }
+  .tag-ambas { background: #F3E5F5; color: #4A148C; }
+  .tag-manaus { background: #FFFDE7; color: #F57F17; }
+  .tag-rj { background: #FCE4EC; color: #880E4F; }
+
+  .check { color: #3DAA35; font-size: 16px; }
+  .empty { color: #D1D5DB; font-size: 16px; }
+
+  .canal-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    color: white;
+  }
+
+  /* ── FLUXO SEMANAL ── */
+  .fluxo-grid {
+    display: grid;
+    grid-template-columns: 100px repeat(5, 1fr);
+    gap: 1px;
+    background: #E5E7EB;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 48px;
+  }
+  .fluxo-cell {
+    background: white;
+    padding: 14px 12px;
+    font-size: 12px;
+  }
+  .fluxo-header {
+    background: #005F73;
+    color: white;
+    font-weight: 700;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .fluxo-dia {
+    background: #F4F4F4;
+    font-weight: 700;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+  }
+  .fluxo-item {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .fluxo-acao {
+    font-weight: 600;
+    color: #2D2D2D;
+    font-size: 12px;
+  }
+  .fluxo-resp {
+    font-size: 10px;
+    color: #6B7280;
+  }
+  .fluxo-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 4px;
+  }
+
+  /* ── IMPACTO ALVO ── */
+  .impacto-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 48px;
+  }
+  .impacto-card {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    text-align: center;
+    border-top: 4px solid;
+  }
+  .impacto-num {
+    font-size: 36px;
+    font-weight: 800;
+    margin-bottom: 4px;
+  }
+  .impacto-label {
+    font-size: 13px;
+    color: #6B7280;
+  }
+
+  /* ── PENDING / NOTAS ── */
+  .notas-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 48px;
+  }
+  .notas-card {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .notas-title {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .notas-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .notas-list li {
+    font-size: 13px;
+    color: #4B5563;
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+  }
+  .notas-list li::before {
+    content: '→';
+    color: #005F73;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #2D2D2D;
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    padding: 32px;
+    font-size: 12px;
+  }
+  footer strong { color: rgba(255,255,255,0.85); }
+
+  /* ── RESPONSIVO ── */
+  @media (max-width: 900px) {
+    .canais-grid { grid-template-columns: repeat(2, 1fr); }
+    .hero-stats { grid-template-columns: repeat(3, 1fr); }
+    .impacto-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media print {
+    body { background: white; }
+    .hero { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .section-row td { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════ HERO -->
+<div class="hero">
+  <div class="hero-top">
+    <span class="hero-badge">Proposta Interna · Pré-Aprovação</span>
+    <span class="ntics-logo">NTICS Projetos</span>
+  </div>
+  <h1>Plano de <span>Comunicação</span><br>Ecoarte Vibra 2026</h1>
+  <p class="hero-subtitle">Projeto 133 · Ecoarte Container Itinerante nas Escolas · Patrocínio Vibra Energia</p>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <span class="hero-stat-num stat-verde">54</span>
+      <span class="hero-stat-label">Peças totais planejadas</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num stat-amarelo">4</span>
+      <span class="hero-stat-label">Canais de comunicação</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num stat-rosa">2</span>
+      <span class="hero-stat-label">Cidades · Eventos</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num stat-teal">3</span>
+      <span class="hero-stat-label">Fases por cidade</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num stat-laranja">12.000</span>
+      <span class="hero-stat-label">Pessoas impactadas (meta)</span>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- ══════════════════════════════════════════ TIMELINE -->
+  <div class="section">
+    <div class="section-title">Linha do Tempo</div>
+    <p class="section-subtitle">Dois eventos, duas cidades, uma narrativa de impacto contínua</p>
+
+    <div class="timeline-wrap">
+      <div class="timeline">
+
+        <div class="tl-phase phase-now">
+          <div class="tl-dot" style="background:#3DAA35;"></div>
+          <div class="tl-label">Agora</div>
+          <div class="tl-date">Mai/26</div>
+          <div class="tl-desc">Produção de<br>briefings, artes<br>e listas</div>
+        </div>
+
+        <div class="tl-phase phase-manaus">
+          <div class="tl-dot" style="background:#F5B800;"></div>
+          <div class="tl-label">Pré-Manaus</div>
+          <div class="tl-date">mai → 13/jun</div>
+          <div class="tl-desc">Divulgação,<br>chamadas e<br>kit de imprensa</div>
+        </div>
+
+        <div class="tl-phase phase-durante-manaus">
+          <div class="tl-dot" style="background:#E86428;"></div>
+          <div class="tl-label" style="color:#E86428;">Dia D — Manaus</div>
+          <div class="tl-date" style="color:#E86428;">14/jun</div>
+          <div class="tl-event" style="color:#E86428; border-color:#E86428;">
+            <div class="tl-event-title">Ecoarte Manaus</div>
+            <div class="tl-event-info">Praça Campo Belo (AM)<br>Cenografia local · Talk ODS 13/06</div>
+          </div>
+        </div>
+
+        <div class="tl-phase phase-intervalo">
+          <div class="tl-dot" style="background:#00A5B8;"></div>
+          <div class="tl-label">Pós-Manaus / Pré-RJ</div>
+          <div class="tl-date">jun → ago</div>
+          <div class="tl-desc">Resultados Manaus<br>+ prep de RJ</div>
+        </div>
+
+        <div class="tl-phase phase-rj">
+          <div class="tl-dot" style="background:#D41A6A;"></div>
+          <div class="tl-label" style="color:#D41A6A;">Dia D — Rio</div>
+          <div class="tl-date" style="color:#D41A6A;">29/ago</div>
+          <div class="tl-event" style="color:#D41A6A; border-color:#D41A6A;">
+            <div class="tl-event-title">Ecoarte Rio de Janeiro</div>
+            <div class="tl-event-info">Cidade Nova · Centro/Zona Portuária<br>Caminhão-container · Talk ODS 28/08</div>
+          </div>
+        </div>
+
+        <div class="tl-phase phase-pos">
+          <div class="tl-dot" style="background:#6B2D7B;"></div>
+          <div class="tl-label">Pós + Relatório</div>
+          <div class="tl-date">set → out</div>
+          <div class="tl-desc">Clipping, numeralha<br>impacto total<br>Cota 2</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════ CANAIS -->
+  <div class="section" style="padding-top:0">
+    <div class="section-title">Canais &amp; Volume de Conteúdo</div>
+    <p class="section-subtitle">Distribuição de peças por canal e fase</p>
+
+    <div class="canais-grid">
+
+      <!-- EMAIL -->
+      <div class="canal-card">
+        <div class="canal-header" style="background: #005F73;">
+          <span class="canal-icon">✉️</span>
+          <div class="canal-name">Email Marketing</div>
+        </div>
+        <div class="canal-body">
+          <div class="canal-count" style="color:#005F73;">14</div>
+          <div class="canal-label">disparos planejados</div>
+          <div class="canal-breakdown">
+            <div class="canal-phase-row">
+              <span class="canal-phase-label"><span class="canal-phase-dot" style="background:#3DAA35;"></span>Pré-evento</span>
+              <span class="canal-phase-num" style="color:#005F73;">8</span>
+            </div>
+            <div class="canal-phase-row">
+              <span class="canal-phase-label"><span class="canal-phase-dot" style="background:#E86428;"></span>Durante</span>
+              <span class="canal-phase-num" style="color:#005F73;">2</span>
+            </div>
+            <div class="canal-phase-row">
+              <span class="canal-phase-label"><span class="canal-phase-dot" style="background:#6B2D7B;"></span>Pós-evento</span>
+              <span class="canal-phase-num" style="color:#005F73;">4</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- WHATSAPP -->
+      <div class="canal-card">
+        <div class="canal-header" style="background: linear-gradient(135deg, #25D366, #128C7E);">
+          <span class="canal-icon">💬</span>
+          <div class="canal-name">WhatsApp</div>
+        </div>
+        <div class="canal-body">
+          <div class="canal-count" style="color:#128C7E;">8</div>
+          <div class="canal-label">cards planejados</div>
+          <div class="canal-breakdown">
+            <div class="canal-phase-row">
+              <span class="canal-phase-label"><span class="canal-phase-dot" style="background:#3DAA35;"></span>Pré-evento</span>
+              <span class="canal-phase-num" style="color:#128C7E;">4</span>
+            </div>
+            <div class="canal-phase-row">
+              <span class="canal-phase-label"><span class="canal-phase-dot" style="background:#E86428;"></span>Durante</span>
+              <span class="canal-phase-num" style="color:#128C7E;">2</span>
+            </div>
+            <div class="canal-phase-row">
+              <span class="canal-phase-label"><span class="canal-phase-dot" style="background:#6B2D7B;"></span>Pós-evento</span>
+              <span class="canal-phase-num" style="color:#128C7E;">2</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- REDES SOCIAIS -->
+      <div class="canal-card">
+        <div class="canal-header" style="background: linear-gradient(135deg, #D41A6A, #9B0059);">
+          <span class="canal-icon">📱</span>
+          <div class="canal-name">Redes Sociais<br><small style="font-weight:400;opacity:.8;">Instagram + LinkedIn</small></div>
+        </div>
+        <div class="canal-body">
+          <div class="canal-count" style="color:#D41A6A;">15</div>
+          <div class="canal-label">posts + carrosseis</div>
+          <div class="canal-breakdown">
+            <div class="canal-phase-row">
+              <span class="canal-phase-label"><span class="canal-phase-dot" style="background:#3DAA35;"></span>Pré-evento</span>
+              <span class="canal-phase-num" style="color:#D41A6A;">7</span>
+            </div>
+            <div class="canal-phase-row">
+              <span class="canal-phase-label"><span class="canal-phase-dot" style="background:#E86428;"></span>Durante</span>
+              <span class="canal-phase-num" style="color:#D41A6A;">4</span>
+            </div>
+            <div class="canal-phase-row">
+              <span class="canal-phase-label"><span class="canal-phase-dot" style="background:#6B2D7B;"></span>Pós-evento</span>
+              <span class="canal-phase-num" style="color:#D41A6A;">4</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ASSESSORIA DE IMPRENSA -->
+      <div class="canal-card">
+        <div class="canal-header" style="background: linear-gradient(135deg, #E86428, #B84A10);">
+          <span class="canal-icon">📰</span>
+          <div class="canal-name">Assessoria de<br>Imprensa</div>
+        </div>
+        <div class="canal-body">
+          <div class="canal-count" style="color:#E86428;">13</div>
+          <div class="canal-label">peças de imprensa</div>
+          <div class="canal-breakdown">
+            <div class="canal-phase-row">
+              <span class="canal-phase-label"><span class="canal-phase-dot" style="background:#3DAA35;"></span>Pré-evento</span>
+              <span class="canal-phase-num" style="color:#E86428;">6</span>
+            </div>
+            <div class="canal-phase-row">
+              <span class="canal-phase-label"><span class="canal-phase-dot" style="background:#E86428;"></span>Durante</span>
+              <span class="canal-phase-num" style="color:#E86428;">3</span>
+            </div>
+            <div class="canal-phase-row">
+              <span class="canal-phase-label"><span class="canal-phase-dot" style="background:#6B2D7B;"></span>Pós-evento</span>
+              <span class="canal-phase-num" style="color:#E86428;">4</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MÍDIA KIT VIBRA -->
+      <div class="canal-card">
+        <div class="canal-header" style="background: linear-gradient(135deg, #6B2D7B, #4A1060);">
+          <span class="canal-icon">🎯</span>
+          <div class="canal-name">Mídia Kit<br>Vibra Energia</div>
+        </div>
+        <div class="canal-body">
+          <div class="canal-count" style="color:#6B2D7B;">4</div>
+          <div class="canal-label">peças para patrocinador</div>
+          <div class="canal-breakdown">
+            <div class="canal-phase-row">
+              <span class="canal-phase-label"><span class="canal-phase-dot" style="background:#6B2D7B;"></span>Posts Instagram</span>
+              <span class="canal-phase-num" style="color:#6B2D7B;">3</span>
+            </div>
+            <div class="canal-phase-row">
+              <span class="canal-phase-label"><span class="canal-phase-dot" style="background:#6B2D7B;"></span>Card LinkedIn</span>
+              <span class="canal-phase-num" style="color:#6B2D7B;">1</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════ FLUXO SEMANAL -->
+  <div class="section" style="padding-top:0">
+    <div class="section-title">Fluxo de Produção Semanal</div>
+    <p class="section-subtitle">Cadência de trabalho por canal — semanas de produção ativa</p>
+
+    <div class="fluxo-grid">
+      <div class="fluxo-cell fluxo-header fluxo-dia">Dia</div>
+      <div class="fluxo-cell fluxo-header" style="color:#5DD8FF;">✉ Email</div>
+      <div class="fluxo-cell fluxo-header" style="color:#7DDF76;">💬 WhatsApp</div>
+      <div class="fluxo-cell fluxo-header" style="color:#FF9EC8;">📱 Redes Sociais</div>
+      <div class="fluxo-cell fluxo-header" style="color:#FFB38A;">📰 Imprensa</div>
+
+      <div class="fluxo-cell fluxo-dia">Sexta</div>
+      <div class="fluxo-cell"><div class="fluxo-item"><span class="fluxo-acao"><span class="fluxo-dot" style="background:#005F73;"></span>Briefing</span><span class="fluxo-resp">Lucas / Bruna</span></div></div>
+      <div class="fluxo-cell"><div class="fluxo-item"><span class="fluxo-acao"><span class="fluxo-dot" style="background:#128C7E;"></span>Briefing</span><span class="fluxo-resp">Lucas / Bruna</span></div></div>
+      <div class="fluxo-cell"><div class="fluxo-item"><span class="fluxo-acao"><span class="fluxo-dot" style="background:#D41A6A;"></span>Briefing</span><span class="fluxo-resp">Lucas / Bruna</span></div></div>
+      <div class="fluxo-cell"><div class="fluxo-item"><span class="fluxo-acao"><span class="fluxo-dot" style="background:#E86428;"></span>Briefing</span><span class="fluxo-resp">Lucas / Ângelo</span></div></div>
+
+      <div class="fluxo-cell fluxo-dia">Quarta</div>
+      <div class="fluxo-cell"><div class="fluxo-item"><span class="fluxo-acao"><span class="fluxo-dot" style="background:#005F73;"></span>Layout / Arte</span><span class="fluxo-resp">Designer</span></div></div>
+      <div class="fluxo-cell"><div class="fluxo-item"><span class="fluxo-acao"><span class="fluxo-dot" style="background:#128C7E;"></span>Layout / Arte</span><span class="fluxo-resp">Designer</span></div></div>
+      <div class="fluxo-cell"><div class="fluxo-item"><span class="fluxo-acao"><span class="fluxo-dot" style="background:#D41A6A;"></span>Layout / Arte</span><span class="fluxo-resp">Designer</span></div></div>
+      <div class="fluxo-cell"><div class="fluxo-item"><span class="fluxo-acao"><span class="fluxo-dot" style="background:#E86428;"></span>Redação</span><span class="fluxo-resp">Ângelo</span></div></div>
+
+      <div class="fluxo-cell fluxo-dia">Quinta</div>
+      <div class="fluxo-cell"><div class="fluxo-item"><span class="fluxo-acao"><span class="fluxo-dot" style="background:#005F73;"></span>Aprov. Interna</span><span class="fluxo-resp">Bruna</span></div></div>
+      <div class="fluxo-cell"><div class="fluxo-item"><span class="fluxo-acao"><span class="fluxo-dot" style="background:#128C7E;"></span>Aprov. Interna</span><span class="fluxo-resp">Bruna</span></div></div>
+      <div class="fluxo-cell"><div class="fluxo-item"><span class="fluxo-acao"><span class="fluxo-dot" style="background:#D41A6A;"></span>Aprov. Interna</span><span class="fluxo-resp">Bruna</span></div></div>
+      <div class="fluxo-cell"><div class="fluxo-item"><span class="fluxo-acao"><span class="fluxo-dot" style="background:#E86428;"></span>Aprov. Interna</span><span class="fluxo-resp">Bruna</span></div></div>
+
+      <div class="fluxo-cell fluxo-dia">Sexta</div>
+      <div class="fluxo-cell"><div class="fluxo-item"><span class="fluxo-acao" style="color:#6B2D7B;">⚡ Aprov. Vibra</span><span class="fluxo-resp">(se aplicável)</span></div></div>
+      <div class="fluxo-cell"><div class="fluxo-item"><span class="fluxo-acao" style="color:#6B2D7B;">⚡ Aprov. Vibra</span><span class="fluxo-resp">(se aplicável)</span></div></div>
+      <div class="fluxo-cell"><div class="fluxo-item"><span class="fluxo-acao" style="color:#6B2D7B;">⚡ Aprov. Vibra</span><span class="fluxo-resp">(se aplicável)</span></div></div>
+      <div class="fluxo-cell"><div class="fluxo-item"><span class="fluxo-acao" style="color:#6B2D7B;">⚡ Aprov. Vibra</span><span class="fluxo-resp">(se aplicável)</span></div></div>
+
+      <div class="fluxo-cell fluxo-dia">Segunda</div>
+      <div class="fluxo-cell"><div class="fluxo-item"><span class="fluxo-acao"><span class="fluxo-dot" style="background:#005F73;"></span>Disparo</span><span class="fluxo-resp">Designer / Lucas</span></div></div>
+      <div class="fluxo-cell"><div class="fluxo-item"><span class="fluxo-acao"><span class="fluxo-dot" style="background:#128C7E;"></span>Envio</span><span class="fluxo-resp">Equipe</span></div></div>
+      <div class="fluxo-cell"><div class="fluxo-item"><span class="fluxo-acao"><span class="fluxo-dot" style="background:#D41A6A;"></span>Postagem</span><span class="fluxo-resp">Designer</span></div></div>
+      <div class="fluxo-cell"><div class="fluxo-item"><span class="fluxo-acao"><span class="fluxo-dot" style="background:#E86428;"></span>Envio Imprensa</span><span class="fluxo-resp">Ângelo</span></div></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════ TABELA ETAPAS -->
+  <div class="section" style="padding-top:0">
+    <div class="section-title">Etapas de Produção</div>
+    <p class="section-subtitle">Todas as 54 peças planejadas · Adaptação da planilha de controle do SDG Action Zone</p>
+
+    <div class="table-wrap">
+      <div class="table-header-bar">
+        <span class="table-header-title">Controle completo de produção — Ecoarte Vibra 2026</span>
+        <div class="table-filters">
+          <span class="filter-chip tag-pre">Pré</span>
+          <span class="filter-chip tag-durante">Durante</span>
+          <span class="filter-chip tag-pos">Pós</span>
+          <span class="filter-chip tag-manaus">Manaus</span>
+          <span class="filter-chip tag-rj">RJ</span>
+        </div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Nome</th>
+            <th>Fase</th>
+            <th>Cidade</th>
+            <th>Data</th>
+            <th>Briefing</th>
+            <th>Arte</th>
+            <th>Aprov.<br>Interna</th>
+            <th>Aprov.<br>Vibra</th>
+            <th>Postagem</th>
+            <th>Resp. Aprovação</th>
+            <th>Resp. Postagem</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <!-- EMAIL MARKETING -->
+          <tr class="section-row">
+            <td colspan="12" style="background:#005F73;">
+              ✉ Email Marketing — 14 peças
+            </td>
+          </tr>
+          <tr>
+            <td style="color:#6B7280;">01</td>
+            <td>Chamada para Participação — Escolas</td>
+            <td><span class="tag tag-pre">Pré</span></td>
+            <td><span class="tag tag-manaus">Manaus</span></td>
+            <td>mai/26</td>
+            <td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td>
+            <td>Bruna</td><td>Lucas / Designer</td>
+          </tr>
+          <tr>
+            <td style="color:#6B7280;">02</td>
+            <td>Chamada para Participação — Comunidade</td>
+            <td><span class="tag tag-pre">Pré</span></td>
+            <td><span class="tag tag-manaus">Manaus</span></td>
+            <td>mai/26</td>
+            <td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td>
+            <td>Bruna</td><td>Lucas / Designer</td>
+          </tr>
+          <tr>
+            <td style="color:#6B7280;">03</td>
+            <td>Confirmação de Inscrição (automático)</td>
+            <td><span class="tag tag-pre">Pré</span></td>
+            <td><span class="tag tag-manaus">Manaus</span></td>
+            <td>mai/26</td>
+            <td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td>
+            <td>Bruna</td><td>Lucas / Designer</td>
+          </tr>
+          <tr>
+            <td style="color:#6B7280;">04</td>
+            <td>Lembrete — 1 semana antes</td>
+            <td><span class="tag tag-pre">Pré</span></td>
+            <td><span class="tag tag-manaus">Manaus</span></td>
+            <td>07/jun</td>
+            <td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td>
+            <td>Bruna</td><td>Lucas / Designer</td>
+          </tr>
+          <tr>
+            <td style="color:#6B7280;">05</td>
+            <td>Lembrete — Amanhã começa (Manaus)</td>
+            <td><span class="tag tag-pre">Pré</span></td>
+            <td><span class="tag tag-manaus">Manaus</span></td>
+            <td>13/jun</td>
+            <td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td>
+            <td>Bruna</td><td>Lucas / Designer</td>
+          </tr>
+          <tr>
+            <td style="color:#6B7280;">06</td>
+            <td>Estamos ao vivo! (Manaus)</td>
+            <td><span class="tag tag-durante">Durante</span></td>
+            <td><span class="tag tag-manaus">Manaus</span></td>
+            <td>14/jun</td>
+            <td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td>
+            <td>Bruna</td><td>Lucas / Designer</td>
+          </tr>
+          <tr>
+            <td style="color:#6B7280;">07</td>
+            <td>Melhores momentos + Obrigado (Manaus)</td>
+            <td><span class="tag tag-pos">Pós</span></td>
+            <td><span class="tag tag-manaus">Manaus</span></td>
+            <td>16/jun</td>
+            <td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td>
+            <td>Bruna</td><td>Lucas / Designer</td>
+          </tr>
+          <tr>
+            <td style="color:#6B7280;">08</td>
+            <td>Chamada para Participação — Escolas RJ</td>
+            <td><span class="tag tag-pre">Pré</span></td>
+            <td><span class="tag tag-rj">RJ</span></td>
+            <td>jul/26</td>
+            <td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td>
+            <td>Bruna</td><td>Lucas / Designer</td>
+          </tr>
+          <tr>
+            <td style="color:#6B7280;">09</td>
+            <td>Chamada para Participação — Comunidade RJ</td>
+            <td><span class="tag tag-pre">Pré</span></td>
+            <td><span class="tag tag-rj">RJ</span></td>
+            <td>jul/26</td>
+            <td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td>
+            <td>Bruna</td><td>Lucas / Designer</td>
+          </tr>
+          <tr>
+            <td style="color:#6B7280;">10</td>
+            <td>Lembrete — 1 semana antes (RJ)</td>
+            <td><span class="tag tag-pre">Pré</span></td>
+            <td><span class="tag tag-rj">RJ</span></td>
+            <td>22/ago</td>
+            <td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td>
+            <td>Bruna</td><td>Lucas / Designer</td>
+          </tr>
+          <tr>
+            <td style="color:#6B7280;">11</td>
+            <td>Lembrete — Amanhã começa (RJ)</td>
+            <td><span class="tag tag-pre">Pré</span></td>
+            <td><span class="tag tag-rj">RJ</span></td>
+            <td>28/ago</td>
+            <td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td>
+            <td>Bruna</td><td>Lucas / Designer</td>
+          </tr>
+          <tr>
+            <td style="color:#6B7280;">12</td>
+            <td>Estamos ao vivo! (RJ)</td>
+            <td><span class="tag tag-durante">Durante</span></td>
+            <td><span class="tag tag-rj">RJ</span></td>
+            <td>29/ago</td>
+            <td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td>
+            <td>Bruna</td><td>Lucas / Designer</td>
+          </tr>
+          <tr>
+            <td style="color:#6B7280;">13</td>
+            <td>Melhores momentos + Obrigado (RJ)</td>
+            <td><span class="tag tag-pos">Pós</span></td>
+            <td><span class="tag tag-rj">RJ</span></td>
+            <td>31/ago</td>
+            <td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td>
+            <td>Bruna</td><td>Lucas / Designer</td>
+          </tr>
+          <tr>
+            <td style="color:#6B7280;">14</td>
+            <td>Relatório de Impacto Final (Vibra)</td>
+            <td><span class="tag tag-pos">Pós</span></td>
+            <td><span class="tag tag-ambas">Ambas</span></td>
+            <td>out/26</td>
+            <td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td>
+            <td>Bruna</td><td>Lucas / Designer</td>
+          </tr>
+
+          <!-- WHATSAPP -->
+          <tr class="section-row">
+            <td colspan="12" style="background:#128C7E;">
+              💬 WhatsApp — 8 peças
+            </td>
+          </tr>
+          <tr>
+            <td style="color:#6B7280;">15</td>
+            <td>Card Convite Escolas (Manaus)</td>
+            <td><span class="tag tag-pre">Pré</span></td>
+            <td><span class="tag tag-manaus">Manaus</span></td>
+            <td>mai/26</td>
+            <td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td>
+            <td>Bruna</td><td>Equipe</td>
+          </tr>
+          <tr>
+            <td style="color:#6B7280;">16</td>
+            <td>Card Convite Comunidade (Manaus)</td>
+            <td><span class="tag tag-pre">Pré</span></td>
+            <td><span class="tag tag-manaus">Manaus</span></td>
+            <td>mai/26</td>
+            <td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td>
+            <td>Bruna</td><td>Equipe</td>
+          </tr>
+          <tr>
+            <td style="color:#6B7280;">17</td>
+            <td>Card Programação do Dia D (Manaus)</td>
+            <td><span class="tag tag-durante">Durante</span></td>
+            <td><span class="tag tag-manaus">Manaus</span></td>
+            <td>14/jun</td>
+            <td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td>
+            <td>Bruna</td><td>Equipe</td>
+          </tr>
+          <tr>
+            <td style="color:#6B7280;">18</td>
+            <td>Card Agradecimento + Numeralha (Manaus)</td>
+            <td><span class="tag tag-pos">Pós</span></td>
+            <td><span class="tag tag-manaus">Manaus</span></td>
+            <td>15/jun</td>
+            <td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td>
+            <td>Bruna</td><td>Equipe</td>
+          </tr>
+          <tr>
+            <td style="color:#6B7280;">19</td>
+            <td>Card Convite Escolas (RJ)</td>
+            <td><span class="tag tag-pre">Pré</span></td>
+            <td><span class="tag tag-rj">RJ</span></td>
+            <td>jul/26</td>
+            <td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td>
+            <td>Bruna</td><td>Equipe</td>
+          </tr>
+          <tr>
+            <td style="color:#6B7280;">20</td>
+            <td>Card Convite Comunidade (RJ)</td>
+            <td><span class="tag tag-pre">Pré</span></td>
+            <td><span class="tag tag-rj">RJ</span></td>
+            <td>jul/26</td>
+            <td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td>
+            <td>Bruna</td><td>Equipe</td>
+          </tr>
+          <tr>
+            <td style="color:#6B7280;">21</td>
+            <td>Card Programação do Dia D (RJ)</td>
+            <td><span class="tag tag-durante">Durante</span></td>
+            <td><span class="tag tag-rj">RJ</span></td>
+            <td>29/ago</td>
+            <td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td>
+            <td>Bruna</td><td>Equipe</td>
+          </tr>
+          <tr>
+            <td style="color:#6B7280;">22</td>
+            <td>Card Agradecimento + Numeralha (RJ)</td>
+            <td><span class="tag tag-pos">Pós</span></td>
+            <td><span class="tag tag-rj">RJ</span></td>
+            <td>30/ago</td>
+            <td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td>
+            <td>Bruna</td><td>Equipe</td>
+          </tr>
+
+          <!-- REDES SOCIAIS -->
+          <tr class="section-row">
+            <td colspan="12" style="background:#D41A6A;">
+              📱 Redes Sociais (Instagram + LinkedIn) — 15 peças
+            </td>
+          </tr>
+          <tr>
+            <td style="color:#6B7280;">23</td>
+            <td>Vem aí! Ecoarte em Manaus (post 1)</td>
+            <td><span class="tag tag-pre">Pré</span></td>
+            <td><span class="tag tag-manaus">Manaus</span></td>
+            <td>mai/26</td>
+            <td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td>
+            <td>Bruna</td><td>Designer</td>
+          </tr>
+          <tr>
+            <td style="color:#6B7280;">24</td>
+            <td>Vem aí! Ecoarte em Manaus (carrossel 2)</td>
+            <td><span class="tag tag-pre">Pré</span></td>
+            <td><span class="tag tag-manaus">Manaus</span></td>
+            <td>mai/26</td>
+            <td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td>
+            <td>Bruna</td><td>Designer</td>
+          </tr>
+          <tr>
+            <td style="color:#6B7280;">25</td>
+            <td>O que esperar: Meu Corpo, Minhas Regras</td>
+            <td><span class="tag tag-pre">Pré</span></td>
+            <td><span class="tag tag-ambas">Ambas</span></td>
+            <td>jun/26</td>
+            <td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td>
+            <td>Bruna</td><td>Designer</td>
+          </tr>
+          <tr>
+            <td style="color:#6B7280;">26</td>
+            <td>Os ODS do Ecoarte (carrossel educativo)</td>
+            <td><span class="tag tag-pre">Pré</span></td>
+            <td><span class="tag tag-ambas">Ambas</span></td>
+            <td>jun/26</td>
+            <td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td>
+            <td>Bruna</td><td>Designer</td>
+          </tr>
+          <tr>
+            <td style="color:#6B7280;">27</td>
+            <td>Programação do Dia D Manaus</td>
+            <td><span class="tag tag-durante">Durante</span></td>
+            <td><span class="tag tag-manaus">Manaus</span></td>
+            <td>14/jun</td>
+            <td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td>
+            <td>Bruna</td><td>Designer</td>
+          </tr>
+          <tr>
+            <td style="color:#6B7280;">28</td>
+            <td>Cobertura ao vivo Manaus (Stories)</td>
+            <td><span class="tag tag-durante">Durante</span></td>
+            <td><span class="tag tag-manaus">Manaus</span></td>
+            <td>14/jun</td>
+            <td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td>—</td><td><span class="empty">○</span></td>
+            <td>Bruna</td><td>Designer / Equipe</td>
+          </tr>
+          <tr>
+            <td style="color:#6B7280;">29</td>
+            <td>Melhores Momentos Manaus (carrossel)</td>
+            <td><span class="tag tag-pos">Pós</span></td>
+            <td><span class="tag tag-manaus">Manaus</span></td>
+            <td>16/jun</td>
+            <td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td>
+            <td>Bruna</td><td>Designer</td>
+          </tr>
+          <tr>
+            <td style="color:#6B7280;">30</td>
+            <td>Numeralha de Impacto Manaus (post)</td>
+            <td><span class="tag tag-pos">Pós</span></td>
+            <td><span class="tag tag-manaus">Manaus</span></td>
+            <td>jun/26</td>
+            <td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td>
+            <td>Bruna</td><td>Designer</td>
+          </tr>
+          <tr>
+            <td style="color:#6B7280;">31</td>
+            <td>LinkedIn: Vibra + Ecoarte (institucional)</td>
+            <td><span class="tag tag-pre">Pré</span></td>
+            <td><span class="tag tag-ambas">Ambas</span></td>
+            <td>jun/26</td>
+            <td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td>
+            <td>Bruna</td><td>Designer</td>
+          </tr>
+          <tr>
+            <td style="color:#6B7280;">32</td>
+            <td>Vem aí! Ecoarte no Rio de Janeiro</td>
+            <td><span class="tag tag-pre">Pré</span></td>
+            <td><span class="tag tag-rj">RJ</span></td>
+            <td>jul/26</td>
+            <td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td>
+            <td>Bruna</td><td>Designer</td>
+          </tr>
+          <tr>
+            <td style="color:#6B7280;">33</td>
+            <td>Programação do Dia D RJ</td>
+            <td><span class="tag tag-durante">Durante</span></td>
+            <td><span class="tag tag-rj">RJ</span></td>
+            <td>29/ago</td>
+            <td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td>
+            <td>Bruna</td><td>Designer</td>
+          </tr>
+          <tr>
+            <td style="color:#6B7280;">34</td>
+            <td>Cobertura ao vivo RJ (Stories)</td>
+            <td><span class="tag tag-durante">Durante</span></td>
+            <td><span class="tag tag-rj">RJ</span></td>
+            <td>29/ago</td>
+            <td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td>—</td><td><span class="empty">○</span></td>
+            <td>Bruna</td><td>Designer / Equipe</td>
+          </tr>
+          <tr>
+            <td style="color:#6B7280;">35</td>
+            <td>Melhores Momentos RJ (carrossel)</td>
+            <td><span class="tag tag-pos">Pós</span></td>
+            <td><span class="tag tag-rj">RJ</span></td>
+            <td>ago/set</td>
+            <td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td>
+            <td>Bruna</td><td>Designer</td>
+          </tr>
+          <tr>
+            <td style="color:#6B7280;">36</td>
+            <td>Numeralha de Impacto Total — Cota 2</td>
+            <td><span class="tag tag-pos">Pós</span></td>
+            <td><span class="tag tag-ambas">Ambas</span></td>
+            <td>set/26</td>
+            <td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td>
+            <td>Bruna</td><td>Designer</td>
+          </tr>
+          <tr>
+            <td style="color:#6B7280;">37</td>
+            <td>LinkedIn: Resultados finais para Vibra</td>
+            <td><span class="tag tag-pos">Pós</span></td>
+            <td><span class="tag tag-ambas">Ambas</span></td>
+            <td>set/26</td>
+            <td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td>
+            <td>Bruna</td><td>Designer</td>
+          </tr>
+
+          <!-- ASSESSORIA DE IMPRENSA -->
+          <tr class="section-row">
+            <td colspan="12" style="background:#E86428;">
+              📰 Assessoria de Imprensa — 13 peças
+            </td>
+          </tr>
+          <tr>
+            <td style="color:#6B7280;">38</td>
+            <td>Release: Anúncio do Ecoarte Manaus</td>
+            <td><span class="tag tag-pre">Pré</span></td>
+            <td><span class="tag tag-manaus">Manaus</span></td>
+            <td>mai/26</td>
+            <td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td>
+            <td>Bruna</td><td>Ângelo</td>
+          </tr>
+          <tr>
+            <td style="color:#6B7280;">39</td>
+            <td>Convite para Imprensa — Manaus</td>
+            <td><span class="tag tag-pre">Pré</span></td>
+            <td><span class="tag tag-manaus">Manaus</span></td>
+            <td>jun/26</td>
+            <td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td>
+            <td>Bruna</td><td>Ângelo</td>
+          </tr>
+          <tr>
+            <td style="color:#6B7280;">40</td>
+            <td>Mailing de Imprensa — Manaus</td>
+            <td><span class="tag tag-pre">Pré</span></td>
+            <td><span class="tag tag-manaus">Manaus</span></td>
+            <td>mai/26</td>
+            <td><span class="empty">○</span></td><td>—</td><td><span class="empty">○</span></td><td>—</td><td>—</td>
+            <td>Bruna</td><td>Ângelo</td>
+          </tr>
+          <tr>
+            <td style="color:#6B7280;">41</td>
+            <td>Nota Exclusiva (1 veículo local) — Manaus</td>
+            <td><span class="tag tag-pre">Pré</span></td>
+            <td><span class="tag tag-manaus">Manaus</span></td>
+            <td>jun/26</td>
+            <td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td>
+            <td>Bruna</td><td>Ângelo</td>
+          </tr>
+          <tr>
+            <td style="color:#6B7280;">42</td>
+            <td>Release do Dia D — Manaus</td>
+            <td><span class="tag tag-durante">Durante</span></td>
+            <td><span class="tag tag-manaus">Manaus</span></td>
+            <td>14/jun</td>
+            <td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td>
+            <td>Bruna</td><td>Ângelo</td>
+          </tr>
+          <tr>
+            <td style="color:#6B7280;">43</td>
+            <td>Release Pós-Evento com Numeralha — Manaus</td>
+            <td><span class="tag tag-pos">Pós</span></td>
+            <td><span class="tag tag-manaus">Manaus</span></td>
+            <td>15/jun</td>
+            <td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td>
+            <td>Bruna</td><td>Ângelo</td>
+          </tr>
+          <tr>
+            <td style="color:#6B7280;">44</td>
+            <td>Release: Anúncio do Ecoarte RJ</td>
+            <td><span class="tag tag-pre">Pré</span></td>
+            <td><span class="tag tag-rj">RJ</span></td>
+            <td>jul/26</td>
+            <td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td>
+            <td>Bruna</td><td>Ângelo</td>
+          </tr>
+          <tr>
+            <td style="color:#6B7280;">45</td>
+            <td>Mailing de Imprensa — RJ</td>
+            <td><span class="tag tag-pre">Pré</span></td>
+            <td><span class="tag tag-rj">RJ</span></td>
+            <td>jul/26</td>
+            <td><span class="empty">○</span></td><td>—</td><td><span class="empty">○</span></td><td>—</td><td>—</td>
+            <td>Bruna</td><td>Ângelo</td>
+          </tr>
+          <tr>
+            <td style="color:#6B7280;">46</td>
+            <td>Convite para Imprensa — RJ</td>
+            <td><span class="tag tag-pre">Pré</span></td>
+            <td><span class="tag tag-rj">RJ</span></td>
+            <td>ago/26</td>
+            <td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td>
+            <td>Bruna</td><td>Ângelo</td>
+          </tr>
+          <tr>
+            <td style="color:#6B7280;">47</td>
+            <td>Nota Exclusiva (1 veículo) — RJ</td>
+            <td><span class="tag tag-pre">Pré</span></td>
+            <td><span class="tag tag-rj">RJ</span></td>
+            <td>ago/26</td>
+            <td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td>
+            <td>Bruna</td><td>Ângelo</td>
+          </tr>
+          <tr>
+            <td style="color:#6B7280;">48</td>
+            <td>Release do Dia D — RJ</td>
+            <td><span class="tag tag-durante">Durante</span></td>
+            <td><span class="tag tag-rj">RJ</span></td>
+            <td>29/ago</td>
+            <td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td>
+            <td>Bruna</td><td>Ângelo</td>
+          </tr>
+          <tr>
+            <td style="color:#6B7280;">49</td>
+            <td>Release Pós-Evento com Numeralha — RJ</td>
+            <td><span class="tag tag-pos">Pós</span></td>
+            <td><span class="tag tag-rj">RJ</span></td>
+            <td>ago/set</td>
+            <td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td>
+            <td>Bruna</td><td>Ângelo</td>
+          </tr>
+          <tr>
+            <td style="color:#6B7280;">50</td>
+            <td>Release Final Cota 2 — Impacto Total</td>
+            <td><span class="tag tag-pos">Pós</span></td>
+            <td><span class="tag tag-ambas">Ambas</span></td>
+            <td>set/26</td>
+            <td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td>
+            <td>Bruna</td><td>Ângelo</td>
+          </tr>
+
+          <!-- MÍDIA KIT VIBRA -->
+          <tr class="section-row">
+            <td colspan="12" style="background:#6B2D7B;">
+              🎯 Mídia Kit Vibra Energia — 4 peças para o patrocinador
+            </td>
+          </tr>
+          <tr>
+            <td style="color:#6B7280;">51</td>
+            <td>Posts Instagram para Vibra compartilhar (3)</td>
+            <td><span class="tag tag-pre">Pré</span></td>
+            <td><span class="tag tag-ambas">Ambas</span></td>
+            <td>jun/26</td>
+            <td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td>
+            <td>Bruna / Vibra</td><td>Vibra</td>
+          </tr>
+          <tr>
+            <td style="color:#6B7280;">52</td>
+            <td>Card LinkedIn para Vibra (collab)</td>
+            <td><span class="tag tag-pre">Pré</span></td>
+            <td><span class="tag tag-ambas">Ambas</span></td>
+            <td>jun/26</td>
+            <td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td>
+            <td>Bruna / Vibra</td><td>Vibra</td>
+          </tr>
+          <tr>
+            <td style="color:#6B7280;">53</td>
+            <td>Copy sugerido para Vibra (redes)</td>
+            <td><span class="tag tag-pre">Pré</span></td>
+            <td><span class="tag tag-ambas">Ambas</span></td>
+            <td>jun/26</td>
+            <td><span class="empty">○</span></td><td>—</td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td>—</td>
+            <td>Bruna / Vibra</td><td>Vibra</td>
+          </tr>
+          <tr>
+            <td style="color:#6B7280;">54</td>
+            <td>Logo co-assinatura "Realização NTICS / Patrocínio Vibra"</td>
+            <td><span class="tag tag-pre">Pré</span></td>
+            <td><span class="tag tag-ambas">Ambas</span></td>
+            <td>mai/26</td>
+            <td>—</td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td><span class="empty">○</span></td><td>—</td>
+            <td>Bruna / Vibra</td><td>—</td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════ IMPACTO ALVO -->
+  <div class="section" style="padding-top:0">
+    <div class="section-title">Indicadores de Alcance Alvo</div>
+    <p class="section-subtitle">Metas combinadas de Manaus + Rio de Janeiro — Cota 2 Vibra</p>
+
+    <div class="impacto-grid">
+      <div class="impacto-card" style="border-color:#3DAA35;">
+        <div class="impacto-num" style="color:#3DAA35;">12.000</div>
+        <div class="impacto-label">pessoas na praça pública<br>(6.000 por cidade)</div>
+      </div>
+      <div class="impacto-card" style="border-color:#005F73;">
+        <div class="impacto-num" style="color:#005F73;">2.400</div>
+        <div class="impacto-label">alunos em espetáculos<br>nas escolas públicas</div>
+      </div>
+      <div class="impacto-card" style="border-color:#F5B800;">
+        <div class="impacto-num" style="color:#F5B800;">8.000</div>
+        <div class="impacto-label">pessoas na<br>exposição fotográfica</div>
+      </div>
+      <div class="impacto-card" style="border-color:#D41A6A;">
+        <div class="impacto-num" style="color:#D41A6A;">160</div>
+        <div class="impacto-label">lideranças nos<br>Talks ODS</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════ PENDÊNCIAS -->
+  <div class="section" style="padding-top:0">
+    <div class="section-title">Próximos Passos &amp; Pendências</div>
+    <p class="section-subtitle">O que precisa ser resolvido para dar sequência à comunicação</p>
+
+    <div class="notas-grid">
+      <div class="notas-card">
+        <div class="notas-title" style="color:#E86428;">⚠ Pendências Críticas (bloqueiam produção)</div>
+        <ul class="notas-list">
+          <li>Manual de marca + hashtags Vibra — solicitado desde 27/04. Sem ele, nenhuma peça visual pode ser finalizada.</li>
+          <li>Endereço definitivo em Cidade Nova / RJ — necessário para comunicação de local do evento.</li>
+          <li>Confirmação do modelo híbrido com a Vibra — cenografia local Manaus vs. caminhão.</li>
+          <li>Contato de Comunicação Corporativa Vibra — aprovação de peças exige 24-48h.</li>
+          <li>Campanha oficial: confirmar no kickoff se é "Violência Sexual Zero", "Na Mão Certa" ou "Fim da Linha".</li>
+        </ul>
+      </div>
+      <div class="notas-card">
+        <div class="notas-title" style="color:#3DAA35;">✓ O que este plano entrega na sequência</div>
+        <ul class="notas-list">
+          <li>Planilha Google Sheets "Etapas de Produção 133 Vibra 2026" — rastreamento completo das 54 peças.</li>
+          <li>Estrutura de pastas no Drive Comunicação: briefings, artes, publicados, referências.</li>
+          <li>4 documentos de briefing (Google Docs) — um por canal de comunicação.</li>
+          <li>Co-assinatura padrão para todas as peças: "Realização NTICS Projetos / Patrocínio Vibra Energia".</li>
+          <li>Fluxo de aprovação documentado: Interna (Bruna) → Vibra (48h) → Publicação.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /container -->
+
+<footer>
+  <strong>NTICS Projetos</strong> · Plano de Comunicação · Projeto 133 — Ecoarte Container Itinerante nas Escolas<br>
+  Patrocínio Vibra Energia via Lei Rouanet (PRONACs 247750 + 2512270) · Manaus 14/jun + Rio de Janeiro 29/ago 2026<br>
+  <br>
+  Documento interno para aprovação · Produzido por Lucas Rotta · <strong>NTICS Projetos · mai/2026</strong>
+</footer>
+
+</body>
+</html>
