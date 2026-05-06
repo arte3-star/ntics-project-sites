@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Briefing de Campo · 132 Estacao Samarco</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+:root {
+  --verde: #3DAA35;
+  --azul: #005F73;
+  --rosa: #D41A6A;
+  --laranja: #E86428;
+  --amarelo: #F5B800;
+  --teal: #00A5B8;
+  --roxo: #6B2D7B;
+  --branco: #FFFFFF;
+  --cinza-claro: #F4F4F4;
+  --cinza-medio: #6B7280;
+  --grafite: #2D2D2D;
+  --grafite-mais-escuro: #1A1A1A;
+  --font: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+body {
+  font-family: var(--font);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--grafite);
+  background: var(--cinza-claro);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ===== Sidebar ===== */
+.sidebar {
+  position: fixed;
+  left: 0; top: 0; bottom: 0;
+  width: 300px;
+  background: var(--grafite-mais-escuro);
+  color: var(--branco);
+  padding: 32px 0;
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+}
+.brand {
+  padding: 0 24px 24px 24px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.brand-logo {
+  display: flex; align-items: center; gap: 12px;
+  font-weight: 800; font-size: 20px; letter-spacing: -0.02em;
+}
+.brand-logo .dot {
+  width: 32px; height: 32px;
+  background: linear-gradient(135deg, var(--verde) 0%, var(--teal) 100%);
+  border-radius: 8px;
+  display: grid; place-items: center;
+  font-size: 14px; font-weight: 800; color: white;
+}
+.brand-meta {
+  margin-top: 8px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(255,255,255,0.5);
+  font-weight: 500;
+}
+.nav-list { padding: 24px 12px; flex: 1; overflow-y: auto; }
+.nav-item {
+  width: 100%;
+  display: flex; align-items: center; gap: 14px;
+  padding: 14px 16px;
+  background: transparent;
+  border: none;
+  border-radius: 12px;
+  color: rgba(255,255,255,0.65);
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  font-size: 14px;
+  transition: all 200ms;
+  margin-bottom: 4px;
+}
+.nav-item:hover { background: rgba(255,255,255,0.06); color: white; }
+.nav-item.active {
+  background: rgba(255,255,255,0.10);
+  color: white;
+  box-shadow: inset 3px 0 0 var(--accent, var(--verde));
+}
+.nav-num {
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  background: var(--accent, var(--verde));
+  color: white;
+  display: grid; place-items: center;
+  font-weight: 700;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+.nav-item[data-view="117"] { --accent: var(--azul); }
+.nav-item[data-view="119"] { --accent: var(--verde); }
+.nav-item[data-view="116"] { --accent: var(--laranja); }
+.nav-item[data-view="127"] { --accent: var(--teal); }
+.nav-item[data-view="120"] { --accent: var(--amarelo); }
+.nav-item[data-view="124"] { --accent: var(--roxo); }
+.nav-item[data-view="125"] { --accent: var(--rosa); }
+.nav-item[data-view="aline"] { --accent: var(--rosa); }
+.nav-item[data-view="aline"] .nav-num { background: var(--rosa); font-size: 12px; }
+.nav-text strong { display: block; font-weight: 600; line-height: 1.2; }
+.nav-text small { display: block; font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 2px; }
+.sidebar-footer {
+  padding: 16px 24px;
+  font-size: 11px;
+  color: rgba(255,255,255,0.4);
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+/* ===== Main ===== */
+main {
+  margin-left: 300px;
+  min-height: 100vh;
+  padding: 48px 56px 80px 56px;
+}
+.view { display: none; max-width: 1100px; }
+.view.active { display: block; animation: fadeIn 320ms ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ===== Hero por projeto ===== */
+.hero {
+  position: relative;
+  border-radius: 24px;
+  padding: 56px 48px;
+  color: white;
+  margin-bottom: 48px;
+  overflow: hidden;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  right: -80px; top: -80px;
+  width: 320px; height: 320px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  right: 80px; bottom: -120px;
+  width: 240px; height: 240px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.06);
+}
+.view-117 .hero { background: linear-gradient(135deg, var(--azul) 0%, #003D4A 100%); }
+.view-119 .hero { background: linear-gradient(135deg, var(--verde) 0%, #2A7D24 100%); }
+.view-116 .hero { background: linear-gradient(135deg, var(--laranja) 0%, #B84A1A 100%); }
+.view-127 .hero { background: linear-gradient(135deg, var(--teal) 0%, #007A8A 100%); }
+.view-120 .hero { background: linear-gradient(135deg, var(--amarelo) 0%, #C49000 100%); }
+.view-124 .hero { background: linear-gradient(135deg, var(--roxo) 0%, #3D1A47 100%); }
+.view-125 .hero { background: linear-gradient(135deg, var(--rosa) 0%, #8B0F47 100%); }
+.view-aline .hero { background: linear-gradient(135deg, var(--rosa) 0%, #8B0F47 100%); }
+
+.overline {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-weight: 600;
+  opacity: 0.85;
+  margin-bottom: 12px;
+}
+.hero h1 {
+  font-size: 48px;
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  margin-bottom: 20px;
+  position: relative;
+}
+.hero .lead {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.45;
+  opacity: 0.92;
+  max-width: 720px;
+  position: relative;
+}
+.hero-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px 32px;
+  margin-top: 36px;
+  position: relative;
+}
+.hero-meta div {
+  border-left: 3px solid rgba(255,255,255,0.5);
+  padding-left: 14px;
+}
+.hero-meta strong {
+  display: block;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  opacity: 0.75;
+  margin-bottom: 4px;
+}
+.hero-meta span { font-weight: 500; font-size: 15px; }
+
+/* ===== Block sections ===== */
+.block { margin-bottom: 56px; }
+.block-header { margin-bottom: 28px; }
+.block-header .overline { color: var(--accent); }
+.view-117 { --accent: var(--azul); }
+.view-119 { --accent: var(--verde); }
+.view-116 { --accent: var(--laranja); }
+.view-127 { --accent: var(--teal); }
+.view-120 { --accent: var(--amarelo); }
+.view-124 { --accent: var(--roxo); }
+.view-125 { --accent: var(--rosa); }
+.view-aline { --accent: var(--rosa); }
+
+.block h2 {
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--grafite);
+}
+.block h2 + p.subtitle {
+  margin-top: 8px;
+  font-size: 17px;
+  color: var(--cinza-medio);
+  max-width: 720px;
+}
+
+/* ===== Video cards ===== */
+.video-cards { display: grid; gap: 16px; }
+.video-card {
+  background: white;
+  border-radius: 16px;
+  padding: 28px 32px;
+  border-left: 4px solid var(--accent);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  transition: box-shadow 200ms;
+}
+.video-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.06); }
+.card-tag {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  background: var(--accent);
+  color: white;
+  padding: 5px 12px;
+  border-radius: 999px;
+  margin-bottom: 14px;
+}
+.video-card h3 {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+  margin-bottom: 12px;
+  color: var(--grafite);
+}
+.video-card .story {
+  font-size: 15.5px;
+  line-height: 1.65;
+  color: #333;
+  margin-bottom: 18px;
+}
+.video-card .story strong { color: var(--accent); font-weight: 600; }
+.video-meta {
+  display: flex; flex-wrap: wrap; gap: 10px;
+  border-top: 1px solid var(--cinza-claro);
+  padding-top: 16px;
+}
+.chip {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--cinza-claro);
+  color: var(--grafite);
+}
+.chip strong { font-weight: 700; margin-right: 4px; color: var(--cinza-medio); text-transform: uppercase; font-size: 10px; letter-spacing: 0.1em; }
+
+/* ===== Captação grid ===== */
+.cap-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.cap-block {
+  background: white;
+  border-radius: 16px;
+  padding: 28px 32px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.cap-block.full { grid-column: 1 / -1; }
+.cap-block h4 {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  font-weight: 700;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--cinza-claro);
+}
+.cap-block h4 .icon { display: inline-block; margin-right: 8px; }
+.persona { margin-bottom: 24px; }
+.persona:last-child { margin-bottom: 0; }
+.persona-name {
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--grafite);
+  margin-bottom: 4px;
+}
+.persona-why {
+  font-size: 13px;
+  color: var(--cinza-medio);
+  margin-bottom: 10px;
+  font-style: normal;
+}
+.cap-block ul {
+  list-style: none;
+  padding: 0;
+}
+.cap-block ul li {
+  position: relative;
+  padding-left: 22px;
+  margin-bottom: 10px;
+  font-size: 14.5px;
+  line-height: 1.55;
+}
+.cap-block ul li::before {
+  content: '';
+  position: absolute;
+  left: 4px; top: 9px;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.cap-block .question {
+  background: #FAFAFA;
+  border-left: 3px solid var(--accent);
+  padding: 12px 16px;
+  border-radius: 0 8px 8px 0;
+  margin-bottom: 8px;
+  font-size: 14.5px;
+  line-height: 1.5;
+}
+.cap-block .question::before {
+  content: '"';
+  color: var(--accent);
+  font-weight: 700;
+  margin-right: 4px;
+}
+.cap-block .question::after {
+  content: '"';
+  color: var(--accent);
+  font-weight: 700;
+  margin-left: 2px;
+}
+
+/* ===== Aline-specific ===== */
+.fila-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.fila-table th, .fila-table td {
+  padding: 16px 20px;
+  text-align: left;
+  border-bottom: 1px solid var(--cinza-claro);
+  font-size: 14px;
+}
+.fila-table th {
+  background: #FAFAFA;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  color: var(--cinza-medio);
+}
+.fila-table tr:last-child td { border-bottom: none; }
+.fila-num {
+  display: inline-flex;
+  align-items: center; justify-content: center;
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 12px;
+  color: white;
+}
+.fila-num.c117 { background: var(--azul); }
+.fila-num.c119 { background: var(--verde); }
+.fila-num.c116 { background: var(--laranja); }
+
+.bio-card {
+  background: linear-gradient(135deg, var(--rosa) 0%, #8B0F47 100%);
+  color: white;
+  border-radius: 16px;
+  padding: 32px;
+  margin-bottom: 16px;
+}
+.bio-card .label {
+  font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em;
+  opacity: 0.8; font-weight: 600; margin-bottom: 8px;
+}
+.bio-card .text { font-size: 22px; font-weight: 600; line-height: 1.35; }
+
+.links-grid { display: grid; gap: 12px; }
+.link-row {
+  background: white;
+  border-radius: 12px;
+  padding: 18px 24px;
+  display: flex; align-items: center; gap: 18px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.link-row .order {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: var(--rosa);
+  color: white;
+  display: grid; place-items: center;
+  font-weight: 700; font-size: 13px;
+  flex-shrink: 0;
+}
+.link-row strong { display: block; font-size: 15px; margin-bottom: 2px; }
+.link-row span { font-size: 13px; color: var(--cinza-medio); }
+
+.posts-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.post-pin {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  border-top: 4px solid var(--rosa);
+}
+.post-pin .pin-num {
+  font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em;
+  color: var(--rosa); margin-bottom: 8px;
+}
+.post-pin h4 {
+  font-size: 18px; font-weight: 700; margin-bottom: 6px; color: var(--grafite);
+}
+.post-pin .obj { font-size: 12px; color: var(--cinza-medio); margin-bottom: 16px; font-weight: 500; }
+.post-pin ol {
+  padding-left: 18px;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: #333;
+}
+.post-pin ol li { margin-bottom: 6px; }
+
+.highlight-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+.highlight-item {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  border-bottom: 3px solid var(--rosa);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.highlight-item strong { display: block; font-size: 15px; margin-bottom: 4px; }
+.highlight-item span { font-size: 13px; color: var(--cinza-medio); }
+
+.calendar-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  font-size: 13px;
+}
+.calendar-table th { background: var(--rosa); color: white; padding: 12px 14px; text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; }
+.calendar-table td { padding: 11px 14px; border-bottom: 1px solid var(--cinza-claro); vertical-align: top; }
+.calendar-table tr:nth-child(even) td { background: #FAFAFA; }
+.calendar-table .week { font-weight: 700; color: var(--rosa); width: 50px; }
+.calendar-table .month { font-weight: 600; width: 50px; color: var(--cinza-medio); font-size: 11px; text-transform: uppercase; }
+.calendar-table .phase {
+  display: inline-block; font-size: 10px; padding: 3px 9px;
+  background: var(--cinza-claro); border-radius: 999px;
+  font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em;
+}
+.principios-list {
+  background: white;
+  border-radius: 16px;
+  padding: 28px 32px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.principios-list ul { list-style: none; }
+.principios-list li {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--cinza-claro);
+  font-size: 15px;
+  display: flex; align-items: center; gap: 14px;
+}
+.principios-list li:last-child { border-bottom: none; }
+.principios-list .num {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--rosa); color: white;
+  display: grid; place-items: center;
+  font-size: 12px; font-weight: 700;
+  flex-shrink: 0;
+}
+
+.flow-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  align-items: stretch;
+}
+.flow-step {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.flow-step .step-num {
+  font-size: 11px; font-weight: 700; color: var(--rosa);
+  text-transform: uppercase; letter-spacing: 0.12em;
+  margin-bottom: 6px;
+}
+.flow-step strong { display: block; font-size: 14px; margin-bottom: 4px; }
+.flow-step span { font-size: 12px; color: var(--cinza-medio); line-height: 1.4; display: block; }
+
+.welcome-section {
+  background: white;
+  border-radius: 16px;
+  padding: 32px;
+  margin-bottom: 32px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.welcome-section h3 { font-size: 18px; font-weight: 700; margin-bottom: 16px; }
+.welcome-section p { margin-bottom: 12px; line-height: 1.65; }
+.welcome-section p:last-child { margin-bottom: 0; }
+
+/* Diretivas Ana banner */
+.directives-banner {
+  background: linear-gradient(135deg, #003D4A 0%, var(--azul) 100%);
+  color: white;
+  border-radius: 16px;
+  padding: 28px 32px;
+  margin-bottom: 32px;
+}
+.directives-banner h4 {
+  font-size: 12px; text-transform: uppercase; letter-spacing: 0.14em;
+  opacity: 0.85; margin-bottom: 12px; font-weight: 600;
+}
+.directives-banner ul { list-style: none; padding: 0; }
+.directives-banner li {
+  padding: 8px 0;
+  font-size: 14.5px;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+.directives-banner li:last-child { border: none; }
+.directives-banner li strong { font-weight: 700; }
+
+/* ===== Stories cards ===== */
+.stories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+.story-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  border-left: 4px solid var(--accent);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+.story-num {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+.story-card h4 { font-size: 14px; font-weight: 700; margin-bottom: 6px; line-height: 1.35; }
+.story-card p { font-size: 13px; color: var(--cinza-medio); line-height: 1.5; }
+
+/* ===== Folder tree ===== */
+.folder-tree {
+  background: var(--grafite);
+  color: #D0D0D0;
+  border-radius: 12px;
+  padding: 24px 28px;
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+  line-height: 2;
+  overflow-x: auto;
+}
+.folder-tree .folder { color: var(--accent); font-weight: 600; }
+.folder-tree .file-note { color: #7A8A9A; font-size: 12px; }
+.naming-rule {
+  background: white;
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-top: 16px;
+  border: 1px solid var(--cinza-claro);
+}
+.naming-rule h4 { font-size: 14px; font-weight: 700; margin-bottom: 12px; }
+.naming-rule ul { list-style: none; padding: 0; }
+.naming-rule li { font-size: 13px; color: var(--cinza-medio); margin-bottom: 6px; }
+.naming-rule code { background: var(--cinza-claro); border-radius: 5px; padding: 2px 6px; font-size: 12px; font-family: 'Courier New', monospace; color: var(--grafite); }
+.drive-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--accent);
+  color: white;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: 'Courier New', monospace;
+  margin-top: 16px;
+  word-break: break-all;
+}
+.drive-badge-label { font-family: var(--font); font-size: 11px; text-transform: uppercase; letter-spacing: .08em; opacity: .85; }
+
+/* Responsivo */
+@media (max-width: 1000px) {
+  .sidebar { width: 240px; }
+  main { margin-left: 240px; padding: 32px 28px; }
+  .hero { padding: 40px 32px; }
+  .hero h1 { font-size: 36px; }
+  .cap-grid { grid-template-columns: 1fr; }
+  .posts-grid { grid-template-columns: 1fr; }
+  .flow-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 700px) {
+  .sidebar {
+    position: relative; width: 100%; height: auto;
+    flex-direction: row; padding: 16px;
+    overflow-x: auto;
+  }
+  .brand { padding: 0 16px 0 0; border: none; border-right: 1px solid rgba(255,255,255,0.1); }
+  .nav-list { display: flex; gap: 8px; padding: 0 0 0 16px; flex: none; }
+  .nav-item { flex: 0 0 auto; min-width: 200px; margin: 0; }
+  .sidebar-footer { display: none; }
+  main { margin-left: 0; padding: 24px; }
+}
+
+/* Arvore de pastas responsiva , substitui .folder-tree */
+.ftl-wrap { background: var(--grafite); border-radius: 12px; padding: 20px 24px; }
+.ftl { list-style: none; padding: 0; margin: 0; font-size: 13px; line-height: 1.9; }
+.ftl ul { list-style: none; padding-left: 20px; margin: 0;
+          border-left: 2px solid rgba(255,255,255,0.12); }
+.ftl-root { color: #ffffff; font-weight: 700; font-size: 14px;
+            font-family: 'Courier New', monospace; }
+.ftl-dir  { color: var(--accent); font-weight: 600;
+            font-family: 'Courier New', monospace; }
+.ftl-dir::before { content: "▸ "; font-size: 10px; opacity: .7; }
+.ftl-note { color: #757575; font-size: 11px; font-style: italic; margin-left: 8px; }
+.ftl-ex   { display: block; color: #9E9E9E; font-size: 11px;
+            font-family: 'Courier New', monospace; padding-left: 24px; }
+
+    /* ── Agenda de campo ── */
+    .photographer-badge { display:inline-flex; align-items:center; gap:10px; background:var(--cinza-claro); border-radius:20px; padding:7px 16px; font-size:13px; margin-bottom:20px; flex-wrap:wrap; }
+    .photographer-badge .ph-label { color:var(--cinza-medio); }
+    .photographer-badge .ph-name { font-weight:700; color:var(--grafite); }
+    .photographer-badge a { color:var(--accent); text-decoration:none; font-weight:600; }
+    .schedule-table { width:100%; border-collapse:collapse; }
+    .schedule-table thead th { text-align:left; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--cinza-medio); padding:8px 14px 6px; border-bottom:2px solid var(--cinza-claro); }
+    .schedule-table td { padding:12px 14px; border-bottom:1px solid var(--cinza-claro); font-size:14px; vertical-align:top; }
+    .schedule-table tbody tr:last-child td { border-bottom:none; }
+    .schedule-table tbody tr:hover { background:#FAFAFA; }
+    .sched-date { font-weight:700; color:var(--grafite); white-space:nowrap; min-width:110px; }
+    .sched-activity { font-weight:600; font-size:14px; margin-bottom:4px; }
+    .sched-priority { font-size:12px; color:var(--cinza-medio); line-height:1.5; }
+    .sched-note { display:inline-block; background:#FFF3E0; color:#E65100; border-radius:4px; padding:2px 8px; font-size:11px; font-weight:600; margin-top:5px; }
+    .sched-coord { display:inline-block; background:#E3F2FD; color:#1565C0; border-radius:4px; padding:2px 8px; font-size:11px; font-weight:600; margin-top:5px; }
+    .agenda-tip { background:var(--cinza-claro); border-radius:8px; padding:10px 14px; font-size:12px; color:var(--cinza-medio); margin-top:16px; line-height:1.6; }
+    .agenda-tip strong { color:var(--grafite); }
+    
+    /* ── Perguntas aprimoradas ── */
+    .q-main-badge { display:inline-block; background:var(--accent); color:#fff; border-radius:4px; padding:1px 7px; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; margin-bottom:5px; }
+    .persona { background:#fff; border-radius:10px; padding:16px 18px; margin-bottom:12px; border:1px solid var(--cinza-claro); }
+    .persona-name { font-weight:700; font-size:13px; color:var(--grafite); margin-bottom:8px; }
+    .question { font-size:14px; color:#333; line-height:1.6; margin-bottom:6px; }
+    .question:last-child { margin-bottom:0; }
+    .question-main { font-size:14px; color:#333; line-height:1.6; margin-bottom:8px; font-weight:500; }
+    
+    /* ── Calendario de produção ── */
+    .cal-table { width:100%; border-collapse:collapse; }
+    .cal-table thead th { text-align:left; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.07em; color:var(--cinza-medio); padding:8px 14px 6px; border-bottom:2px solid var(--cinza-claro); }
+    .cal-table td { padding:13px 14px; border-bottom:1px solid var(--cinza-claro); font-size:13px; vertical-align:top; line-height:1.55; }
+    .cal-table tbody tr:last-child td { border-bottom:none; }
+    .cal-date-cell { white-space:nowrap; font-weight:700; font-size:14px; color:var(--grafite); min-width:90px; }
+    .cal-day { display:block; font-size:11px; font-weight:400; color:var(--cinza-medio); text-transform:uppercase; letter-spacing:.06em; }
+    .cal-proj { display:inline-block; border-radius:6px; padding:2px 9px; font-size:11px; font-weight:700; color:#fff; margin-bottom:4px; }
+    .cp116 { background:var(--verde); }
+    .cp117 { background:var(--azul); }
+    .cp119 { background:#43A047; }
+    .cp124 { background:var(--roxo); }
+    .cp125 { background:var(--rosa); }
+    .cal-arrives { font-size:13px; color:var(--grafite); }
+    .cal-entrega-label { display:block; font-size:11px; font-weight:700; color:var(--accent); text-transform:uppercase; letter-spacing:.06em; margin-top:6px; }
+    .cal-entrega-text { font-size:13px; color:var(--grafite); }
+    .cal-stories-flag { display:inline-flex; align-items:center; gap:5px; background:#E91E63; color:#fff; border-radius:20px; padding:4px 12px; font-size:11px; font-weight:700; }
+    .cal-stories-flag::before { content:""; display:inline-block; width:7px; height:7px; background:#fff; border-radius:50%; }
+    .cal-note { font-size:12px; color:var(--cinza-medio); font-style:italic; margin-top:3px; }
+    .cal-section-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--cinza-medio); padding:10px 14px 4px; background:var(--cinza-claro); }
+    .cal-summary-box { background:var(--cinza-claro); border-radius:10px; padding:16px 18px; margin-top:20px; }
+    .cal-summary-box h4 { font-size:13px; font-weight:700; margin-bottom:10px; }
+    .cal-summary-box ul { margin:0; padding-left:18px; }
+    .cal-summary-box li { font-size:13px; color:var(--grafite); margin-bottom:5px; line-height:1.5; }
+    
+    /* ── Perguntas RSC ── */
+    .q-rsc-badge { display:inline-block; background:#1565C0; color:#fff; border-radius:4px; padding:1px 7px; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; margin:10px 0 5px; }
+    .question-rsc { font-size:13px; color:#444; line-height:1.6; margin-bottom:5px; font-style:italic; }
+    .question-rsc:last-child { margin-bottom:0; }
+    </style>
+  <style>
+  body { display: block !important; }
+  .view { display: block !important; max-width: 900px; margin: 0 auto; padding-bottom: 48px; }
+
+  .hero-standalone {
+    background: linear-gradient(135deg, #0F406B 0%, #062B4A 100%);
+    color: white; padding: 36px 32px 28px;
+  }
+  .hero-standalone .overline {
+    color: rgba(255,255,255,.65); font-size: 11px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: .1em; margin-bottom: 10px;
+  }
+  .hero-standalone h1 { font-size: 28px; font-weight: 800; line-height: 1.2; margin-bottom: 10px; }
+  .hero-standalone .lead { font-size: 15px; opacity: .88; margin-bottom: 20px; max-width: 600px; line-height: 1.6; }
+  .hero-meta-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+  .hero-chip {
+    background: rgba(255,255,255,.13); border-radius: 8px;
+    padding: 8px 14px; font-size: 13px; line-height: 1.4;
+  }
+  .hero-chip strong { display: block; font-size: 10px; text-transform: uppercase;
+    letter-spacing: .07em; opacity: .7; margin-bottom: 2px; }
+
+  .top-alert {
+    background: #FFF3E0; border-left: 5px solid #E65100;
+    padding: 14px 20px; margin: 20px 32px;
+    border-radius: 0 10px 10px 0; font-size: 13px; color: #BF360C;
+  }
+  .top-alert strong { display: block; margin-bottom: 4px; font-size: 14px; }
+
+  .sensitive-alert {
+    background: #FCE4EC; border-left: 5px solid #C62828;
+    padding: 14px 20px; margin: 0 32px 20px;
+    border-radius: 0 10px 10px 0; font-size: 13px; color: #B71C1C;
+  }
+  .sensitive-alert strong { display: block; margin-bottom: 6px; font-size: 14px; }
+  .sensitive-alert ul { margin: 0; padding-left: 18px; line-height: 1.9; }
+
+  .block { margin: 20px 32px; }
+  .block-header { padding: 18px 20px 12px; }
+  .block-inner { padding: 0 20px 20px; }
+
+  .trilha-section { margin-bottom: 28px; }
+  .trilha-label {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(75,193,235,.12); border-radius: 8px;
+    padding: 6px 14px; font-size: 12px; font-weight: 700;
+    color: #0F406B; margin-bottom: 12px; border: 1px solid rgba(15,64,107,.15);
+  }
+  .cidades-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 0; }
+  .cidade-card {
+    background: #F8F9FA; border-radius: 10px; padding: 14px 16px;
+    border-left: 4px solid #0F406B;
+  }
+  .cidade-card.sensivel { border-left-color: #C62828; }
+  .cidade-card h4 { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+  .cidade-card .cidade-meta { font-size: 12px; color: var(--cinza-medio); }
+  .cidade-badge-sensivel {
+    display: inline-block; background: #FFEBEE; color: #C62828;
+    border-radius: 4px; padding: 1px 7px; font-size: 10px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: .06em; margin-top: 4px;
+  }
+
+  .page-footer {
+    text-align: center; padding: 32px 16px; font-size: 12px; color: var(--cinza-medio);
+    border-top: 1px solid var(--cinza-claro); margin: 0 32px;
+  }
+
+  @media (max-width: 600px) {
+    .hero-standalone { padding: 24px 18px 20px; }
+    .hero-standalone h1 { font-size: 22px; }
+    .top-alert, .sensitive-alert, .block { margin-left: 14px; margin-right: 14px; }
+    .page-footer { margin: 0 14px; }
+    .cidades-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="view">
+
+  <header class="hero-standalone">
+    <div class="overline">Briefing de Campo · Projeto 132 · Samarco</div>
+    <h1>Estação Samarco<br>Territórios do Futuro</h1>
+    <p class="lead">Programa de empregabilidade e capacitação em 12 comunidades prioritárias da Samarco. 3 trilhas formativas: Empreendedorismo e IA, Culinária Sustentável e Beleza e Estética.</p>
+    <div class="hero-meta-grid">
+      <div class="hero-chip"><strong>Patrocinador</strong>Samarco Mineração</div>
+      <div class="hero-chip"><strong>Realizador</strong>NTICS</div>
+      <div class="hero-chip"><strong>Cidades</strong>12 (7 MG + 5 ES)</div>
+      <div class="hero-chip"><strong>Trilhas</strong>Empreendedorismo, Culinária, Beleza</div>
+      <div class="hero-chip"><strong>Início campo MG</strong>previsão mai/jun 2026</div>
+      <div class="hero-chip"><strong>GP</strong>Bruna Seibel</div>
+    </div>
+  </header>
+
+  <div class="top-alert">
+    <strong>Aprovação obrigatória antes de qualquer publicação</strong>
+    Todo material captado vai para aprovação interna (Bruna + Lucas) e depois para Amanda + Rayane via Teams/SharePoint Samarco.
+    Prazo: 48h ideal / 24h mínimo. <strong>Nunca postar direto da captação. Nunca usar WhatsApp Web.</strong>
+  </div>
+
+  <div class="sensitive-alert">
+    <strong>Territórios sensíveis: cuidado editorial máximo</strong>
+    <ul>
+      <li><strong>Bento Rodrigues, Paracatu de Baixo, Santa Rita Durão</strong> e entorno são comunidades diretamente atingidas pelo rompimento de Fundão (2015).</li>
+      <li>NUNCA mencionar o rompimento, a lama, o Fundão ou qualquer referência à tragédia no material captado.</li>
+      <li>Tom: o que essa pessoa está <strong>construindo agora</strong>. Nunca o que ela perdeu.</li>
+      <li>Qualquer dúvida editorial nessas cidades: acionar Bruna Seibel imediatamente.</li>
+    </ul>
+  </div>
+
+  <section class="block">
+    <div class="block-header">
+      <div class="overline">Territórios do Futuro</div>
+      <h2>12 cidades de captação</h2>
+      <p class="subtitle">MG começa em maio/junho. ES em seguida. Cada cidade gera 1 vídeo de cobertura + 1 carrossel. Fotógrafo por estado a confirmar antes do início.</p>
+    </div>
+    <div class="block-inner">
+      <div class="trilha-label">MG: 7 cidades</div>
+      <div class="cidades-grid">
+        <div class="cidade-card"><h4>Brumal</h4><div class="cidade-meta">1ª cidade, previsão 25/05</div></div>
+        <div class="cidade-card"><h4>Camargos</h4><div class="cidade-meta">Trilha Inicial, 3h presenciais</div></div>
+        <div class="cidade-card"><h4>Antônio Pereira</h4><div class="cidade-meta">Culinária + Trilha Inicial</div></div>
+        <div class="cidade-card"><h4>Catas Altas</h4><div class="cidade-meta">Base da Pâmela (culinarista)</div></div>
+        <div class="cidade-card sensivel"><h4>Bento Rodrigues</h4><div class="cidade-meta">Território sensível</div><span class="cidade-badge-sensivel">Cuidado editorial</span></div>
+        <div class="cidade-card sensivel"><h4>Paracatu de Baixo</h4><div class="cidade-meta">Território sensível</div><span class="cidade-badge-sensivel">Cuidado editorial</span></div>
+        <div class="cidade-card sensivel"><h4>Santa Rita Durão</h4><div class="cidade-meta">Território sensível</div><span class="cidade-badge-sensivel">Cuidado editorial</span></div>
+      </div>
+      <div style="margin-top:20px;" class="trilha-label">ES: 5 cidades</div>
+      <div class="cidades-grid">
+        <div class="cidade-card"><h4>Meaípe</h4><div class="cidade-meta">150 pessoas esperadas na Trilha Inicial (4 turmas)</div></div>
+        <div class="cidade-card"><h4>Ubu</h4><div class="cidade-meta">Base Rayane (comunicação ES)</div></div>
+        <div class="cidade-card"><h4>Mãe-Bá</h4><div class="cidade-meta">Datas a confirmar com Roberta</div></div>
+        <div class="cidade-card"><h4>Parati</h4><div class="cidade-meta">Datas a confirmar com Roberta</div></div>
+        <div class="cidade-card"><h4>Recanto do Sol</h4><div class="cidade-meta">Datas a confirmar com Roberta</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-header">
+      <div class="overline">Para o videomaker em campo</div>
+      <h2>Plano de captação por trilha</h2>
+      <p class="subtitle">3 trilhas com linguagens distintas. Cada uma gera pelo menos 1 Reel de cobertura. O foco é sempre: o que essa pessoa está construindo agora, não o que ela perdeu.</p>
+    </div>
+    <div class="block-inner">
+
+      <div class="trilha-section">
+        <div class="trilha-label">Trilha 1: Empreendedorismo e IA (4h presenciais)</div>
+        <div class="personas-grid">
+          <div class="persona">
+            <div class="persona-name">Participante da trilha inicial</div>
+            <div class="persona-why">Adulto 16+, maioria mulheres. Primeira vez em contato com IA e empreendedorismo. Captação na entrada e no momento de descoberta.</div>
+            <span class="q-main-badge">Pergunta principal</span>
+            <p class="question-main">Antes de hoje, o que você achava que precisava para ter um negócio? E agora?</p>
+            <p class="question">Fale seu nome completo, de onde você é e o que você faz.</p>
+            <p class="question">O que mais te surpreendeu aqui hoje?</p>
+            <p class="question">Tem alguma coisa que você aprendeu aqui que vai usar ainda essa semana?</p>
+            <p class="question">O que você diria para uma amiga que ainda não veio?</p>
+          </div>
+          <div class="persona">
+            <div class="persona-name">Facilitador da trilha inicial</div>
+            <div class="persona-why">Explica o contexto da atividade. Captação após a atividade ou no intervalo.</div>
+            <span class="q-main-badge">Pergunta principal</span>
+            <p class="question-main">O que mudou no rosto das pessoas quando elas perceberam que conseguiam?</p>
+            <p class="question">Explique em 30 segundos o que aconteceu aqui hoje.</p>
+            <p class="question">Qual foi o momento que mais te marcou nessa turma?</p>
+            <p class="question">O que você espera que cada pessoa leve daqui para casa?</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="trilha-section">
+        <div class="trilha-label">Trilha 2: Estação Sabores, Culinária Sustentável (24h+22h)</div>
+        <div class="personas-grid">
+          <div class="persona">
+            <div class="persona-name">Participante da culinária</div>
+            <div class="persona-why">Mulher em situação de vulnerabilidade econômica que está construindo renda. Captação durante a aula ou ao finalizar um prato.</div>
+            <span class="q-main-badge">Pergunta principal</span>
+            <p class="question-main">Esse prato que você está fazendo agora, você consegue ver ele virando parte do seu sustento? Como?</p>
+            <p class="question">Fale seu nome completo, de onde você é e o que você faz hoje.</p>
+            <p class="question">O que a culinária significa para você além da alimentação?</p>
+            <p class="question">O que mudou na sua forma de cozinhar desde que começou o programa?</p>
+            <p class="question">Daqui a 6 meses, o que você quer estar fazendo?</p>
+          </div>
+          <div class="persona">
+            <div class="persona-name">Pâmela (culinarista MG)</div>
+            <div class="persona-why">Educadora da culinária em MG, base em Catas Altas, continuidade desde 2025. Referência de confiança local.</div>
+            <span class="q-main-badge">Pergunta principal</span>
+            <p class="question-main">Você já viu alguém mudar de vida por causa de uma receita. O que você vê acontecer aqui?</p>
+            <p class="question">Fale seu nome e seu papel no programa.</p>
+            <p class="question">O que você sente de diferente nessas turmas de 2026 em relação ao ano passado?</p>
+            <p class="question">O que uma participante precisa ter em mente para transformar isso em renda real?</p>
+            <span class="q-rsc-badge">Responsabilidade Corporativa</span>
+            <p class="question-rsc">Como um programa como a Estação Samarco muda o que é possível para uma mulher nessas comunidades?</p>
+            <p class="question-rsc">O que diferencia esse programa de uma aula de culinária comum?</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="trilha-section">
+        <div class="trilha-label">Trilha 3: Estação Beleza e Estética (24h+22h)</div>
+        <div class="personas-grid">
+          <div class="persona">
+            <div class="persona-name">Participante da beleza</div>
+            <div class="persona-why">Adulta aprendendo a profissão. Captação durante prática ou ao finalizar um serviço no cliente-modelo.</div>
+            <span class="q-main-badge">Pergunta principal</span>
+            <p class="question-main">Quando você olha pras suas mãos fazendo isso, o que você enxerga de diferente agora?</p>
+            <p class="question">Fale seu nome completo, de onde você é e o que você faz hoje.</p>
+            <p class="question">Por que beleza? O que te trouxe até aqui?</p>
+            <p class="question">Você já imaginou atender clientes por conta própria? Como seria?</p>
+            <p class="question">O que você aprendeu aqui que não aprenderia em outro lugar?</p>
+          </div>
+          <div class="persona">
+            <div class="persona-name">Educadora de beleza (a confirmar)</div>
+            <div class="persona-why">Profissional contratada para ministrar a trilha. Nome a confirmar antes do início.</div>
+            <span class="q-main-badge">Pergunta principal</span>
+            <p class="question-main">O que você vê nas alunas quando elas percebem que conseguem fazer sozinhas?</p>
+            <p class="question">Fale seu nome e há quanto tempo você trabalha com beleza.</p>
+            <p class="question">Qual habilidade transforma mais a vida dessas participantes?</p>
+            <p class="question">O que uma participante precisa praticar em casa para sair pronta para atender?</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="trilha-section">
+        <div class="trilha-label">Depoimento institucional (se houver representante Samarco em campo)</div>
+        <div class="personas-grid">
+          <div class="persona">
+            <div class="persona-name">Representante Samarco em campo</div>
+            <div class="persona-why">Qualquer membro da equipe de sensibilização Samarco presente. Verificar com Bruna antes da captação quem é o contato autorizado a falar.</div>
+            <span class="q-main-badge">Pergunta principal</span>
+            <p class="question-main">O que motiva a Samarco a estar aqui, nessa cidade, com esse programa?</p>
+            <p class="question">Fale seu nome completo e seu papel na Samarco.</p>
+            <p class="question">Como você enxerga o impacto desse programa na vida das pessoas dessas comunidades?</p>
+            <span class="q-rsc-badge">Responsabilidade Corporativa</span>
+            <p class="question-rsc">Como esse programa se conecta ao compromisso de longo prazo da Samarco com esses territórios?</p>
+            <p class="question-rsc">O que a Samarco aprende ao estar próxima dessas comunidades por meio de projetos como esse?</p>
+            <p class="question-rsc">Que mensagem você daria para uma participante sobre o que a empresa espera que aconteça na vida dela daqui para frente?</p>
+          </div>
+          <div class="persona">
+            <div class="persona-name">Coordenação NTICS em campo</div>
+            <div class="persona-why">Bruna Seibel ou Abilio Martins. Captação rápida no contexto da atividade.</div>
+            <span class="q-main-badge">Pergunta principal</span>
+            <p class="question-main">O que a NTICS está fazendo aqui e por que isso importa para quem mora nessa cidade?</p>
+            <p class="question">Explique em 30 segundos o que é o Estação Samarco.</p>
+            <p class="question">Qual é a grande entrega desse programa para essas comunidades?</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="cap-block" style="margin-top:24px;">
+        <h4>B-roll prioritário por contexto</h4>
+        <ul class="broll-list">
+          <li><strong>Chegada ao território:</strong> fachada do espaço, rua principal da cidade, participantes chegando, peças de sinalização instaladas (banners/rollups com logo Estação Samarco)</li>
+          <li><strong>Culinária:</strong> mãos manuseando ingredientes, fogo aceso, prato sendo montado, aprovação ao provar, Pâmela orientando em close</li>
+          <li><strong>Beleza:</strong> mãos aplicando técnica, expressão de concentração da aluna, cliente-modelo reagindo ao resultado, materiais em uso</li>
+          <li><strong>Trilha Inicial:</strong> participante usando celular/tablet, grupo em roda de conversa, momento de descoberta (reação ao entender algo)</li>
+          <li><strong>Certificação:</strong> participante segurando o certificado, reação ao receber, nome visível no documento (se autorizado)</li>
+          <li><strong>Território:</strong> paisagem da cidade, praça, arquitetura local. Nunca placas ou marcos que remetam ao rompimento.</li>
+          <li><strong>Marca aplicada naturalmente:</strong> avental com logo, banner ao fundo, uniforme da equipe em campo</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-header">
+      <div class="overline">Stories para Instagram</div>
+      <h2>10 captações: Arco narrativo do dia</h2>
+      <p class="subtitle">Arco válido para qualquer cidade. Postar sempre via canal oficial Samarco, nunca diretamente pelo captador. Toda imagem passa por aprovação antes do post.</p>
+    </div>
+    <div class="block-inner">
+      <div class="stories-grid">
+        <div class="story-card">
+          <div class="story-num">Story 01: Chegada</div>
+          <h4>Captador na entrada do espaço</h4>
+          <p>Câmera virada para o captador. Fala direto: "Hoje estou em [nome da cidade], na [nome do espaço], com o Estação Samarco." 10 a 15 segundos.</p>
+        </div>
+        <div class="story-card">
+          <div class="story-num">Story 02: Antes</div>
+          <h4>Setup e expectativa</h4>
+          <p>Espaço sendo montado, materiais sendo organizados, participantes chegando. Energia de começo de algo. Sem falar, só imagem.</p>
+        </div>
+        <div class="story-card">
+          <div class="story-num">Story 03: Abertura</div>
+          <h4>Dinâmica de apresentação</h4>
+          <p>Participantes falando nome + o que esperam em 5 segundos cada. Sequência rápida de 4 a 5 pessoas. Rosto limpo, sem corte forçado.</p>
+        </div>
+        <div class="story-card">
+          <div class="story-num">Story 04: Ação 1</div>
+          <h4>Momento mais visual da trilha</h4>
+          <p>Culinária: mãos no preparo. Beleza: técnica sendo aplicada. Trilha Inicial: participante usando ferramenta digital. Close, sem texto, deixar a imagem falar.</p>
+        </div>
+        <div class="story-card">
+          <div class="story-num">Story 05: Ação 2</div>
+          <h4>Interação e cooperação</h4>
+          <p>Participantes ajudando umas às outras, conversa entre aluna e educadora, energia coletiva. Plano médio ou aberto.</p>
+        </div>
+        <div class="story-card">
+          <div class="story-num">Story 06: Bastidores</div>
+          <h4>Momento espontâneo, não roteirizar</h4>
+          <p>Algo que aconteceu e não estava previsto. Risada, erro que virou aprendizado, descoberta coletiva. Máximo 15 segundos. Se não acontecer nada, não forçar.</p>
+        </div>
+        <div class="story-card">
+          <div class="story-num">Story 07: Pergunta rápida</div>
+          <h4>"Uma palavra pra descrever hoje"</h4>
+          <p>3 a 4 participantes, cada uma fala uma palavra. Rápido, dinâmico. Naturalidade vale mais que produção.</p>
+        </div>
+        <div class="story-card">
+          <div class="story-num">Story 08: Depoimento relâmpago</div>
+          <h4>1 participante, 20 segundos, sem roteiro</h4>
+          <p>Escolher alguém que esteja animada. Perguntar: "O que você vai levar daqui pra casa hoje?" Sem ensaio. Câmera a 1 metro, luz boa.</p>
+        </div>
+        <div class="story-card">
+          <div class="story-num">Story 09: Virada</div>
+          <h4>O pico do dia</h4>
+          <p>Entrega do certificado, apresentação do prato final, resultado do serviço de beleza, ou qualquer culminância que mostre transformação. Câmera posicionada antes de acontecer.</p>
+        </div>
+        <div class="story-card">
+          <div class="story-num">Story 10: Saída</div>
+          <h4>Captador encerrando o dia</h4>
+          <p>Frame final do espaço ou da cidade. Captador fala: "Encerrando o dia em [cidade]. Programa Estação Samarco." Sensação de fechamento, não de conclusão.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-header">
+      <div class="overline">Estrutura de Pastas no Drive</div>
+      <h2>Organização do material captado</h2>
+      <p class="subtitle">Criar uma subpasta por cidade. Enviar material bruto no mesmo dia da captação. Link do Drive será enviado por Bruna Seibel antes do início de campo.</p>
+    </div>
+    <div class="block-inner">
+      <div class="folder-tree">
+<span class="folder">132 Estação Samarco</span>
+├── <span class="folder">[CIDADE] ex: Brumal_MG</span>
+│   ├── 01_DEPOIMENTOS
+│   │   ├── SAMARCO
+│   │   ├── EDUCADORES
+│   │   │   └── pamela_[descricao].mp4
+│   │   └── PARTICIPANTES
+│   │       └── [captador]_[nome]_[trilha].mp4
+│   ├── 02_STORIES
+│   │   └── S01_chegada.mp4 ... S10_saida.mp4
+│   ├── 03_BROLL
+│   │   ├── CHEGADA
+│   │   ├── CULINARIA
+│   │   ├── BELEZA
+│   │   ├── TRILHA_INICIAL
+│   │   └── TERRITORIO
+│   ├── 04_FOTOS
+│   │   ├── SELECIONADAS
+│   │   ├── SENSIBILIDADE
+│   │   └── TOP15
+│   └── 05_BRUTO
+└── [proxima cidade...]
+      </div>
+      <div class="naming-rule">
+        <h4>Convenção de nomeação</h4>
+        <p>Depoimentos: <code>[captador]_[nome-participante]_[trilha]_[descricao].mp4</code></p>
+        <p>Ex: <code>bruna_maria-aparecida_culinaria_o-que-muda.mp4</code></p>
+        <p>Stories: <code>S01_chegada-brumal.mp4</code></p>
+        <p>B-roll: <code>BROLL_maos-preparo-culinaria.mp4</code></p>
+        <p>Fotos: <code>FOTO_001_abertura-trilha-inicial.jpg</code></p>
+      </div>
+      <div style="margin-top:16px;padding:12px 16px;background:#FFF3E0;border-radius:8px;font-size:12px;color:#E65100;">
+        <strong>Drive:</strong> Link será compartilhado por Bruna Seibel antes do inicio de campo. Não criar pastas fora da estrutura acima.
+      </div>
+    </div>
+  </section>
+
+  <div class="page-footer">
+    Briefing gerado por NTICS · Projeto 132 Estação Samarco · Uso exclusivo da equipe de campo
+  </div>
+
+</div>
+</body>
+</html>
