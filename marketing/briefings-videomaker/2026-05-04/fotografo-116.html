@@ -641,6 +641,8 @@ main {
   word-break: break-all;
 }
 .drive-badge-label { font-family: var(--font); font-size: 11px; text-transform: uppercase; letter-spacing: .08em; opacity: .85; }
+.drive-badge a { color: white; text-decoration: underline; }
+.drive-badge a:hover { opacity: .85; }
 
 /* Responsivo */
 @media (max-width: 1000px) {
@@ -739,52 +741,36 @@ main {
 <style>
   body { display: block !important; }
   .view { display: block !important; max-width: 900px; margin: 0 auto; padding-bottom: 40px; }
-
   .hero-standalone {
     background: linear-gradient(135deg, #C49000 0%, #7A5800 100%);
-    color: white;
-    padding: 36px 32px 28px;
+    color: white; padding: 36px 32px 28px;
   }
   .hero-standalone .overline {
-    color: rgba(255,255,255,.75);
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: .1em;
-    margin-bottom: 10px;
+    color: rgba(255,255,255,.75); font-size: 11px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: .1em; margin-bottom: 10px;
   }
   .hero-standalone h1 { font-size: 26px; font-weight: 800; line-height: 1.2; margin-bottom: 10px; }
   .hero-standalone .lead { font-size: 15px; opacity: .88; margin-bottom: 20px; max-width: 560px; }
-
-  .cidade-chips {
-    display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px;
-  }
+  .cidade-chips { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
   .cidade-chip {
-    background: rgba(255,255,255,.15);
-    border: 1px solid rgba(255,255,255,.3);
-    border-radius: 8px;
-    padding: 10px 16px;
-    font-size: 13px;
+    background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.3);
+    border-radius: 8px; padding: 10px 16px; font-size: 13px;
   }
   .cidade-chip .cidade-nome { font-weight: 700; font-size: 14px; display: block; }
   .cidade-chip .cidade-data { font-size: 12px; opacity: .8; }
   .cidade-chip .cidade-feira { font-size: 11px; color: #FFE082; margin-top: 2px; display: block; }
-
   .top-alert {
     background: #FFF8E1; border-left: 5px solid #F9A825;
     padding: 14px 20px; margin: 20px 32px;
     border-radius: 0 10px 10px 0; font-size: 13px; color: #6D4C00;
   }
   .top-alert strong { display: block; margin-bottom: 4px; font-size: 14px; }
-
   .block { margin: 20px 32px; }
-
   .page-footer {
     text-align: center; padding: 32px 16px;
     font-size: 12px; color: var(--cinza-medio);
     border-top: 1px solid var(--cinza-claro); margin: 0 32px;
   }
-
   @media (max-width: 600px) {
     .hero-standalone { padding: 24px 18px 20px; }
     .hero-standalone h1 { font-size: 21px; }
@@ -795,41 +781,36 @@ main {
 </style>
 </head>
 <body>
-
   <div class="view view-116">
-
     <header class="hero-standalone">
       <div class="overline">Briefing de Campo - Projeto 116 - Mato Grosso do Sul</div>
       <h1>Cultura Robotica<br>Aster Maquinas Agricolas - 3 cidades / MS</h1>
       <p class="lead">1 dia de filmagem por cidade. Foco na Feira de Ideias (quinta-feira de cada semana).
       O que capturar, quem entrevistar e como organizar o material.</p>
-
       <div class="cidade-chips">
         <div class="cidade-chip">
           <span class="cidade-nome">Sidrolandia</span>
-          <span class="cidade-data">Semana 11-15/05/2026</span>
+          <span class="cidade-data">Semana 11-15/05/2026 - EM Eldorado + Leonida La Rosa</span>
           <span class="cidade-feira">Feira de Ideias: 14/05 (quinta)</span>
         </div>
         <div class="cidade-chip">
           <span class="cidade-nome">Maracaju</span>
-          <span class="cidade-data">Semana 18-22/05/2026</span>
+          <span class="cidade-data">Semana 18-22/05/2026 - Escola Municipal Joao Pedro Fernandes</span>
           <span class="cidade-feira">Feira de Ideias: 21/05 (quinta)</span>
         </div>
         <div class="cidade-chip">
           <span class="cidade-nome">Sao Gabriel do Oeste</span>
-          <span class="cidade-data">Semana 25-29/05/2026</span>
+          <span class="cidade-data">Semana 25-29/05/2026 - EM Filinto Muller + Enio Carlos</span>
           <span class="cidade-feira">Feira de Ideias: 28/05 (quinta)</span>
         </div>
       </div>
     </header>
-
     <div class="top-alert">
       <strong>Dia de filmagem em cada cidade: quinta-feira (Feira de Ideias)</strong>
       Chegar antes da abertura. Identificar o representante da Aster presente e coletar
       nome e cargo antes de qualquer gravacao. Formato leve: sem equipe grande, sem encenacao.
       Capturar o momento espontaneo, nao o prototipo perfeito.
     </div>
-
     
   <header class="hero">
     <div class="overline">Projeto 116 · Cultura Robótica · Áster Máquinas</div>
@@ -1085,7 +1066,7 @@ main {
       </ul>
     </div>
     <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:16px;">
-      <div class="drive-badge"><span class="drive-badge-label">Drive 116</span> 1iCOrSqJKao0s82olnuD_0lLziQKn3jjq</div>
+      <div class="drive-badge"><span class="drive-badge-label">Drive 116</span> <a href="https://drive.google.com/drive/folders/1iCOrSqJKao0s82olnuD_0lLziQKn3jjq" target="_blank" style="color:white;font-family:monospace;font-size:12px">1iCOrSqJKao0s82olnuD_0lLziQKn3jjq</a></div>
     </div>
   </section>
 
@@ -1093,12 +1074,9 @@ main {
 
 <!-- ============ 117 WHIRLPOOL ============ -->
 <section class="view view-117 active" 
-
     <div class="page-footer">
       Briefing gerado por NTICS - Projeto 116 - Nao distribuir fora da equipe de campo
     </div>
-
   </div>
-
 </body>
 </html>
