@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Briefing de Campo - 116 Cultura Robotica - Aster Maquinas - MS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+:root {
+  --verde: #3DAA35;
+  --azul: #005F73;
+  --rosa: #D41A6A;
+  --laranja: #E86428;
+  --amarelo: #F5B800;
+  --teal: #00A5B8;
+  --roxo: #6B2D7B;
+  --branco: #FFFFFF;
+  --cinza-claro: #F4F4F4;
+  --cinza-medio: #6B7280;
+  --grafite: #2D2D2D;
+  --grafite-mais-escuro: #1A1A1A;
+  --font: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+body {
+  font-family: var(--font);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--grafite);
+  background: var(--cinza-claro);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ===== Sidebar ===== */
+.sidebar {
+  position: fixed;
+  left: 0; top: 0; bottom: 0;
+  width: 300px;
+  background: var(--grafite-mais-escuro);
+  color: var(--branco);
+  padding: 32px 0;
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+}
+.brand {
+  padding: 0 24px 24px 24px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.brand-logo {
+  display: flex; align-items: center; gap: 12px;
+  font-weight: 800; font-size: 20px; letter-spacing: -0.02em;
+}
+.brand-logo .dot {
+  width: 32px; height: 32px;
+  background: linear-gradient(135deg, var(--verde) 0%, var(--teal) 100%);
+  border-radius: 8px;
+  display: grid; place-items: center;
+  font-size: 14px; font-weight: 800; color: white;
+}
+.brand-meta {
+  margin-top: 8px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(255,255,255,0.5);
+  font-weight: 500;
+}
+.nav-list { padding: 24px 12px; flex: 1; overflow-y: auto; }
+.nav-item {
+  width: 100%;
+  display: flex; align-items: center; gap: 14px;
+  padding: 14px 16px;
+  background: transparent;
+  border: none;
+  border-radius: 12px;
+  color: rgba(255,255,255,0.65);
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  font-size: 14px;
+  transition: all 200ms;
+  margin-bottom: 4px;
+}
+.nav-item:hover { background: rgba(255,255,255,0.06); color: white; }
+.nav-item.active {
+  background: rgba(255,255,255,0.10);
+  color: white;
+  box-shadow: inset 3px 0 0 var(--accent, var(--verde));
+}
+.nav-num {
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  background: var(--accent, var(--verde));
+  color: white;
+  display: grid; place-items: center;
+  font-weight: 700;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+.nav-item[data-view="117"] { --accent: var(--azul); }
+.nav-item[data-view="119"] { --accent: var(--verde); }
+.nav-item[data-view="116"] { --accent: var(--laranja); }
+.nav-item[data-view="127"] { --accent: var(--teal); }
+.nav-item[data-view="120"] { --accent: var(--amarelo); }
+.nav-item[data-view="124"] { --accent: var(--roxo); }
+.nav-item[data-view="125"] { --accent: var(--rosa); }
+.nav-item[data-view="aline"] { --accent: var(--rosa); }
+.nav-item[data-view="aline"] .nav-num { background: var(--rosa); font-size: 12px; }
+.nav-text strong { display: block; font-weight: 600; line-height: 1.2; }
+.nav-text small { display: block; font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 2px; }
+.sidebar-footer {
+  padding: 16px 24px;
+  font-size: 11px;
+  color: rgba(255,255,255,0.4);
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+/* ===== Main ===== */
+main {
+  margin-left: 300px;
+  min-height: 100vh;
+  padding: 48px 56px 80px 56px;
+}
+.view { display: none; max-width: 1100px; }
+.view.active { display: block; animation: fadeIn 320ms ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ===== Hero por projeto ===== */
+.hero {
+  position: relative;
+  border-radius: 24px;
+  padding: 56px 48px;
+  color: white;
+  margin-bottom: 48px;
+  overflow: hidden;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  right: -80px; top: -80px;
+  width: 320px; height: 320px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  right: 80px; bottom: -120px;
+  width: 240px; height: 240px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.06);
+}
+.view-117 .hero { background: linear-gradient(135deg, var(--azul) 0%, #003D4A 100%); }
+.view-119 .hero { background: linear-gradient(135deg, var(--verde) 0%, #2A7D24 100%); }
+.view-116 .hero { background: linear-gradient(135deg, var(--laranja) 0%, #B84A1A 100%); }
+.view-127 .hero { background: linear-gradient(135deg, var(--teal) 0%, #007A8A 100%); }
+.view-120 .hero { background: linear-gradient(135deg, var(--amarelo) 0%, #C49000 100%); }
+.view-124 .hero { background: linear-gradient(135deg, var(--roxo) 0%, #3D1A47 100%); }
+.view-125 .hero { background: linear-gradient(135deg, var(--rosa) 0%, #8B0F47 100%); }
+.view-aline .hero { background: linear-gradient(135deg, var(--rosa) 0%, #8B0F47 100%); }
+
+.overline {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-weight: 600;
+  opacity: 0.85;
+  margin-bottom: 12px;
+}
+.hero h1 {
+  font-size: 48px;
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  margin-bottom: 20px;
+  position: relative;
+}
+.hero .lead {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.45;
+  opacity: 0.92;
+  max-width: 720px;
+  position: relative;
+}
+.hero-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px 32px;
+  margin-top: 36px;
+  position: relative;
+}
+.hero-meta div {
+  border-left: 3px solid rgba(255,255,255,0.5);
+  padding-left: 14px;
+}
+.hero-meta strong {
+  display: block;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  opacity: 0.75;
+  margin-bottom: 4px;
+}
+.hero-meta span { font-weight: 500; font-size: 15px; }
+
+/* ===== Block sections ===== */
+.block { margin-bottom: 56px; }
+.block-header { margin-bottom: 28px; }
+.block-header .overline { color: var(--accent); }
+.view-117 { --accent: var(--azul); }
+.view-119 { --accent: var(--verde); }
+.view-116 { --accent: var(--laranja); }
+.view-127 { --accent: var(--teal); }
+.view-120 { --accent: var(--amarelo); }
+.view-124 { --accent: var(--roxo); }
+.view-125 { --accent: var(--rosa); }
+.view-aline { --accent: var(--rosa); }
+
+.block h2 {
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--grafite);
+}
+.block h2 + p.subtitle {
+  margin-top: 8px;
+  font-size: 17px;
+  color: var(--cinza-medio);
+  max-width: 720px;
+}
+
+/* ===== Video cards ===== */
+.video-cards { display: grid; gap: 16px; }
+.video-card {
+  background: white;
+  border-radius: 16px;
+  padding: 28px 32px;
+  border-left: 4px solid var(--accent);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  transition: box-shadow 200ms;
+}
+.video-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.06); }
+.card-tag {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  background: var(--accent);
+  color: white;
+  padding: 5px 12px;
+  border-radius: 999px;
+  margin-bottom: 14px;
+}
+.video-card h3 {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+  margin-bottom: 12px;
+  color: var(--grafite);
+}
+.video-card .story {
+  font-size: 15.5px;
+  line-height: 1.65;
+  color: #333;
+  margin-bottom: 18px;
+}
+.video-card .story strong { color: var(--accent); font-weight: 600; }
+.video-meta {
+  display: flex; flex-wrap: wrap; gap: 10px;
+  border-top: 1px solid var(--cinza-claro);
+  padding-top: 16px;
+}
+.chip {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--cinza-claro);
+  color: var(--grafite);
+}
+.chip strong { font-weight: 700; margin-right: 4px; color: var(--cinza-medio); text-transform: uppercase; font-size: 10px; letter-spacing: 0.1em; }
+
+/* ===== Captação grid ===== */
+.cap-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.cap-block {
+  background: white;
+  border-radius: 16px;
+  padding: 28px 32px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.cap-block.full { grid-column: 1 / -1; }
+.cap-block h4 {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  font-weight: 700;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--cinza-claro);
+}
+.cap-block h4 .icon { display: inline-block; margin-right: 8px; }
+.persona { margin-bottom: 24px; }
+.persona:last-child { margin-bottom: 0; }
+.persona-name {
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--grafite);
+  margin-bottom: 4px;
+}
+.persona-why {
+  font-size: 13px;
+  color: var(--cinza-medio);
+  margin-bottom: 10px;
+  font-style: normal;
+}
+.cap-block ul {
+  list-style: none;
+  padding: 0;
+}
+.cap-block ul li {
+  position: relative;
+  padding-left: 22px;
+  margin-bottom: 10px;
+  font-size: 14.5px;
+  line-height: 1.55;
+}
+.cap-block ul li::before {
+  content: '';
+  position: absolute;
+  left: 4px; top: 9px;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.cap-block .question {
+  background: #FAFAFA;
+  border-left: 3px solid var(--accent);
+  padding: 12px 16px;
+  border-radius: 0 8px 8px 0;
+  margin-bottom: 8px;
+  font-size: 14.5px;
+  line-height: 1.5;
+}
+.cap-block .question::before {
+  content: '"';
+  color: var(--accent);
+  font-weight: 700;
+  margin-right: 4px;
+}
+.cap-block .question::after {
+  content: '"';
+  color: var(--accent);
+  font-weight: 700;
+  margin-left: 2px;
+}
+
+/* ===== Aline-specific ===== */
+.fila-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.fila-table th, .fila-table td {
+  padding: 16px 20px;
+  text-align: left;
+  border-bottom: 1px solid var(--cinza-claro);
+  font-size: 14px;
+}
+.fila-table th {
+  background: #FAFAFA;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  color: var(--cinza-medio);
+}
+.fila-table tr:last-child td { border-bottom: none; }
+.fila-num {
+  display: inline-flex;
+  align-items: center; justify-content: center;
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 12px;
+  color: white;
+}
+.fila-num.c117 { background: var(--azul); }
+.fila-num.c119 { background: var(--verde); }
+.fila-num.c116 { background: var(--laranja); }
+
+.bio-card {
+  background: linear-gradient(135deg, var(--rosa) 0%, #8B0F47 100%);
+  color: white;
+  border-radius: 16px;
+  padding: 32px;
+  margin-bottom: 16px;
+}
+.bio-card .label {
+  font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em;
+  opacity: 0.8; font-weight: 600; margin-bottom: 8px;
+}
+.bio-card .text { font-size: 22px; font-weight: 600; line-height: 1.35; }
+
+.links-grid { display: grid; gap: 12px; }
+.link-row {
+  background: white;
+  border-radius: 12px;
+  padding: 18px 24px;
+  display: flex; align-items: center; gap: 18px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.link-row .order {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: var(--rosa);
+  color: white;
+  display: grid; place-items: center;
+  font-weight: 700; font-size: 13px;
+  flex-shrink: 0;
+}
+.link-row strong { display: block; font-size: 15px; margin-bottom: 2px; }
+.link-row span { font-size: 13px; color: var(--cinza-medio); }
+
+.posts-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.post-pin {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  border-top: 4px solid var(--rosa);
+}
+.post-pin .pin-num {
+  font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em;
+  color: var(--rosa); margin-bottom: 8px;
+}
+.post-pin h4 {
+  font-size: 18px; font-weight: 700; margin-bottom: 6px; color: var(--grafite);
+}
+.post-pin .obj { font-size: 12px; color: var(--cinza-medio); margin-bottom: 16px; font-weight: 500; }
+.post-pin ol {
+  padding-left: 18px;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: #333;
+}
+.post-pin ol li { margin-bottom: 6px; }
+
+.highlight-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+.highlight-item {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  border-bottom: 3px solid var(--rosa);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.highlight-item strong { display: block; font-size: 15px; margin-bottom: 4px; }
+.highlight-item span { font-size: 13px; color: var(--cinza-medio); }
+
+.calendar-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  font-size: 13px;
+}
+.calendar-table th { background: var(--rosa); color: white; padding: 12px 14px; text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; }
+.calendar-table td { padding: 11px 14px; border-bottom: 1px solid var(--cinza-claro); vertical-align: top; }
+.calendar-table tr:nth-child(even) td { background: #FAFAFA; }
+.calendar-table .week { font-weight: 700; color: var(--rosa); width: 50px; }
+.calendar-table .month { font-weight: 600; width: 50px; color: var(--cinza-medio); font-size: 11px; text-transform: uppercase; }
+.calendar-table .phase {
+  display: inline-block; font-size: 10px; padding: 3px 9px;
+  background: var(--cinza-claro); border-radius: 999px;
+  font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em;
+}
+.principios-list {
+  background: white;
+  border-radius: 16px;
+  padding: 28px 32px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.principios-list ul { list-style: none; }
+.principios-list li {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--cinza-claro);
+  font-size: 15px;
+  display: flex; align-items: center; gap: 14px;
+}
+.principios-list li:last-child { border-bottom: none; }
+.principios-list .num {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--rosa); color: white;
+  display: grid; place-items: center;
+  font-size: 12px; font-weight: 700;
+  flex-shrink: 0;
+}
+
+.flow-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  align-items: stretch;
+}
+.flow-step {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.flow-step .step-num {
+  font-size: 11px; font-weight: 700; color: var(--rosa);
+  text-transform: uppercase; letter-spacing: 0.12em;
+  margin-bottom: 6px;
+}
+.flow-step strong { display: block; font-size: 14px; margin-bottom: 4px; }
+.flow-step span { font-size: 12px; color: var(--cinza-medio); line-height: 1.4; display: block; }
+
+.welcome-section {
+  background: white;
+  border-radius: 16px;
+  padding: 32px;
+  margin-bottom: 32px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.welcome-section h3 { font-size: 18px; font-weight: 700; margin-bottom: 16px; }
+.welcome-section p { margin-bottom: 12px; line-height: 1.65; }
+.welcome-section p:last-child { margin-bottom: 0; }
+
+/* Diretivas Ana banner */
+.directives-banner {
+  background: linear-gradient(135deg, #003D4A 0%, var(--azul) 100%);
+  color: white;
+  border-radius: 16px;
+  padding: 28px 32px;
+  margin-bottom: 32px;
+}
+.directives-banner h4 {
+  font-size: 12px; text-transform: uppercase; letter-spacing: 0.14em;
+  opacity: 0.85; margin-bottom: 12px; font-weight: 600;
+}
+.directives-banner ul { list-style: none; padding: 0; }
+.directives-banner li {
+  padding: 8px 0;
+  font-size: 14.5px;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+.directives-banner li:last-child { border: none; }
+.directives-banner li strong { font-weight: 700; }
+
+/* ===== Stories cards ===== */
+.stories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+.story-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  border-left: 4px solid var(--accent);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+.story-num {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+.story-card h4 { font-size: 14px; font-weight: 700; margin-bottom: 6px; line-height: 1.35; }
+.story-card p { font-size: 13px; color: var(--cinza-medio); line-height: 1.5; }
+
+/* ===== Folder tree ===== */
+.folder-tree {
+  background: var(--grafite);
+  color: #D0D0D0;
+  border-radius: 12px;
+  padding: 24px 28px;
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+  line-height: 2;
+  overflow-x: auto;
+}
+.folder-tree .folder { color: var(--accent); font-weight: 600; }
+.folder-tree .file-note { color: #7A8A9A; font-size: 12px; }
+.naming-rule {
+  background: white;
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-top: 16px;
+  border: 1px solid var(--cinza-claro);
+}
+.naming-rule h4 { font-size: 14px; font-weight: 700; margin-bottom: 12px; }
+.naming-rule ul { list-style: none; padding: 0; }
+.naming-rule li { font-size: 13px; color: var(--cinza-medio); margin-bottom: 6px; }
+.naming-rule code { background: var(--cinza-claro); border-radius: 5px; padding: 2px 6px; font-size: 12px; font-family: 'Courier New', monospace; color: var(--grafite); }
+.drive-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--accent);
+  color: white;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: 'Courier New', monospace;
+  margin-top: 16px;
+  word-break: break-all;
+}
+.drive-badge-label { font-family: var(--font); font-size: 11px; text-transform: uppercase; letter-spacing: .08em; opacity: .85; }
+
+/* Responsivo */
+@media (max-width: 1000px) {
+  .sidebar { width: 240px; }
+  main { margin-left: 240px; padding: 32px 28px; }
+  .hero { padding: 40px 32px; }
+  .hero h1 { font-size: 36px; }
+  .cap-grid { grid-template-columns: 1fr; }
+  .posts-grid { grid-template-columns: 1fr; }
+  .flow-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 700px) {
+  .sidebar {
+    position: relative; width: 100%; height: auto;
+    flex-direction: row; padding: 16px;
+    overflow-x: auto;
+  }
+  .brand { padding: 0 16px 0 0; border: none; border-right: 1px solid rgba(255,255,255,0.1); }
+  .nav-list { display: flex; gap: 8px; padding: 0 0 0 16px; flex: none; }
+  .nav-item { flex: 0 0 auto; min-width: 200px; margin: 0; }
+  .sidebar-footer { display: none; }
+  main { margin-left: 0; padding: 24px; }
+}
+
+/* Arvore de pastas responsiva , substitui .folder-tree */
+.ftl-wrap { background: var(--grafite); border-radius: 12px; padding: 20px 24px; }
+.ftl { list-style: none; padding: 0; margin: 0; font-size: 13px; line-height: 1.9; }
+.ftl ul { list-style: none; padding-left: 20px; margin: 0;
+          border-left: 2px solid rgba(255,255,255,0.12); }
+.ftl-root { color: #ffffff; font-weight: 700; font-size: 14px;
+            font-family: 'Courier New', monospace; }
+.ftl-dir  { color: var(--accent); font-weight: 600;
+            font-family: 'Courier New', monospace; }
+.ftl-dir::before { content: "▸ "; font-size: 10px; opacity: .7; }
+.ftl-note { color: #757575; font-size: 11px; font-style: italic; margin-left: 8px; }
+.ftl-ex   { display: block; color: #9E9E9E; font-size: 11px;
+            font-family: 'Courier New', monospace; padding-left: 24px; }
+
+    /* ── Agenda de campo ── */
+    .photographer-badge { display:inline-flex; align-items:center; gap:10px; background:var(--cinza-claro); border-radius:20px; padding:7px 16px; font-size:13px; margin-bottom:20px; flex-wrap:wrap; }
+    .photographer-badge .ph-label { color:var(--cinza-medio); }
+    .photographer-badge .ph-name { font-weight:700; color:var(--grafite); }
+    .photographer-badge a { color:var(--accent); text-decoration:none; font-weight:600; }
+    .schedule-table { width:100%; border-collapse:collapse; }
+    .schedule-table thead th { text-align:left; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--cinza-medio); padding:8px 14px 6px; border-bottom:2px solid var(--cinza-claro); }
+    .schedule-table td { padding:12px 14px; border-bottom:1px solid var(--cinza-claro); font-size:14px; vertical-align:top; }
+    .schedule-table tbody tr:last-child td { border-bottom:none; }
+    .schedule-table tbody tr:hover { background:#FAFAFA; }
+    .sched-date { font-weight:700; color:var(--grafite); white-space:nowrap; min-width:110px; }
+    .sched-activity { font-weight:600; font-size:14px; margin-bottom:4px; }
+    .sched-priority { font-size:12px; color:var(--cinza-medio); line-height:1.5; }
+    .sched-note { display:inline-block; background:#FFF3E0; color:#E65100; border-radius:4px; padding:2px 8px; font-size:11px; font-weight:600; margin-top:5px; }
+    .sched-coord { display:inline-block; background:#E3F2FD; color:#1565C0; border-radius:4px; padding:2px 8px; font-size:11px; font-weight:600; margin-top:5px; }
+    .agenda-tip { background:var(--cinza-claro); border-radius:8px; padding:10px 14px; font-size:12px; color:var(--cinza-medio); margin-top:16px; line-height:1.6; }
+    .agenda-tip strong { color:var(--grafite); }
+    
+    /* ── Perguntas aprimoradas ── */
+    .q-main-badge { display:inline-block; background:var(--accent); color:#fff; border-radius:4px; padding:1px 7px; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; margin-bottom:5px; }
+    .persona { background:#fff; border-radius:10px; padding:16px 18px; margin-bottom:12px; border:1px solid var(--cinza-claro); }
+    .persona-name { font-weight:700; font-size:13px; color:var(--grafite); margin-bottom:8px; }
+    .question { font-size:14px; color:#333; line-height:1.6; margin-bottom:6px; }
+    .question:last-child { margin-bottom:0; }
+    .question-main { font-size:14px; color:#333; line-height:1.6; margin-bottom:8px; font-weight:500; }
+    
+    /* ── Calendario de produção ── */
+    .cal-table { width:100%; border-collapse:collapse; }
+    .cal-table thead th { text-align:left; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.07em; color:var(--cinza-medio); padding:8px 14px 6px; border-bottom:2px solid var(--cinza-claro); }
+    .cal-table td { padding:13px 14px; border-bottom:1px solid var(--cinza-claro); font-size:13px; vertical-align:top; line-height:1.55; }
+    .cal-table tbody tr:last-child td { border-bottom:none; }
+    .cal-date-cell { white-space:nowrap; font-weight:700; font-size:14px; color:var(--grafite); min-width:90px; }
+    .cal-day { display:block; font-size:11px; font-weight:400; color:var(--cinza-medio); text-transform:uppercase; letter-spacing:.06em; }
+    .cal-proj { display:inline-block; border-radius:6px; padding:2px 9px; font-size:11px; font-weight:700; color:#fff; margin-bottom:4px; }
+    .cp116 { background:var(--verde); }
+    .cp117 { background:var(--azul); }
+    .cp119 { background:#43A047; }
+    .cp124 { background:var(--roxo); }
+    .cp125 { background:var(--rosa); }
+    .cal-arrives { font-size:13px; color:var(--grafite); }
+    .cal-entrega-label { display:block; font-size:11px; font-weight:700; color:var(--accent); text-transform:uppercase; letter-spacing:.06em; margin-top:6px; }
+    .cal-entrega-text { font-size:13px; color:var(--grafite); }
+    .cal-stories-flag { display:inline-flex; align-items:center; gap:5px; background:#E91E63; color:#fff; border-radius:20px; padding:4px 12px; font-size:11px; font-weight:700; }
+    .cal-stories-flag::before { content:""; display:inline-block; width:7px; height:7px; background:#fff; border-radius:50%; }
+    .cal-note { font-size:12px; color:var(--cinza-medio); font-style:italic; margin-top:3px; }
+    .cal-section-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--cinza-medio); padding:10px 14px 4px; background:var(--cinza-claro); }
+    .cal-summary-box { background:var(--cinza-claro); border-radius:10px; padding:16px 18px; margin-top:20px; }
+    .cal-summary-box h4 { font-size:13px; font-weight:700; margin-bottom:10px; }
+    .cal-summary-box ul { margin:0; padding-left:18px; }
+    .cal-summary-box li { font-size:13px; color:var(--grafite); margin-bottom:5px; line-height:1.5; }
+    
+    /* ── Perguntas RSC ── */
+    .q-rsc-badge { display:inline-block; background:#1565C0; color:#fff; border-radius:4px; padding:1px 7px; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; margin:10px 0 5px; }
+    .question-rsc { font-size:13px; color:#444; line-height:1.6; margin-bottom:5px; font-style:italic; }
+    .question-rsc:last-child { margin-bottom:0; }
+    </style>
+  
+<style>
+  body { display: block !important; }
+  .view { display: block !important; max-width: 900px; margin: 0 auto; padding-bottom: 40px; }
+
+  .hero-standalone {
+    background: linear-gradient(135deg, #C49000 0%, #7A5800 100%);
+    color: white;
+    padding: 36px 32px 28px;
+  }
+  .hero-standalone .overline {
+    color: rgba(255,255,255,.75);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    margin-bottom: 10px;
+  }
+  .hero-standalone h1 { font-size: 26px; font-weight: 800; line-height: 1.2; margin-bottom: 10px; }
+  .hero-standalone .lead { font-size: 15px; opacity: .88; margin-bottom: 20px; max-width: 560px; }
+
+  .cidade-chips {
+    display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px;
+  }
+  .cidade-chip {
+    background: rgba(255,255,255,.15);
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 13px;
+  }
+  .cidade-chip .cidade-nome { font-weight: 700; font-size: 14px; display: block; }
+  .cidade-chip .cidade-data { font-size: 12px; opacity: .8; }
+  .cidade-chip .cidade-feira { font-size: 11px; color: #FFE082; margin-top: 2px; display: block; }
+
+  .top-alert {
+    background: #FFF8E1; border-left: 5px solid #F9A825;
+    padding: 14px 20px; margin: 20px 32px;
+    border-radius: 0 10px 10px 0; font-size: 13px; color: #6D4C00;
+  }
+  .top-alert strong { display: block; margin-bottom: 4px; font-size: 14px; }
+
+  .block { margin: 20px 32px; }
+
+  .page-footer {
+    text-align: center; padding: 32px 16px;
+    font-size: 12px; color: var(--cinza-medio);
+    border-top: 1px solid var(--cinza-claro); margin: 0 32px;
+  }
+
+  @media (max-width: 600px) {
+    .hero-standalone { padding: 24px 18px 20px; }
+    .hero-standalone h1 { font-size: 21px; }
+    .top-alert, .block { margin-left: 14px; margin-right: 14px; }
+    .cidade-chips { flex-direction: column; }
+    .page-footer { margin: 0 14px; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="view view-116">
+
+    <header class="hero-standalone">
+      <div class="overline">Briefing de Campo - Projeto 116 - Mato Grosso do Sul</div>
+      <h1>Cultura Robotica<br>Aster Maquinas Agricolas - 3 cidades / MS</h1>
+      <p class="lead">1 dia de filmagem por cidade. Foco na Feira de Ideias (quinta-feira de cada semana).
+      O que capturar, quem entrevistar e como organizar o material.</p>
+
+      <div class="cidade-chips">
+        <div class="cidade-chip">
+          <span class="cidade-nome">Sidrolandia</span>
+          <span class="cidade-data">Semana 11-15/05/2026</span>
+          <span class="cidade-feira">Feira de Ideias: 14/05 (quinta)</span>
+        </div>
+        <div class="cidade-chip">
+          <span class="cidade-nome">Maracaju</span>
+          <span class="cidade-data">Semana 18-22/05/2026</span>
+          <span class="cidade-feira">Feira de Ideias: 21/05 (quinta)</span>
+        </div>
+        <div class="cidade-chip">
+          <span class="cidade-nome">Sao Gabriel do Oeste</span>
+          <span class="cidade-data">Semana 25-29/05/2026</span>
+          <span class="cidade-feira">Feira de Ideias: 28/05 (quinta)</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="top-alert">
+      <strong>Dia de filmagem em cada cidade: quinta-feira (Feira de Ideias)</strong>
+      Chegar antes da abertura. Identificar o representante da Aster presente e coletar
+      nome e cargo antes de qualquer gravacao. Formato leve: sem equipe grande, sem encenacao.
+      Capturar o momento espontaneo, nao o prototipo perfeito.
+    </div>
+
+    
+  <header class="hero">
+    <div class="overline">Projeto 116 · Cultura Robótica · Áster Máquinas</div>
+    <h1>Áster nas 3 cidades do MS</h1>
+    <p class="lead">No interior do Mato Grosso do Sul, criança não desenha foguete. Desenha colheitadeira do futuro.</p>
+    <div class="hero-meta">
+      <div><strong>Patrocinador</strong><span>Áster Máquinas</span></div>
+      <div><strong>Cidades</strong><span>Sidrolândia · Maracaju · São Gabriel / MS</span></div>
+      <div><strong>Datas</strong><span>Sidrolândia 11-15/05 · Maracaju 18-22/05 · São Gabriel 25-29/05</span></div>
+    </div>
+  </header>
+
+  <div class="directives-banner">
+    <h4>Diretivas da reunião · Ana Carolina</h4>
+    <ul>
+      <li><strong>1 dia por cidade</strong> ("um dia tá de bom tamanho, não precisa ter mais que isso", fala da Ana). 3 cidades = 3 dias de filmagem.</li>
+      
+      <li><strong>Formato leve</strong> tipo "Ação em [cidade]", precedente que a Ana citou.</li>
+      <li><strong>Dias de filmagem (Feira de Ideias):</strong> Sidrolândia 14/05 · Maracaju 21/05 · São Gabriel 28/05 (quinta-feira em cada cidade).</li>
+    </ul>
+  </div>
+
+  <section class="block">
+    <div class="block-header">
+      <div class="overline">O que vamos produzir</div>
+      <h2>Vídeos a serem captados</h2>
+      <p class="subtitle">Metodologia teatro+robótica contextualizada para o agronegócio. Três cidades no MS.</p>
+    </div>
+    <div class="video-cards">
+
+      <article class="video-card">
+        <div class="card-tag">Reel Durante · 1 por cidade · 3 versoes</div>
+        <h3>Uma criança do interior do MS vai tentar construir algo para o problema que ve todo dia</h3>
+        <div class="story">A pergunta que abre o reel e simples: <em>"O que você mudaria aqui?"</em> Uma criança de 10 anos aponta para algo concreto no próprio mundo. O que ela vai construir durante a semana pode ser rudimentar: papelao, motorzinho, peca de kit didatico. Pode não funcionar. Pode cair pela metade. E tudo isso e material. O que o video precisa capturar não e o protótipo pronto. E o momento em que ela decide que vai tentar. Esse impulso de criar, que muitas vezes nunca foi incentivado antes, e o arco emocional real. Se a maquina funcionar, boa. Se não, ainda melhor: filme ela tentando consertar. <strong>Gancho viral:</strong> não e a maquina. E a criança que decidiu fazer uma.</div>
+        <div class="video-meta">
+          <span class="chip"><strong>Formato</strong>9:16 vertical</span>
+          <span class="chip"><strong>Duração</strong>60s cada</span>
+          <span class="chip"><strong>Destino</strong>Redes (collab Aster)</span>
+        </div>
+      </article>
+
+      <article class="video-card">
+        <div class="card-tag">Case · 90 a 120s · Entrega Aster</div>
+        <h3>Robótica no campo: o que acontece quando uma criança do agro recebe permissão pra tentar inventar</h3>
+        <div class="story">A Aster trabalha com o campo. Este case conecta o universo da empresa ao universo da criança que cresce nesse mesmo campo. A pergunta central não e "o projeto funcionou?" E "o que muda em uma criança quando ela recebe, talvez pela primeira vez, permissão para tentar criar algo do zero?" O case não depende do protótipo ser impressionante. Depende do depoimento do representante Aster sendo honesto sobre por que investir nesse tipo de formação, e da criança dizendo o que tentou fazer e o que aconteceu. <strong>Arco:</strong> representante Aster com visao da empresa → criança com o problema identificado → protótipo (qualquer que seja o estado) → criança respondendo o que quer ser quando crescer. Não edite fora os momentos de dificuldade.</div>
+        <div class="video-meta">
+          <span class="chip"><strong>Formato</strong>16:9 horizontal</span>
+          <span class="chip"><strong>Duração</strong>90 a 120s</span>
+          <span class="chip"><strong>Destino</strong>Entrega Aster</span>
+        </div>
+      </article>
+
+      <article class="video-card">
+        <div class="card-tag">Banco Reels Case · NTICS</div>
+        <h3>Material para Reels Case Impacto e Reels Case Valor</h3>
+        <div class="story">Banco institucional NTICS. Cenas que funcionam sem legenda: criança com qualquer protótipo nas mãos (simples ou não, completo ou nao), close de mãos montando algo com concentração, criança olhando para o próprio trabalho, professor observando sem interferir, plano amplo de escola pública com campo ao fundo. Frases curtas de alunos sobre o que tentaram fazer. Não descartar cenas de protótipos que não funcionaram: sao as mais honestas.</div>
+        <div class="video-meta">
+          <span class="chip"><strong>Formato</strong>9:16 e 16:9</span>
+          <span class="chip"><strong>Duração</strong>Cortes variados</span>
+          <span class="chip"><strong>Destino</strong>Banco NTICS</span>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-header">
+      <div class="overline">Para o videomaker em campo</div>
+      <h2>Plano de captação</h2>
+      <p class="subtitle">Três cidades no MS, 1 dia por cidade. Ao chegar em cada cidade: identificar o representante da Áster presente, coletar nome e cargo antes de iniciar as gravações.</p>
+    </div>
+    <div class="cap-grid">
+      <div class="cap-block">
+        <h4>Perfis a buscar em campo</h4>
+        <div style="background:#FFF3E0;border-left:3px solid #FF8F00;border-radius:6px;padding:10px 14px;font-size:12px;margin-bottom:12px;color:#4E342E;">
+          Ao chegar: identifique quem esta presente, pergunte nome completo e função antes de iniciar qualquer gravação. Os perfis abaixo sao referências de quem buscar, não confirmações de presença.
+        </div>
+        <div class="persona"><div class="persona-name">Representante Áster em campo</div><div class="persona-why">Voz institucional. Gravar fora da sala, preferêncialmente com contexto agro ao fundo. Camera a 1,2 m, altura dos olhos, rack focus do fundo para o rosto no início.</div>
+    <span class="q-rsc-badge">Responsabilidade Corporativa</span>
+    <p class="question-rsc">Como este projeto se conecta à estratégia de responsabilidade social ou ESG da empresa?</p>
+    <p class="question-rsc">O que muda no território onde a empresa opera depois de um projeto como esse?</p>
+    <p class="question-rsc">Isso é uma ação pontual ou faz parte de uma estratégia de longo prazo da empresa com a comunidade?</p>
+    <p class="question-rsc">O que a empresa aprende com um projeto como esse? O que volta para dentro da organização?</p>
+    <p class="question-rsc">Que mensagem você daria para outra empresa que ainda não faz esse tipo de investimento social?</p>
+</div>
+        <div class="persona"><div class="persona-name">1 aluno com protótipo de máquina agrícola por cidade</div><div class="persona-why">Projeto mais visual. Menina em primeiro plano sempre que possível. Camera a 1 m, plano médio fechado, leve movimento lateral para revelar o protótipo ao lado do aluno.</div></div>
+        <div class="persona"><div class="persona-name">Professor ou dinamizador da oficina</div><div class="persona-why">30s de depoimento. Camera handheld a 1,5 m, plano médio. Fundo com kits de robótica desfocados.</div></div>
+      </div>
+      <div class="cap-block">
+        <h4>Perguntas-chave por persona</h4>
+        <div class="persona">
+          <div class="persona-name">Representante Aster</div>
+          <span class="q-main-badge">Pergunta principal</span>
+          <p class="question-main">Quando você ve uma criança do interior do MS montando uma maquina que imita o que adultos fazem na lavoura, o que passa pela sua cabeca sobre o futuro desse estado?</p>
+          <p class="question">A Aster investe em educação e tecnologia em regioes que dependem do agronegocio. Como a empresa enxerga sua responsabilidade no desenvolvimento dessas comunidades a longo prazo?</p>
+          <p class="question">O que esse projeto representa para além de uma ação de comúnicação?</p>
+        </div>
+        <div class="persona">
+          <div class="persona-name">Aluno com protótipo</div>
+          <span class="q-main-badge">Pergunta principal</span>
+          <p class="question-main">Para quem no campo você construiu essa maquina? Você conhece essa pessoa?</p>
+          <p class="question">O que foi mais difícil: ter a ideia ou tentar fazer ela funcionar?</p>
+          <p class="question">O que você quer ser quando crescer?</p>
+        </div>
+        <div class="persona">
+          <div class="persona-name">Professor</div>
+          <span class="q-main-badge">Pergunta principal</span>
+          <p class="question-main">O que muda num aluno quando ele percebe que pode criar algo util com as próprias mãos?</p>
+          <p class="question">Teve algum aluno que você não esperava que fosse até o fim e foi? O que aconteceu com ele?</p>
+        </div>
+      </div>
+      <div class="cap-block">
+        <h4>Diretivas de câmera · como captar cada cena</h4>
+        <ul>
+          <li><strong>Depoimentos:</strong> camera na altura dos olhos do entrevistado, a 1 a 1,5 m. Handheld com estabilizador. Plano médio fechado (peito até cabeça). Deixar espaço para o olhar no quadro. Começar gravando antes de fazer a pergunta.</li>
+          <li><strong>Close de mãos (protótipo):</strong> camera inclinada de cima a 30 a 40 cm, sem estabilizador. Rack focus da peça para o rosto da criança ao fim da cena.</li>
+          <li><strong>Cena Áster + criança (prioridade):</strong> camera lateral a 1,5 m, plano conjunto. Posicionar ANTES de levar o representante para junto da criança. Não interromper a cena.</li>
+          <li><strong>B-roll agro:</strong> plano geral largo com lavoura ou maquinário para estabelecer território. Camera estática ou pan suave. Evitar sol duro do meio-dia.</li>
+          <li><strong>Premiação:</strong> camera posicionada e gravando ANTES da entrega. Plano médio do aluno esperando. Deixar a reação acontecer sem corte.</li>
+        </ul>
+      </div>
+      <div class="cap-block">
+        <h4>Critérios de entrega</h4>
+        <ul>
+          <li><strong>Drive:</strong> 1iCOrSqJKao0s82olnuD_0lLziQKn3jjq</li>
+          <li>1 dia por cidade. Confirmar datas com Áster e Secretarias antes de fechar agenda.</li>
+          <li>Upload do bruto no Drive ao fim de cada dia de captação.</li>
+          <li>Áudio com lapela ou microfone direcional em todo depoimento.</li>
+          <li>Banco NTICS: sem citar Áster, sem identificar cidade específica.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+    <section class="block">
+    <div class="block-header">
+      <div class="overline">Agenda confirmada</div>
+      <h2>Fotógrafo em campo · Mato Grosso do Sul</h2>
+    </div>
+    <div class="block-inner">
+      <div class="photographer-badge">
+        <span class="ph-label">Fotógrafo</span>
+        <span class="ph-name">Kassyano</span>
+        <a href="tel:67967609170">(67) 9676-0917</a>
+      </div>
+      <table class="schedule-table">
+        <thead>
+          <tr>
+            <th>Data</th>
+            <th>Cidade</th>
+            <th>O que capturar / prioridades</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="sched-date">12 · 13 · 14/05</td>
+            <td class="sched-activity">Sidrolândia</td>
+            <td>
+              <div class="sched-priority">Três dias de oficina de robótica. Capturar jornada completa: chegada dos alunos, montagem do protótipo, momento de teste. Priorizar crianças do campo que não tem contato com tecnologia no dia a dia.</div>
+              <span class="sched-coord">Coordenar ponto de encontro com representante Aster no primeiro dia</span>
+            </td>
+          </tr>
+          <tr>
+            <td class="sched-date">19/05</td>
+            <td class="sched-activity">São Gabriel do Oeste</td>
+            <td>
+              <div class="sched-priority">Mesma logica de Sidrolândia. Atentar para contexto agricola da cidade: se possivel, b-roll externo com paisagem agropecuaria antes de entrar na escola.</div>
+            </td>
+          </tr>
+          <tr>
+            <td class="sched-date">28/05</td>
+            <td class="sched-activity">Maracaju</td>
+            <td>
+              <div class="sched-priority">Ultima cidade. Se for dia de apresentação ou encerramento, capturar com mais foco em reações e entrega. B-roll de protótipo funcionando (mesmo que simples) e criança explicando o que construiu.</div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="agenda-tip"><strong>A cada cidade:</strong> ao chegar, identificar o representante da Aster presente, coletar nome e cargo antes de iniciar qualquer gravação. Os protótipos podem ser simples: não descartar cenas do que não funcionou.</div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-header">
+      <div class="overline">Stories para Instagram</div>
+      <h2>10 captações · Arco narrativo do dia</h2>
+      <p class="subtitle">Robótica no campo: contraste entre kit tecnológico e contexto agro é o gancho visual. Cada cidade gera seu próprio arco.</p>
+    </div>
+    <div class="stories-grid">
+      <div class="story-card"><div class="story-num">Story 01 · Chegada</div><h4>Entrando na escola</h4><p>Captador na entrada. "Hoje estou em [cidade] com a Cultura Robótica." Camera frontal, handheld, 15s. Contexto agro visível ao fundo se possível.</p></div>
+      <div class="story-card"><div class="story-num">Story 02 · Antes</div><h4>Setup do dia</h4><p>Kits de robótica sobre as mesas, crianças chegando. Pan lento da esquerda para a direita revelando a sala. Close nas peças em detalhe.</p></div>
+      <div class="story-card"><div class="story-num">Story 03 · Apresentação</div><h4>Quem são eles</h4><p>Cada criança fala nome e de onde é em 5s. Camera frontal a 60 cm. Sequência rápida de 3 a 4 alunos sem pausa entre os cortes.</p></div>
+      <div class="story-card"><div class="story-num">Story 04 · Ação 1</div><h4>A máquina sendo montada</h4><p>Close de mãos encaixando peça. Camera a 30 cm de cima, sem estabilizador. Rack focus da peça para o rosto ao fim. Visual mais forte do dia.</p></div>
+      <div class="story-card"><div class="story-num">Story 05 · Ação 2</div><h4>Colaboração em ação</h4><p>Dupla trabalhando junta. Camera lateral a 1 m revelando os dois. Representante Áster se apróximando: não interromper a cena para ajustar câmera.</p></div>
+      <div class="story-card"><div class="story-num">Story 06 · Bastidores</div><h4>O momento espontâneo</h4><p>15s sem roteiro. Camera discreta a 1,5 m. Criança mostrando protótipo para colega com entusiasmo real. Não sinalizar nem roteirizar.</p></div>
+      <div class="story-card"><div class="story-num">Story 07 · Pergunta rápida</div><h4>"O que a sua máquina faz?"</h4><p>3 crianças, 5s cada. Camera a 60 cm, plano médio. Corte direto entre respostas, sem transição. Ritmo rápido na edição.</p></div>
+      <div class="story-card"><div class="story-num">Story 08 · Depoimento relâmpago</div><h4>20 segundos</h4><p>1 aluno, camera no nível dos olhos a 80 cm, handheld leve. "Me conta o que você inventou e o que essa máquina faz." Sem preparação prévia.</p></div>
+      <div class="story-card"><div class="story-num">Story 09 · Virada</div><h4>O pico do dia</h4><p>Premiação ou protótipo funcionando pela primeira vez. Camera posicionada ANTES. Plano médio do aluno em espera. Não há segunda chance: deixar rolar.</p></div>
+      <div class="story-card"><div class="story-num">Story 10 · Saída</div><h4>Fechamento</h4><p>Sala com kits recolhidos. Captador encerrando. Plano da fachada da escola ou paisagem da cidade. 15s máximo.</p></div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-header">
+      <div class="overline">Estrutura de Pastas · Drive</div>
+      <h2>Organização do material captado</h2>
+      <p class="subtitle">Criar subpasta por cidade dentro da pasta principal do projeto.</p>
+    </div>
+    <div class="ftl-wrap">
+  <ul class="ftl">
+    <li><span class="ftl-root">[116] Cultura Robótica · Áster · MS</span>
+      <ul>
+        <li><span class="ftl-dir">CIDADE_1</span> <span class="ftl-note">repetir para CIDADE_2 e CIDADE_3</span>
+          <ul>
+            <li><span class="ftl-dir">01_DEPOIMENTOS</span>
+              <ul>
+                <li><span class="ftl-dir">PATROCINADOR</span> <span class="ftl-note">representante Áster</span>
+                  <span class="ftl-ex">captador_aster-[nome]_descricao.mp4</span>
+                </li>
+                <li><span class="ftl-dir">PROFESSORES</span> <span class="ftl-note">dinamizador / professor</span></li>
+                <li><span class="ftl-dir">ALUNOS</span> <span class="ftl-note">1 destaque por cidade</span></li>
+              </ul>
+            </li>
+            <li><span class="ftl-dir">02_STORIES</span> <span class="ftl-note">S01 a S10</span></li>
+            <li><span class="ftl-dir">03_BROLL</span>
+              <ul>
+                <li><span class="ftl-dir">CHEGADA</span> <span class="ftl-note">entrada escola + contexto agro</span></li>
+                <li><span class="ftl-dir">GERAL</span> <span class="ftl-note">protótipos, kits, lavoura, paisagem MS</span></li>
+              </ul>
+            </li>
+            <li><span class="ftl-dir">04_FOTOS</span>
+              <ul>
+                <li><span class="ftl-dir">SELECIONADAS</span></li>
+                <li><span class="ftl-dir">SENSIBILIDADE</span> <span class="ftl-note">rostos identificáveis , autorização antes de públicar</span></li>
+                <li><span class="ftl-dir">TOP15</span></li>
+              </ul>
+            </li>
+            <li><span class="ftl-dir">05_BRUTO</span></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    <div class="naming-rule">
+      <h4>Convenção de nomeação</h4>
+      <ul>
+        <li>Depoimentos: <code>captador_depoente_descricao.mp4</code> ex: <code>abilio_aster-rep_por-que-robótica.mp4</code></li>
+        <li>Stories: <code>S01_chegada-maracaju.mp4</code>, <code>S09_premiação.mp4</code></li>
+        <li>B-roll: <code>BROLL_protótipos-mesa.mp4</code>, <code>BROLL_lavoura.mp4</code></li>
+        <li>Fotos: <code>FOTO_001_aluno-protótipo.jpg</code></li>
+      </ul>
+    </div>
+    <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:16px;">
+      <div class="drive-badge"><span class="drive-badge-label">Drive 116</span> 1iCOrSqJKao0s82olnuD_0lLziQKn3jjq</div>
+    </div>
+  </section>
+
+</section>
+
+<!-- ============ 117 WHIRLPOOL ============ -->
+<section class="view view-117 active" 
+
+    <div class="page-footer">
+      Briefing gerado por NTICS - Projeto 116 - Nao distribuir fora da equipe de campo
+    </div>
+
+  </div>
+
+</body>
+</html>
