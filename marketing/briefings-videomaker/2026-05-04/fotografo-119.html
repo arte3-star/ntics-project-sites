@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Briefing de Campo · 119 PEC Eu Faco Parte · Sylvamo</title>
+  <title>Briefing de Campo · 119 PEC Eu Faco Parte · Sylvamo · SP</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -11,7 +11,6 @@
     :root {
       --accent: #5C2D91;
       --accent-light: #F3E5F5;
-      --accent-border: #7B1FA2;
       --cinza-claro: #F4F4F4;
       --cinza-medio: #6B7280;
       --grafite: #2D2D2D;
@@ -20,161 +19,92 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: var(--font); background: var(--cinza-claro); color: var(--grafite); -webkit-font-smoothing: antialiased; }
     .page { max-width: 860px; margin: 0 auto; padding-bottom: 60px; }
-
-    /* ── Hero ── */
-    .hero {
-      background: linear-gradient(135deg, #5C2D91 0%, #2D0A5E 100%);
-      color: white; padding: 36px 32px 32px;
-    }
+    .hero { background: linear-gradient(135deg, #5C2D91 0%, #2D0A5E 100%); color: white; padding: 36px 32px 32px; }
     .overline { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; opacity: .75; margin-bottom: 10px; }
     .hero h1 { font-size: 28px; font-weight: 800; line-height: 1.2; margin-bottom: 12px; }
     .hero .lead { font-size: 15px; opacity: .88; line-height: 1.6; max-width: 560px; margin-bottom: 20px; }
     .cidade-chips { display: flex; flex-wrap: wrap; gap: 10px; }
-    .cidade-chip {
-      background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.25);
-      border-radius: 8px; padding: 10px 16px; font-size: 13px;
-    }
+    .cidade-chip { background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.25); border-radius: 8px; padding: 10px 16px; font-size: 13px; }
     .cidade-chip .nome { font-weight: 700; font-size: 14px; display: block; margin-bottom: 2px; }
     .cidade-chip .data { font-size: 12px; opacity: .8; display: block; }
-    .cidade-chip .obs  { font-size: 11px; color: #CE93D8; margin-top: 3px; display: block; }
-
-    /* ── Alerta ── */
-    .alert {
-      background: var(--accent-light); border-left: 5px solid var(--accent-border);
-      padding: 14px 20px; margin: 20px 32px;
-      border-radius: 0 10px 10px 0; font-size: 13px; color: #4A148C; line-height: 1.6;
-    }
+    .cidade-chip .obs { font-size: 11px; color: rgba(255,255,255,.65); margin-top: 3px; display: block; }
+    .alert { background: #F3E5F5; border-left: 5px solid #7B1FA2; padding: 14px 20px; margin: 20px 32px; border-radius: 0 10px 10px 0; font-size: 13px; color: #4A148C; line-height: 1.6; }
     .alert strong { display: block; font-size: 14px; margin-bottom: 4px; }
-
-    /* ── Secoes ── */
     .section { margin: 28px 32px 0; }
-    .section-title {
-      font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .12em;
-      color: var(--accent); margin-bottom: 6px;
-    }
+    .section-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; color: var(--accent); margin-bottom: 6px; }
     .section h2 { font-size: 22px; font-weight: 700; margin-bottom: 16px; }
-
-    /* ── Card base ── */
-    .card {
-      background: white; border-radius: 12px; padding: 22px 24px;
-      box-shadow: 0 1px 3px rgba(0,0,0,.05); margin-bottom: 12px;
-    }
-
-    /* ── Intencao ── */
+    .card { background: white; border-radius: 12px; padding: 22px 24px; box-shadow: 0 1px 3px rgba(0,0,0,.05); margin-bottom: 12px; }
     .intencao-lead { font-size: 15px; line-height: 1.65; color: #333; margin-bottom: 16px; }
     .capturar-list { list-style: none; padding: 0; }
-    .capturar-list li {
-      display: flex; align-items: flex-start; gap: 10px;
-      padding: 9px 0; border-bottom: 1px solid var(--cinza-claro); font-size: 14px; line-height: 1.5;
-    }
+    .capturar-list li { display: flex; align-items: flex-start; gap: 10px; padding: 9px 0; border-bottom: 1px solid var(--cinza-claro); font-size: 14px; line-height: 1.5; }
     .capturar-list li:last-child { border-bottom: none; }
-    .capturar-list li::before {
-      content: '';
-      width: 8px; height: 8px; min-width: 8px;
-      border-radius: 50%; background: var(--accent); margin-top: 6px;
-    }
-
-    /* ── Personas ── */
+    .capturar-list li::before { content: ''; width: 8px; height: 8px; min-width: 8px; border-radius: 50%; background: var(--accent); margin-top: 6px; }
     .personas-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
     @media(max-width:620px) { .personas-grid { grid-template-columns: 1fr; } }
-    .persona-card {
-      background: white; border-radius: 12px; padding: 20px 22px;
-      box-shadow: 0 1px 3px rgba(0,0,0,.05);
-      border-top: 3px solid var(--accent);
-    }
-    .persona-label {
-      font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em;
-      color: var(--accent); margin-bottom: 6px;
-    }
+    .persona-card { background: white; border-radius: 12px; padding: 20px 22px; box-shadow: 0 1px 3px rgba(0,0,0,.05); border-top: 3px solid var(--accent); }
+    .persona-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--accent); margin-bottom: 6px; }
     .persona-name { font-size: 16px; font-weight: 700; margin-bottom: 14px; color: var(--grafite); }
-    .q-principal {
-      background: var(--accent-light); border-left: 3px solid var(--accent);
-      border-radius: 0 8px 8px 0; padding: 11px 14px;
-      font-size: 14px; line-height: 1.55; font-weight: 600; color: #3A0066;
-      margin-bottom: 10px;
-    }
+    .q-principal { background: var(--accent-light); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; padding: 11px 14px; font-size: 14px; line-height: 1.55; font-weight: 600; color: #3A0066; margin-bottom: 10px; }
     .q-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--accent); margin-bottom: 5px; }
-    .q-item {
-      font-size: 13.5px; line-height: 1.55; color: #333;
-      padding: 7px 0; border-bottom: 1px solid #F0F0F0;
-    }
+    .q-item { font-size: 13.5px; line-height: 1.55; color: #333; padding: 7px 0; border-bottom: 1px solid #F0F0F0; }
     .q-item:last-child { border-bottom: none; }
-
-    /* ── Criterios de entrega ── */
     .entrega-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
     @media(max-width:620px) { .entrega-grid { grid-template-columns: 1fr; } }
-    .entrega-item {
-      background: white; border-radius: 12px; padding: 18px 20px;
-      box-shadow: 0 1px 3px rgba(0,0,0,.05);
-      display: flex; gap: 14px; align-items: flex-start;
-    }
-    .entrega-num {
-      width: 36px; height: 36px; min-width: 36px;
-      border-radius: 50%; background: var(--accent);
-      color: white; font-weight: 800; font-size: 15px;
-      display: grid; place-items: center;
-    }
+    .entrega-item { background: white; border-radius: 12px; padding: 18px 20px; box-shadow: 0 1px 3px rgba(0,0,0,.05); display: flex; gap: 14px; align-items: flex-start; }
+    .entrega-num { width: 36px; height: 36px; min-width: 36px; border-radius: 50%; background: var(--accent); color: white; font-weight: 800; font-size: 15px; display: grid; place-items: center; }
     .entrega-item strong { display: block; font-size: 14px; font-weight: 700; margin-bottom: 4px; }
     .entrega-item p { font-size: 13px; color: var(--cinza-medio); line-height: 1.55; }
-
-    .diretivas-card {
-      background: white; border-radius: 12px; padding: 20px 22px;
-      box-shadow: 0 1px 3px rgba(0,0,0,.05); margin-top: 12px;
-    }
-    .diretivas-card h4 { font-size: 13px; font-weight: 700; margin-bottom: 12px; color: var(--grafite); }
-    .diretiva-list { list-style: none; padding: 0; }
-    .diretiva-list li {
-      font-size: 13.5px; line-height: 1.55; padding: 8px 0;
-      border-bottom: 1px solid var(--cinza-claro);
-      display: flex; gap: 10px; align-items: flex-start;
-    }
-    .diretiva-list li:last-child { border-bottom: none; }
-    .diretiva-list li::before {
-      content: '';
-      width: 6px; height: 6px; min-width: 6px;
-      border-radius: 50%; background: var(--accent); margin-top: 7px;
-    }
-
-    /* ── Stories ── */
     .stories-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
-    .story-card {
-      background: white; border-radius: 10px; padding: 16px 18px;
-      border-left: 3px solid var(--accent);
-      box-shadow: 0 1px 3px rgba(0,0,0,.05);
-    }
+    .story-card { background: white; border-radius: 10px; padding: 16px 18px; border-left: 3px solid var(--accent); box-shadow: 0 1px 3px rgba(0,0,0,.05); }
     .story-num { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--accent); margin-bottom: 6px; }
     .story-card h4 { font-size: 14px; font-weight: 700; margin-bottom: 5px; line-height: 1.3; }
     .story-card p { font-size: 12.5px; color: var(--cinza-medio); line-height: 1.5; }
-
-    /* ── Pastas ── */
     .ftl-wrap { background: #1E1E2E; border-radius: 12px; padding: 20px 24px; }
     .ftl { list-style: none; padding: 0; margin: 0; font-size: 13px; line-height: 2; }
     .ftl ul { list-style: none; padding-left: 20px; margin: 0; border-left: 2px solid rgba(255,255,255,.12); }
     .ftl-root { color: #fff; font-weight: 700; font-size: 14px; font-family: 'Courier New', monospace; }
-    .ftl-dir { color: #CE93D8; font-weight: 600; font-family: 'Courier New', monospace; }
+    .ftl-dir { color: var(--accent); font-weight: 600; font-family: 'Courier New', monospace; }
     .ftl-dir::before { content: "▸ "; font-size: 10px; opacity: .7; }
     .ftl-note { color: #757575; font-size: 11px; font-style: italic; margin-left: 8px; }
     .ftl-ex { display: block; color: #9E9E9E; font-size: 11px; font-family: 'Courier New', monospace; padding-left: 24px; }
-
     .naming-rule { background: white; border-radius: 12px; padding: 18px 22px; margin-top: 12px; border: 1px solid var(--cinza-claro); }
     .naming-rule h4 { font-size: 13px; font-weight: 700; margin-bottom: 10px; }
     .naming-rule p { font-size: 13px; color: var(--cinza-medio); margin-bottom: 6px; line-height: 1.5; }
     .naming-rule code { background: var(--cinza-claro); border-radius: 4px; padding: 2px 6px; font-size: 12px; font-family: 'Courier New', monospace; color: var(--grafite); }
-
-    .drive-badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: var(--accent); color: white; border-radius: 8px;
-      padding: 9px 16px; font-size: 12px; font-weight: 600; margin-top: 14px;
-    }
+    .drive-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: white; border-radius: 8px; padding: 9px 16px; font-size: 12px; font-weight: 600; margin-top: 14px; }
     .drive-badge a { color: white; text-decoration: underline; font-family: monospace; font-size: 12px; }
-
-    /* ── Footer ── */
     .page-footer { text-align: center; padding: 32px 16px; font-size: 12px; color: var(--cinza-medio); border-top: 1px solid #E5E7EB; margin: 32px 32px 0; }
-
+    /* ── Identificacao ── */
+    .ident-rule { background: #FFFDE7; border-left: 5px solid #F9A825; padding: 14px 20px; margin: 16px 32px 0; border-radius: 0 10px 10px 0; font-size: 13px; color: #4A3000; line-height: 1.7; }
+    .ident-rule strong { display: block; font-size: 14px; margin-bottom: 6px; }
+    .ident-rule ul { list-style: none; padding: 0; }
+    .ident-rule li { padding: 3px 0 3px 16px; position: relative; }
+    .ident-rule li::before { content: ''; position: absolute; left: 4px; top: 10px; width: 5px; height: 5px; border-radius: 50%; background: #F9A825; }
+    /* ── Falas curtas ── */
+    .fala-regras { background: white; border-radius: 12px; padding: 18px 22px; box-shadow: 0 1px 3px rgba(0,0,0,.05); margin-bottom: 14px; }
+    .fala-regras h4 { font-size: 13px; font-weight: 700; margin-bottom: 10px; color: var(--grafite); }
+    .fala-regras ol { padding-left: 18px; font-size: 13px; color: #333; line-height: 1.7; }
+    .fala-regras li { margin-bottom: 4px; }
+    .fala-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media(max-width:620px) { .fala-grid { grid-template-columns: 1fr; } }
+    .fala-card { background: white; border-radius: 12px; padding: 18px 20px; box-shadow: 0 1px 3px rgba(0,0,0,.05); border-top: 3px solid var(--accent); }
+    .fala-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--accent); margin-bottom: 6px; }
+    .fala-name { font-size: 14px; font-weight: 700; margin-bottom: 12px; color: var(--grafite); }
+    .fala-q { font-size: 13px; color: #333; line-height: 1.55; padding: 7px 0; border-bottom: 1px solid #F0F0F0; }
+    .fala-q:last-child { border-bottom: none; }
+    /* ── Fotos ── */
+    .foto-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; margin-bottom: 14px; }
+    .foto-cat { background: white; border-radius: 12px; padding: 18px 20px; box-shadow: 0 1px 3px rgba(0,0,0,.05); }
+    .foto-cat-num { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background: var(--accent); color: white; font-weight: 800; font-size: 13px; margin-bottom: 8px; }
+    .foto-cat strong { display: block; font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+    .foto-cat ul { list-style: none; padding: 0; }
+    .foto-cat li { font-size: 12.5px; color: var(--cinza-medio); padding: 4px 0; border-bottom: 1px solid #F5F5F5; line-height: 1.4; }
+    .foto-cat li:last-child { border-bottom: none; }
+    .foto-note { background: var(--cinza-claro); border-radius: 10px; padding: 12px 16px; font-size: 12.5px; color: var(--cinza-medio); line-height: 1.6; }
     @media(max-width:600px) {
       .hero { padding: 24px 18px 22px; }
       .hero h1 { font-size: 22px; }
-      .alert, .section { margin-left: 14px; margin-right: 14px; }
+      .alert, .section, .ident-rule { margin-left: 14px; margin-right: 14px; }
       .page-footer { margin: 32px 14px 0; }
     }
   </style>
@@ -182,44 +112,37 @@
 <body>
   <div class="page">
 
-    <!-- ── Hero ─────────────────────────────────────────── -->
     <header class="hero">
       <div class="overline">Briefing de Campo · Projeto 119 · Sao Paulo</div>
       <h1>PEC Eu Faco Parte · 2a Edicao<br>Sylvamo · Mogi Guacu + Guatapara / SP</h1>
-      <p class="lead">Programa de educacao territorial: criancas identificam problemas reais do bairro e propõem solucoes. Cobertura diaria na semana 1, foco na Feira de Ideias.</p>
+      <p class="lead">Programa de educacao territorial: criancas identificam problemas reais do bairro e propõem solucoes. Cobertura diaria semana 1, foco na Feira de Ideias.</p>
       <div class="cidade-chips">
-        <div class="cidade-chip">
-          <span class="nome">Mogi Guacu / SP</span>
-          <span class="data">Inicio: 11/05/2026 · 4 escolas</span>
-          <span class="obs">Filmagem diaria semana 1. Pico dia 11 (abertura prefeitura).</span>
-        </div>
-        <div class="cidade-chip">
-          <span class="nome">Guatapara / SP</span>
-          <span class="data">Datas a confirmar</span>
-          <span class="obs">Cobertura leve. Mesma estrutura de captacao.</span>
-        </div>
+        <div class="cidade-chip"><span class="nome">Mogi Guacu / SP</span><span class="data">Inicio: 11/05/2026 · 4 escolas</span><span class="obs">Filmagem diaria semana 1. Pico dia 11 (abertura prefeitura).</span></div>
+        <div class="cidade-chip"><span class="nome">Guatapara / SP</span><span class="data">Datas a confirmar</span><span class="obs">Cobertura leve. Mesma estrutura de captacao.</span></div>
+        
       </div>
     </header>
 
-    <!-- ── Alerta prioridade ──────────────────────────────── -->
     <div class="alert">
       <strong>Prioridade maxima: dia 11/05 em Mogi Guacu</strong>
-      Abertura na prefeitura com prefeito + workshop de professores.
-      Reservar 30 minutos com tripe fixo para depoimento triplo:
-      Abilio + Raisa + representante Sylvamo sentados juntos.
-      Esse e o material ancora do Video Case. Nao perder esse momento.
+      Abertura na prefeitura com prefeito + workshop de professores. Reservar 30 minutos para depoimento triplo: Abilio + Raisa + representante Sylvamo sentados juntos. Esse e o material ancora do Video Case.
     </div>
 
-    <!-- ── O que captar ──────────────────────────────────── -->
+    <div class="ident-rule">
+      <strong>Identificacao obrigatoria antes de qualquer captacao</strong>
+      <ul>
+        <li><strong>Qualquer pessoa:</strong> nome completo antes de comecar a gravar.</li>
+        <li><strong>Patrocinador / rep. da empresa:</strong> nome completo + cargo + nome da empresa.</li>
+        <li><strong>Educador / facilitador / monitor:</strong> nome + o que faz + escola ou organizacao onde atua.</li>
+        <li><strong>Participante / aluno:</strong> nome completo + cidade ou bairro (se relevante).</li>
+      </ul>
+    </div>
+
     <section class="section">
       <div class="section-title">Objetivo</div>
       <h2>O que captar nesse projeto</h2>
       <div class="card">
-        <p class="intencao-lead">
-          O PEC coloca a crianca como quem diagnostica o proprio territorio. Sua missao e registrar
-          esse processo: o momento em que ela percebe o problema, a construcao da proposta e a apresentacao
-          na Feira de Ideias. O olhar dela e o material mais valioso.
-        </p>
+        <p class="intencao-lead">O PEC coloca a crianca como quem diagnostica o proprio territorio. Sua missao e registrar esse processo: o momento em que ela percebe o problema, a construcao da proposta e a apresentacao na Feira de Ideias.</p>
         <ul class="capturar-list">
           <li>Depoimento triplo: Abilio + Raisa + representante Sylvamo</li>
           <li>Depoimentos: representante Sylvamo, 2 criancas, 1 professor, equipe NTICS</li>
@@ -230,173 +153,197 @@
       </div>
     </section>
 
-    <!-- ── Perguntas por persona ──────────────────────────── -->
     <section class="section">
       <div class="section-title">Perguntas por persona</div>
       <h2>Quem entrevistar e o que perguntar</h2>
       <div class="personas-grid">
-
-        <div class="persona-card">
-          <div class="persona-label">Patrocinador</div>
-          <div class="persona-name">Representante Sylvamo</div>
-          <div class="q-label">Pergunta principal</div>
-          <div class="q-principal">O que significa para a Sylvamo investir em educacao na mesma cidade onde a empresa opera?</div>
+        <div class="persona-card"><div class="persona-label">Patrocinador</div><div class="persona-name">Representante Sylvamo</div><div class="q-label">Pergunta principal</div><div class="q-principal">O que significa para a Sylvamo investir em educacao na mesma cidade onde a empresa opera?</div>
           <div class="q-item">Por que Mogi Guacu? O que a Sylvamo tem de ligacao com esse territorio alem da fabrica?</div>
           <div class="q-item">Como esse projeto entra na estrategia de responsabilidade da Sylvamo?</div>
           <div class="q-item">O que voce espera que os alunos levem desse programa?</div>
           <div class="q-item">Que mensagem voce daria para outra empresa que ainda nao faz esse tipo de investimento?</div>
         </div>
-
-        <div class="persona-card">
-          <div class="persona-label">Aluno</div>
-          <div class="persona-name">Crianca participante</div>
-          <div class="q-label">Pergunta principal</div>
-          <div class="q-principal">Qual problema do seu bairro ou cidade voce quer resolver? Por que esse e nao outro?</div>
+        <div class="persona-card"><div class="persona-label">Aluno</div><div class="persona-name">Crianca participante</div><div class="q-label">Pergunta principal</div><div class="q-principal">Qual problema do seu bairro ou cidade voce quer resolver? Por que esse e nao outro?</div>
           <div class="q-item">O que voce aprendeu sobre a sua cidade que nao sabia antes?</div>
           <div class="q-item">O que voce construiu aqui? Me explica como funciona.</div>
           <div class="q-item">O que voce vai fazer diferente depois desse programa?</div>
         </div>
-
-        <div class="persona-card">
-          <div class="persona-label">Educador</div>
-          <div class="persona-name">Professor em campo</div>
-          <div class="q-label">Pergunta principal</div>
-          <div class="q-principal">O que muda num aluno quando ele percebe que pode propor uma solucao para o bairro dele?</div>
+        <div class="persona-card"><div class="persona-label">Educador</div><div class="persona-name">Professor em campo</div><div class="q-label">Pergunta principal</div><div class="q-principal">O que muda num aluno quando ele percebe que pode propor uma solucao para o bairro dele?</div>
           <div class="q-item">Como foi fazer diagnostico territorial com seus alunos pela primeira vez?</div>
           <div class="q-item">O que esse programa faz de diferente que a aula normal nao faz?</div>
           <div class="q-item">Qual momento dessa semana mais te marcou?</div>
         </div>
-
-        <div class="persona-card">
-          <div class="persona-label">Equipe NTICS</div>
-          <div class="persona-name">Abilio ou Raisa (depoimento triplo)</div>
-          <div class="q-label">Pergunta principal</div>
-          <div class="q-principal">O que o PEC Eu Faco Parte e? O que ele muda na crianca que passa pelo programa?</div>
+        <div class="persona-card"><div class="persona-label">Equipe NTICS</div><div class="persona-name">Abilio ou Raisa (depoimento triplo)</div><div class="q-label">Pergunta principal</div><div class="q-principal">O que o PEC Eu Faco Parte e? O que ele muda na crianca que passa pelo programa?</div>
           <div class="q-item">O que acontece com a crianca quando ela percebe que o problema e real e a tentativa tambem?</div>
           <div class="q-item">O que faz o PEC diferente de outros programas de educacao?</div>
           <div class="q-item">Por que o Sylvamo faz sentido como parceiro nesse territorio?</div>
         </div>
-
       </div>
     </section>
 
-    <!-- ── Criterios de entrega ───────────────────────────── -->
+    <section class="section">
+      <div class="section-title">Falas Curtas (10-20s)</div>
+      <h2>Respostas rapidas por persona</h2>
+      <div class="fala-regras">
+        <h4>Regras para garantir respostas curtas e uteis</h4>
+        <ol>
+          <li>Combine antes: "Vou te fazer uma pergunta rapida, responde em ate 20 segundos."</li>
+          <li>Uma pergunta por vez: evite pergunta dupla (ex.: "como foi e o que mudou?").</li>
+          <li>Comece pelo contexto: cite a atividade do dia quando fizer sentido ("na oficina de hoje...", "aqui na quadra...").</li>
+          <li>Sempre com audio limpo: lapela ligada + monitoramento no fone antes de perguntar.</li>
+        </ol>
+      </div>
+      <div class="fala-grid">
+        <div class="fala-card">
+          <div class="fala-label">Participante / Beneficiario</div>
+          <div class="fala-name">Aluno, jovem, familia, comunidade</div>
+          <div class="fala-q">Resuma em ate 20 segundos como esta sendo, para voce, participar do projeto.</div>
+          <div class="fala-q">Em uma frase, o que voce fez hoje aqui?</div>
+          <div class="fala-q">Em 20 segundos, por que voce recomendaria essa atividade para um amigo?</div>
+        </div>
+        <div class="fala-card">
+          <div class="fala-label">Educador / Facilitador / Monitor</div>
+          <div class="fala-name">Professor, oficineiro, monitor</div>
+          <div class="fala-q">Em ate 20 segundos, o que foi trabalhado hoje e como a atividade aconteceu?</div>
+          <div class="fala-q">Em uma frase, o que voce mais viu se desenvolver nos participantes hoje?</div>
+          <div class="fala-q">Em uma frase, qual e o principal ganho pedagogico ou social desta acao?</div>
+          <div class="fala-q">Mande uma mensagem rapida para o patrocinador do projeto.</div>
+        </div>
+        <div class="fala-card">
+          <div class="fala-label">Patrocinador / Rep. da empresa</div>
+          <div class="fala-name">Representante institucional</div>
+          <div class="fala-q">Se apresente: nome completo, cargo e empresa.</div>
+          <div class="fala-q">Qual foi a sua percepcao sobre o projeto?</div>
+          <div class="fala-q">Qual foi a cena que mais te marcou sendo realizada no projeto?</div>
+          <div class="fala-q">O que motiva a empresa a apoiar esse projeto?</div>
+          <div class="fala-q">Como voce ve o impacto desse projeto na vida das pessoas da comunidade?</div>
+        </div>
+        <div class="fala-card">
+          <div class="fala-label">Coordenacao NTICS</div>
+          <div class="fala-name">Campo ou coordenacao local</div>
+          <div class="fala-q">Explique sucintamente do que se trata o projeto.</div>
+          <div class="fala-q">Qual a grande entrega desse projeto?</div>
+          <div class="fala-q">Como a NTICS ve a importancia de projetos como esse para a sociedade?</div>
+        </div>
+        <div class="fala-card">
+          <div class="fala-label">Parceiro local</div>
+          <div class="fala-name">Secretaria, direcao, ONG, lideranca</div>
+          <div class="fala-q">Por que este projeto e importante para esta comunidade?</div>
+          <div class="fala-q">Uma mensagem de agradecimento para o patrocinador.</div>
+        </div>
+      </div>
+    </section>
+
     <section class="section">
       <div class="section-title">Entrega</div>
       <h2>O que precisa chegar no Drive</h2>
       <div class="entrega-grid">
-        <div class="entrega-item">
-          <div class="entrega-num">5</div>
-          <div>
-            <strong>Depoimentos</strong>
-            <p>Sylvamo, 2 criancas, professor, NTICS.</p>
-          </div>
+        <div class="entrega-item"><div class="entrega-num">5</div><div><strong>Depoimentos</strong><p>Sylvamo, 2 criancas, professor, NTICS.</p></div></div>
+        <div class="entrega-item"><div class="entrega-num">1</div><div><strong>Lapela em cada depoimento</strong><p>Nunca so com audio da camera.</p></div></div>
+        <div class="entrega-item"><div class="entrega-num">10</div><div><strong>Stories vertical 9:16</strong><p>Arco S01 a S10. Upload no Drive ao fim do dia.</p></div></div>
+        <div class="entrega-item"><div class="entrega-num">20+</div><div><strong>B-rolls com detalhe</strong><p>Escola, mapa, prototipo, Feira de Ideias.</p></div></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">Captacao de Fotos</div>
+      <h2>Checklist fotografico</h2>
+      <div class="foto-note">Toda sessao precisa ter fotos abertas (atividade como um todo) e closes proximos (expressao, detalhe, acao). Misture os dois em cada categoria abaixo.</div>
+      <div class="foto-grid" style="margin-top:14px;">
+        <div class="foto-cat">
+          <div class="foto-cat-num">10</div>
+          <strong>Contexto</strong>
+          <ul>
+            <li>Entrada e fachada do local</li>
+            <li>Publico chegando</li>
+            <li>Espaco antes de comecar</li>
+          </ul>
         </div>
-        <div class="entrega-item">
-          <div class="entrega-num">1</div>
-          <div>
-            <strong>Lapela em cada depoimento</strong>
-            <p>Nunca so com audio da camera.</p>
-          </div>
+        <div class="foto-cat">
+          <div class="foto-cat-num">10</div>
+          <strong>Atividade em acao</strong>
+          <ul>
+            <li>Atividade principal em execucao</li>
+            <li>Expressoes e reacoes dos participantes</li>
+            <li>Detalhe da acao (maos, produto, ferramenta)</li>
+          </ul>
         </div>
-        <div class="entrega-item">
-          <div class="entrega-num">10</div>
-          <div>
-            <strong>Stories vertical 9:16</strong>
-            <p>Arco S01 a S10. Upload no Drive ao fim do dia.</p>
-          </div>
+        <div class="foto-cat">
+          <div class="foto-cat-num">10</div>
+          <strong>Cenario com pecas instaladas</strong>
+          <ul>
+            <li>Banners e assinaturas no ambiente</li>
+            <li>Sinalização do projeto no espaco</li>
+            <li>Ambiente completo com identidade visual</li>
+          </ul>
         </div>
-        <div class="entrega-item">
-          <div class="entrega-num">+</div>
-          <div>
-            <strong>B-roll</strong>
-            <p>Escola, mapa, prototipo, Feira de Ideias.</p>
-          </div>
+        <div class="foto-cat">
+          <div class="foto-cat-num">10</div>
+          <strong>Equipe</strong>
+          <ul>
+            <li>Time em acao durante o projeto</li>
+            <li>Retrato institucional com camisa do projeto</li>
+            <li>Equipe + participantes ao lado de banner</li>
+          </ul>
+        </div>
+        <div class="foto-cat">
+          <div class="foto-cat-num">10</div>
+          <strong>Resultado</strong>
+          <ul>
+            <li>Entregas, apresentacoes, produtos finais</li>
+            <li>Participante com o que produziu</li>
+            <li>Momento de encerramento ou reconhecimento</li>
+          </ul>
+        </div>
+        <div class="foto-cat">
+          <div class="foto-cat-num">+</div>
+          <strong>Essenciais (qualquer quantidade)</strong>
+          <ul>
+            <li>Educadores / palestrantes ministrando</li>
+            <li>Dentro da sala com alunos, professores e monitores</li>
+            <li>Alunos na quadra ou espaco aberto</li>
+            <li>Fotos do workshop ou atividade especifica</li>
+          </ul>
         </div>
       </div>
     </section>
 
-    <!-- ── Stories ───────────────────────────────────────── -->
     <section class="section">
       <div class="section-title">Stories para Instagram</div>
       <h2>10 captacoes · Arco do dia</h2>
       <div class="stories-grid">
-        <div class="story-card">
-          <div class="story-num">S01 · Chegada</div>
-          <h4>Entrada na escola</h4>
-          <p>Camera frontal, fachada visivel. "Hoje estou em Mogi Guacu com o PEC Eu Faco Parte, com apoio da Sylvamo." 15s.</p>
-        </div>
-        <div class="story-card">
-          <div class="story-num">S02 · Antes</div>
-          <h4>Abertura na prefeitura</h4>
-          <p>Espaco sendo preparado, criancas chegando. Pan suave revelando o ambiente. Sem fala, so imagem + musica.</p>
-        </div>
-        <div class="story-card">
-          <div class="story-num">S03 · Apresentacao</div>
-          <h4>De onde eles vem</h4>
-          <p>Cada crianca fala nome e bairro em 5s. Sequencia rapida de 3 a 4 alunos. Camera frontal a 60 cm.</p>
-        </div>
-        <div class="story-card">
-          <div class="story-num">S04 · Acao 1</div>
-          <h4>O problema do bairro</h4>
-          <p>Crianca apontando para o mapa e identificando um problema. Camera lateral, mapa e rosto no mesmo quadro.</p>
-        </div>
-        <div class="story-card">
-          <div class="story-num">S05 · Acao 2</div>
-          <h4>O diagnostico em grupo</h4>
-          <p>Professor orientando grupos. Criancas registrando observacoes. Camera de cima mostrando a mesa coletiva.</p>
-        </div>
-        <div class="story-card">
-          <div class="story-num">S06 · Bastidores</div>
-          <h4>Nao roteirizar</h4>
-          <p>15s espontaneo. Dois alunos debatendo qual problema e mais urgente. Camera discreta. Nao sinalizar.</p>
-        </div>
-        <div class="story-card">
-          <div class="story-num">S07 · Pergunta rapida</div>
-          <h4>"Qual problema do seu bairro voce quer resolver?"</h4>
-          <p>3 criancas, 5s cada. Camera a 60 cm. Corte direto. Sem preparacao previa.</p>
-        </div>
-        <div class="story-card">
-          <div class="story-num">S08 · Depoimento relampago</div>
-          <h4>20 segundos</h4>
-          <p>1 aluno. Camera no nivel dos olhos a 80 cm. "O que esse projeto me ensinou a enxergar que eu nao enxergava?"</p>
-        </div>
-        <div class="story-card">
-          <div class="story-num">S09 · Virada</div>
-          <h4>Feira de Ideias</h4>
-          <p>Crianca apresentando proposta. Camera capta a reacao do adulto, nao so a crianca. Posicionar antes do inicio.</p>
-        </div>
-        <div class="story-card">
-          <div class="story-num">S10 · Saida</div>
-          <h4>Fechamento do dia</h4>
-          <p>Mural visivel ao fundo. "Isso foi Mogi Guacu. O territorio que virou sala de aula." Camera frontal, 10s.</p>
-        </div>
+        <div class="story-card"><div class="story-num">S01 · Chegada</div><h4>Entrada no espaco</h4><p>Camera frontal, fachada visivel. "Hoje estou em [local] com "Qual problema do seu bairro voce quer resolver?"." 15s.</p></div>
+        <div class="story-card"><div class="story-num">S02 · Antes</div><h4>Setup do dia</h4><p>Espaco sendo preparado, participantes chegando. Pan suave revelando o ambiente.</p></div>
+        <div class="story-card"><div class="story-num">S03 · Apresentacao</div><h4>Quem sao eles</h4><p>Cada um fala nome e de onde vem em 5s. Sequencia rapida de 3 a 4 pessoas.</p></div>
+        <div class="story-card"><div class="story-num">S04 · Acao 1</div><h4>O problema do bairro</h4><p>Crianca apontando para o mapa e identificando um problema. Camera lateral, mapa e rosto no mesmo quadro.</p></div>
+        <div class="story-card"><div class="story-num">S05 · Acao 2</div><h4>O diagnostico em grupo</h4><p>Professor orientando grupos. Criancas registrando observacoes. Camera de cima mostrando a mesa coletiva.</p></div>
+        <div class="story-card"><div class="story-num">S06 · Bastidores</div><h4>Nao roteirizar</h4><p>15s espontaneo. Camera discreta. Nao sinalizar nem roteirizar o momento.</p></div>
+        <div class="story-card"><div class="story-num">S07 · Pergunta rapida</div><h4>Feira de Ideias</h4><p>3 pessoas, 5s cada. Camera a 60 cm. Corte direto. Sem preparacao previa.</p></div>
+        <div class="story-card"><div class="story-num">S08 · Depoimento relampago</div><h4>20 segundos</h4><p>1 participante. Camera no nivel dos olhos. Sem roteiro previo.</p></div>
+        <div class="story-card"><div class="story-num">S09 · Virada</div><h4>Crianca apresentando proposta. Camera capta a reacao do adulto. Posicionar antes do inicio.</h4><p>Mural visivel ao fundo. "Isso foi Mogi Guacu. O territorio que virou sala de aula." Camera frontal, 10s.</p></div>
+        <div class="story-card"><div class="story-num">S10 · Saida</div><h4>Fechamento do dia</h4><p>PEC Eu Faco Parte · Sylvamo</p></div>
       </div>
     </section>
 
-    <!-- ── Estrutura de pastas ────────────────────────────── -->
     <section class="section">
       <div class="section-title">Organizacao do material</div>
       <h2>Estrutura de pastas no Drive</h2>
       <div class="ftl-wrap">
         <ul class="ftl">
-          <li><span class="ftl-root">119 PEC Eu Faco Parte · Sylvamo</span>
+          <li><span class="ftl-root">[119] PEC Eu Faco Parte · Sylvamo</span>
             <ul>
               <li><span class="ftl-dir">01_DEPOIMENTOS</span>
                 <ul>
-                  <li><span class="ftl-dir">DEPOIMENTO_TRIPLO</span> <span class="ftl-note">Abilio + Raisa + rep. Sylvamo</span>
-                    <span class="ftl-ex">DEP3_abilio-raisa-sylvamo_2026-05-11.mp4</span>
-                  </li>
-                  <li><span class="ftl-dir">PATROCINADOR</span> <span class="ftl-note">representante Sylvamo individual</span></li>
+                  <li><span class="ftl-dir">PATROCINADOR</span> <span class="ftl-note">representante Sylvamo</span></li>
                   <li><span class="ftl-dir">PROFESSORES</span></li>
-                  <li><span class="ftl-dir">ALUNOS</span> <span class="ftl-note">Mogi Guacu e Guatapara separados</span></li>
+                  <li><span class="ftl-dir">ALUNOS_OU_PARTICIPANTES</span></li>
                 </ul>
               </li>
-              <li><span class="ftl-dir">02_STORIES</span> <span class="ftl-note">S01 a S10 por semana</span></li>
+              <li><span class="ftl-dir">02_STORIES</span> <span class="ftl-note">S01 a S10</span></li>
               <li><span class="ftl-dir">03_BROLL</span>
                 <ul>
-                  <li><span class="ftl-dir">CHEGADA</span> <span class="ftl-note">prefeitura dia 11 + fachada escola 1</span></li>
-                  <li><span class="ftl-dir">GERAL</span> <span class="ftl-note">mapa, mural, feira, prototipo</span></li>
+                  <li><span class="ftl-dir">CHEGADA</span></li>
+                  <li><span class="ftl-dir">GERAL</span> <span class="ftl-note">mapa, mural, feira de ideias, prototipo</span></li>
                 </ul>
               </li>
               <li><span class="ftl-dir">04_FOTOS</span>
@@ -413,16 +360,13 @@
       </div>
       <div class="naming-rule">
         <h4>Convencao de nomeacao</h4>
-        <p>Depoimento triplo: <code>DEP3_abilio-raisa-sylvamo_2026-05-11.mp4</code></p>
         <p>Depoimentos: <code>captador_depoente_descricao.mp4</code> (ex: <code>abilio_sylvamo-rep_por-que-mogi.mp4</code>)</p>
-        <p>Stories: <code>S01_chegada-prefeitura.mp4</code>, <code>S09_feira-ideias.mp4</code></p>
-        <p>B-roll: <code>BROLL_mural-coletivo.mp4</code>, <code>BROLL_mapa-bairro.mp4</code></p>
+        <p>Stories: <code>S01_chegada.mp4</code>, <code>S09_pico-do-dia.mp4</code></p>
+        <p>B-roll: <code>BROLL_chegada.mp4</code>, <code>BROLL_acao-principal.mp4</code></p>
       </div>
       <div class="drive-badge">
         <span>Drive 119</span>
-        <a href="https://drive.google.com/drive/folders/17K_O8PScTTJa-JM3qkP5Nly0CMYJl_T6" target="_blank">
-          https://drive.google.com/drive/folders/17K_O8PScTTJa-JM3qkP5Nly0CMYJl_T6
-        </a>
+        <a href="https://drive.google.com/drive/folders/17K_O8PScTTJa-JM3qkP5Nly0CMYJl_T6" target="_blank">https://drive.google.com/drive/folders/17K_O8PScTTJa-JM3qkP5Nly0CMYJl_T6</a>
       </div>
     </section>
 

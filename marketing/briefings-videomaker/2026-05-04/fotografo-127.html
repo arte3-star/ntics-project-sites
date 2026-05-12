@@ -74,10 +74,37 @@
     .drive-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: white; border-radius: 8px; padding: 9px 16px; font-size: 12px; font-weight: 600; margin-top: 14px; }
     .drive-badge a { color: white; text-decoration: underline; font-family: monospace; font-size: 12px; }
     .page-footer { text-align: center; padding: 32px 16px; font-size: 12px; color: var(--cinza-medio); border-top: 1px solid #E5E7EB; margin: 32px 32px 0; }
+    /* ── Identificacao ── */
+    .ident-rule { background: #FFFDE7; border-left: 5px solid #F9A825; padding: 14px 20px; margin: 16px 32px 0; border-radius: 0 10px 10px 0; font-size: 13px; color: #4A3000; line-height: 1.7; }
+    .ident-rule strong { display: block; font-size: 14px; margin-bottom: 6px; }
+    .ident-rule ul { list-style: none; padding: 0; }
+    .ident-rule li { padding: 3px 0 3px 16px; position: relative; }
+    .ident-rule li::before { content: ''; position: absolute; left: 4px; top: 10px; width: 5px; height: 5px; border-radius: 50%; background: #F9A825; }
+    /* ── Falas curtas ── */
+    .fala-regras { background: white; border-radius: 12px; padding: 18px 22px; box-shadow: 0 1px 3px rgba(0,0,0,.05); margin-bottom: 14px; }
+    .fala-regras h4 { font-size: 13px; font-weight: 700; margin-bottom: 10px; color: var(--grafite); }
+    .fala-regras ol { padding-left: 18px; font-size: 13px; color: #333; line-height: 1.7; }
+    .fala-regras li { margin-bottom: 4px; }
+    .fala-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media(max-width:620px) { .fala-grid { grid-template-columns: 1fr; } }
+    .fala-card { background: white; border-radius: 12px; padding: 18px 20px; box-shadow: 0 1px 3px rgba(0,0,0,.05); border-top: 3px solid var(--accent); }
+    .fala-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--accent); margin-bottom: 6px; }
+    .fala-name { font-size: 14px; font-weight: 700; margin-bottom: 12px; color: var(--grafite); }
+    .fala-q { font-size: 13px; color: #333; line-height: 1.55; padding: 7px 0; border-bottom: 1px solid #F0F0F0; }
+    .fala-q:last-child { border-bottom: none; }
+    /* ── Fotos ── */
+    .foto-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; margin-bottom: 14px; }
+    .foto-cat { background: white; border-radius: 12px; padding: 18px 20px; box-shadow: 0 1px 3px rgba(0,0,0,.05); }
+    .foto-cat-num { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background: var(--accent); color: white; font-weight: 800; font-size: 13px; margin-bottom: 8px; }
+    .foto-cat strong { display: block; font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+    .foto-cat ul { list-style: none; padding: 0; }
+    .foto-cat li { font-size: 12.5px; color: var(--cinza-medio); padding: 4px 0; border-bottom: 1px solid #F5F5F5; line-height: 1.4; }
+    .foto-cat li:last-child { border-bottom: none; }
+    .foto-note { background: var(--cinza-claro); border-radius: 10px; padding: 12px 16px; font-size: 12.5px; color: var(--cinza-medio); line-height: 1.6; }
     @media(max-width:600px) {
       .hero { padding: 24px 18px 22px; }
       .hero h1 { font-size: 22px; }
-      .alert, .section { margin-left: 14px; margin-right: 14px; }
+      .alert, .section, .ident-rule { margin-left: 14px; margin-right: 14px; }
       .page-footer { margin: 32px 14px 0; }
     }
   </style>
@@ -99,6 +126,16 @@
     <div class="alert">
       <strong>Regra critica: entrada nas escolas GRU SEMPRE mediada pela Mariah</strong>
       GRU: aprovacao via Mariah. SOTREQ: aprovacao via Rayssa Alves. Nao misturar material bruto GRU e SOTREQ na edicao. Projetos 125 e 127 compartilham assessoria de imprensa.
+    </div>
+
+    <div class="ident-rule">
+      <strong>Identificacao obrigatoria antes de qualquer captacao</strong>
+      <ul>
+        <li><strong>Qualquer pessoa:</strong> nome completo antes de comecar a gravar.</li>
+        <li><strong>Patrocinador / rep. da empresa:</strong> nome completo + cargo + nome da empresa.</li>
+        <li><strong>Educador / facilitador / monitor:</strong> nome + o que faz + escola ou organizacao onde atua.</li>
+        <li><strong>Participante / aluno:</strong> nome completo + cidade ou bairro (se relevante).</li>
+      </ul>
     </div>
 
     <section class="section">
@@ -142,13 +179,129 @@
     </section>
 
     <section class="section">
+      <div class="section-title">Falas Curtas (10-20s)</div>
+      <h2>Respostas rapidas por persona</h2>
+      <div class="fala-regras">
+        <h4>Regras para garantir respostas curtas e uteis</h4>
+        <ol>
+          <li>Combine antes: "Vou te fazer uma pergunta rapida, responde em ate 20 segundos."</li>
+          <li>Uma pergunta por vez: evite pergunta dupla (ex.: "como foi e o que mudou?").</li>
+          <li>Comece pelo contexto: cite a atividade do dia quando fizer sentido ("na oficina de hoje...", "aqui na quadra...").</li>
+          <li>Sempre com audio limpo: lapela ligada + monitoramento no fone antes de perguntar.</li>
+        </ol>
+      </div>
+      <div class="fala-grid">
+        <div class="fala-card">
+          <div class="fala-label">Participante / Beneficiario</div>
+          <div class="fala-name">Aluno, jovem, familia, comunidade</div>
+          <div class="fala-q">Resuma em ate 20 segundos como esta sendo, para voce, participar do projeto.</div>
+          <div class="fala-q">Em uma frase, o que voce fez hoje aqui?</div>
+          <div class="fala-q">Em 20 segundos, por que voce recomendaria essa atividade para um amigo?</div>
+        </div>
+        <div class="fala-card">
+          <div class="fala-label">Educador / Facilitador / Monitor</div>
+          <div class="fala-name">Professor, oficineiro, monitor</div>
+          <div class="fala-q">Em ate 20 segundos, o que foi trabalhado hoje e como a atividade aconteceu?</div>
+          <div class="fala-q">Em uma frase, o que voce mais viu se desenvolver nos participantes hoje?</div>
+          <div class="fala-q">Em uma frase, qual e o principal ganho pedagogico ou social desta acao?</div>
+          <div class="fala-q">Mande uma mensagem rapida para o patrocinador do projeto.</div>
+        </div>
+        <div class="fala-card">
+          <div class="fala-label">Patrocinador / Rep. da empresa</div>
+          <div class="fala-name">Representante institucional</div>
+          <div class="fala-q">Se apresente: nome completo, cargo e empresa.</div>
+          <div class="fala-q">Qual foi a sua percepcao sobre o projeto?</div>
+          <div class="fala-q">Qual foi a cena que mais te marcou sendo realizada no projeto?</div>
+          <div class="fala-q">O que motiva a empresa a apoiar esse projeto?</div>
+          <div class="fala-q">Como voce ve o impacto desse projeto na vida das pessoas da comunidade?</div>
+        </div>
+        <div class="fala-card">
+          <div class="fala-label">Coordenacao NTICS</div>
+          <div class="fala-name">Campo ou coordenacao local</div>
+          <div class="fala-q">Explique sucintamente do que se trata o projeto.</div>
+          <div class="fala-q">Qual a grande entrega desse projeto?</div>
+          <div class="fala-q">Como a NTICS ve a importancia de projetos como esse para a sociedade?</div>
+        </div>
+        <div class="fala-card">
+          <div class="fala-label">Parceiro local</div>
+          <div class="fala-name">Secretaria, direcao, ONG, lideranca</div>
+          <div class="fala-q">Por que este projeto e importante para esta comunidade?</div>
+          <div class="fala-q">Uma mensagem de agradecimento para o patrocinador.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
       <div class="section-title">Entrega</div>
       <h2>O que precisa chegar no Drive</h2>
       <div class="entrega-grid">
         <div class="entrega-item"><div class="entrega-num">5</div><div><strong>Depoimentos</strong><p>Mariah (GRU), Rayssa (SOTREQ), professor, 2 alunos.</p></div></div>
         <div class="entrega-item"><div class="entrega-num">1</div><div><strong>Lapela em cada depoimento</strong><p>Nunca so com audio da camera.</p></div></div>
         <div class="entrega-item"><div class="entrega-num">10</div><div><strong>Stories vertical 9:16</strong><p>Arco S01 a S10. Upload no Drive ao fim do dia.</p></div></div>
-        <div class="entrega-item"><div class="entrega-num">+</div><div><strong>B-roll</strong><p>Autorretrato Simbolico, tablet com IA, sala de aula, Feira de Ideias, aeroporto GRU.</p></div></div>
+        <div class="entrega-item"><div class="entrega-num">20+</div><div><strong>B-rolls com detalhe</strong><p>Autorretrato Simbolico, tablet com IA, sala de aula, Feira de Ideias, aeroporto GRU.</p></div></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">Captacao de Fotos</div>
+      <h2>Checklist fotografico</h2>
+      <div class="foto-note">Toda sessao precisa ter fotos abertas (atividade como um todo) e closes proximos (expressao, detalhe, acao). Misture os dois em cada categoria abaixo.</div>
+      <div class="foto-grid" style="margin-top:14px;">
+        <div class="foto-cat">
+          <div class="foto-cat-num">10</div>
+          <strong>Contexto</strong>
+          <ul>
+            <li>Entrada e fachada do local</li>
+            <li>Publico chegando</li>
+            <li>Espaco antes de comecar</li>
+          </ul>
+        </div>
+        <div class="foto-cat">
+          <div class="foto-cat-num">10</div>
+          <strong>Atividade em acao</strong>
+          <ul>
+            <li>Atividade principal em execucao</li>
+            <li>Expressoes e reacoes dos participantes</li>
+            <li>Detalhe da acao (maos, produto, ferramenta)</li>
+          </ul>
+        </div>
+        <div class="foto-cat">
+          <div class="foto-cat-num">10</div>
+          <strong>Cenario com pecas instaladas</strong>
+          <ul>
+            <li>Banners e assinaturas no ambiente</li>
+            <li>Sinalização do projeto no espaco</li>
+            <li>Ambiente completo com identidade visual</li>
+          </ul>
+        </div>
+        <div class="foto-cat">
+          <div class="foto-cat-num">10</div>
+          <strong>Equipe</strong>
+          <ul>
+            <li>Time em acao durante o projeto</li>
+            <li>Retrato institucional com camisa do projeto</li>
+            <li>Equipe + participantes ao lado de banner</li>
+          </ul>
+        </div>
+        <div class="foto-cat">
+          <div class="foto-cat-num">10</div>
+          <strong>Resultado</strong>
+          <ul>
+            <li>Entregas, apresentacoes, produtos finais</li>
+            <li>Participante com o que produziu</li>
+            <li>Momento de encerramento ou reconhecimento</li>
+          </ul>
+        </div>
+        <div class="foto-cat">
+          <div class="foto-cat-num">+</div>
+          <strong>Essenciais (qualquer quantidade)</strong>
+          <ul>
+            <li>Educadores / palestrantes ministrando</li>
+            <li>Dentro da sala com alunos, professores e monitores</li>
+            <li>Alunos na quadra ou espaco aberto</li>
+            <li>Fotos do workshop ou atividade especifica</li>
+          </ul>
+        </div>
       </div>
     </section>
 
