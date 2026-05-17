@@ -7,15 +7,15 @@ import json, os, sys, time, requests
 from pathlib import Path
 from dotenv import load_dotenv
 
-load_dotenv(r"g:\O meu disco\AUTOMAÇÕES\.env")
+load_dotenv()
 API = os.environ["LEONARDO_API_KEY"]
 HEADERS = {"Authorization": f"Bearer {API}", "Content-Type": "application/json"}
 
-ROOT = Path(r"g:\O meu disco\AUTOMAÇÕES")
+ROOT = Path(r"g:\O meu disco\Claude-NTICS-Projetos")
 OUT = ROOT / "output/marketing/carrosseis/projetos/120-negocio-cultural-itapoa/capa-video"
 OUT.mkdir(parents=True, exist_ok=True)
 
-PROJECT_BASE = next(ROOT.glob("assets/projetos/120. NEG*PORTO*"))
+PROJECT_BASE = ROOT / "SecondBrain/projetos/120-negocio-cultural-statkraft-itapoa/assets/PORTO-ITAPOA"
 PROJECT_LOGO = PROJECT_BASE / "LOGOS" / "negocio_cultural_logo.png"
 SPONSOR_LOGO = PROJECT_BASE / "LOGOS" / "porto_itapoa_logo.png"
 PHOTO = Path(r"C:\Users\lucas\Downloads\Rejane - Imagem Profissional-4.jpg")

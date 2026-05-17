@@ -657,4 +657,6 @@ R: Nano-banana-2 ~ $0.013–0.018 por imagem (observado no response `cost.amount
 
 **Última atualização:** 2026-04-14 — Nano-banana-2 aceita `R$` literal no prompt sem `VALIDATION_ERROR`. Sanitização agressiva (`R$` → `R`) era cautela antiga desnecessária. Render fiel inclusive com `R$ 25 milhões` em headline. Restrição antiga removida do `_sanitize_prompt` em `tools/content-gen/gerar_carrossel_noticias_v2.py`.
 
+**2026-05-14 — ID do nano-banana-2 mudou. String `"nano-banana-2"` no campo `model` do payload v2 retorna `remote-schema-error` ("Missing data field"). Usar UUID: `7418e71f-4133-4e1b-9895-bee19f48f2ce`. Consultar `GET /v2/models` para IDs atuais dos modelos. Outros modelos v2 disponíveis: Nano Banana (1°) `4a008a65`, Nano Banana Pro `7c02ef35`, FLUX.1 Kontext `28aeddf8`, GPT Image 2 `135b2740`. A v2 gerou VALIDATION_ERROR em todas as gerações de teste — possível restrição de conta. Fallback validado: pipeline Pillow (foto + composição manual). Exemplo: `tmp/marketing/carrosseis/teatro-ods-repsol/gerar_cards_pillow.py`.**
+
 **2026-04-10** — pílulas ESG no Agro SB (image_reference dupla pessoa+logo, 9:16 768×1376, zonas verticais com texto renderizado no prompt).

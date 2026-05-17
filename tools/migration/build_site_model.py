@@ -1,4 +1,5 @@
 """Monta site modelo (baseado em padrao RF-origin 81) para o projeto 116 como piloto.
+HISTORICAL: script já executado. Assets agora em SecondBrain/projetos/116-aster/assets/
 
 Estrutura:
   1. Header sticky colored (logo + nav)

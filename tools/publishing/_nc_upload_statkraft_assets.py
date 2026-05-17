@@ -1,4 +1,6 @@
-"""One-shot: upload Statkraft logo + régua to WP Media Library."""
+"""One-shot: upload Statkraft logo + régua to WP Media Library.
+HISTORICAL: already executed. Assets now at SecondBrain/projetos/120-negocio-cultural-statkraft-itapoa/assets/STATKRAFT/
+"""
 import os, ssl, json, mimetypes, pathlib, urllib.request
 from urllib.parse import quote
 

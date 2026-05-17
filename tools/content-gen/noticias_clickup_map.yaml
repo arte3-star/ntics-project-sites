@@ -1,0 +1,140 @@
+# Mapeamento NTICS: semana editorial -> tasks ClickUp de Noticias ESG
+#
+# Cada semana tem duas tasks:
+#   carrossel: "Carrossel Noticias S{NN}" — designer (Aline B.)
+#   artigo:    "Artigo Noticias S{NN}"    — Lucas Rotta
+#
+# O script gerar_noticias_semana.py usa este arquivo para saber
+# qual task atualizar com o documento gerado.
+#
+# semana_inicio = segunda-feira da semana (YYYY-MM-DD)
+# Para adicionar novas semanas alem da S24, basta incluir entradas no mesmo formato.
+#
+# Atualizado em: 2026-05-16
+
+semanas:
+  - numero: S04
+    semana_inicio: "2026-04-14"
+    carrossel_task_id: "868hrghtr"
+    artigo_task_id: null
+    status: concluido
+
+  - numero: S05
+    semana_inicio: "2026-04-21"
+    carrossel_task_id: null
+    artigo_task_id: "868j546gw"
+    status: concluido
+
+  - numero: S06
+    semana_inicio: "2026-04-28"
+    carrossel_task_id: "868j1upxn"
+    artigo_task_id: "868j546dz"
+    status: concluido
+
+  - numero: S07
+    semana_inicio: "2026-05-05"
+    carrossel_task_id: "868j1upxv"
+    artigo_task_id: "868j546e2"
+    status: concluido
+
+  - numero: S08
+    semana_inicio: "2026-05-12"
+    carrossel_task_id: "868j1upyv"
+    artigo_task_id: "868j546e4"
+    status: pendente
+
+  - numero: S09
+    semana_inicio: "2026-05-19"
+    carrossel_task_id: "868j1upzn"
+    artigo_task_id: "868j546e9"
+    status: pendente
+
+  - numero: S10
+    semana_inicio: "2026-05-26"
+    carrossel_task_id: "868j1uq2v"
+    artigo_task_id: "868j546ec"
+    status: pendente
+
+  - numero: S11
+    semana_inicio: "2026-06-02"
+    carrossel_task_id: "868j1uq37"
+    artigo_task_id: "868j546eg"
+    status: pendente
+
+  - numero: S12
+    semana_inicio: "2026-06-09"
+    carrossel_task_id: "868j1uq3y"
+    artigo_task_id: "868j546gy"
+    status: pendente
+
+  - numero: S13
+    semana_inicio: "2026-06-16"
+    carrossel_task_id: "868j1uq4c"
+    artigo_task_id: "868j546eq"
+    status: pendente
+
+  - numero: S14
+    semana_inicio: "2026-06-23"
+    carrossel_task_id: "868j1uq4q"
+    artigo_task_id: "868j546et"
+    status: pendente
+
+  - numero: S15
+    semana_inicio: "2026-06-30"
+    carrossel_task_id: "868j1uq50"
+    artigo_task_id: "868j546eu"
+    status: pendente
+
+  - numero: S16
+    semana_inicio: "2026-07-07"
+    carrossel_task_id: "868j1uq5f"
+    artigo_task_id: "868j546ew"
+    status: pendente
+
+  - numero: S17
+    semana_inicio: "2026-07-14"
+    carrossel_task_id: "868j1uq45"
+    artigo_task_id: "868j546ez"
+    status: pendente
+
+  - numero: S18
+    semana_inicio: "2026-07-21"
+    carrossel_task_id: "868j1uq59"
+    artigo_task_id: "868j546f5"
+    status: pendente
+
+  - numero: S19
+    semana_inicio: "2026-07-28"
+    carrossel_task_id: "868j1uq6q"
+    artigo_task_id: "868j546f8"
+    status: pendente
+
+  - numero: S20
+    semana_inicio: "2026-08-04"
+    carrossel_task_id: "868j1uq86"
+    artigo_task_id: "868j546ff"
+    status: pendente
+
+  - numero: S21
+    semana_inicio: "2026-08-11"
+    carrossel_task_id: "868j1uqa8"
+    artigo_task_id: "868j546fn"
+    status: pendente
+
+  - numero: S22
+    semana_inicio: "2026-08-18"
+    carrossel_task_id: "868j1uqhx"
+    artigo_task_id: "868j546fz"
+    status: pendente
+
+  - numero: S23
+    semana_inicio: "2026-08-25"
+    carrossel_task_id: "868j1uqp7"
+    artigo_task_id: "868j546g7"
+    status: pendente
+
+  - numero: S24
+    semana_inicio: "2026-09-01"
+    carrossel_task_id: "868j1uqqh"
+    artigo_task_id: "868j546gf"
+    status: pendente

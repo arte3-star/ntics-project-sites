@@ -1,4 +1,4 @@
-"""Gera site.html modelo para todos os 6 sites (116/117/119/125/127G/127S)
+﻿"""Gera site.html modelo para todos os 6 sites (116/117/119/125/127G/127S)
 usando conteudo REAL do Lovable e padrao de estrutura RF-origin.
 """
 import json
@@ -21,11 +21,11 @@ SITES = {
         "include_oficina_foto": False,
         # Ordem: 1=Palestra, 2=Artes Plásticas, 3=Robótica, 4=Feira, 5=Espetáculo
         "force_atividade_photo_file": {
-            1: r"g:\O meu disco\AUTOMAÇÕES\assets\melhores-fotos\2. PEC   PIE   PED\061_pec-pie-ped_evento_grande-plateia-criancas-adultos-auditorio-escolar.jpg",
-            2: r"g:\O meu disco\AUTOMAÇÕES\assets\melhores-fotos\2. PEC   PIE   PED\PEC\082_pec-pie-ped_oficina_crianca-criando-globo-terrestre-colorido.jpeg",
-            3: r"g:\O meu disco\AUTOMAÇÕES\assets\melhores-fotos\5. ROBÓTICA NAS ESCOLAS\082_robotica-escolas_robotica_criancas-montando-kit-robotica-com-instrutor.jpg",
-            4: r"g:\O meu disco\AUTOMAÇÕES\assets\melhores-fotos\5. ROBÓTICA NAS ESCOLAS\087_robotica-escolas_robotica_criancas-explorando-kit-robotica-com-educadora.jpg",
-            5: r"g:\O meu disco\AUTOMAÇÕES\assets\melhores-fotos\5. ROBÓTICA NAS ESCOLAS\091_robotica-escolas_robotica_criancas-personificadas-robos-apresentacao-palco.jpg",
+            1: r"g:\O meu disco\AUTOMAÇÕES\SecondBrain\banco-fotos\2. PEC   PIE   PED\061_pec-pie-ped_evento_grande-plateia-criancas-adultos-auditorio-escolar.jpg",
+            2: r"g:\O meu disco\AUTOMAÇÕES\SecondBrain\banco-fotos\2. PEC   PIE   PED\PEC\082_pec-pie-ped_oficina_crianca-criando-globo-terrestre-colorido.jpeg",
+            3: r"g:\O meu disco\AUTOMAÇÕES\SecondBrain\banco-fotos\5. ROBÓTICA NAS ESCOLAS\082_robotica-escolas_robotica_criancas-montando-kit-robotica-com-instrutor.jpg",
+            4: r"g:\O meu disco\AUTOMAÇÕES\SecondBrain\banco-fotos\5. ROBÓTICA NAS ESCOLAS\087_robotica-escolas_robotica_criancas-explorando-kit-robotica-com-educadora.jpg",
+            5: r"g:\O meu disco\AUTOMAÇÕES\SecondBrain\banco-fotos\5. ROBÓTICA NAS ESCOLAS\091_robotica-escolas_robotica_criancas-personificadas-robos-apresentacao-palco.jpg",
         },
     },
     "117": {
@@ -39,10 +39,10 @@ SITES = {
         "include_oficina_foto": False,
         # Ordem: 1=Arte+Criatividade, 2=Robótica reciclados, 3=Feira, 4=Espetáculo
         "force_atividade_photo_file": {
-            1: r"g:\O meu disco\AUTOMAÇÕES\assets\melhores-fotos\5. ROBÓTICA NAS ESCOLAS\33_cultura-robotica_oficina_B_aluna-cola-quente-robo-papelao.jpg",
-            2: r"g:\O meu disco\AUTOMAÇÕES\assets\melhores-fotos\5. ROBÓTICA NAS ESCOLAS\072_robotica-escolas_robotica_criancas-apresentando-robo-feito-papelao.jpg",
-            3: r"g:\O meu disco\AUTOMAÇÕES\assets\melhores-fotos\5. ROBÓTICA NAS ESCOLAS\087_robotica-escolas_robotica_criancas-explorando-kit-robotica-com-educadora.jpg",
-            4: r"g:\O meu disco\AUTOMAÇÕES\assets\melhores-fotos\5. ROBÓTICA NAS ESCOLAS\091_robotica-escolas_robotica_criancas-personificadas-robos-apresentacao-palco.jpg",
+            1: r"g:\O meu disco\AUTOMAÇÕES\SecondBrain\banco-fotos\5. ROBÓTICA NAS ESCOLAS\33_cultura-robotica_oficina_B_aluna-cola-quente-robo-papelao.jpg",
+            2: r"g:\O meu disco\AUTOMAÇÕES\SecondBrain\banco-fotos\5. ROBÓTICA NAS ESCOLAS\072_robotica-escolas_robotica_criancas-apresentando-robo-feito-papelao.jpg",
+            3: r"g:\O meu disco\AUTOMAÇÕES\SecondBrain\banco-fotos\5. ROBÓTICA NAS ESCOLAS\087_robotica-escolas_robotica_criancas-explorando-kit-robotica-com-educadora.jpg",
+            4: r"g:\O meu disco\AUTOMAÇÕES\SecondBrain\banco-fotos\5. ROBÓTICA NAS ESCOLAS\091_robotica-escolas_robotica_criancas-personificadas-robos-apresentacao-palco.jpg",
         },
     },
     "119": {
@@ -56,9 +56,9 @@ SITES = {
         "include_oficina_foto": True,  # tem Oficinas de Fotografia Digital
         # Ordem: 1=Workshop Formação Professores, 2=Oficina Educação Ambiental, 3=Oficina Fotografia, 4=Feira de Ideias
         "force_atividade_photo_file": {
-            1: r"g:\O meu disco\AUTOMAÇÕES\assets\melhores-fotos\2. PEC   PIE   PED\061_pec-pie-ped_evento_grande-plateia-criancas-adultos-auditorio-escolar.jpg",
-            3: r"g:\O meu disco\AUTOMAÇÕES\assets\melhores-fotos\OFICINA DE FOTOGRAFIA\029_oficina-fotografia_oficina_crianca-fotografando-camera-canon-outdoor.jpg",
-            4: r"g:\O meu disco\AUTOMAÇÕES\assets\melhores-fotos\2. PEC   PIE   PED\PEC\065_pec-pie-ped_oficina_criancas-explorando-experimento-agua-com-educadores.jpeg",
+            1: r"g:\O meu disco\AUTOMAÇÕES\SecondBrain\banco-fotos\2. PEC   PIE   PED\061_pec-pie-ped_evento_grande-plateia-criancas-adultos-auditorio-escolar.jpg",
+            3: r"g:\O meu disco\AUTOMAÇÕES\SecondBrain\banco-fotos\OFICINA DE FOTOGRAFIA\029_oficina-fotografia_oficina_crianca-fotografando-camera-canon-outdoor.jpg",
+            4: r"g:\O meu disco\AUTOMAÇÕES\SecondBrain\banco-fotos\2. PEC   PIE   PED\PEC\065_pec-pie-ped_oficina_criancas-explorando-experimento-agua-com-educadores.jpeg",
         },
     },
     "125": {
@@ -73,10 +73,10 @@ SITES = {
         "galeria_n": 12,  # pool grande de culinaria — mais fotos
         # Ordem: 1=Culinária, 2=Workshop Foto, 3=Exposição (sem foto), 4=Palestra Educadores
         "force_atividade_photo_file": {
-            1: r"g:\O meu disco\AUTOMAÇÕES\assets\melhores-fotos\7. CULINÁRIA SUSTENTÁVEL\093_culinaria-sustentavel_culinaria_mulher-preparando-pratos-culinaria-sustentavel_enercan.png",
-            2: r"g:\O meu disco\AUTOMAÇÕES\assets\melhores-fotos\OFICINA DE FOTOGRAFIA\029_oficina-fotografia_oficina_crianca-fotografando-camera-canon-outdoor.jpg",
+            1: r"g:\O meu disco\AUTOMAÇÕES\SecondBrain\banco-fotos\7. CULINÁRIA SUSTENTÁVEL\093_culinaria-sustentavel_culinaria_mulher-preparando-pratos-culinaria-sustentavel_enercan.png",
+            2: r"g:\O meu disco\AUTOMAÇÕES\SecondBrain\banco-fotos\OFICINA DE FOTOGRAFIA\029_oficina-fotografia_oficina_crianca-fotografando-camera-canon-outdoor.jpg",
             3: "__NONE__",  # exposição sem foto (Lucas pediu para deixar sem)
-            4: r"g:\O meu disco\AUTOMAÇÕES\assets\melhores-fotos\2. PEC   PIE   PED\PEC\074_pec-pie-ped_palestra_educadora-apresentando-projeto-sala-aula.jpg",
+            4: r"g:\O meu disco\AUTOMAÇÕES\SecondBrain\banco-fotos\2. PEC   PIE   PED\PEC\074_pec-pie-ped_palestra_educadora-apresentando-projeto-sala-aula.jpg",
         },
     },
     "124": {
@@ -92,10 +92,10 @@ SITES = {
         "galeria_pool_priority": ["culinaria","oficina_foto"],  # culinaria primeiro, foto no fim
         # Ordem: 1=Palestra, 2=Culinária, 3=Workshop Foto, 4=Exposição
         "force_atividade_photo_file": {
-            1: r"g:\O meu disco\AUTOMAÇÕES\assets\melhores-fotos\10 - Negócio Cultural\03_negocio-cultural_capacitacao_A_facilitadora-amarelo-plateia-sala.jpg",
-            2: r"g:\O meu disco\AUTOMAÇÕES\assets\melhores-fotos\7. CULINÁRIA SUSTENTÁVEL\093_culinaria-sustentavel_culinaria_mulher-preparando-pratos-culinaria-sustentavel_enercan.png",
-            3: r"g:\O meu disco\AUTOMAÇÕES\assets\melhores-fotos\OFICINA DE FOTOGRAFIA\029_oficina-fotografia_oficina_crianca-fotografando-camera-canon-outdoor.jpg",
-            4: r"g:\O meu disco\AUTOMAÇÕES\assets\melhores-fotos\7. CULINÁRIA SUSTENTÁVEL\085_culinaria-sustentavel_exposicao_visitantes-observando-paineis-gastronomia-arte.jpg",
+            1: r"g:\O meu disco\AUTOMAÇÕES\SecondBrain\banco-fotos\10 - Negócio Cultural\03_negocio-cultural_capacitacao_A_facilitadora-amarelo-plateia-sala.jpg",
+            2: r"g:\O meu disco\AUTOMAÇÕES\SecondBrain\banco-fotos\7. CULINÁRIA SUSTENTÁVEL\093_culinaria-sustentavel_culinaria_mulher-preparando-pratos-culinaria-sustentavel_enercan.png",
+            3: r"g:\O meu disco\AUTOMAÇÕES\SecondBrain\banco-fotos\OFICINA DE FOTOGRAFIA\029_oficina-fotografia_oficina_crianca-fotografando-camera-canon-outdoor.jpg",
+            4: r"g:\O meu disco\AUTOMAÇÕES\SecondBrain\banco-fotos\7. CULINÁRIA SUSTENTÁVEL\085_culinaria-sustentavel_exposicao_visitantes-observando-paineis-gastronomia-arte.jpg",
         },
     },
     "127G": {
@@ -109,10 +109,10 @@ SITES = {
         "include_oficina_foto": False,
         # Ordem: 1=Palestra Abertura, 2=EU CRIADOR (artes), 3=PROBLEMAS VIRAM IDEIAS, 4=Feira de Ideias
         "force_atividade_photo_file": {
-            1: r"g:\O meu disco\AUTOMAÇÕES\assets\melhores-fotos\2. PEC   PIE   PED\PIE\096_pec-pie-ped_palestra_agente-educador-apresentando-para-plateia-sentada.jpg",
-            2: r"g:\O meu disco\AUTOMAÇÕES\assets\melhores-fotos\2. PEC   PIE   PED\PEC\082_pec-pie-ped_oficina_crianca-criando-globo-terrestre-colorido.jpeg",
-            3: r"g:\O meu disco\AUTOMAÇÕES\assets\melhores-fotos\2. PEC   PIE   PED\PIE\095_pec-pie-ped_oficina_instrutor-orientando-grupo-adolescentes-mesa.jpg",
-            4: r"g:\O meu disco\AUTOMAÇÕES\assets\melhores-fotos\2. PEC   PIE   PED\PIE\099_pec-pie-ped_evento_grupo-jovens-segurando-cartazes-pie-programa.jpg",
+            1: r"g:\O meu disco\AUTOMAÇÕES\SecondBrain\banco-fotos\2. PEC   PIE   PED\PIE\096_pec-pie-ped_palestra_agente-educador-apresentando-para-plateia-sentada.jpg",
+            2: r"g:\O meu disco\AUTOMAÇÕES\SecondBrain\banco-fotos\2. PEC   PIE   PED\PEC\082_pec-pie-ped_oficina_crianca-criando-globo-terrestre-colorido.jpeg",
+            3: r"g:\O meu disco\AUTOMAÇÕES\SecondBrain\banco-fotos\2. PEC   PIE   PED\PIE\095_pec-pie-ped_oficina_instrutor-orientando-grupo-adolescentes-mesa.jpg",
+            4: r"g:\O meu disco\AUTOMAÇÕES\SecondBrain\banco-fotos\2. PEC   PIE   PED\PIE\099_pec-pie-ped_evento_grupo-jovens-segurando-cartazes-pie-programa.jpg",
         },
     },
     "127S": {
@@ -126,10 +126,10 @@ SITES = {
         "include_oficina_foto": False,
         # Mesma sequência do 127G
         "force_atividade_photo_file": {
-            1: r"g:\O meu disco\AUTOMAÇÕES\assets\melhores-fotos\2. PEC   PIE   PED\PIE\096_pec-pie-ped_palestra_agente-educador-apresentando-para-plateia-sentada.jpg",
-            2: r"g:\O meu disco\AUTOMAÇÕES\assets\melhores-fotos\2. PEC   PIE   PED\PEC\082_pec-pie-ped_oficina_crianca-criando-globo-terrestre-colorido.jpeg",
-            3: r"g:\O meu disco\AUTOMAÇÕES\assets\melhores-fotos\2. PEC   PIE   PED\PIE\095_pec-pie-ped_oficina_instrutor-orientando-grupo-adolescentes-mesa.jpg",
-            4: r"g:\O meu disco\AUTOMAÇÕES\assets\melhores-fotos\2. PEC   PIE   PED\PIE\099_pec-pie-ped_evento_grupo-jovens-segurando-cartazes-pie-programa.jpg",
+            1: r"g:\O meu disco\AUTOMAÇÕES\SecondBrain\banco-fotos\2. PEC   PIE   PED\PIE\096_pec-pie-ped_palestra_agente-educador-apresentando-para-plateia-sentada.jpg",
+            2: r"g:\O meu disco\AUTOMAÇÕES\SecondBrain\banco-fotos\2. PEC   PIE   PED\PEC\082_pec-pie-ped_oficina_crianca-criando-globo-terrestre-colorido.jpeg",
+            3: r"g:\O meu disco\AUTOMAÇÕES\SecondBrain\banco-fotos\2. PEC   PIE   PED\PIE\095_pec-pie-ped_oficina_instrutor-orientando-grupo-adolescentes-mesa.jpg",
+            4: r"g:\O meu disco\AUTOMAÇÕES\SecondBrain\banco-fotos\2. PEC   PIE   PED\PIE\099_pec-pie-ped_evento_grupo-jovens-segurando-cartazes-pie-programa.jpg",
         },
     },
 }
@@ -201,7 +201,7 @@ def copy_photo(entry, dst_path):
     import shutil
     from PIL import Image
     pool_key = entry["__pool__"]
-    src_dir = ROOT / "assets/melhores-fotos" / SONNET_CAT_MAP[pool_key]
+    src_dir = ROOT / "SecondBrain/banco-fotos" / SONNET_CAT_MAP[pool_key]
     stem = Path(entry["file"]).stem
     for f in src_dir.rglob("*"):
         if f.suffix.lower() not in {".jpg",".jpeg",".png",".webp"}: continue

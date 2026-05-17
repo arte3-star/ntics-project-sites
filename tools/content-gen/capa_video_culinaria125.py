@@ -1,4 +1,4 @@
-"""
+﻿"""
 Capa de video - Gastronomia Tambem E Arte 2a Edicao (Projeto 125, GRU Airport).
 Estilo: mesmo template PIE com curva onda, mas identidade do projeto Culinaria Sustentavel.
 Paleta primaria: teal #1BA9B7 (cor da panela do logo), magenta #D6116D, orange #E68427, lime #C7D435.
@@ -7,19 +7,20 @@ import json, os, time, requests
 from pathlib import Path
 from dotenv import load_dotenv
 
-load_dotenv(r"g:\O meu disco\AUTOMAÇÕES\.env")
+load_dotenv()
 
 API = os.environ["LEONARDO_API_KEY"]
 HEADERS = {"Authorization": f"Bearer {API}", "Content-Type": "application/json"}
 
-ROOT = Path(r"g:\O meu disco\AUTOMAÇÕES")
+ROOT = Path(r"g:\O meu disco\Claude-NTICS-Projetos")
+PROJ = ROOT / "SecondBrain/projetos/125-gastronomia-gru/assets"
 OUT = ROOT / "output/marketing/carrosseis/projetos/culinaria-125/capa-video"
 OUT.mkdir(parents=True, exist_ok=True)
 
-PROJECT_LOGO = ROOT / "assets/projetos/125. EXPOSIÇÃO - GASTRONOMIA TAMBÉM É ARTE 2ED (GRU)/PECAS_COMUNICACAO/LOGO (2).png"
-GRU_LOGO = ROOT / "assets/projetos/125. EXPOSIÇÃO - GASTRONOMIA TAMBÉM É ARTE 2ED (GRU)/LOGOS/grulogo_gru_DESCRITIVO.png"
-REFERENCE_PIECE = ROOT / "assets/projetos/125. EXPOSIÇÃO - GASTRONOMIA TAMBÉM É ARTE 2ED (GRU)/PECAS_COMUNICACAO/culinaria2.png"
-PHOTO = ROOT / "assets/melhores-fotos/7. CULINÁRIA SUSTENTÁVEL/102_culinaria-sustentavel_culinaria_mulher-servindo-prato-culinario-para-grupo.jpg"
+PROJECT_LOGO = PROJ / "PECAS_COMUNICACAO/LOGO (2).png"
+GRU_LOGO = PROJ / "LOGOS/grulogo_gru_DESCRITIVO.png"
+REFERENCE_PIECE = PROJ / "PECAS_COMUNICACAO/culinaria2.png"
+PHOTO = ROOT / "SecondBrain/banco-fotos/7. CULINÁRIA SUSTENTÁVEL/102_culinaria-sustentavel_culinaria_mulher-servindo-prato-culinario-para-grupo.jpg"
 
 W, H = 1856, 2304
 

@@ -93,4 +93,4 @@ SAFE ZONE 9:16: nao posicionar texto, badge, headline ou logo nos 280px superior
 ## Saida
 
 - Prompt final (texto pronto pra colar no Leonardo)
-- Caso o usuario peca pra gerar, output em `output/marketing/posts-avulsos/{slug}/` ou `assets/projetos/{slug}/capa-video/`
+- Caso o usuario peca pra gerar, output em `output/marketing/posts-avulsos/{slug}/` ou `SecondBrain/projetos/{slug}/assets/capa-video/`

@@ -12,6 +12,7 @@ token_*.json
 desktop.ini
 
 # Caches e temporários
+tmp/
 .tmp/
 .cache/
 _cache/
@@ -19,6 +20,9 @@ _cache/
 __pycache__/
 *.pyc
 node_modules/
+
+# Worktrees efêmeros do Claude Code
+.claude/worktrees/
 
 # Diretórios pesados ou regeneráveis (fora do repo)
 SB/

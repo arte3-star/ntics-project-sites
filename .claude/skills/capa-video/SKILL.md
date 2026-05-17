@@ -11,8 +11,8 @@ Leia e execute o workflow completo em `workflows/marketing/producao/videos/capa_
 ## Inputs
 
 **Minimos (obrigatorios):**
-1. **Slug do projeto** (ou numero), para localizar assets em `assets/projetos/{slug}/`
-2. **Foto principal** (path ou descricao para escolher de `assets/melhores-fotos/`)
+1. **Slug do projeto** (ou numero), para localizar assets em `SecondBrain/projetos/{slug}/assets/`
+2. **Foto principal** (path ou descricao para escolher de `SecondBrain/banco-fotos/`)
 3. **Nome do projeto** (oficial, do TAP/release)
 4. **Patrocinador**
 

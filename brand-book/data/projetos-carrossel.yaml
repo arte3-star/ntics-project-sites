@@ -120,7 +120,7 @@ projetos:
       pessoas_diretas: 7210
       empregos: 18
       cartilhas: 7000
-    status_carrossel: pendente
+    status_carrossel: feito
 
   - slug: ods-cultural-escolas-repsol
     nome: "ODS CULTURAL NAS ESCOLAS"

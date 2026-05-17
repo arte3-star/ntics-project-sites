@@ -192,7 +192,19 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--only", default="", help="Lista de slugs separados por vírgula")
+    parser.add_argument("--log-to", default="", help="Arquivo onde redireciona stdout+stderr (append)")
     args = parser.parse_args()
+
+    if args.log_to:
+        try:
+            log_path = Path(args.log_to)
+            log_path.parent.mkdir(parents=True, exist_ok=True)
+            log_fh = open(log_path, "a", encoding="utf-8", buffering=1)
+            log_fh.write(f"\n=== run @ {datetime.now(timezone.utc).isoformat()} ===\n")
+            sys.stdout = log_fh
+            sys.stderr = log_fh
+        except Exception as e:
+            print(f"[warn] --log-to falhou: {e}", file=sys.stderr)
 
     only = set(s.strip() for s in args.only.split(",") if s.strip()) if args.only else None
     slugs = discover_projects(only)

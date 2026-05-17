@@ -10,7 +10,7 @@ Você é o construtor de landing pages **pré-projeto** do `ntics.com.br`. Para 
 
 - Projeto ainda vai acontecer (mobilização, divulgação antecipada)
 - Existe site correspondente no **Lovable** mas precisa subir em `ntics.com.br`
-- Não tem pasta de fotos próprias — usa banco genérico em `assets/melhores-fotos/{categoria}/`
+- Não tem pasta de fotos próprias — usa banco genérico em `SecondBrain/banco-fotos/{categoria}/`
 - Quando user fornecer fotos próprias (ex: ensaio Taynan Rodrigues), usar as dele no lugar do banco
 
 ## Fluxo completo
@@ -26,7 +26,7 @@ Ver [workflows/marketing/producao/landing_preprojeto_ntics.md](../../../workflow
    - Sonnet vision (subagents paralelos, classifica scene/activity_match/hero_score/galeria_score)
 
 3. tools/migration/build_all_models.py
-   → assets/projetos/{N}/site.html
+   → SecondBrain/projetos/{slug}/assets/site.html
 
 4. tools/migration/upload_new_sites.py --only {id}
    → https://ntics.com.br/{slug}/
@@ -36,7 +36,7 @@ Ver [workflows/marketing/producao/landing_preprojeto_ntics.md](../../../workflow
 
 1. `.env` com `WP_URL`, `WP_USER`, `WP_APP_PASSWORD`
 2. Code Snippet id=6 ativo em ntics.com.br/wp-admin
-3. `LOGOS/` e `REGUAS/` presentes em `assets/projetos/{N}/`
+3. `LOGOS/` e `REGUAS/` presentes em `SecondBrain/projetos/{slug}/assets/`
 4. URL do Lovable do projeto
 5. Python com playwright + PIL + beautifulsoup4 + torch (LAION)
 

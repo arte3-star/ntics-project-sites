@@ -1,4 +1,4 @@
-"""
+﻿"""
 Gera 4 stories 9:16 (1080x1920) estilo hibrido v4-mascara + v5-grid para divulgar artigo.
 
 Caracteristicas:
@@ -149,7 +149,7 @@ def story_1_capa():
     draw_pill(d, "ARTIGO · NTICS NOTES", 80, 120, font(32, bold=True), VERDE, (255, 255, 255), pad_x=34, pad_y=14, radius=30)
 
     # Foto hexagonal central
-    photo_path = "assets/melhores-fotos/5. ROBÓTICA NAS ESCOLAS/23_robotica-escolas-2ed_oficina_B_aluna-apresenta-robo-cartolina.jpg"
+    photo_path = "SecondBrain/banco-fotos/5. ROBÓTICA NAS ESCOLAS/23_robotica-escolas-2ed_oficina_B_aluna-apresenta-robo-cartolina.jpg"
     hx = hex_photo(photo_path, size=880)
     img.alpha_composite(hx, ((W - 880) // 2, 300))
 
@@ -219,7 +219,7 @@ def story_3_lista():
 
     # Header: pill + foto hexagonal ao lado
     draw_pill(d, "OS 5 SINAIS", 80, 120, font(34, bold=True), VERDE, (255, 255, 255), pad_x=40, pad_y=16, radius=30)
-    photo_path = "assets/melhores-fotos/1. CONHECENDO OS ODS NAS ESCOLAS/002_ods-cultural-escolas_tecnologia_A_menino-vr-espanto-educador-mural-oceano.jpg"
+    photo_path = "SecondBrain/banco-fotos/1. CONHECENDO OS ODS NAS ESCOLAS/002_ods-cultural-escolas_tecnologia_A_menino-vr-espanto-educador-mural-oceano.jpg"
     hx = hex_photo(photo_path, size=360)
     img.alpha_composite(hx, (680, 60))
 
@@ -273,7 +273,7 @@ def story_4_cta():
     draw_pill(d, "NTICS NOTES", 80, 120, font(34, bold=True), AMARELO, TEAL, pad_x=40, pad_y=16, radius=30)
 
     # Foto hexagonal centralizada grande
-    photo_path = "assets/melhores-fotos/5. ROBÓTICA NAS ESCOLAS/06_robotica-escolas-3ed_grupo_A_equipe-plateia-ginasio-celebracao.jpg"
+    photo_path = "SecondBrain/banco-fotos/5. ROBÓTICA NAS ESCOLAS/06_robotica-escolas-3ed_grupo_A_equipe-plateia-ginasio-celebracao.jpg"
     hx = hex_photo(photo_path, size=780)
     img.alpha_composite(hx, ((W - 780) // 2, 280))
 

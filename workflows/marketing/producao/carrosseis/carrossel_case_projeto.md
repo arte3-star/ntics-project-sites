@@ -1,6 +1,6 @@
 # Carrossel de Case — NTICS Projetos
 
-> Carrossel pos-projeto (case) com identidade NTICS. **9 cards** (7 de conteúdo + 1 trilha NTICS + 1 CTA). Usa SecondBrain como fonte de texto e `assets/projetos/` como primeira fonte de fotos. Gera cards via Leonardo AI Nano Banana 2, revisa, corrige e exporta textos + PDF LinkedIn.
+> Carrossel pos-projeto (case) com identidade NTICS. **8 cards** (7 de conteúdo + 1 CTA). Usa SecondBrain como fonte de texto e `assets/projetos/` como primeira fonte de fotos. Gera cards via Leonardo AI Nano Banana 2, revisa, corrige e exporta textos + PDF LinkedIn.
 
 > 📚 **Referência Leonardo AI:** Este workflow tem estrutura validada — siga-o como fonte primária. Se surgir erro de API, dúvida sobre payload ou resultado visual inesperado, consulte `workflows/marketing/referencia/leonardo_ai_core.md` como base de conhecimento complementar.
 
@@ -42,7 +42,7 @@ Antes de comecar, leia:
 
 ## Fluxo de dados (nova ordem)
 
-**1ª fonte:** `SecondBrain/` (texto) + `assets/projetos/` (fotos).
+**1ª fonte:** `SecondBrain/` (texto) + `SecondBrain/projetos-anteriores/{slug}/assets/FOTOS/` (fotos).
 **Fallback de fotos:** baixar PDF pelo link público do Drive (sem API) e extrair.
 **Nunca:** Drive API, ClickUp pra foto/texto — só usar se SB e assets não tiverem o necessário.
 
@@ -90,9 +90,9 @@ O perfil já tem:
 
 ---
 
-### Fase 3: Checar fotos em assets/projetos
+### Fase 3: Checar fotos no SecondBrain
 
-**Pasta local:** `assets/projetos/{num}. {NOME} ({SPONSOR})/FOTOS/`
+**Pasta local:** `SecondBrain/projetos-anteriores/{slug}/assets/FOTOS/`
 
 Listar arquivos e contar fotos úteis (exceto `desktop.ini` e thumbs). Se houver **≥7 fotos curadas reais**, seguir direto para Fase 5 (selecao).
 
@@ -199,9 +199,9 @@ A pasta `fotos-selecionadas/` deve conter **7 arquivos** antes de gerar.
 
 ---
 
-### Fase 6: Redacao dos 9 cards
+### Fase 6: Redacao dos 8 cards
 
-**Estrutura fixa de 7 cards de conteúdo + 1 trilha NTICS + 1 CTA:**
+**Estrutura fixa de 7 cards de conteúdo + 1 CTA:**
 
 ---
 
@@ -258,15 +258,7 @@ A pasta `fotos-selecionadas/` deve conter **7 arquivos** antes de gerar.
 - Corpo: narrativa de transformação — protagonismo, premiação, mudança de olhar
 - **REGRA OBRIGATÓRIA:** usar apenas pessoas impactadas DIRETAMENTE. Nunca citar indiretos aqui.
 
-#### Card 08 — Trilha NTICS do programa (novo!)
-- Badge: **METODOLOGIA NTICS** (amarelo, texto escuro)
-- Degradê: teal
-- Título: "[YELLOW]+{N} MIL PESSOAS[/YELLOW] IMPACTADAS DIRETAMENTE"
-- Corpo: "Desde {ano primeiro} o {SIGLA} já teve [YELLOW]{N} edições[/YELLOW] com [YELLOW]{N} patrocinadores[/YELLOW]: {Lista de patrocinadores separados por vírgula + 'e' antes do último}"
-- **Fonte dos números:** consolidar os perfis em `SecondBrain/projetos-anteriores/` que pertencem à mesma família (`SecondBrain/conhecimento/programa-{slug}.md` lista as edições). Somar apenas pessoas diretas.
-- **Função:** mostrar maturidade do programa (PEC/CODS/MHS/etc) como prova social
-
-#### Card 09 — CTA
+#### Card 08 — CTA
 - Fundo sólido teal #005F73
 - Logo NTICS branca (42% largura, topo 6%)
 - Texto: "Siga para mais projetos de impacto" + @nticsprojetos + "Inovação, Impacto e Regeneração"
@@ -346,15 +338,14 @@ Nenhum card pode ser apresentado ao usuário sem passar por esta revisão.
 - [ ] Foto de referência usada (não genérica)
 - [ ] **Degradê teal #005F73 em TODOS os cards** (não alternar com roxo/verde/rosa)
 - [ ] Barra gradiente colada na borda inferior
-- [ ] Apenas pessoas impactadas DIRETAMENTE nos cards 07 e 08
-- [ ] Card 08 tem lista completa de patrocinadores do programa com vírgulas
+- [ ] Apenas pessoas impactadas DIRETAMENTE no card 07
 
 **Erros frequentes do Leonardo AI:**
 
 | Tipo | Exemplo | Solução |
 |------|---------|---------|
 | Palavra duplicada | "NO NO MATO GROSSO" | Encurtar headline |
-| Acento faltando | "EDUCACAO" | Manter acento no prompt |
+| **Acento faltando** | "Criancas", "edicoes", "COPERGAS" | **Escrever acento explícito no prompt** — Leonardo renderiza UTF-8 corretamente quando o texto está certo no prompt. Nunca escrever "Criancas" no prompt se o texto publicado deve ser "Crianças". |
 | Percentual visível | "55%" na imagem | Nunca usar % no prompt |
 | Hex code visível | "#005F73" | Nunca usar hex — usar nomes |
 | Decimais por extenso | "NOVE VÍRGULA QUATRO" | Pedir "render as digits, NOT as words" |
@@ -362,8 +353,19 @@ Nenhum card pode ser apresentado ao usuário sem passar por esta revisão.
 | Vírgulas faltando | "OSÓRIO UIBAÍ IBIPEBA" | Pedir "Keep all commas exactly as shown" |
 | Siglas coladas | "PECEU FAÇO PARTE" | Separar em linhas ou pedir espaçamento visível |
 | Degradê errado | roxo em card 04 | Forçar "solid dark teal background" em TODOS |
+| Ponto duplo ".." | corpo termina com ".." | Remover ponto final do body no prompt |
 
-**Ação para cada card com erro:** ajustar prompt → upload foto + nova geração → repetir revisão → loop até passar.
+**REGRA OBRIGATÓRIA DE ACENTUAÇÃO:** Todo texto em português no prompt DEVE ter os acentos corretos escritos explicitamente. O Leonardo AI reproduz o texto do prompt — se o prompt tem "Criancas", a imagem terá "Criancas". Não há pós-processamento de acentos: a responsabilidade é 100% do prompt. Exemplos:
+- ✅ "Crianças e jovens de escolas públicas"
+- ❌ "Criancas e jovens de escolas publicas"
+- ✅ "4 edições com 4 patrocinadores: COPERGÁS"
+- ❌ "4 edicoes com 4 patrocinadores: COPERGAS"
+- ✅ "artes cênicas e peça teatral"
+- ❌ "artes cenicas e peca teatral"
+- ✅ "distribuídas para levar"
+- ❌ "distribuidas para levar"
+
+**Ação para cada card com erro:** ajustar prompt → upload foto + nova geração → repetir revisão → loop até passar. Erro de acento = regenerar obrigatoriamente, sem exceção.
 
 ---
 
@@ -372,11 +374,11 @@ Nenhum card pode ser apresentado ao usuário sem passar por esta revisão.
 Editar `tools/content-gen/gerar_textos_pdf_carrossel.py`:
 
 1. Adicionar entrada em `TEXTOS` com slug do projeto (instagram + linkedin)
-2. Adicionar entrada em `PROJETOS_PDF` com lista de 9 cards:
+2. Adicionar entrada em `PROJETOS_PDF` com lista de 8 cards:
    ```python
    "01-capa.jpg", "02-o-projeto.jpg", "03-metodologia.jpg", "04-alcance.jpg",
    "05-a-empresa.jpg", "06-resultados.jpg", "07-impacto.jpg",
-   "08-trilha-pec.jpg", "09-cta.jpg",
+   "08-cta.jpg",
    ```
 3. Executar:
    ```bash
@@ -386,7 +388,7 @@ Editar `tools/content-gen/gerar_textos_pdf_carrossel.py`:
 **Saídas em `output/marketing/carrosseis/cases/{slug}/`:**
 - `texto_instagram.txt` — legenda casual com emojis e hashtags
 - `texto_linkedin.txt` — post formal com bullets de métricas ESG
-- `linkedin-carrossel.pdf` — 9 páginas 4:5 completo (210x262.5mm)
+- `linkedin-carrossel.pdf` — 8 páginas 4:5 completo (210x262.5mm)
 
 **Tom Instagram:** casual, inspiracional, 2-3 emojis, gancho emocional, hashtags no final.
 **Tom LinkedIn:** formal, dado de impacto no gancho, bullets com métricas ESG, CTA consultivo, max 5 hashtags.
@@ -406,8 +408,7 @@ output/marketing/carrosseis/cases/{slug}/
 ├── 05-a-empresa.jpg
 ├── 06-resultados.jpg
 ├── 07-impacto.jpg
-├── 08-trilha-{programa}.jpg
-├── 09-cta.jpg
+├── 08-cta.jpg
 ├── texto_instagram.txt
 ├── texto_linkedin.txt
 └── linkedin-carrossel.pdf
@@ -415,7 +416,7 @@ output/marketing/carrosseis/cases/{slug}/
 
 **Após concluir:**
 1. Atualizar `brand-book/data/projetos-carrossel.yaml` — mudar `status_carrossel` do projeto de `pendente` para `feito`
-2. Apresentar os 9 cards ao usuário para validação final
+2. Apresentar os 8 cards ao usuário para validação final
 
 ---
 
@@ -434,7 +435,7 @@ output/marketing/carrosseis/cases/{slug}/
 | Texto | Branco + destaque amarelo #F5B800 |
 | Barra gradiente | 98-100%, colada no rodapé |
 | Logo CTA | brand-book/site/assets/LOGO NTICS - BRANCA.png, 42% largura, Pillow pós-processamento |
-| Total de cards | 9 (7 conteúdo + trilha NTICS + CTA) |
+| Total de cards | 8 (7 conteúdo + CTA) |
 
 ## Identidade Visual NTICS
 

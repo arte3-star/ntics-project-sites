@@ -1,4 +1,4 @@
-"""
+﻿"""
 Pipeline completo de stories v21 para artigo NTICS.
   1. Leonardo nano-banana-2 gera 4 BGs consistentes (mesma familia visual)
   2. HTML+Playwright sobrepoe v21-style: fullbleed + headline gigante + pill verde + destaques amarelos
@@ -207,7 +207,7 @@ BODY_3_LISTA = """
 <div class='wrap'>
   <div style='display:flex; justify-content:space-between; align-items:flex-start;'>
     <span class='pill'>Os 5 Sinais</span>
-    <div style="width:180px; height:180px; clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); background-image: url('file:///G:/O meu disco/AUTOMA%C3%87%C3%95ES/assets/melhores-fotos/1. CONHECENDO OS ODS NAS ESCOLAS/002_ods-cultural-escolas_tecnologia_A_menino-vr-espanto-educador-mural-oceano.jpg'); background-size:cover; background-position:center; border:3px solid rgba(255,255,255,0.18);"></div>
+    <div style="width:180px; height:180px; clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); background-image: url('file:///G:/O meu disco/AUTOMA%C3%87%C3%95ES/SecondBrain/banco-fotos/1. CONHECENDO OS ODS NAS ESCOLAS/002_ods-cultural-escolas_tecnologia_A_menino-vr-espanto-educador-mural-oceano.jpg'); background-size:cover; background-position:center; border:3px solid rgba(255,255,255,0.18);"></div>
   </div>
   <div style='margin-top:30px;'>
     <h1 class='xsm'>De Maturidade<span class='small'>em Responsabilidade Social</span></h1>

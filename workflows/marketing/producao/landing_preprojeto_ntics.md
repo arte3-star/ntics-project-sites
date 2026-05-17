@@ -7,7 +7,7 @@ Workflow para criar landing page de projeto que **ainda vai acontecer** (sem fot
 - Projeto pré-execução ainda sem fotos próprias
 - Cliente pediu landing page antecipada (mobilização, divulgação)
 - Site já existe no Lovable mas precisa subir em `ntics.com.br`
-- Usa fotos genéricas do banco `assets/melhores-fotos/{categoria}/`
+- Usa fotos genéricas do banco `SecondBrain/banco-fotos/{categoria}/`
 
 ## Pipeline
 
@@ -24,11 +24,11 @@ URL Lovable do projeto
    │
    ▼
 [2] Selecionar categoria de fotos do banco:
-     116/117 robótica    → assets/melhores-fotos/5. ROBÓTICA NAS ESCOLAS/
-     119 PEC             → assets/melhores-fotos/2. PEC   PIE   PED/PEC/
-     127 PIE             → assets/melhores-fotos/2. PEC   PIE   PED/PIE/
-     124/125 culinária   → assets/melhores-fotos/7. CULINÁRIA SUSTENTÁVEL/
-     oficina de foto     → assets/melhores-fotos/OFICINA DE FOTOGRAFIA/
+     116/117 robótica    → SecondBrain/banco-fotos/5. ROBÓTICA NAS ESCOLAS/
+     119 PEC             → SecondBrain/banco-fotos/2. PEC   PIE   PED/PEC/
+     127 PIE             → SecondBrain/banco-fotos/2. PEC   PIE   PED/PIE/
+     124/125 culinária   → SecondBrain/banco-fotos/7. CULINÁRIA SUSTENTÁVEL/
+     oficina de foto     → SecondBrain/banco-fotos/OFICINA DE FOTOGRAFIA/
    │
    ▼
 [3] Ranking estético + semântico das fotos:

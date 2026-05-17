@@ -1,4 +1,4 @@
-"""Combina scores LAION (estetica) + Haiku (relevancia NTICS) e renomeia arquivos.
+﻿"""Combina scores LAION (estetica) + Haiku (relevancia NTICS) e renomeia arquivos.
 
 Score final = w_laion * (laion_score normalizado 0-10) + w_haiku * (haiku_score)
 
@@ -19,7 +19,7 @@ import re
 from pathlib import Path
 
 ROOT = Path(r'g:/O meu disco/AUTOMAÇÕES')
-MELHORES_DIR = ROOT / 'assets' / 'melhores-fotos'
+MELHORES_DIR = ROOT / 'SecondBrain' / 'banco-fotos'
 LAION_CSV_DIR = ROOT / 'output'  # laion-scores-<cat>.csv
 HAIKU_JSON_DIR = ROOT / 'output' / 'haiku-scores'
 COMBINED_DIR = ROOT / 'output' / 'combined-scores'

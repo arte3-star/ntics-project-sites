@@ -8,6 +8,7 @@ SOPs de planejamento, estruturação e gestão de projetos NTICS.
 
 | Workflow | Arquivo | Quando usar |
 |----------|---------|-------------|
+| **Briefing Videomaker** | `briefing_videomaker.md` | HTML interativo por projeto: roteiros, personas, agenda de campo, scripts narração, stories, pastas Drive, aba editora |
 | Termo de Abertura | `termo_abertura.md` | Novo projeto precisa de estruturação formal (TA) |
 | Perfil Estratégico | `perfil_estrategico.md` | Analisar empresa antes de proposta/TA |
 | Plano de Divulgação | `plano_divulgacao.md` | Criar comunicação + releases (requer TA + PEP) |
@@ -25,6 +26,9 @@ SOPs de planejamento, estruturação e gestão de projetos NTICS.
 | **KV Derivar Projeto** | `kv_derivar_projeto.md` | `/kv-derivar` — gera KV do projeto a partir do manual do cliente + biblioteca de 12 ícones via Leonardo AI |
 | **Arte Impressão CMYK** | `arte_impressao_cmyk.md` | `/arte-impressao-cmyk` — gera .AI + .PDF CMYK + .PNG para rollup, pantojet, wind banner, saia bancada, placa fotos, moldura espelho |
 | **Estampa Têxtil** | `estampa_textil.md` | `/estampa-textil` — gera arte para avental, dolma, camiseta, jaleco, capa corte cabelo com cores Pantone e mockup visual |
+| **Projeto Abrir** | `projeto-abrir.md` | `/projeto-abrir` — bootstrap de projeto novo (state.yaml, PLAYBOOK, tasks.yaml, brief, brand…) a partir de inputs Drive + ClickUp + KV + logos |
+| **Projeto Retrospectiva** | `projeto-retrospectiva.md` | `/projeto-retrospectiva` — captura aprendizado por tarefa em 4 perguntas; detecta rule-of-3; gera stub de skill nova se padrão emerge |
+| **Projeto Tasks Sync** | `projeto-tasks-sync.md` | `/projeto-tasks-sync` — espelhamento ClickUp ↔ tasks.yaml com diff explícito; nunca escreve no ClickUp |
 
 **Cadeia de dependências típica:**
 ```
@@ -62,7 +66,9 @@ Organizado em 4 subpastas: `producao/`, `producao/carrosseis/`, `agentes/`, `ref
 | **Google Slides Template** | `producao/google_slides_template.md` | `/google-slides-template` | Template Google Slides editável com placeholders `{CIDADE}`, `{TRILHA}`, `{DATA}` (convite cidade, card QR, certificado) |
 | **Revisão Arte Impressão** | `revisao/revisao_arte_impressao.md` | `/revisao-arte-impressao` | Auditoria técnica PDF/AI antes da gráfica: CMYK, DPI, sangria, fontes, logo hierarquia |
 | **Landing Pré-Projeto** | `producao/landing_preprojeto_ntics.md` | `/criar-landing-preprojeto` | Landing de projeto ainda pré-execução em ntics.com.br (Lovable render + LAION+Sonnet ranking + Code Snippets API) |
+| **Landing v2 (sem RF)** | `producao/landing_v2_ntics.md` | `/criar-landing-v2` | Landing page sem Renderforest — Claude escreve HTML direto guiado por /frontend-design + /ui-ux-pro-max. Fallback: /criar-landing-preprojeto |
 | **Publicar Drive** | `publicar_drive.md` | `/publicar-drive` | Sobe output final aprovado pra `Marketing/2026/` no Drive com mapeamento automático categoria→pasta |
+| **Publicar GitHub Pages** | `../publicar_github_pages.md` | — | Sobe qualquer HTML gerado em `output/` para GitHub Pages e retorna URL pública compartilhável |
 
 ### Carrosseis (`producao/carrosseis/`) — 4 Tipos
 
@@ -124,6 +130,10 @@ Organizado em 4 subpastas: `producao/`, `producao/carrosseis/`, `agentes/`, `ref
 
 **Knowledge files** (referência compartilhada): `workflows/knowledge/`
 
+| Doc | Arquivo | Propósito |
+|-----|---------|-----------|
+| Formatacao ClickUp | `knowledge/clickup_descricao_tarefas.md` | Como usar `markdown_description` para tabelas e secoes renderizarem corretamente |
+
 ## APIs de Conteúdo
 
 APIs usadas pelos workflows de marketing (chaves em `.env`):
@@ -153,6 +163,7 @@ Cada skill `/comando` referencia um SOP em `workflows/`. Lista das skills com wo
 | `/capa-video` | `capa-video/` | `marketing/producao/videos/capa_video.md` |
 | `/criar-landing-ntics` | `criar-landing-ntics/` | `marketing/referencia/criar_landing_ntics.md` |
 | `/criar-landing-preprojeto` | `criar-landing-preprojeto/` | `marketing/producao/landing_preprojeto_ntics.md` |
+| `/criar-landing-v2` | `criar-landing-v2/` | `marketing/producao/landing_v2_ntics.md` |
 | `/publicar-drive` | `publicar-drive/` | `marketing/publicar_drive.md` |
 | `/relatorio-pmo` | `relatorio-pmo/` | `escritorio-projetos/relatorio_diario_pmo.md` |
 | `/relatorio-pmo-semanal` | `relatorio-pmo-semanal/` | `escritorio-projetos/relatorio_semanal_pmo.md` |

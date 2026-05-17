@@ -1,4 +1,4 @@
-"""
+﻿"""
 Gera story-3-lista.jpg a partir de HTML+CSS moderno renderizado via Playwright.
 Mesma saida visual que um Artifact do claude.ai teria.
 """
@@ -74,7 +74,7 @@ HTML = r"""
     width: 220px; height: 220px;
     -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-    background-image: url('file:///G:/O meu disco/AUTOMA%C3%87%C3%95ES/assets/melhores-fotos/1. CONHECENDO OS ODS NAS ESCOLAS/002_ods-cultural-escolas_tecnologia_A_menino-vr-espanto-educador-mural-oceano.jpg');
+    background-image: url('file:///G:/O meu disco/AUTOMA%C3%87%C3%95ES/SecondBrain/banco-fotos/1. CONHECENDO OS ODS NAS ESCOLAS/002_ods-cultural-escolas_tecnologia_A_menino-vr-espanto-educador-mural-oceano.jpg');
     background-size: cover; background-position: center;
     flex-shrink: 0;
   }

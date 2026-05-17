@@ -15,9 +15,9 @@ Sempre que entregar um vídeo de projeto (Pré, Durante ou Pós) precisamos de u
 
 | Input | Origem | Obrigatório |
 |-------|--------|-------------|
-| Foto principal (1) | `assets/melhores-fotos/{programa}/` ou `assets/projetos/{slug}/FOTOS/` | Sim |
-| Logo do projeto (1) | `assets/projetos/{slug}/LOGOS/` ou `PECAS_COMUNICACAO/` | Sim |
-| Logo do patrocinador (1) | `assets/projetos/{slug}/LOGOS/` ou `brand-book/site/assets/` | Sim |
+| Foto principal (1) | `SecondBrain/banco-fotos/{programa}/` ou `SecondBrain/projetos/{slug}/assets/FOTOS/` | Sim |
+| Logo do projeto (1) | `SecondBrain/projetos/{slug}/assets/LOGOS/` ou `PECAS_COMUNICACAO/` | Sim |
+| Logo do patrocinador (1) | `SecondBrain/projetos/{slug}/assets/LOGOS/` ou `brand-book/site/assets/` | Sim |
 | Nome oficial do projeto | TAP / release | Sim |
 | Subtítulo / edição | TAP / release | Sim (ex: "Culinária Sustentável - 2ª Edição") |
 | Tagline ou copy curta | Briefing | Não |

@@ -33,7 +33,7 @@ Header: `Authorization: Bearer {LEONARDO_API_KEY}`, `Content-Type: application/j
 
 | Modelo | ID | API | Uso |
 |---|---|---|---|
-| **Nano Banana 2** (default) | `nano-banana-2` | v2 | Carrosséis, capas, único com image_reference |
+| **Nano Banana 2** (default) | `7418e71f-4133-4e1b-9895-bee19f48f2ce` | v2 | Carrosséis, capas, único com image_reference ⚠️ ID mudou em mai/2026 — não usar string "nano-banana-2" |
 | Phoenix 1.0 | `de7d3faf-762f-48e0-b3b7-9d0ac3a3fcf3` | v1 | Fotorrealismo flagship |
 | Lucid Realism | `05ce0082-2d80-4a2d-8653-4d1c85e2418e` | v1 | Fotografia editorial |
 | Flux Dev | `b2614463-296c-462a-9586-aafdb8f00e36` | v1 | Estado-da-arte |
@@ -51,6 +51,9 @@ Default NTICS: `nano-banana-2`.
 |---|---|---|
 | Quadrado 1:1 | `2048 × 2048` | Default seguro |
 | Portrait 4:5 | `1856 × 2304` | Carrosséis IG feed |
+| Portrait 9:16 (Small) | `768 × 1376` | Reels/TikTok |
+| Portrait 9:16 (Medium) | `1536 × 2752` | Reels/TikTok alta qualidade |
+| Portrait 9:16 (Large) | `3072 × 5504` | Reels/TikTok máxima qualidade |
 | Landscape ~16:9 | `2048 × 1152` ou `1792 × 1024` | Hero, banner |
 | Landscape 3:2 | `1536 × 1024` | Inline artigo |
 | Landscape 5:4 | `2304 × 1856` | Capa horizontal |

@@ -78,7 +78,7 @@ SONNET_CAT_MAP = {
 
 def copy_photo_from_sonnet(entry, cat_key, dst):
     """Copia foto original (melhor resolucao) do melhores-fotos/ para dst.jpg"""
-    src_dir = ROOT / "assets/melhores-fotos" / SONNET_CAT_MAP[cat_key]
+    src_dir = ROOT / "SecondBrain/banco-fotos" / SONNET_CAT_MAP[cat_key]
     stem = Path(entry["file"]).stem
     # Busca arquivo com esse stem em src_dir
     for f in src_dir.rglob("*"):

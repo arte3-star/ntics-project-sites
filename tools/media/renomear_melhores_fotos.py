@@ -1,4 +1,4 @@
-"""Renomeia fotos de assets/melhores-fotos/ com descricao do conteudo via Haiku 4.5.
+﻿"""Renomeia fotos de SecondBrain/banco-fotos/ com descricao do conteudo via Haiku 4.5.
 
 Padrao: {NN}_{programa-slug}_{categoria}_{cena}[_{patrocinador}].jpg
 Gera _INDEX.csv por pasta com descricao completa para busca textual.

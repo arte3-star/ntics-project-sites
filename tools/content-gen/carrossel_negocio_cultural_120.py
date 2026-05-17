@@ -1,4 +1,4 @@
-"""
+﻿"""
 Carrossel projeto 120 Negocio Cultural 2a Edicao (Porto Itapoa).
 Fase Durante - "Acontecendo agora / Ainda da tempo".
 8 cards no padrao PIE: template visual + foto + logo por card.
@@ -7,21 +7,21 @@ import json, os, sys, time, requests
 from pathlib import Path
 from dotenv import load_dotenv
 
-load_dotenv(r"g:\O meu disco\AUTOMAÇÕES\.env")
+load_dotenv()
 API = os.environ["LEONARDO_API_KEY"]
 HEADERS = {"Authorization": f"Bearer {API}", "Content-Type": "application/json"}
 
-ROOT = Path(r"g:\O meu disco\AUTOMAÇÕES")
+ROOT = Path(r"g:\O meu disco\Claude-NTICS-Projetos")
 OUT = ROOT / "output/marketing/carrosseis/projetos/120-negocio-cultural-itapoa/v1"
 OUT.mkdir(parents=True, exist_ok=True)
 LOG = OUT / "geracao.log"
 
-PROJECT_BASE = next(ROOT.glob("assets/projetos/120. NEG*PORTO*"))
+PROJECT_BASE = ROOT / "SecondBrain/projetos/120-negocio-cultural-statkraft-itapoa/assets/PORTO-ITAPOA"
 TEMPLATE = PROJECT_BASE / "identidade-visual" / "banners" / "BANNER - Porto Itapoá.png"
 PROJECT_LOGO = PROJECT_BASE / "LOGOS" / "negocio_cultural_logo.png"
 SPONSOR_LOGO = PROJECT_BASE / "LOGOS" / "porto_itapoa_logo.png"
 
-PHOTOS_DIR = ROOT / "assets" / "melhores-fotos" / "10 - Negócio Cultural"
+PHOTOS_DIR = ROOT / "SecondBrain" / "banco-fotos" / "10 - Negócio Cultural"
 PHOTOS = {
     "capa":         PHOTOS_DIR / "07_negocio-cultural_empreendedorismo_A_equipe-aplaudindo-banner.jpg",
     "projeto":      PHOTOS_DIR / "11_negocio-cultural_capacitacao_A_facilitadora-gesticulando-banner.jpg",

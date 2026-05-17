@@ -1,11 +1,11 @@
-"""Combina LAION (estetica) + Sonnet (semantica) e atribui fotos a slots de cada site."""
+﻿"""Combina LAION (estetica) + Sonnet (semantica) e atribui fotos a slots de cada site."""
 import csv
 import json
 from pathlib import Path
 
 ROOT = Path(r"g:\O meu disco\AUTOMAÇÕES")
 THUMBS = ROOT / "output" / "thumbs"
-SRC_POOLS = ROOT / "assets" / "melhores-fotos"
+SRC_POOLS = ROOT / "SecondBrain" / "banco-fotos"
 SONNET = ROOT / "output" / "rankings" / "sonnet"
 LAION = ROOT / "output" / "rankings"
 

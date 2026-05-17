@@ -10,9 +10,13 @@ import unicodedata
 from pathlib import Path
 from datetime import datetime, timezone, timedelta, date
 
+import urllib3
 import yaml
 import requests
 from dotenv import load_dotenv
+
+# Windows: certifi doesn't include the Windows certificate store.
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 ROOT = Path(__file__).resolve().parents[2]
 CONFIG_PATH = ROOT / "tools" / "reports" / "config" / "pmo_diario.yaml"
@@ -44,7 +48,7 @@ def clickup_get(path: str, params: dict | None = None, max_retries: int = 3) -> 
     url = f"{CLICKUP_BASE}{path}"
     delay = 1.0
     for attempt in range(max_retries):
-        r = requests.get(url, headers=clickup_headers(), params=params, timeout=30)
+        r = requests.get(url, headers=clickup_headers(), params=params, timeout=30, verify=False)
         if r.status_code == 429 or r.status_code >= 500:
             if attempt == max_retries - 1:
                 r.raise_for_status()

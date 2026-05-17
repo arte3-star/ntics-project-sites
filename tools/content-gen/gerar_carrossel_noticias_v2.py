@@ -93,39 +93,79 @@ HEADERS_BROWSER = {
 # FASE 0: ANTI-REPETICAO
 # ══════════════════════════════════════════════════════════════════════════════
 
+_PALAVRAS_COMUNS = {
+    "Uma", "Um", "Os", "As", "Em", "No", "Na", "De", "Do", "Da", "Com", "Para",
+    "Por", "Que", "São", "Nova", "Novo", "Este", "Esta", "Seu", "Sua", "Mais",
+    "Nos", "Nas", "Dos", "Das", "Pelo", "Pela", "Pelos", "Pelas", "Num", "Numa",
+}
+
+
+def _extrair_empresa(titulo):
+    """Extrai nome de empresa/organização do título (primeira palavra capitalizada não-comum)."""
+    for word in titulo.split():
+        w = word.strip(".,;:!?()[]'\"")
+        if len(w) > 2 and w[0].isupper() and not w.isupper() and w not in _PALAVRAS_COMUNS:
+            return w
+    return None
+
+
 def coletar_historico():
-    """Varre todos os descricao.txt anteriores e coleta URLs, titulos e empresas."""
+    """Varre manifest.json e descricao.txt anteriores para anti-repeticao completa.
+
+    Lê manifest.json (fonte primária — dados estruturados) e descricao.txt (fallback legado).
+    Retorna URLs, títulos, fontes E nomes de empresas/organizações já destacadas.
+    """
     urls_usadas = set()
     titulos_usados = set()
     fontes_usadas = set()
+    empresas_destacadas = set()  # nomes de empresas/orgs já cobertas (ex: "Natura", "Zurich")
 
-    # Varrer tanto o output correto quanto o legado .tmp para anti-repeticao completa
     dirs_para_varrer = [d for d in [CARROSSEIS_DIR, CARROSSEIS_TMP] if d.exists()]
     if not dirs_para_varrer:
-        return urls_usadas, titulos_usados, fontes_usadas
+        return urls_usadas, titulos_usados, fontes_usadas, empresas_destacadas
 
     for base_dir in dirs_para_varrer:
+        # ── Fonte primária: manifest.json (dados estruturados) ──
+        for manifest_file in base_dir.rglob("manifest.json"):
+            try:
+                manifest = json.loads(manifest_file.read_text(encoding="utf-8", errors="replace"))
+            except Exception:
+                continue
+            if not isinstance(manifest, dict):
+                continue
+            for noticia in manifest.get("noticias", []):
+                url = noticia.get("url_real") or noticia.get("url", "")
+                if url:
+                    urls_usadas.add(url.rstrip(".,;)"))
+                titulo = noticia.get("titulo", "")
+                if titulo:
+                    titulos_usados.add(titulo)
+                    empresa = _extrair_empresa(titulo)
+                    if empresa:
+                        empresas_destacadas.add(empresa)
+                fonte = noticia.get("fonte", "")
+                if fonte:
+                    fontes_usadas.add(fonte.strip())
+
+        # ── Fallback: descricao.txt (cobre carrosseis sem manifest) ──
         for desc_file in base_dir.rglob("descricao.txt"):
             try:
                 texto = desc_file.read_text(encoding="utf-8", errors="replace")
             except Exception:
                 continue
-
-            # Extrair URLs
             for url in re.findall(r'https?://\S+', texto):
                 urls_usadas.add(url.rstrip('.,;)'))
-
-            # Extrair titulos da secao ORDEM DOS CARDS
             for match in re.findall(r'\.jpg\s*[—-]\s*(.+)', texto):
                 titulo = match.strip()
                 if not titulo.lower().startswith(("capa:", "cta:")):
                     titulos_usados.add(titulo)
-
-            # Extrair fontes/empresas mencionadas
+                    empresa = _extrair_empresa(titulo)
+                    if empresa:
+                        empresas_destacadas.add(empresa)
             for match in re.findall(r'Fonte:\s*(.+)', texto):
                 fontes_usadas.add(match.strip())
 
-    return urls_usadas, titulos_usados, fontes_usadas
+    return urls_usadas, titulos_usados, fontes_usadas, empresas_destacadas
 
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -149,7 +189,7 @@ def carregar_clientes_ntics():
         return []
 
 
-def pesquisar_noticias(tematica=None, urls_excluir=None, titulos_excluir=None, fontes_excluir=None):
+def pesquisar_noticias(tematica=None, urls_excluir=None, titulos_excluir=None, fontes_excluir=None, empresas_excluir=None):
     """Busca 7 noticias ESG via Serper /news (URLs reais verificadas) + Claude para redigir campos.
 
     Prioridade: primeiro roda queries `site:{dominio}` para clientes NTICS (carregados de
@@ -273,12 +313,21 @@ def pesquisar_noticias(tematica=None, urls_excluir=None, titulos_excluir=None, f
         )
 
     titulos_excluidos_hint = ""
-    if titulos_excluir:
-        sample = list(titulos_excluir)[:10]
-        titulos_excluidos_hint = (
-            f"\nTEMAS JA COBERTOS nas ultimas semanas (nao repetir tema, mesmo que a noticia seja diferente): {'; '.join(sample)}"
-            f"\nExemplo: se 'energia solar + ESG' foi coberto, nao escolher outra noticia de 'energia + ESG' mesmo que seja de outra empresa."
-        )
+    if titulos_excluir or empresas_excluir:
+        partes = []
+        if empresas_excluir:
+            lista = ", ".join(sorted(empresas_excluir))
+            partes.append(
+                f"EMPRESAS/ORGANIZACOES JA DESTACADAS — DESCARTE AUTOMATICO: {lista}\n"
+                f"Regra absoluta: se o titulo OU snippet do candidato mencionar qualquer uma dessas empresas/organizacoes, "
+                f"DESCARTAR imediatamente, independente do angulo ou URL. Mesmo empresa = mesma historia para o leitor."
+            )
+        if titulos_excluir:
+            todos = "; ".join(titulos_excluir)
+            partes.append(
+                f"TITULOS/TEMAS JA COBERTOS (nao repetir tema, mesmo que URL seja diferente): {todos}"
+            )
+        titulos_excluidos_hint = "\n" + "\n".join(partes)
 
     prompt_claude = f"""Você é o editor do carrossel ESG semanal da NTICS Projetos.
 
@@ -1075,10 +1124,11 @@ Responda SOMENTE com o titulo, sem aspas, sem explicacao."""
         return f"{fallback_n} Boas Not\u00edcias ESG desta Semana"
 
 
-def gerar_capa_leonardo(titulo_capa, noticias, output_path, photo_path=None):
+def gerar_capa_leonardo(titulo_capa, noticias, output_path, photo_path=None, cena_override=None):
     """Gera o card capa completo via Leonardo AI (foto + layout em uma chamada).
 
     Se photo_path fornecido: usa image_reference HIGH (preserva a foto real).
+    Se cena_override fornecido: usa diretamente essa cena, sem scoring.
     Senao: constroi cena sintetica a partir dos cena_foto das noticias.
     """
     api_key = os.getenv("LEONARDO_API_KEY")
@@ -1087,15 +1137,18 @@ def gerar_capa_leonardo(titulo_capa, noticias, output_path, photo_path=None):
 
     titulo_upper = _sanitize_prompt(titulo_capa).upper()
 
-    # Escolher cena da noticia com mais elementos visuais especificos (usado apenas se sem foto real)
-    def _score_cena(c):
-        especifico = sum(c.lower().count(w) for w in ["port", "solar", "farm", "plant", "forest", "factory", "terminal", "station"])
-        outdoor = sum(c.lower().count(w) for w in ["aerial", "field", "construction", "outdoor", "nature", "landscape"])
-        return especifico * 2 + outdoor
+    if cena_override:
+        cena = cena_override
+    else:
+        # Escolher cena da noticia com mais elementos visuais especificos (usado apenas se sem foto real)
+        def _score_cena(c):
+            especifico = sum(c.lower().count(w) for w in ["port", "solar", "farm", "plant", "forest", "factory", "terminal", "station"])
+            outdoor = sum(c.lower().count(w) for w in ["aerial", "field", "construction", "outdoor", "nature", "landscape"])
+            return especifico * 2 + outdoor
 
-    cenas = [(n.get("cena_foto", ""), _score_cena(n.get("cena_foto", ""))) for n in noticias if n.get("cena_foto")]
-    cenas.sort(key=lambda x: x[1], reverse=True)
-    cena = cenas[0][0] if cenas else "diverse professionals working on sustainability projects in Brazil, solar panels and green infrastructure visible"
+        cenas = [(n.get("cena_foto", ""), _score_cena(n.get("cena_foto", ""))) for n in noticias if n.get("cena_foto")]
+        cenas.sort(key=lambda x: x[1], reverse=True)
+        cena = cenas[0][0] if cenas else "diverse professionals working on sustainability projects in Brazil, solar panels and green infrastructure visible"
 
     # Silencioso sobre a imagem: so aponta onde fica, image_reference HIGH cuida do resto
     if photo_path and Path(photo_path).exists():
@@ -1393,6 +1446,8 @@ def main():
     parser.add_argument("--skip-images", action="store_true", help="Pular download de imagens, usar fotos_originais existentes")
     parser.add_argument("--skip-capa-leo", action="store_true", help="Pular geracao Leonardo para capa (usa fundo teal)")
     parser.add_argument("--cards", default=None, help="Regenerar apenas cards especificos. Ex: --cards capa,2,5,cta")
+    parser.add_argument("--titulo-capa", default=None, help="Titulo fixo para a capa (pula geracao dinamica)")
+    parser.add_argument("--cena-capa", default=None, help="Descricao da cena foto para a capa (override da selecao automatica)")
     args = parser.parse_args()
 
     # Parsear --cards em conjunto de indices/tokens a regenerar
@@ -1420,8 +1475,8 @@ def main():
     # ── FASE 0: Anti-repeticao ──
     print("\n" + "=" * 60)
     print("FASE 0: Verificando historico de carrosseis anteriores...")
-    urls_usadas, titulos_usados, fontes_usadas = coletar_historico()
-    print(f"  Historico: {len(urls_usadas)} URLs, {len(titulos_usados)} titulos, {len(fontes_usadas)} fontes")
+    urls_usadas, titulos_usados, fontes_usadas, empresas_destacadas = coletar_historico()
+    print(f"  Historico: {len(urls_usadas)} URLs, {len(titulos_usados)} titulos, {len(fontes_usadas)} fontes, {len(empresas_destacadas)} empresas")
 
     # ── FASE 1: Pesquisa ──
     print("\n" + "=" * 60)
@@ -1443,6 +1498,7 @@ def main():
             urls_excluir=urls_usadas,
             titulos_excluir=titulos_usados,
             fontes_excluir=fontes_usadas,
+            empresas_excluir=empresas_destacadas,
         )
         with open(raw_json, "w", encoding="utf-8") as f:
             json.dump(noticias, f, ensure_ascii=False, indent=2)
@@ -1503,8 +1559,12 @@ def main():
     capa_path = output_dir / "01-capa.jpg"
     # Titulo da capa: gerado dinamicamente pelo Claude Haiku a partir das noticias da semana
     n = len(noticias)
-    titulo_capa = gerar_titulo_capa_dinamico(noticias, n)
-    print(f"  Titulo da capa (gerado dinamicamente): {titulo_capa}")
+    if args.titulo_capa:
+        titulo_capa = args.titulo_capa
+        print(f"  Titulo da capa (override): {titulo_capa}")
+    else:
+        titulo_capa = gerar_titulo_capa_dinamico(noticias, n)
+        print(f"  Titulo da capa (gerado dinamicamente): {titulo_capa}")
     if args.skip_capa_leo:
         print("  Capa: --skip-capa-leo ativo, pulando geracao")
     elif regen_cards is not None and "capa" not in regen_cards:
@@ -1514,7 +1574,7 @@ def main():
         capa_photo = os.getenv("CAPA_PHOTO_PATH") or None
         if capa_photo and not Path(capa_photo).exists():
             capa_photo = None
-        gerar_capa_leonardo(titulo_capa, noticias, capa_path, photo_path=capa_photo)
+        gerar_capa_leonardo(titulo_capa, noticias, capa_path, photo_path=capa_photo, cena_override=args.cena_capa or None)
     if capa_path.exists():
         card_files.append(str(capa_path))
 

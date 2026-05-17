@@ -1,4 +1,6 @@
-"""Update existing Itapoã pages: new Porto Itapoá bio + new régua image."""
+"""Update existing Itapoã pages: new Porto Itapoá bio + new régua image.
+HISTORICAL: already executed. Assets now at SecondBrain/projetos/120-negocio-cultural-statkraft-itapoa/assets/PORTO-ITAPOA/
+"""
 import urllib.request, ssl, json, mimetypes, pathlib
 
 WP = "https://negociocultural.com.br"

@@ -1,4 +1,4 @@
-"""
+﻿"""
 Carrossel institucional QUEM SOMOS - NTICS Projetos.
 7 cards 4:5, identidade NTICS (teal/verde/amarelo), via Leonardo nano-banana-2.
 """
@@ -15,7 +15,7 @@ ROOT = Path(r"g:\O meu disco\AUTOMAÇÕES")
 OUT = ROOT / "output" / "marketing" / "carrosseis" / "quem-somos"
 OUT.mkdir(parents=True, exist_ok=True)
 
-FOTOS = ROOT / "assets" / "melhores-fotos"
+FOTOS = ROOT / "SecondBrain" / "banco-fotos"
 NTICS_LOGO = ROOT / "brand-book" / "site" / "assets" / "LOGO NTICS - BRANCA.png"
 
 PHOTOS = {

@@ -11,7 +11,7 @@ Após aprovação do Termo de Abertura e do Perfil Estratégico do Patrocinador.
 |-------|-------|-------------|
 | TAP (Termo de Abertura do Projeto) | Workflow `termo_abertura.md` | Sim |
 | PEP (Perfil Estratégico do Patrocinador) | Workflow `perfil_estrategico.md` | Sim |
-| Banco de imagens do projeto | `assets/projetos/{slug}/` | Quando disponível |
+| Banco de imagens do projeto | `SecondBrain/projetos/{slug}/assets/` ou `SecondBrain/projetos-anteriores/{slug}/assets/` | Quando disponível |
 | Materiais complementares (sinopses, apostilas, vídeos) | Drive / ClickUp Docs | Quando disponível |
 
 ## Regras Críticas

@@ -1,6 +1,6 @@
-"""
+﻿"""
 Popula os sites do Lovable (repo arte3-star/ntics-project-sites) com as melhores
-fotos curadas por tema em assets/melhores-fotos/.
+fotos curadas por tema em SecondBrain/banco-fotos/.
 
 Estratégia:
  - Prioridade 1: fotos cujo nome tem o número NTICS do projeto (ex: `_82_`)
@@ -23,7 +23,7 @@ from pathlib import Path
 from typing import Iterable
 
 REPO_ROOT = Path(r"G:/O meu disco/AUTOMAÇÕES/.tmp/ntics-project-sites")
-PHOTOS_ROOT = Path(r"G:/O meu disco/AUTOMAÇÕES/assets/melhores-fotos")
+PHOTOS_ROOT = Path(r"G:/O meu disco/Claude-NTICS-Projetos/SecondBrain/banco-fotos")
 
 # Mapeamento site → tema + número NTICS canônico
 SITE_CONFIG: dict[str, dict] = {

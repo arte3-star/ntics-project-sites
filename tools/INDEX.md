@@ -14,6 +14,7 @@ tools/
 ├── integrations/   # Conectores externos (ClickUp, Drive, Gmail, Pipedrive, Sembly)
 ├── research/       # Pesquisa de dados (Perplexity, CSR news, SALIC)
 ├── publishing/     # Newsletter, sites institucionais (NTICS) e Negócio Cultural (_nc_*)
+├── publish/        # Publicação de HTML no GitHub Pages (arte3-star/ntics-project-sites)
 ├── migration/      # Pipeline Lovable → ntics.com.br (build → photos → refine → upload)
 ├── reports/        # Relatórios PMO diário e semanal (ClickUp → HTML → Gmail)
 ├── sync/           # Sincronização ClickUp/Drive ↔ projects/*/state.yaml
@@ -28,11 +29,13 @@ tools/
 
 | Script | Workflow(s) | APIs | Status |
 |---|---|---|---|
-| gerar_carrossel_noticias_v2.py | [carrossel_noticias.md](../workflows/marketing/producao/carrosseis/carrossel_noticias.md), [agente_criador_semanal.md](../workflows/marketing/agentes/agente_criador_semanal.md) | Leonardo AI, Perplexity, Serper | Ativo |
+| gerar_noticias_semana.py | [carrossel_noticias.md](../workflows/marketing/producao/carrosseis/carrossel_noticias.md) | Perplexity sonar-pro, Claude Haiku | **Ativo (v3)** — gera documento markdown para designer + posta no ClickUp |
+| gerar_carrossel_noticias_v2.py | [carrossel_noticias.md](../workflows/marketing/producao/carrosseis/carrossel_noticias.md) | Leonardo AI, Serper | Legado (v2) — substituido por gerar_noticias_semana.py |
 | gerar_carrossel_educativo.py | [carrossel_educativo.md](../workflows/marketing/producao/carrosseis/carrossel_educativo.md) | Leonardo AI, Pillow (só logo CTA) | Ativo |
 | gerar_carrosseis_3semanas.py | [agente_criador_semanal.md](../workflows/marketing/agentes/agente_criador_semanal.md) | Leonardo AI | Ativo |
 | gerar_educativos_3semanas.py | [agente_criador_semanal.md](../workflows/marketing/agentes/agente_criador_semanal.md) | Leonardo AI | Ativo |
 | gerar_artigo_site.py | [artigo_site.md](../workflows/marketing/producao/artigo_site.md) | Leonardo AI | Ativo |
+| gerar_textos_carrossel_batch.py | [carrossel_case_projeto.md](../workflows/marketing/producao/carrosseis/carrossel_case_projeto.md) | Claude Haiku, ClickUp API | **Ativo** — gera textos 7 cards + captions Instagram/LinkedIn e atualiza tasks ClickUp (sem imagens) |
 | gerar_textos_pdf_carrossel.py | [carrossel_case_projeto.md](../workflows/marketing/producao/carrosseis/carrossel_case_projeto.md) | fpdf2 | Ativo |
 | selecao_fotos.py | — | Google Drive | Utilitário |
 | gamma_create.py | [gamma_api.md](../workflows/marketing/referencia/gamma_api.md) | Gamma API v1.0 | Ativo |
@@ -69,6 +72,7 @@ tools/
 | adapt_motion_aftereffects.py | [motion-projeto/SKILL.md](../.claude/skills/motion-projeto/SKILL.md) | Adobe After Effects | Ativo |
 | apply_text_edits_illustrator.py | [aplicar_revisao_pdf_illustrator.md](../workflows/escritorio-projetos/aplicar_revisao_pdf_illustrator.md) | Adobe Illustrator | Ativo |
 | arte_impressao.py | [arte_impressao_cmyk.md](../workflows/escritorio-projetos/arte_impressao_cmyk.md) | Adobe Illustrator | **Stub** — assinatura pronta, pipeline COM+JSX a implementar |
+| extract_kv_assets.py | (sem workflow dedicado) | Illustrator COM + PyMuPDF | **Ativo** — abre .ai, extrai paleta, exporta artboards SVG+PNG, categoriza camadas |
 | kv_derivar.py | [kv_derivar_projeto.md](../workflows/escritorio-projetos/kv_derivar_projeto.md) | Illustrator + Leonardo AI | **Stub** — orquestração pronta, funções a implementar |
 | estampa_textil.py | [estampa_textil.md](../workflows/escritorio-projetos/estampa_textil.md) | Adobe Illustrator | **Stub** — validação de legibilidade pronta, geração JSX a implementar |
 | revisao_arte_pdf.py | [revisao_arte_impressao.md](../workflows/marketing/revisao/revisao_arte_impressao.md) | PyMuPDF (fitz) | **Stub** — esqueleto de checks pronto, validações específicas a completar |
@@ -77,6 +81,7 @@ tools/
 | jsx/apply_text_edits.jsx | Invocado por apply_text_edits_illustrator.py | Illustrator | Ativo |
 | jsx/vectorize_image.jsx | Invocado por vectorize_image_illustrator.py | Illustrator | Ativo |
 | jsx/read_document_colors.jsx | Utilitário de leitura de cores | Illustrator | Utilitário |
+| jsx/extract_kv_elements.jsx | Invocado por extract_kv_assets.py | Illustrator | Ativo |
 | jsx/arte_impressao.jsx | (a criar) invocado por arte_impressao.py | Illustrator | **Pendente** |
 | jsx/kv_logo_projeto.jsx | (a criar) invocado por kv_derivar.py | Illustrator | **Pendente** |
 | jsx/estampa_textil.jsx | (a criar) invocado por estampa_textil.py | Illustrator | **Pendente** |
@@ -112,6 +117,7 @@ tools/
 | webhook_server.py | n8n integrations | HTTP | Ativo |
 | gws/forms_create.py | [form_indicadores_projeto.md](../workflows/escritorio-projetos/form_indicadores_projeto.md) | Google Forms API v1 | Ativo |
 | gws/gws_cli.py | Vários (Gmail/Calendar/Drive CLI) | Google Workspace APIs | Ativo |
+| gws/organize_meet_transcripts.py | [process_meeting_transcript.md](../workflows/escritorio-projetos/process_meeting_transcript.md) | Google Drive API v3 | Ativo — `--mode oauth` (Lucas) ou `--mode service` (equipe toda, requer service account) |
 | gws/slides_template_create.py | [google_slides_template.md](../workflows/marketing/producao/google_slides_template.md) | Google Slides + Drive API | **Stub** — criação da presentation pronta, placeholders/cores/logos/preview a completar |
 
 ---
@@ -123,6 +129,17 @@ tools/
 | search_perplexity.py | [carrossel_noticias.md](../workflows/marketing/producao/carrosseis/carrossel_noticias.md) | Perplexity API | Ativo |
 | research_csr_news.py | [carrossel_noticias.md](../workflows/marketing/producao/carrosseis/carrossel_noticias.md) | Perplexity API | Ativo |
 | parse_salic_excel.py | [conselheiro_salic.md](../workflows/inscricao-projetos/conselheiro_salic.md) | — (local) | Ativo |
+
+---
+
+## publish/
+
+| Script | Workflow(s) | APIs | Status |
+|---|---|---|---|
+| publish_html.py | [publicar_github_pages.md](../workflows/publicar_github_pages.md) | gh CLI + git | Ativo |
+
+**Uso:** `python tools/publish/publish_html.py --src output/marketing/briefings-videomaker/2026-05-04/index.html`
+O `--dest` é derivado automaticamente do caminho `output/`. Retorna URL pública em `https://arte3-star.github.io/ntics-project-sites/`.
 
 ---
 
@@ -207,10 +224,25 @@ Sincronização ClickUp/Drive ↔ workspace local `projects/`. Skill: `/projeto-
 
 | Script | Propósito | Status |
 |---|---|---|
+| **secondbrain_sync.py** | **Sync batch ClickUp → SecondBrain (tasks-summary.md + _rollup-areas.md). Agendado diariamente às 21h.** | **Ativo** |
 | projeto_sync.py | Sync state.yaml ↔ ClickUp + Gmail (cron + SessionStart) | Ativo |
 | read_drive_xlsx.py | Lê XLSX do Drive direto (sem download) | Utilitário |
 | _form_extract.py / _form_fill_132.py / _form_read_api.py | Extração/preenchimento de formulários (projeto 132 Samarco) | Por-projeto |
+| register_secondbrain_sync_windows.ps1 | Registra Windows Task Scheduler para secondbrain_sync (diário 21h) | Setup |
 | register_cron_windows.ps1 | Registra schedule task Windows para projeto_sync | Setup |
+
+**Uso do secondbrain_sync.py:**
+```bash
+python tools/sync/secondbrain_sync.py                      # sync diário todos os projetos
+python tools/sync/secondbrain_sync.py --since 2026-04-25  # backfill desde data
+python tools/sync/secondbrain_sync.py --slug 132-estacao-samarco  # só um projeto
+python tools/sync/secondbrain_sync.py --dry-run           # simulação sem escrever
+```
+
+**Output gerado:**
+- `SecondBrain/projetos/{slug}/tasks-summary.md` — resumo por projeto (status, fases, áreas, recentes, atenção)
+- `SecondBrain/projetos/_rollup-areas.md` — visão cross-project por área
+- `last_refresh` atualizado no frontmatter de cada README.md
 
 ---
 

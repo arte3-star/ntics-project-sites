@@ -8,10 +8,10 @@ from googleapiclient.discovery import build
 SHEET_ID = "1K0J9n19mJzj8WsNvb9WsyMxW6pSNilIPG9Fh0Stttfg"
 
 SITES_2026 = [
-    # numero, projeto, patrocinador, cidade, slug, url_lovable
+    # numero, projeto, patrocinador, cidade, slug, url_publicada
     ("116", "Cultura Robótica",                      "Áster Máquinas", "—",                "cultura-robotica-aster",                  "https://cultura-robotica-2026.lovable.app"),
     ("117", "Teatro e Oficina Robótica 4ª Edição",   "Whirlpool",      "Rio Claro/Joinville", "teatro-oficina-robotica-4ed-whirlpool",   "https://teatro-e-oficina-robotica-2026.lovable.app"),
-    ("119", "PEC Eu Faço Parte 2ª Edição",           "Sylvamo",        "Mogi Guaçu/Guataparã", "pec-eu-faco-parte-2ed-sylvamo",           "https://pec-eu-faco-parte-2026.lovable.app"),
+    ("119", "PEC Eu Faço Parte 2ª Edição",           "Sylvamo",        "Mogi Guaçu/Guataparã", "pec-eu-faco-parte-2ed-sylvamo",           "https://ntics.com.br/pec-eu-faco-parte-2ed-sylvamo/"),
     ("124", "Gastronomia também é Arte",             "Compagás",       "Lapa/PR",           "gastronomia-tambem-e-arte-compagas",      "—"),
     ("125", "Gastronomia também é Arte 2ª Edição",   "GRU Airport",    "Guarulhos/SP",      "gastronomia-tambem-e-arte-2ed-gru",       "https://gastronomia-tambem-e-arte-2ed-2026.lovable.app"),
     ("127G","PIE Empreendedorismo é Arte 2ª Ed (GRU)","GRU Airport",   "Guarulhos/SP",      "pie-empreendedorismo-e-arte-2ed-gru",     "https://pie-empreendedorismo-gru.lovable.app"),

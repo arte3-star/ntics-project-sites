@@ -6,7 +6,7 @@ Cores por projeto (lidas de cores.json), galeria com TODAS as fotos, régua no f
 
 Uso:
   python tools/migration/generate_site_html.py \
-    --project-dir "assets/projetos/86. TEATRO DOS BONS HÁBITOS (FERROPORTE)" \
+    --project-dir "SecondBrain/projetos-anteriores/86-teatro-dos-bons-habitos-culinaria-sustentavel-ferroporte/assets" \
     --project-name "Teatro dos Bons Hábitos" \
     --github-base "https://raw.githubusercontent.com/arte3-star/ntics-project-sites/master/86_teatro_bons_habitos_ferroporte/"
 

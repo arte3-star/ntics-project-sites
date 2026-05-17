@@ -22,15 +22,18 @@ if (-not (Test-Path $LogDir)) {
     New-Item -ItemType Directory -Path $LogDir -Force | Out-Null
 }
 
-$Command = "`"$PythonExe`" `"$ScriptPath`" 2>&1 >> `"$LogPath`""
-
 Write-Host "Registrando task:"
-Write-Host "  Nome:    $TaskName"
-Write-Host "  Comando: $Command"
+Write-Host "  Nome:     $TaskName"
+Write-Host "  Python:   $PythonExe"
+Write-Host "  Script:   $ScriptPath"
+Write-Host "  Log:      $LogPath  (escrito pelo proprio script)"
 Write-Host "  Cadencia: diaria as $Hora"
 Write-Host ""
 
-$Action = New-ScheduledTaskAction -Execute "cmd.exe" -Argument "/c $Command"
+# Argument quoting: caminhos do script e log com aspas duplas escapadas.
+# O proprio script faz tee de stdout/stderr para $LogPath via --log-to.
+$ScriptArgs = "`"$ScriptPath`" --log-to `"$LogPath`""
+$Action = New-ScheduledTaskAction -Execute $PythonExe -Argument $ScriptArgs -WorkingDirectory $ProjetosPath
 $Trigger = New-ScheduledTaskTrigger -Daily -At $Hora
 $Settings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -StartWhenAvailable -MultipleInstances IgnoreNew
 

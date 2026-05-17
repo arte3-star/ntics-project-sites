@@ -7,7 +7,7 @@ Lê o primeiro PNG em LOGOS/, usa PIL quantize para extrair 3 cores dominantes
 
 Uso:
   python tools/migration/extract_palette.py \
-    --project-dir "assets/projetos/87. EXPOSIÇÃO CULINÁRIA SUSTENTÁVEL (IMETAME)"
+    --project-dir "SecondBrain/projetos-anteriores/87-exposicao-culinaria-sustentavel-uma-abordagem-artistica-imetame/assets"
 
   python tools/migration/extract_palette.py --all   # roda em todos
 """

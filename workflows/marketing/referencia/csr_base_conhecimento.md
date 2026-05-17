@@ -189,7 +189,7 @@ Além deste documento, consultar sempre em paralelo:
 | **Identidade oficial** | Memória `project_ntics_identidade_oficial` | Parâmetros atualizados: 24 anos, São Paulo+Orlando, linguagem genérica para leis de incentivo |
 | **Roteiros semanais** | `output/marketing/semanas/semana-S0X/video/roteiro.md` | Ideias/ganchos/dados já desenvolvidos na cadência editorial do mês |
 | **SecondBrain** | `SecondBrain/` | Atas, perfis de clientes, decisões históricas, projetos ativos |
-| **Assets de projetos** | `assets/melhores-fotos/` e `assets/projetos/` | Fotos reais para ilustração |
+| **Assets de projetos** | `SecondBrain/banco-fotos/` e `SecondBrain/projetos/{slug}/assets/` | Fotos reais para ilustração |
 
 ---
 
