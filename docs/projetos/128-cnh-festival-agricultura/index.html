@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Festival Agricultura Sustentável — CNH New Holland</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --nh-blue:    #003DA5;
+    --nh-dark:    #001F66;
+    --nh-gold:    #FFB800;
+    --nh-light:   #E8EFFF;
+    --bg:         #F4F6FA;
+    --card:       #FFFFFF;
+    --text:       #0F1A3E;
+    --muted:      #6B7280;
+    --border:     #E2E8F0;
+    --red:        #DC2626;
+    --amber:      #D97706;
+    --blue-soft:  #2563EB;
+    --green:      #059669;
+    --radius:     12px;
+    --shadow:     0 2px 12px rgba(0,30,100,.07);
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+  }
+
+  /* ── TOPO PROPOSTA ── */
+  .proposal-banner {
+    background: var(--nh-gold);
+    text-align: center;
+    padding: 8px 16px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--nh-dark);
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: linear-gradient(135deg, var(--nh-dark) 0%, var(--nh-blue) 100%);
+    padding: 40px 48px 36px;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::after {
+    content: "";
+    position: absolute;
+    right: -60px; top: -60px;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.04);
+  }
+  .header-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 24px;
+    position: relative;
+    z-index: 1;
+  }
+  .header-brand {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--nh-gold);
+    margin-bottom: 8px;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 10px;
+  }
+  .header-meta {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .badge-phase {
+    background: rgba(255,184,0,.2);
+    color: var(--nh-gold);
+    border: 1px solid rgba(255,184,0,.4);
+  }
+  .badge-law {
+    background: rgba(255,255,255,.12);
+    color: rgba(255,255,255,.85);
+    border: 1px solid rgba(255,255,255,.2);
+  }
+  .header-resp {
+    text-align: right;
+  }
+  .header-resp .label { font-size: 11px; color: rgba(255,255,255,.5); margin-bottom: 2px; }
+  .header-resp .value { font-size: 14px; font-weight: 600; }
+  .header-cities {
+    font-size: 13px;
+    color: rgba(255,255,255,.7);
+    margin-top: 6px;
+  }
+
+  /* ── MAIN ── */
+  .main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 24px 64px;
+  }
+
+  /* ── SECTION TITLE ── */
+  .section-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+
+  /* ── METRICS ── */
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .metric-card {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 24px;
+    box-shadow: var(--shadow);
+    border-top: 3px solid var(--nh-blue);
+    text-align: center;
+  }
+  .metric-card .icon {
+    font-size: 28px;
+    margin-bottom: 8px;
+    display: block;
+  }
+  .metric-card .number {
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--nh-blue);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .metric-card .number.tbd {
+    font-size: 20px;
+    color: var(--muted);
+  }
+  .metric-card .label {
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 500;
+  }
+
+  /* ── GRID 2 COL ── */
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 40px;
+  }
+
+  /* ── CARD BASE ── */
+  .card {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 28px;
+    box-shadow: var(--shadow);
+  }
+  .card-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  /* ── MILESTONES ── */
+  .milestones { list-style: none; }
+  .milestone {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .milestone:last-child { border-bottom: none; }
+  .milestone-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    margin-top: 5px;
+    flex-shrink: 0;
+  }
+  .dot-blocked { background: var(--red); box-shadow: 0 0 0 3px rgba(220,38,38,.15); }
+  .dot-pending { background: #CBD5E1; }
+  .dot-active  { background: var(--blue-soft); box-shadow: 0 0 0 3px rgba(37,99,235,.15); }
+  .dot-done    { background: var(--green); }
+  .milestone-text { flex: 1; }
+  .milestone-name { font-size: 13px; font-weight: 600; color: var(--text); }
+  .milestone-resp { font-size: 11px; color: var(--muted); margin-top: 2px; }
+  .milestone-status {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 10px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .status-blocked { background: #FEE2E2; color: var(--red); }
+  .status-pending { background: #F1F5F9; color: var(--muted); }
+  .status-active  { background: #DBEAFE; color: var(--blue-soft); }
+  .status-done    { background: #D1FAE5; color: var(--green); }
+
+  /* ── COMPONENTES ── */
+  .components {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .component-card {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 24px;
+    box-shadow: var(--shadow);
+    position: relative;
+    overflow: hidden;
+  }
+  .component-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: var(--nh-blue);
+  }
+  .component-icon { font-size: 32px; margin-bottom: 12px; }
+  .component-name { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+  .component-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
+  .component-tag {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 3px 10px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+
+  /* ── WORKSHOPS ── */
+  .workshops { list-style: none; }
+  .workshop-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .workshop-item:last-child { border-bottom: none; }
+  .workshop-num {
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    background: var(--nh-light);
+    color: var(--nh-blue);
+    font-size: 11px;
+    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .workshop-name { font-size: 13px; font-weight: 500; flex: 1; }
+  .ods-tag {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--nh-blue);
+    background: var(--nh-light);
+    padding: 2px 7px;
+    border-radius: 8px;
+    white-space: nowrap;
+  }
+
+  /* ── DELIVERABLES ── */
+  .deliverables {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+  .deliverable {
+    background: var(--card);
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: var(--shadow);
+    border-left: 3px solid var(--border);
+  }
+  .deliverable.pending { border-left-color: #CBD5E1; }
+  .deliverable.in-progress { border-left-color: var(--blue-soft); }
+  .deliverable.done { border-left-color: var(--green); }
+  .deliverable-id { font-size: 10px; font-weight: 700; color: var(--muted); margin-bottom: 4px; }
+  .deliverable-name { font-size: 12px; font-weight: 600; line-height: 1.35; }
+  .deliverable-type { font-size: 11px; color: var(--muted); margin-top: 4px; }
+
+  /* ── LEGENDA ── */
+  .legend {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+  }
+  .legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); }
+  .legend-dot { width: 8px; height: 8px; border-radius: 50%; }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 24px;
+    text-align: center;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  footer .ntics { font-size: 13px; font-weight: 700; color: var(--nh-blue); }
+  footer .meta  { font-size: 11px; color: var(--muted); margin-top: 4px; }
+
+  @media (max-width: 768px) {
+    .header { padding: 28px 20px; }
+    .header h1 { font-size: 20px; }
+    .metrics { grid-template-columns: repeat(2, 1fr); }
+    .grid-2 { grid-template-columns: 1fr; }
+    .components { grid-template-columns: 1fr; }
+    .deliverables { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<div class="proposal-banner">Proposta de visualização — modelo para aprovação do cliente</div>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-inner">
+    <div>
+      <div class="header-brand">CNH — New Holland Agriculture</div>
+      <h1>Festival Agricultura Sustentável</h1>
+      <div class="header-meta">
+        <span class="badge badge-phase">⏳ Kickoff Pendente</span>
+        <span class="badge badge-law">Lei Rouanet</span>
+      </div>
+      <div class="header-cities">📍 Curitiba · Guarapuava · Toledo · Dom Pedrito</div>
+    </div>
+    <div class="header-resp">
+      <div class="label">Responsável NTICS</div>
+      <div class="value">Lucas Rotta</div>
+      <div class="label" style="margin-top:10px">Código</div>
+      <div class="value">#128</div>
+    </div>
+  </div>
+</header>
+
+<main class="main">
+
+  <!-- MÉTRICAS -->
+  <div class="section-title">Visão geral</div>
+  <div class="metrics">
+    <div class="metric-card">
+      <span class="icon">📍</span>
+      <div class="number">4</div>
+      <div class="label">Cidades</div>
+    </div>
+    <div class="metric-card">
+      <span class="icon">🎓</span>
+      <div class="number">7</div>
+      <div class="label">Oficinas por escola</div>
+    </div>
+    <div class="metric-card">
+      <span class="icon">🏫</span>
+      <div class="number tbd">A definir</div>
+      <div class="label">Escolas participantes</div>
+    </div>
+    <div class="metric-card">
+      <span class="icon">🧒</span>
+      <div class="number tbd">A definir</div>
+      <div class="label">Alunos impactados</div>
+    </div>
+  </div>
+
+  <!-- CRONOGRAMA + OFICINAS -->
+  <div class="grid-2">
+
+    <!-- CRONOGRAMA MACRO -->
+    <div class="card">
+      <div class="card-title">🗓️ Cronograma — Marcos</div>
+      <div class="legend" style="margin-bottom:16px">
+        <div class="legend-item"><div class="legend-dot" style="background:var(--red)"></div> Bloqueado</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#CBD5E1"></div> Pendente</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div> Concluído</div>
+      </div>
+      <ul class="milestones">
+        <li class="milestone">
+          <div class="milestone-dot dot-blocked"></div>
+          <div class="milestone-text">
+            <div class="milestone-name">TAP formal + PRONAC</div>
+            <div class="milestone-resp">Lucas + Abilio</div>
+          </div>
+          <span class="milestone-status status-blocked">Bloqueado</span>
+        </li>
+        <li class="milestone">
+          <div class="milestone-dot dot-blocked"></div>
+          <div class="milestone-text">
+            <div class="milestone-name">Confirmação interlocutor CNH</div>
+            <div class="milestone-resp">Lucas + Abilio</div>
+          </div>
+          <span class="milestone-status status-blocked">Bloqueado</span>
+        </li>
+        <li class="milestone">
+          <div class="milestone-dot dot-pending"></div>
+          <div class="milestone-text">
+            <div class="milestone-name">Kickoff formal com CNH</div>
+            <div class="milestone-resp">Lucas</div>
+          </div>
+          <span class="milestone-status status-pending">Pendente</span>
+        </li>
+        <li class="milestone">
+          <div class="milestone-dot dot-pending"></div>
+          <div class="milestone-text">
+            <div class="milestone-name">Definição de escolas por cidade</div>
+            <div class="milestone-resp">Lucas</div>
+          </div>
+          <span class="milestone-status status-pending">Pendente</span>
+        </li>
+        <li class="milestone">
+          <div class="milestone-dot dot-pending"></div>
+          <div class="milestone-text">
+            <div class="milestone-name">KV + materiais pré — Bloco A</div>
+            <div class="milestone-resp">Lucas</div>
+          </div>
+          <span class="milestone-status status-pending">Pendente</span>
+        </li>
+        <li class="milestone">
+          <div class="milestone-dot dot-pending"></div>
+          <div class="milestone-text">
+            <div class="milestone-name">Início das oficinas — 1ª cidade</div>
+            <div class="milestone-resp">Lucas</div>
+          </div>
+          <span class="milestone-status status-pending">Pendente</span>
+        </li>
+        <li class="milestone">
+          <div class="milestone-dot dot-pending"></div>
+          <div class="milestone-text">
+            <div class="milestone-name">Evento DOMO — Curitiba/PR</div>
+            <div class="milestone-resp">Lucas</div>
+          </div>
+          <span class="milestone-status status-pending">Pendente</span>
+        </li>
+        <li class="milestone">
+          <div class="milestone-dot dot-pending"></div>
+          <div class="milestone-text">
+            <div class="milestone-name">Encerramento + Relatório ESG</div>
+            <div class="milestone-resp">Lucas + Abilio</div>
+          </div>
+          <span class="milestone-status status-pending">Pendente</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- OFICINAS -->
+    <div class="card">
+      <div class="card-title">🌱 7 Oficinas nas Escolas</div>
+      <ul class="workshops">
+        <li class="workshop-item">
+          <div class="workshop-num">1</div>
+          <div class="workshop-name">A Terra e a Semente</div>
+          <span class="ods-tag">ODS 2</span>
+        </li>
+        <li class="workshop-item">
+          <div class="workshop-num">2</div>
+          <div class="workshop-name">Ciclo da Água e Irrigação Sustentável</div>
+          <span class="ods-tag">ODS 6</span>
+        </li>
+        <li class="workshop-item">
+          <div class="workshop-num">3</div>
+          <div class="workshop-name">Alimentos do Campo e da Cidade</div>
+          <span class="ods-tag">ODS 2, 12</span>
+        </li>
+        <li class="workshop-item">
+          <div class="workshop-num">4</div>
+          <div class="workshop-name">A Nova Agricultura e Sabores Locais</div>
+          <span class="ods-tag">ODS 4, 12</span>
+        </li>
+        <li class="workshop-item">
+          <div class="workshop-num">5</div>
+          <div class="workshop-name">Clima e o Campo</div>
+          <span class="ods-tag">ODS 13</span>
+        </li>
+        <li class="workshop-item">
+          <div class="workshop-num">6</div>
+          <div class="workshop-name">Ciclo do Metano como Combustível Alternativo</div>
+          <span class="ods-tag">ODS 7, 13</span>
+        </li>
+        <li class="workshop-item">
+          <div class="workshop-num">7</div>
+          <div class="workshop-name">Cidadania e Sustentabilidade</div>
+          <span class="ods-tag">ODS 12</span>
+        </li>
+      </ul>
+      <div style="margin-top:16px; padding:12px; background:var(--nh-light); border-radius:8px; font-size:12px; color:var(--nh-blue); font-weight:500;">
+        🏅 Certificado "Guardião da Terra" para cada aluno participante
+      </div>
+    </div>
+
+  </div>
+
+  <!-- COMPONENTES -->
+  <div class="section-title">Componentes do projeto</div>
+  <div class="components">
+    <div class="component-card">
+      <div class="component-icon">🎓</div>
+      <div class="component-name">Oficinas nas Escolas</div>
+      <div class="component-desc">7 oficinas práticas mensais com metodologia BNCC e ODS. Kits pedagógicos físicos, manual do facilitador e plano de aula por escola.</div>
+      <span class="component-tag" style="background:#E8EFFF; color:var(--nh-blue)">4 cidades · rede pública</span>
+    </div>
+    <div class="component-card">
+      <div class="component-icon">💻</div>
+      <div class="component-name">Plataforma "New Holland Online"</div>
+      <div class="component-desc">Plataforma digital para professores (formação 20h + certificado BNCC), estudantes (jogos e quizzes) e gestores (painel de impacto).</div>
+      <span class="component-tag" style="background:#FFF7E0; color:#92400E">a desenvolver</span>
+    </div>
+    <div class="component-card">
+      <div class="component-icon">🎪</div>
+      <div class="component-name">DOMO Imersivo Itinerante</div>
+      <div class="component-desc">Estrutura itinerante em praça pública em Curitiba. 2 ambientações: "A Jornada da Semente" e "A Terra é Viva". Evento de encerramento com entrega de certificados.</div>
+      <span class="component-tag" style="background:#E8EFFF; color:var(--nh-blue)">Curitiba/PR</span>
+    </div>
+  </div>
+
+  <!-- ENTREGAS DE COMUNICAÇÃO -->
+  <div class="section-title">Entregas de comunicação e design</div>
+  <div class="deliverables">
+    <div class="deliverable pending">
+      <div class="deliverable-id">A1</div>
+      <div class="deliverable-name">KV + biblioteca de ícones temáticos</div>
+      <div class="deliverable-type">Identidade visual</div>
+    </div>
+    <div class="deliverable pending">
+      <div class="deliverable-id">A2</div>
+      <div class="deliverable-name">Carrossel informativo pré (8 cards)</div>
+      <div class="deliverable-type">Redes sociais</div>
+    </div>
+    <div class="deliverable pending">
+      <div class="deliverable-id">A3</div>
+      <div class="deliverable-name">Convite cidade (template 4 cidades)</div>
+      <div class="deliverable-type">Template editável</div>
+    </div>
+    <div class="deliverable pending">
+      <div class="deliverable-id">A4</div>
+      <div class="deliverable-name">Convite WhatsApp escolas</div>
+      <div class="deliverable-type">Template editável</div>
+    </div>
+    <div class="deliverable pending">
+      <div class="deliverable-id">B1</div>
+      <div class="deliverable-name">Kit pedagógico físico por escola</div>
+      <div class="deliverable-type">Impresso pedagógico</div>
+    </div>
+    <div class="deliverable pending">
+      <div class="deliverable-id">B2</div>
+      <div class="deliverable-name">Manual do facilitador</div>
+      <div class="deliverable-type">Documento</div>
+    </div>
+    <div class="deliverable pending">
+      <div class="deliverable-id">C1</div>
+      <div class="deliverable-name">Layout interno DOMO (2 ambientações)</div>
+      <div class="deliverable-type">Cenografia</div>
+    </div>
+    <div class="deliverable pending">
+      <div class="deliverable-id">D1–D2</div>
+      <div class="deliverable-name">Certificados alunos + professores</div>
+      <div class="deliverable-type">Template A4</div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <div class="ntics">NTICS — Núcleo de Tecnologia, Inovação e Cultura Social</div>
+  <div class="meta">Projeto #128 · CNH New Holland Agriculture · Atualizado em 18/05/2026</div>
+</footer>
+
+</body>
+</html>
